@@ -1,4 +1,4 @@
-# Keep dotfiles where they belong and avoid symlinks entirely.
+# Keep dotfiles where they belong and avoid symlinks.
 
 This arrangement of dotfiles is taken from [here](https://github.com/anandpiyer/.dotfiles/tree/master/.dotfiles). The idea is to keep all the dotfiles in their original locations.
 
