@@ -1,0 +1,7 @@
+Plug 'christoomey/vim-system-copy'
+Plug 'justinmk/vim-dirvish'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-commentary'
+Plug 'itchyny/lightline.vim'
+Plug 'olambo/vim-lightline-tea'
+Plug 'romainl/Apprentice'
