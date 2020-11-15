@@ -9,6 +9,20 @@ autocmd FileType markdown setlocal commentstring=#\ %s
 set backupdir=~/tmp/nvim-backup
 set directory=~/tmp/nvim-backup
 
+let g:PaperColor_Theme_Options = {
+  \   'theme': {
+  \     'default': {
+  \       'override' : {
+  \         'color00' : ['ffffff', '231'],
+  \         'linenumber_bg' : ['ffffff', '231'],
+  \       }
+  \     },
+  \     'default.dark': {
+  \       'override' : {
+  \       }
+  \     }
+  \   }
+  \ }
 colorscheme PaperColor
 set bg=light
 
