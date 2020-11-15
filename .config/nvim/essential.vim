@@ -9,7 +9,8 @@ autocmd FileType markdown setlocal commentstring=#\ %s
 set backupdir=~/tmp/nvim-backup
 set directory=~/tmp/nvim-backup
 
-colorscheme Apprentice
+colorscheme PaperColor
+set bg=light
 
 let g:lightline_tealeaves = "src/main/scala:sms, src/main/java:smj, src/main/resources:smr"
 
