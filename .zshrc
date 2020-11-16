@@ -11,16 +11,9 @@ autoload -Uz vcs_info
 precmd_vcs_info() { vcs_info }
 precmd_functions+=( precmd_vcs_info )
 setopt prompt_subst
-# RPROMPT=\$vcs_info_msg_0_
 PROMPT='$vcs_info_msg_0_:%F{green}%~%f %% '
 zstyle ':vcs_info:git:*' formats '%F{240}(%b)%r%f'
 zstyle ':vcs_info:*' enable git
-
-# Change default zim location
-# export ZIM_HOME=${ZDOTDIR:-${HOME}}/.zim
-
-# Start zim
-# [[ -s ${ZIM_HOME}/init.zsh ]] && source ${ZIM_HOME}/init.zsh
 
 export extrHost=rest.extractor.fos
 export extrHost=localhost:24000
@@ -36,9 +29,6 @@ export GRAALVM_HOME=/Library/Java/JavaVirtualMachines/graalvm-ce-java11-19.3.0/C
 
 setopt hist_ignore_dups
 setopt hist_ignore_space
-
-# export PATH="$HOME/.jenv/bin:$PATH#
-#  eval "$(jenv init -)"
 
 alias dotfiles='/usr/local/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
@@ -89,11 +79,10 @@ function skk() {
 }
 
 bindkey -v 
-bindkey '^A' vi-beginning-of-line
-bindkey -M vicmd '^A' vi-beginning-of-line
-bindkey '^E' end-of-line
-bindkey -M vicmd '^E' end-of-line
 bindkey -r ''
+# the following bindkey's won't work in macos Terminal without also adding them to Profiles/Keyboard
+bindkey "\033[H" beginning-of-line 
+bindkey "\033[F" end-of-line
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
