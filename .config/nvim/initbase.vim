@@ -57,7 +57,7 @@ set shiftwidth=4
 set iskeyword+=-,#
 set scrolloff=4
 set belloff=all
-set mouse=a " not going to allow copy on a remote machine. can use option-mouse or turn off
+set mouse=nv " this is not going to allow command-c. can use option-mouse or turn off
 
 " ----------------------------------------------------------------------------------------------
 " keyboard maestro translates between <cmd> na <hyp> to <c-\>... key combinations
@@ -65,7 +65,7 @@ set mouse=a " not going to allow copy on a remote machine. can use option-mouse 
 " <cmd> == hold command key down
  
 " <cmd-c> | <hyp-y> to system copy
-nmap <c-\><c-\> <Plug>SystemCopy
+vmap <c-\><c-\> <Plug>SystemCopy
 xmap <c-\><c-\> <Plug>SystemCopy
 nmap <c-\><c-\><c-\><c-\> <Plug>SystemCopyLine
 
