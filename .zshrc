@@ -30,7 +30,7 @@ export GRAALVM_HOME=/Library/Java/JavaVirtualMachines/graalvm-ce-java11-19.3.0/C
 setopt hist_ignore_dups
 setopt hist_ignore_space
 
-alias dotfiles='/usr/local/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+alias dotf='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
 alias vi='fvim() { nvim ${@:-.} };fvim'
 
