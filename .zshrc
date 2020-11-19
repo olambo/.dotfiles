@@ -1,19 +1,27 @@
 # User configuration sourced by interactive shells
 #
 
-PROMPT='%F{240}%T%f:%F{green}%~%f %% '
-zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}'
-autoload -Uz compinit && compinit
+# based on https://stackoverflow.com/questions/1128496/to-get-a-prompt-which-indicates-git-branch-in-zsh
+setopt prompt_subst
+autoload -Uz vcs_info
 export CLICOLOR=1
 export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
-
-autoload -Uz vcs_info
-precmd_vcs_info() { vcs_info }
-precmd_functions+=( precmd_vcs_info )
-setopt prompt_subst
-PROMPT='$vcs_info_msg_0_:%F{green}%~%f %% '
-zstyle ':vcs_info:git:*' formats '%F{240}(%b)%r%f'
-zstyle ':vcs_info:*' enable git
+zstyle ':vcs_info:*' stagedstr 'M' 
+zstyle ':vcs_info:*' unstagedstr 'M' 
+zstyle ':vcs_info:*' check-for-changes true
+zstyle ':vcs_info:*' actionformats '%F{240}[%F{2}%b%F{240}|%F{1}%a%F{240}]%f '
+zstyle ':vcs_info:*' formats \
+  '%F{240}[%F{2}%b%F{240}] %F{2}%c%F{240}%u%f'
+zstyle ':vcs_info:git*+set-message:*' hooks git-untracked
+zstyle ':vcs_info:*' enable git 
++vi-git-untracked() {
+  if [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) == 'true' ]] && \
+  [[ $(git ls-files --other --exclude-standard --no-empty-directory| sed q | wc -l | tr -d ' ') == 1 ]] ; then
+  hook_com[unstaged]+='%F{1}??%f'
+fi
+}
+precmd () { vcs_info }
+PROMPT='%F{240}%n $vcs_info_msg_0_:%F{green}%~%f %% '
 
 export extrHost=rest.extractor.fos
 export extrHost=localhost:24000
