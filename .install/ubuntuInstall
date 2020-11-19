@@ -1,0 +1,19 @@
+#! /bin/bash
+
+# terminal apps
+term_apps=(
+wget
+tmux
+git
+vim
+neovim
+docker
+maven
+httpie
+ripgrep
+scala
+)
+sudo apt-get install ${term_apps[@]}
+
+echo "install is done!"
+
