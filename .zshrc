@@ -36,6 +36,7 @@ export GRAALVM_HOME=/Library/Java/JavaVirtualMachines/graalvm-ce-java11-19.3.0/C
 
 setopt hist_ignore_dups
 setopt hist_ignore_space
+setopt share_history
 
 if [[ $(uname 2> /dev/null) == "Linux" ]] ; then
     alias ls='ls --color=auto'

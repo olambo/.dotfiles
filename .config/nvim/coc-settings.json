@@ -1,9 +1,0 @@
-{
-"languageserver": {
-    "dotty": {
-      "command": "run-dotty-lsp",
-        "rootPatterns": ["build.sbt"],
-        "filetypes": ["scala", "sbt"]
-    }
-}
-}

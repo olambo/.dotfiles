@@ -14,6 +14,9 @@ maven
 scala
 httpie
 rg
+sk
+the_silver_searcher
+node
 trash
 )
 brew install ${term_apps[@]}
@@ -44,6 +47,8 @@ brew cask install --appdir="/Applications" ${cask_apps[@]}
 # Remove brew cruft
 brew cleanup
 
+git clone https://github.com/k-takata/minpac.git ~/.config/nvim/pack/minpac/opt/minpac
+
 echo "brew install is done!"
 
 # stuff to do
@@ -52,7 +57,7 @@ echo "brew install is done!"
 # Alfred - key shortcut
 # karabiner-elements - start, add permissions
 # Keyboard Maestro - start and sync
-# Vim - PlugInstall
+# Vim - PlugInstall, CocInstall coc-metals
 # Email - add account
 
 # on some machines you may want

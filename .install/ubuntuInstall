@@ -7,13 +7,17 @@ tmux
 git
 vim
 neovim
-docker
 maven
 httpie
 ripgrep
 scala
+node
+open-vm-tools
 )
 sudo apt-get install ${term_apps[@]}
 
+git clone https://github.com/k-takata/minpac.git ~/.config/nvim/pack/minpac/opt/minpac
+
 echo "install is done!"
 
+# problems with shared tools - https://communities.vmware.com/t5/VMware-Fusion-Discussions/Shared-folders-no-longer-showing-up-in-guest-OS-Ubuntu-16-04/m-p/509366
