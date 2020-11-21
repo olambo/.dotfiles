@@ -1,5 +1,45 @@
-let g:python3_host_prog = '/usr/bin/python3'
+set belloff=all
+set number relativenumber
+set mouse=nv " this is not going to allow command-c. can use option-mouse or turn off
 
+" this is problematic in vscode
+nnoremap <tab> <c-w>w
+
+" ----------------------------------------------------------------------------------------------
+" keyboard maestro key combinations
+ 
+" <hyper-y> system copy
+vmap <c-\><c-\> <Plug>SystemCopy
+xmap <c-\><c-\> <Plug>SystemCopy
+nmap <c-\><c-\><c-\><c-\> <Plug>SystemCopyLine
+
+" <cmd-/> comment/uncomment
+nmap <c-\>/ <Plug>CommentaryLine<cr>
+vmap <c-\>/ <Plug>Commentary
+
+" ----------------------------------------------------------------------------------------------
+" leader of the pack. 
+let mapleader="\<space>"
+
+" magic replace
+nnoremap <leader>/ :%s/\v/gc<Left><Left><Left>
+" toggle number on and off
+nnoremap <silent> <leader>nn :set number! relativenumber!<cr> 
+" highlight off
+nnoremap <leader><leader> :nohlsearch<Bar>:echo<CR>
+
+" these lead to unintended consequences if they are not set to something
+nnoremap <leader>i :echoerr 'You typed "<leader>i". Use "i" to insert'<cr>
+nnoremap <leader>s :echoerr 'You typed "<leader>s". Use "<leader>w" to write file'<cr>
+nnoremap <leader>a :echoerr 'You typed "<leader>a". Use "a" to append'<cr>
+nnoremap <leader>d :echoerr 'You typed "<leader>d". Use "d" to delete'<cr>
+nnoremap <leader>c :echoerr 'You typed "<leader>c". Use "c" to change'<cr>
+nnoremap <leader>o :echoerr 'You typed "<leader>o". Use "o" to open line'<cr>
+nnoremap <leader>p :echoerr 'You typed "<leader>p". Use "p" to paste'<cr>
+nnoremap <leader>r :echoerr 'You typed "<leader>r". Use "r" to replace'<cr>
+nnoremap <leader>u :echoerr 'You typed "<leader>u". Use "u" to undo'<cr>
+nnoremap <leader>x :echoerr 'You typed "<leader>x". Use "x" to delete'<cr>
+ 
 " create file in directory vi %foo/bar.md
 autocmd BufWritePre,FileWritePre * silent! call mkdir(expand('<afile>:p:h'), 'p')
 " correctly set markdown for vim-commentary
@@ -33,25 +73,27 @@ let g:lightline_tealeaves = "src/main/scala:sms, src/main/java:smj, src/main/res
 function! StorePath()
   :!echo %:p:h |pbcopy -pboard find
 endfunction
+" todo: is this any use when linux server cant use it - no xwindow
+nnoremap <leader>xx1 :call StorePath() <cr>
+nnoremap <leader>xx2 :!pbpaste -pboard find <cr>
 
 function! GoFinder()
   :!exec open -a Finder %:p:h
 endfunction
-
-" finder at current directory
+" open finder at current directory
 nnoremap <silent> <leader>fin :call GoFinder()<cr>
-nnoremap <silent> <leader>con :e ~/.config<cr>
-nnoremap <silent> <leader>doc :e ~/Dropbox/doc<cr>
+
+" move to work
 nnoremap <silent> <Leader>wrk :e ~/dev/wrk <bar> :cd ~/dev/wrk<cr>
-
+" reset starting path
 nnoremap <leader>pcd :cd <c-r>=expand('%:h')<cr><cr>
-nnoremap <leader>pcp :call StorePath() <cr>
-nnoremap <leader>ppr :!pbpaste -pboard find <cr>
-nnoremap <leader>ppp  :e `pwd`<cr>
+" goto starting path
+nnoremap <leader>ppp :e `pwd`<cr>
 
-" why would you want to be in normal mode inside a terminal buffer?
-autocmd BufEnter term://* :set nonumber norelativenumber
-autocmd BufEnter term://* startinsert
-nnoremap <silent> <leader>th :15sp term://zsh<cr>
-nnoremap <silent> <leader>tv :vs term://zsh<cr>
-nnoremap <silent> <leader>tt :term<cr>i
+function! GoTerm()
+    :term
+    :set nonumber 
+    :set norelativenumber
+    :startinsert
+endfunction
+nnoremap <silent> <leader>tt :call GoTerm()<cr>

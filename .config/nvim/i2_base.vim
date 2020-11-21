@@ -1,4 +1,3 @@
-
 " hyper: vim inspired key movement, inside and outside of vim.
 
 " Apple macOS hyper-keys created/assigned/mapped via karabiner-elements (low level) and keyboard-maestro (higer level)
@@ -34,7 +33,6 @@ vnoremap <up> k{
 vnoremap <left> gE
 vnoremap <right> E
 
-
 " yank until end of line (ie. work like C, D)
 nnoremap Y y$
 
@@ -50,53 +48,8 @@ set ignorecase
 set smartcase
 set expandtab
 set splitbelow splitright
-set number relativenumber
 set backspace=2
 set tabstop=4
 set shiftwidth=4
 set iskeyword+=-,#
 set scrolloff=4
-set belloff=all
-set mouse=nv " this is not going to allow command-c. can use option-mouse or turn off
-
-" ----------------------------------------------------------------------------------------------
-" keyboard maestro translates between <cmd> na <hyp> to <c-\>... key combinations
-" <hyp> == hold hyper key down
-" <cmd> == hold command key down
- 
-" <cmd-c> | <hyp-y> to system copy
-vmap <c-\><c-\> <Plug>SystemCopy
-xmap <c-\><c-\> <Plug>SystemCopy
-nmap <c-\><c-\><c-\><c-\> <Plug>SystemCopyLine
-
-" <cmd-/> comment/uncomment
-nmap <C-\>/ <Plug>CommentaryLine<cr>
-vmap <C-\>/ <Plug>Commentary
-
-" <hyp-cr> move between splits
-nnoremap <c-\><c-w> <c-w>w
-tnoremap <c-\><c-w> <C-\><C-n><c-w>w
-
-" ----------------------------------------------------------------------------------------------
-" leader of the pack. 
-let mapleader="\<space>"
-
-" magic replace
-nnoremap <leader>/ :%s/\v/gc<Left><Left><Left>
-" toggle number on and off
-nnoremap <silent> <leader>nn :set number! relativenumber!<cr> 
-" highlight off
-nnoremap <leader><leader> :nohlsearch<Bar>:echo<CR>
-
-" these lead to unintended consequences if they are not set to something
-nnoremap <leader>i :echoerr 'You typed "<leader>i". Use "i" to insert'<cr>
-nnoremap <leader>s :echoerr 'You typed "<leader>s". Use "<leader>w" to write file'<cr>
-nnoremap <leader>a :echoerr 'You typed "<leader>a". Use "a" to append'<cr>
-nnoremap <leader>d :echoerr 'You typed "<leader>d". Use "d" to delete'<cr>
-nnoremap <leader>c :echoerr 'You typed "<leader>c". Use "c" to change'<cr>
-nnoremap <leader>o :echoerr 'You typed "<leader>o". Use "o" to open line'<cr>
-nnoremap <leader>p :echoerr 'You typed "<leader>p". Use "p" to paste'<cr>
-nnoremap <leader>r :echoerr 'You typed "<leader>r". Use "r" to replace'<cr>
-nnoremap <leader>u :echoerr 'You typed "<leader>u". Use "u" to undo'<cr>
-nnoremap <leader>x :echoerr 'You typed "<leader>x". Use "x" to delete'<cr>
- 
