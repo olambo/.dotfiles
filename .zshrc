@@ -106,3 +106,6 @@ export SKIM_DEFAULT_OPTS=" --extended --color hl:202,hl+:202"
 
 export PATH=/usr/local/opt/python/libexec/bin:/usr/local/bin:$PATH
 
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+

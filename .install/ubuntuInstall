@@ -9,10 +9,12 @@ vim
 neovim
 maven
 httpie
-ripgrep
+fzf
+silversearcher-ag
 scala
 node
 open-vm-tools
+entr
 )
 sudo apt-get install ${term_apps[@]}
 

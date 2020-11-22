@@ -13,11 +13,11 @@ neovim
 maven
 scala
 httpie
-rg
-sk
+fzf
 the_silver_searcher
 node
 trash
+entr
 )
 brew install ${term_apps[@]}
 

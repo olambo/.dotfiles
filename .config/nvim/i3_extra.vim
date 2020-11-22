@@ -1,17 +1,23 @@
 set belloff=all
 set number relativenumber
+set nowrap
 set mouse=nv " this is not going to allow command-c. can use option-mouse or turn off
-
-" this is problematic in vscode
-nnoremap <tab> <c-w>w
+set noswapfile
+set nobackup
+set undodir=~/.config/nvim/runcache/undodir
+set undofile
+set incsearch
 
 " ----------------------------------------------------------------------------------------------
-" keyboard maestro key combinations
+" keyboard maestro assisted key combinations
  
-" <hyper-y> system copy
-vmap <c-\><c-\> <Plug>SystemCopy
-xmap <c-\><c-\> <Plug>SystemCopy
-nmap <c-\><c-\><c-\><c-\> <Plug>SystemCopyLine
+" <hyper-y> yank selection and save it into a file which is monitored
+function! It2copy()
+    execute "normal! `<v`>y"
+    let regInfo = getreg('"')
+    call writefile(split(regInfo, "\n"), expand("~/.config/nvim/runcache/vim-clipboard.txt"))
+endfunction
+vmap <c-\><c-\> :call It2copy()<cr>
 
 " <cmd-/> comment/uncomment
 nmap <c-\>/ <Plug>CommentaryLine<cr>
