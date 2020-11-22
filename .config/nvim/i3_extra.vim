@@ -2,10 +2,10 @@ set belloff=all
 set number relativenumber
 set nowrap
 set mouse=nv " this is not going to allow command-c. can use option-mouse or turn off
-set noswapfile
-set nobackup
-set undodir=~/.config/nvim/runcache/undodir
-set undofile
+"set noswapfile
+"set nobackup
+"set undodir=~/.config/nvim/runcache/undodir
+"set undofile
 set incsearch
 
 " ----------------------------------------------------------------------------------------------

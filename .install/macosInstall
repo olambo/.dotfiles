@@ -6,8 +6,8 @@ xcode-select --install
 # terminal apps
 term_apps=(
 wget
-tmux
 git
+tmux
 vim
 neovim
 maven
