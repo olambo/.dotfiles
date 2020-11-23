@@ -20,7 +20,12 @@ zstyle ':vcs_info:*' enable git
 fi
 }
 precmd () { vcs_info }
-PROMPT='%F{240}%n $vcs_info_msg_0_:%F{green}%~%f %% '
+if [[ $(whoami) == "red" ]]; then
+  echo "im red"
+  PROMPT='%F{red}%n%F{240} $vcs_info_msg_0_:%F{green}%~%f %% '
+else
+  PROMPT='%F{240}%n $vcs_info_msg_0_:%F{green}%~%f %% '
+fi
 
 export extrHost=rest.extractor.fos
 export extrHost=localhost:24000
