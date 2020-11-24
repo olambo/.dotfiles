@@ -1,25 +1,16 @@
-packadd minpac
+call plug#begin('~/.config/nvim/plugged')
 
-call minpac#init()
+Plug 'justinmk/vim-dirvish'
+Plug 'kristijanhusak/vim-dirvish-git'
+Plug 'tpope/vim-commentary'
+Plug 'itchyny/lightline.vim'
+Plug 'olambo/vim-lightline-tea'
+Plug 'NLKNguyen/papercolor-theme'
+Plug 'junegunn/fzf'
 
-" k-takata/minpac must have {'type': 'opt'} so that it can be loaded with `packadd`.
-call minpac#add('k-takata/minpac', {'type': 'opt'})
-call minpac#add('justinmk/vim-dirvish')
-call minpac#add('tpope/vim-commentary')
-call minpac#add('itchyny/lightline.vim')
-call minpac#add('olambo/vim-lightline-tea')
-call minpac#add('NLKNguyen/papercolor-theme')
-call minpac#add('junegunn/fzf')
+if !has("gui_vimr")
+  Plug 'neoclide/coc.nvim', { 'branch': 'release' }
+  Plug 'scalameta/coc-metals', {'do': 'yarn install --frozen-lockfile'}
+endif
 
-packloadall
-" To install or update plugins:
-" call minpac#update()
-
-"needs neovim 0.5.?
-"call minpac#add('neovim/nvim-lsp')
-"call minpac#add('neovim/nvim-lspconfig')
-"call minpac#add('scalameta/nvim-metals')
-
-"if has('nvim')
-"lua << EOF
-"require'lspconfig'.metals.setup{}
+call plug#end()

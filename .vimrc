@@ -3,6 +3,5 @@ if &compatible
   " only when 'compatible' is set.
   set nocompatible
 endif
-"set packpath=/Users/olambo/.config/nvim"
 
-source ~/.config/nvim/init.vim
+"source ~/.config/nvim/init.vim

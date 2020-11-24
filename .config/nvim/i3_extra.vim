@@ -7,6 +7,7 @@ set mouse=nv " this is not going to allow command-c. can use option-mouse or tur
 "set undodir=~/.config/nvim/runcache/undodir
 "set undofile
 set incsearch
+let g:dirvish_git_show_icons = 0
 
 " ----------------------------------------------------------------------------------------------
 " keyboard maestro assisted key combinations
