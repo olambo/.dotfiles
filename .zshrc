@@ -67,6 +67,8 @@ alias fin='open -a Finder .'
 alias cpp='pbpaste -pboard find | pbcopy'
 alias ppp='pbpaste -pboard find'
 
+alias vclipboard='~/.config/nvim/bin/vim-clipboard.sh'
+
 function h() {
   osascript -e 'tell application "System Events" to keystroke "r" using {control down, shift down, option down, command down}'
 }

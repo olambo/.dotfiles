@@ -17,8 +17,9 @@ function! It2copy()
     execute "normal! `<v`>y"
     let regInfo = getreg('"')
     call writefile(split(regInfo, "\n"), expand("~/.config/nvim/runcache/vim-clipboard.txt"))
+    echo "i2copy"
 endfunction
-vmap <c-\><c-\> :call It2copy()<cr>
+vnoremap <c-\><c-\> :call It2copy()<cr>
 
 " <cmd-/> comment/uncomment
 nmap <c-\>/ <Plug>CommentaryLine<cr>
