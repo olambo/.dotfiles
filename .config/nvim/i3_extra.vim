@@ -30,6 +30,9 @@ vmap <c-\>/ <Plug>Commentary
 let mapleader="\<space>"
 
 " magic replace
+nnoremap <tab> <c-w><c-w>
+
+" magic replace
 nnoremap <leader>/ :%s/\v/gc<Left><Left><Left>
 " toggle number on and off
 nnoremap <silent> <leader>nn :set number! relativenumber!<cr> 

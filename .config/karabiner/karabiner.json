@@ -60,7 +60,7 @@
                                 "type": "basic"
                             },
                             {
-                                "description": "change hyper-comma to left_arrow.",
+                                "description": "disable hyper-comma",
                                 "from": {
                                     "key_code": "comma",
                                     "modifiers": {
@@ -72,15 +72,10 @@
                                         ]
                                     }
                                 },
-                                "to": [
-                                    {
-                                        "key_code": "left_arrow"
-                                    }
-                                ],
                                 "type": "basic"
                             },
                             {
-                                "description": "change hyper-b to shift option f18.",
+                                "description": "change hyper-b to page up",
                                 "from": {
                                     "key_code": "b",
                                     "modifiers": {
@@ -97,17 +92,13 @@
                                 },
                                 "to": [
                                     {
-                                        "key_code": "f18",
-                                        "modifiers": [
-                                            "left_shift",
-                                            "left_option"
-                                        ]
+                                        "key_code": "page_up"
                                     }
                                 ],
                                 "type": "basic"
                             },
                             {
-                                "description": "change hyper-n to option f18.",
+                                "description": "change hyper-n page down",
                                 "from": {
                                     "key_code": "n",
                                     "modifiers": {
@@ -124,16 +115,13 @@
                                 },
                                 "to": [
                                     {
-                                        "key_code": "f18",
-                                        "modifiers": [
-                                            "left_option"
-                                        ]
+                                        "key_code": "page_down"
                                     }
                                 ],
                                 "type": "basic"
                             },
                             {
-                                "description": "change hyper-k to shift f18. remap outside for web browser scrolling",
+                                "description": "change hyper-k to up arrow",
                                 "from": {
                                     "key_code": "k",
                                     "modifiers": {
@@ -150,16 +138,13 @@
                                 },
                                 "to": [
                                     {
-                                        "key_code": "f18",
-                                        "modifiers": [
-                                            "left_shift"
-                                        ]
+                                        "key_code": "up_arrow"
                                     }
                                 ],
                                 "type": "basic"
                             },
                             {
-                                "description": "change hyper-j to f18. remap outside for web browser scrolling",
+                                "description": "change hyper-j to down arrow",
                                 "from": {
                                     "key_code": "j",
                                     "modifiers": {
@@ -176,7 +161,7 @@
                                 },
                                 "to": [
                                     {
-                                        "key_code": "f18"
+                                        "key_code": "down_arrow"
                                     }
                                 ],
                                 "type": "basic"
@@ -205,7 +190,7 @@
                                 "type": "basic"
                             },
                             {
-                                "description": "change hyper-l to right.",
+                                "description": "change hyper-l to right arrow",
                                 "from": {
                                     "key_code": "l",
                                     "modifiers": {
