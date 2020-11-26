@@ -7,6 +7,7 @@ Plug 'itchyny/lightline.vim'
 Plug 'olambo/vim-lightline-tea'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'junegunn/fzf'
+Plug 'easymotion/vim-easymotion'
 
 if !has("gui_vimr")
   Plug 'neoclide/coc.nvim', { 'branch': 'release' }

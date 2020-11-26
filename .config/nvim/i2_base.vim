@@ -1,6 +1,4 @@
-" hyper: vim inspired key movement, inside and outside of vim.
-
-" Apple macOS hyper-keys created/assigned/mapped via karabiner-elements (low level) and keyboard-maestro (higer level)
+" hyper: vim inspired key movement, inside and outside of vim.  Apple macOS hyper-keys created/assigned/mapped via karabiner-elements (low level) and keyboard-maestro (higer level)
 " hyper key: <hyp> == hyper key == hold <caps-lock> down == hold <shift,contol,option,command> down
 "   caps-lock                       -> <hyp> on hold, <esc> on press and release
 "   <hyp-h>, j, k, l                -> <left>, <down>, <up>, <right>
@@ -39,9 +37,6 @@ nnoremap Y y$
 " down when number given: j, otherwise gj. (similar with k)
 nnoremap <expr> j v:count ? 'j' : 'gj'
 nnoremap <expr> k v:count ? 'k' : 'gk'
-
-" both q! and Q! quit without saving
-command-bang Q q<bang>
 
 " various bats and bits
 set ignorecase
