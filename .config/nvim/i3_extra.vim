@@ -10,75 +10,11 @@ au WinLeave,FocusLost,CmdwinLeave * set nocul
 " icons stop left alignment
 let g:dirvish_git_show_icons = 0
 
+" only need these motions
 map f <Plug>(easymotion-sl)
 map ; <Plug>(easymotion-bd-wl)
 map s <Plug>(easymotion-s2)
 
-" ----------------------------------------------------------------------------------------------
-" keyboard maestro assisted key combinations
- 
-" <hyper-y> yank selection and save it into a file which is monitored
-function! It2copy()
-    execute "normal! `<v`>y"
-    let regInfo = getreg('"')
-    call writefile(split(regInfo, "\n"), expand("~/.config/nvim/runcache/vim-clipboard.txt"))
-    echo "i2copy"
-endfunction
-vnoremap <c-\><c-\> :call It2copy()<cr>
-
-" <cmd-/> comment/uncomment
-nmap <c-\>/ <Plug>CommentaryLine<cr>
-vmap <c-\>/ <Plug>Commentary
-
-" ----------------------------------------------------------------------------------------------
-" leader of the pack. 
-let mapleader="\<space>"
-
-" go to next split
-nnoremap <tab> <c-w><c-w>
-
-" magic replace
-nnoremap <leader>/ :%s/\v/gc<Left><Left><Left>
-
-" toggle numbers
-nnoremap <silent> <leader>nn :call ToggleNumber()<CR>
-nnoremap <leader>nn :call ToggleNumber()<CR>
-function! ToggleNumber()
-  if &number == '' && &relativenumber == ''
-    set number relativenumber 
-  else
-    set nonumber norelativenumber 
-  endif
-endfunction
-
-" toggle highlight search
-nnoremap <leader>hh :set hlsearch! hlsearch?<CR>
-
-nnoremap <leader><leader> :call ToggleMouse()<CR>
-function! ToggleMouse()
-  if &mouse != ''
-    set nonumber 
-    set norelativenumber
-    set mouse=
-    echo "Mouse OFF for:" expand('%:p')
-  else
-    set mouse=nv
-    echo "Mouse usage enabled"
-  endif
-endfunction
-
-" these lead to unintended consequences if they are not set to something
-nnoremap <leader>i :echoerr 'You typed "<leader>i". Use "i" to insert'<cr>
-nnoremap <leader>s :echoerr 'You typed "<leader>s". Use "<leader>w" to write file'<cr>
-nnoremap <leader>a :echoerr 'You typed "<leader>a". Use "a" to append'<cr>
-nnoremap <leader>d :echoerr 'You typed "<leader>d". Use "d" to delete'<cr>
-nnoremap <leader>c :echoerr 'You typed "<leader>c". Use "c" to change'<cr>
-nnoremap <leader>o :echoerr 'You typed "<leader>o". Use "o" to open line'<cr>
-nnoremap <leader>p :echoerr 'You typed "<leader>p". Use "p" to paste'<cr>
-nnoremap <leader>r :echoerr 'You typed "<leader>r". Use "r" to replace'<cr>
-nnoremap <leader>u :echoerr 'You typed "<leader>u". Use "u" to undo'<cr>
-nnoremap <leader>x :echoerr 'You typed "<leader>x". Use "x" to delete'<cr>
- 
 " create file in directory vi %foo/bar.md
 autocmd BufWritePre,FileWritePre * silent! call mkdir(expand('<afile>:p:h'), 'p')
 " correctly set markdown for vim-commentary
@@ -101,23 +37,78 @@ let g:PaperColor_Theme_Options = {
 colorscheme PaperColor
 set bg=light
 
+" go to next split
+nnoremap <tab> <c-w><c-w>
+
+" ----------------------------------------------------------------------------------------------
+" keyboard maestro assisted key combinations
+ 
+" <hyper-y> yank selection and save it into a file which is monitored
+vnoremap <c-\><c-\> :call It2copy()<cr>
+
+" <cmd-/> comment/uncomment
+nmap <c-\>/ <Plug>CommentaryLine<cr>
+vmap <c-\>/ <Plug>Commentary
+
+" ----------------------------------------------------------------------------------------------
+let mapleader="\<space>"
+
+" set mouse mode on, show file path
+nnoremap <leader><leader> :call ToggleMouse()<CR>
+" toggle numbers
+nnoremap <leader>nn :call ToggleNumber()<CR>
+" toggle highlight search
+nnoremap <leader>hh :set hlsearch! hlsearch?<CR>
+" go to starting path
+nnoremap <leader>[[ :e `pwd`<CR>
+" new starting path
+nnoremap <leader>]] :cd <c-r>=expand('%:h')<CR><CR>
+" go to alternate buffer
+nnoremap <leader>bb :b #<CR>
+" go to alternate buffer
+nnoremap <leader>bd :w !diff % -<CR>
+" open finder at current directory
+nnoremap <silent> <leader>fi :call GoFinder()<CR>
+" magic replace
+nnoremap <leader>/ :%s/\v/gc<Left><Left><Left>
+" show terminal
+nnoremap <silent> <leader>tt :call GoTerm()<CR>
+
+" ----------------------------------------------------------------------------------------------
+function! GoTerm()
+    :set nonumber 
+    :set norelativenumber
+    :term
+    :startinsert
+endfunction
+
+function! ToggleNumber()
+  if &number == '' && &relativenumber == ''
+    set number relativenumber 
+  else
+    set nonumber norelativenumber 
+  endif
+endfunction
+
 function! GoFinder()
   :!exec open -a Finder %:p:h
 endfunction
-" open finder at current directory
-nnoremap <silent> <leader>fin :call GoFinder()<cr>
 
-" move to work
-nnoremap <silent> <Leader>wrk :e ~/dev/wrk <bar> :cd ~/dev/wrk<cr>
-" reset starting path
-nnoremap <leader>pcd :cd <c-r>=expand('%:h')<cr><cr>
-" goto starting path
-nnoremap <leader>ppp :e `pwd`<cr>
-
-function! GoTerm()
-    :term
-    :set nonumber 
-    :set norelativenumber
-    :startinsert
+function! ToggleMouse()
+  if &mouse != ''
+    set nonumber 
+    set norelativenumber
+    set mouse=
+    echo "Mouse OFF for:" expand('%:p')
+  else
+    set mouse=nv
+    echo "Mouse usage enabled"
+  endif
 endfunction
-nnoremap <silent> <leader>tt :call GoTerm()<cr>
+ 
+function! It2copy()
+    execute "normal! `<v`>y"
+    let regInfo = getreg('"')
+    call writefile(split(regInfo, "\n"), expand("~/.config/nvim/runcache/vim-clipboard.txt"))
+    echo "i2copy"
+endfunction

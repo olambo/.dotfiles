@@ -20,7 +20,6 @@ fi
 }
 precmd () { vcs_info }
 if [[ $(whoami) == "red" ]]; then
-  echo "im red"
   PROMPT='%F{red}%n%F{240} $vcs_info_msg_0_:%F{green}%~%f %% '
 else
   PROMPT='%F{240}%n $vcs_info_msg_0_:%F{green}%~%f %% '
