@@ -36,21 +36,22 @@ setopt HIST_IGNORE_SPACE
 setopt APPEND_HISTORY
 setopt EXTENDED_HISTORY
 
+export PATH=/usr/local/opt/python/libexec/bin:/usr/local/bin:~/.config/nvim/bin:$PATH
+
 if [[ $(uname 2> /dev/null) == "Linux" ]] ; then
     alias ls='ls --color=auto'
 fi
 
 alias dotf='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
-alias vi='fvim() { nvim ${@:-.} };fvim'
-alias dev='cd ~/dev'
-alias wrk='cd ~/dev/wrk'
+alias vi='fvim() { nvim ${@:-.} };vim-clipboard;fvim'
 alias doc='vi ~/Dropbox/doc'
 alias con='vi ~/.config'
 alias mdo='mvn clean install -Dmaven.test.skip=true'
 alias ip="ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1' |head -1"
 alias bak='~/Dropbox/yeBackup/bak'
 alias fin='open -a Finder .'
-alias vclipboard='~/.config/nvim/bin/vim-clipboard.sh'
+alias dev='cd ~/dev'
+alias wrk='cd ~/dev/wrk'
 
 bindkey -v 
 bindkey -r ''
@@ -63,4 +64,3 @@ bindkey "\033[F" end-of-line
 export FZF_DEFAULT_COMMAND="git ls-tree -r --name-only HEAD "
 export FZF_DEFAULT_OPTS=" --extended --color hl:202,hl+:202"
 
-export PATH=/usr/local/opt/python/libexec/bin:/usr/local/bin:$PATH

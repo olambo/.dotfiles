@@ -3,15 +3,12 @@ set nowrap
 set mouse=nv " this is not going to allow command-c. can use option-mouse or turn off
 set incsearch
 
-"remove current line highlight in unfocused window
-au VimEnter,WinEnter,BufWinEnter,FocusGained,CmdwinEnter * set cul
-au WinLeave,FocusLost,CmdwinLeave * set nocul
-
 " icons stop left alignment
 let g:dirvish_git_show_icons = 0
 
+map t <Plug>(easymotion-t)
 map f <Plug>(easymotion-sl)
-map ; <Plug>(easymotion-bd-wl)
+map ;; <Plug>(easymotion-bd-wl)
 map s <Plug>(easymotion-s2)
 
 " ----------------------------------------------------------------------------------------------
@@ -33,6 +30,7 @@ vmap <c-\>/ <Plug>Commentary
 " ----------------------------------------------------------------------------------------------
 " leader of the pack. 
 let mapleader="\<space>"
+" set showcmd
 
 " go to next split
 nnoremap <tab> <c-w><c-w>
