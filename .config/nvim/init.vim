@@ -14,8 +14,10 @@ source ~/.config/nvim/i1_plug.vim
 source ~/.config/nvim/i2_base.vim
 source ~/.config/nvim/i3_extra.vim
 source ~/.config/nvim/i4_fzf.vim
+source ~/.config/nvim/i5_coc.vim
+source ~/.config/nvim/i6_statusline.vim
+map <Leader>em <Plug>(easymotion-prefix)
 let g:loaded_python_provider='/usr/bin/python2' 
 let g:python3_host_prog='/usr/local/bin/python3'
-source ~/.config/nvim/i5_coc.vim
 set cmdheight=1
 endif

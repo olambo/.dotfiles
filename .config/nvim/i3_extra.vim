@@ -1,5 +1,4 @@
 set belloff=all
-set number relativenumber
 set nowrap
 set mouse=nv " this is not going to allow command-c. can use option-mouse or turn off
 set incsearch
@@ -36,10 +35,32 @@ nnoremap <tab> <c-w><c-w>
 
 " magic replace
 nnoremap <leader>/ :%s/\v/gc<Left><Left><Left>
-" toggle number on and off
-nnoremap <silent> <leader>nn :set number! relativenumber!<cr> 
-" highlight off
-nnoremap <leader><leader><leader> :nohlsearch<Bar>:echo<CR>
+
+" toggle numbers
+nnoremap <silent> <leader>nn :set nonumber! norelativenumber!<cr> 
+function! ToggleNumber()
+  if &number 
+    set !nonumber !norelativenumber<cr> 
+  else
+    set nonumber norelativenumber<cr> 
+  endif
+endfunction
+
+" toggle highlight search
+nnoremap <leader>hh :set hlsearch! hlsearch?<CR>
+
+nnoremap <leader><leader> :call ToggleMouse()<CR>
+function! ToggleMouse()
+  if &mouse == 'nv'
+    set nonumber 
+    set norelativenumber
+    set mouse=
+    echo "Mouse usage disabled"
+  else
+    set mouse=a
+    echo "Mouse usage enabled"
+  endif
+endfunction
 
 " these lead to unintended consequences if they are not set to something
 nnoremap <leader>i :echoerr 'You typed "<leader>i". Use "i" to insert'<cr>
@@ -74,15 +95,6 @@ let g:PaperColor_Theme_Options = {
   \ }
 colorscheme PaperColor
 set bg=light
-
-let g:lightline_tealeaves = "src/main/scala:sms, src/main/java:smj, src/main/resources:smr"
-
-function! StorePath()
-  :!echo %:p:h |pbcopy -pboard find
-endfunction
-" todo: is this any use when linux server cant use it - no xwindow
-nnoremap <leader>xx1 :call StorePath() <cr>
-nnoremap <leader>xx2 :!pbpaste -pboard find <cr>
 
 function! GoFinder()
   :!exec open -a Finder %:p:h

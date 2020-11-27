@@ -1,13 +1,11 @@
 call plug#begin('~/.config/nvim/plugged')
 
+Plug 'NLKNguyen/papercolor-theme'
+Plug 'easymotion/vim-easymotion'
 Plug 'justinmk/vim-dirvish'
 Plug 'kristijanhusak/vim-dirvish-git'
 Plug 'tpope/vim-commentary'
-Plug 'itchyny/lightline.vim'
-Plug 'olambo/vim-lightline-tea'
-Plug 'NLKNguyen/papercolor-theme'
 Plug 'junegunn/fzf'
-Plug 'easymotion/vim-easymotion'
 
 if !has("gui_vimr")
   Plug 'neoclide/coc.nvim', { 'branch': 'release' }
