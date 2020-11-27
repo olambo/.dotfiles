@@ -1,15 +1,16 @@
 " install node
 " install python for coc
 " python3 -m pip install --user --upgrade pynvim
-
-if exists('g:vscode')
-source ~/.config/nvim/i2_base.vim
-else
+"
 " auto-install vim-plug                                                                                                                
 if empty(glob('~/.config/nvim/autoload/plug.vim'))                                                                                    
   silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim                                                             
   autocmd VimEnter * PlugInstall                                                                                                      
 endif
+
+if exists('g:vscode')
+source ~/.config/nvim/i2_base.vim
+else
 source ~/.config/nvim/i1_plug.vim
 source ~/.config/nvim/i2_base.vim
 source ~/.config/nvim/i3_extra.vim

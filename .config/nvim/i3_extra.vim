@@ -37,12 +37,13 @@ nnoremap <tab> <c-w><c-w>
 nnoremap <leader>/ :%s/\v/gc<Left><Left><Left>
 
 " toggle numbers
-nnoremap <silent> <leader>nn :set nonumber! norelativenumber!<cr> 
+nnoremap <silent> <leader>nn :call ToggleNumber()<CR>
+nnoremap <leader>nn :call ToggleNumber()<CR>
 function! ToggleNumber()
-  if &number 
-    set !nonumber !norelativenumber<cr> 
+  if &number == '' && &relativenumber == ''
+    set number relativenumber 
   else
-    set nonumber norelativenumber<cr> 
+    set nonumber norelativenumber 
   endif
 endfunction
 
@@ -51,13 +52,13 @@ nnoremap <leader>hh :set hlsearch! hlsearch?<CR>
 
 nnoremap <leader><leader> :call ToggleMouse()<CR>
 function! ToggleMouse()
-  if &mouse == 'nv'
+  if &mouse != ''
     set nonumber 
     set norelativenumber
     set mouse=
-    echo "Mouse usage disabled"
+    echo "Mouse OFF"
   else
-    set mouse=a
+    set mouse=nv
     echo "Mouse usage enabled"
   endif
 endfunction
