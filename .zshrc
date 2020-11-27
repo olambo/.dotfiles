@@ -20,7 +20,6 @@ fi
 }
 precmd () { vcs_info }
 if [[ $(whoami) == "red" ]]; then
-  echo "im red"
   PROMPT='%F{red}%n%F{240} $vcs_info_msg_0_:%F{green}%~%f %% '
 else
   PROMPT='%F{240}%n $vcs_info_msg_0_:%F{green}%~%f %% '
@@ -49,7 +48,7 @@ alias con='vi ~/.config'
 alias mdo='mvn clean install -Dmaven.test.skip=true'
 alias ip="ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1' |head -1"
 alias bak='~/Dropbox/yeBackup/bak'
-alias fin='open -a Finder .'
+alias fi='open -a Finder .'
 alias dev='cd ~/dev'
 alias wrk='cd ~/dev/wrk'
 
