@@ -1,14 +1,12 @@
-" hyper: vim inspired key movement, inside and outside of vim.  Apple macOS hyper-keys created/assigned/mapped via karabiner-elements (low level) and keyboard-maestro (higer level)
+" hyper: vim inspired keykjey movement, inside and outside of vim.  Apple macOS hyper-keys created/assigned/mapped via karabiner-elements (low level) and keyboard-maestro (higer level)
 " hyper key: <hyp> == hyper key == hold <caps-lock> down == hold <shift,contol,option,command> down
 "   caps-lock                       -> <hyp> on hold, <esc> on press and release
-"   <hyp-h>, j, k, l                -> <left>, <down>, <up>, <right>
-"   <hyp-b>, n (go-back, go-next)   -> <pageup>, <pagedown> (adequate? scrolling without ctrl-f,b,d,u,e,y).
-"   <hyp-9>, 0, [, ]                -> <home>, <end>, <prev-tab>, <next-tab>
+"   <hyp> h, j, k, l                -> <left>, <down>, <up>, <right>
+"   <hyp> u, d                      -> <pageup>, <pagedown>
+"   <hyp> 9, 0, [, ]                -> <home>, <end>, <prev-tab>, <next-tab>
 
-nnoremap <pageup> 10<c-u>
-nnoremap <pagedown> 10<c-d>
-vnoremap <pageup> 10<c-u>
-vnoremap <pagedown> 10<c-d>
+noremap <pageup> <c-u>
+noremap <pagedown> <c-d>
 " insert mode no movement
 inoremap <pagedown> <nop>
 inoremap <pageup> <nop>

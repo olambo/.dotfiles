@@ -3,6 +3,10 @@ set nowrap
 set mouse=nv " this is not going to allow command-c. can use option-mouse or turn off
 set incsearch
 
+"remove current line highlight in unfocused window
+au VimEnter,WinEnter,BufWinEnter,FocusGained,CmdwinEnter * set cul
+au WinLeave,FocusLost,CmdwinLeave * set nocul
+
 " icons stop left alignment
 let g:dirvish_git_show_icons = 0
 
@@ -56,7 +60,7 @@ function! ToggleMouse()
     set nonumber 
     set norelativenumber
     set mouse=
-    echo "Mouse OFF"
+    echo "Mouse OFF for:" expand('%:p')
   else
     set mouse=nv
     echo "Mouse usage enabled"
