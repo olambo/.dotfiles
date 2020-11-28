@@ -1,5 +1,5 @@
 [core]
-	excludesfile = /Users/olambo/.gitignore_global
+	excludesfile = ~/.gitignore_global
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path = 
@@ -10,4 +10,4 @@
 	name = Ol Staats
 	email = olambo@gmail.com
 [commit]
-	template = /Users/olambo/.stCommitMsg
+	template = ~/.stCommitMsg

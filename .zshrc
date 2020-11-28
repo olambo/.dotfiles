@@ -35,14 +35,27 @@ setopt HIST_IGNORE_SPACE
 setopt APPEND_HISTORY
 setopt EXTENDED_HISTORY
 
-export PATH=/usr/local/opt/python/libexec/bin:/usr/local/bin:~/.config/nvim/bin:$PATH
+export PATH=/usr/local/opt/python/libexec/bin:/usr/local/bin:$PATH
 
 if [[ $(uname 2> /dev/null) == "Linux" ]] ; then
     alias ls='ls --color=auto'
 fi
 
+# -----------------------------------------------------------------------------------------------------------
+# have to have 'bindkey -v' before '~/.fzf.zsh'
+bindkey -v 
+bindkey -r ''
+# the following bindkey's won't work in macos Terminal without also adding them to Profiles/Keyboard
+bindkey "\033[H" beginning-of-line 
+bindkey "\033[F" end-of-line
+
+export FZF_DEFAULT_COMMAND="git ls-tree -r --name-only HEAD "
+export FZF_DEFAULT_OPTS=" --extended --color hl:202,hl+:202"
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# -----------------------------------------------------------------------------------------------------------
+
 alias dotf='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
-alias vi='fvim() { nvim ${@:-.} };vim-clipboard;fvim'
+alias vi='fvim() { nvim ${@:-.} };~/.config/nvim/bin/vim-clipboard;fvim'
 alias doc='vi ~/Dropbox/doc'
 alias con='vi ~/.config'
 alias mdo='mvn clean install -Dmaven.test.skip=true'
@@ -51,15 +64,4 @@ alias bak='~/Dropbox/yeBackup/bak'
 alias fi='open -a Finder .'
 alias dev='cd ~/dev'
 alias wrk='cd ~/dev/wrk'
-
-bindkey -v 
-bindkey -r ''
-# the following bindkey's won't work in macos Terminal without also adding them to Profiles/Keyboard
-bindkey "\033[H" beginning-of-line 
-bindkey "\033[F" end-of-line
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-export FZF_DEFAULT_COMMAND="git ls-tree -r --name-only HEAD "
-export FZF_DEFAULT_OPTS=" --extended --color hl:202,hl+:202"
 

@@ -8,4 +8,5 @@ fi
 vc_file=~/.config/nvim/runcache/vim-clipboard.txt
 
 mkdir -p ~/.config/nvim/runcache
+echo -n "" > $vc_file
 ls "$vc_file" | entr ~/.config/nvim/bin/process-clipboard &
