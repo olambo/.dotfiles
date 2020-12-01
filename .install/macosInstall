@@ -27,6 +27,7 @@ brew cask install adoptopenjdk8
 # macos cask apps
 cask_apps=(
 karabiner-elements
+hammerspoon
 keyboard-maestro
 alfred
 dropbox
