@@ -1,5 +1,4 @@
 " FZF --------------------------------
-let $FZF_DEFAULT_COMMAND = "git ls-tree -r --name-only HEAD || rg --files || ag -l -g \"\" || find ."
 
 nnoremap <silent> <leader>ff :FZF<cr>
 nnoremap <silent> <Leader>fr :FZF <c-r>=expand('%:h')<cr><cr>

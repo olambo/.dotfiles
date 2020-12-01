@@ -58,19 +58,23 @@ nnoremap <leader>nn :call ToggleNumber()<CR>
 " toggle highlight search
 nnoremap <leader>hh :set hlsearch! hlsearch?<CR>
 " go to starting path
-nnoremap <leader>[[ :e `pwd`<CR>
+nnoremap <leader>[ :e `pwd`<CR>
 " new starting path
-nnoremap <leader>]] :cd <c-r>=expand('%:h')<CR><CR>
-" go to alternate buffer
-nnoremap <leader>bb :b #<CR>
-" go to alternate buffer
+nnoremap <leader>] :cd <c-r>=expand('%:h')<CR><CR>
+" list buffers, move to one
+nnoremap <Leader>bb :ls<Cr>:b<Space>
+" diff between this buffer and original
 nnoremap <leader>bd :w !diff % -<CR>
+" go to alternate buffer
+nnoremap <leader>ba :b #<CR>
 " open finder at current directory
 nnoremap <silent> <leader>fi :call GoFinder()<CR>
 " magic replace
 nnoremap <leader>/ :%s/\v/gc<Left><Left><Left>
 " show terminal
 nnoremap <silent> <leader>tt :call GoTerm()<CR>
+" show filepath
+nnoremap <silent> <leader>g <c-g><CR>
 
 " ----------------------------------------------------------------------------------------------
 function! GoTerm()

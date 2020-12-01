@@ -10,7 +10,7 @@ neovim
 maven
 httpie
 fzf
-silversearcher-ag
+ripgrep
 scala
 node
 open-vm-tools

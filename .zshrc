@@ -48,8 +48,7 @@ bindkey -r ''
 # the following bindkey's won't work in macos Terminal without also adding them to Profiles/Keyboard
 bindkey "\033[H" beginning-of-line 
 bindkey "\033[F" end-of-line
-
-export FZF_DEFAULT_COMMAND="git ls-tree -r --name-only HEAD "
+export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git/*"'
 export FZF_DEFAULT_OPTS=" --extended --color hl:202,hl+:202"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 # -----------------------------------------------------------------------------------------------------------
