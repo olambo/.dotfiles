@@ -408,7 +408,7 @@
                         ]
                     },
                     {
-                        "description": "5) hyper: c, r, to control keys, ctrl-z to ctrl-t",
+                        "description": "5) hyper: c, r to control keys. hyper z to ctrl-t",
                         "manipulators": [
                             {
                                 "conditions": [
