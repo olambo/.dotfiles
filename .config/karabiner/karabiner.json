@@ -408,7 +408,7 @@
                         ]
                     },
                     {
-                        "description": "5) hyper: c, r, t to control keys",
+                        "description": "5) hyper: c, r to control keys. hyper z to ctrl-t",
                         "manipulators": [
                             {
                                 "conditions": [
@@ -483,7 +483,7 @@
                                     }
                                 ],
                                 "from": {
-                                    "key_code": "t",
+                                    "key_code": "z",
                                     "modifiers": {
                                         "mandatory": [
                                             "shift",
