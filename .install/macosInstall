@@ -49,6 +49,7 @@ brew cask install --appdir="/Applications" ${cask_apps[@]}
 brew cleanup
 
 git clone https://github.com/k-takata/minpac.git ~/.config/nvim/pack/minpac/opt/minpac
+git clone https://github.com/softmoth/zsh-vim-mode ~/.config
 
 echo "brew install is done!"
 

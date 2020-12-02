@@ -45,9 +45,11 @@ fi
 # have to have 'bindkey -v' before '~/.fzf.zsh'
 bindkey -v 
 bindkey -r ''
-# the following bindkey's won't work in macos Terminal without also adding them to Profiles/Keyboard
+# beginning and end of line inside and outside of vi mode
 bindkey "\033[H" beginning-of-line 
 bindkey "\033[F" end-of-line
+source $HOME/.config/zsh-vim-mode/zsh-vim-mode.plugin.zsh
+
 export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git/*"'
 export FZF_DEFAULT_OPTS=" --extended --color hl:202,hl+:202"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
