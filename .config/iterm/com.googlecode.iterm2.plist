@@ -1385,10 +1385,12 @@ Maximize Active Pane</string>
 	<true/>
 	<key>ShowFullScreenTabBar</key>
 	<false/>
+	<key>ShowPaneTitles</key>
+	<false/>
 	<key>SoundForEsc</key>
 	<false/>
 	<key>SplitPaneDimmingAmount</key>
-	<real>0.19724451013513522</real>
+	<real>0.12535334406672305</real>
 	<key>StatusBarHeight</key>
 	<real>11</real>
 	<key>StatusBarPosition</key>
