@@ -74,7 +74,7 @@ nnoremap <leader>/ :%s/\v/gc<Left><Left><Left>
 " show terminal
 nnoremap <silent> <leader>tt :call GoTerm()<CR>
 " show filepath
-nnoremap <silent> <leader>g <c-g><CR>
+nnoremap <silent> <leader>fp <c-g>
 
 " ----------------------------------------------------------------------------------------------
 function! GoTerm()

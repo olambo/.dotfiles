@@ -98,7 +98,7 @@ local function tryapp(appname)
     end
 end
 
-hs.hotkey.bind({"cmd", "alt", "ctrl", "shift"}, 't', function() 
+hs.hotkey.bind({"cmd", "alt", "ctrl", "shift"}, 'i', function() 
     tryapp("iTerm2") 
 end)
 
