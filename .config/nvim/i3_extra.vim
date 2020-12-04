@@ -21,8 +21,8 @@ let g:PaperColor_Theme_Options = {
   \   'theme': {
   \     'default': {
   \       'override' : {
-  \         'color00' : ['ffffff', '231'],
-  \         'linenumber_bg' : ['ffffff', '231'],
+  \         'color00' : ['#ffffff', '231'],
+  \         'linenumber_bg' : ['#ffffff', '231'],
   \       }
   \     },
   \     'default.dark': {
