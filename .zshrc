@@ -55,14 +55,10 @@ export FZF_DEFAULT_OPTS=" --extended --color hl:202,hl+:202"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 # -----------------------------------------------------------------------------------------------------------
 
-alias dotf='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+alias dot='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias vi='fvim() { nvim ${@:-.} };~/.config/nvim/bin/vim-clipboard;fvim'
 alias doc='vi ~/Dropbox/doc'
 alias con='vi ~/.config'
-alias mdo='mvn clean install -Dmaven.test.skip=true'
 alias ip="ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1' |head -1"
-alias bak='~/Dropbox/yeBackup/bak'
 alias fi='open -a Finder .'
 alias dev='cd ~/dev'
-alias wrk='cd ~/dev/wrk'
-
