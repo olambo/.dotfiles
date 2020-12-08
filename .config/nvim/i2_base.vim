@@ -29,6 +29,11 @@ vnoremap <up> k{
 vnoremap <left> gE
 vnoremap <right> E
 
+" close parentheses
+inoremap ( ()<C-G>U<Left>
+inoremap { {}<C-G>U<Left>
+inoremap [ []<C-G>U<Left>
+
 " yank until end of line (ie. work like C, D)
 nnoremap Y y$
 
