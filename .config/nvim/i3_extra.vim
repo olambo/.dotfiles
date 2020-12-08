@@ -7,10 +7,12 @@ set incsearch
 let g:dirvish_git_show_icons = 0
 
 " only need these motions
-map t <Plug>(easymotion-bd-tl)
+map t <Plug>(easymotion-tl)
 map f <Plug>(easymotion-sl)
-map ;; <Plug>(easymotion-bd-wl)
-map s <Plug>(easymotion-s2)
+map ;w <Plug>(easymotion-bd-wl)
+map ;; <Plug>(easymotion-s2)
+inoremap ( ()<C-G>U<Left>
+inoremap { {}<C-G>U<Left>
 
 " create file in directory vi %foo/bar.md
 autocmd BufWritePre,FileWritePre * silent! call mkdir(expand('<afile>:p:h'), 'p')
