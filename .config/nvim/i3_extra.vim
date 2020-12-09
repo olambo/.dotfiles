@@ -11,8 +11,6 @@ map t <Plug>(easymotion-tl)
 map f <Plug>(easymotion-sl)
 map ;w <Plug>(easymotion-bd-wl)
 map ;; <Plug>(easymotion-s2)
-inoremap ( ()<C-G>U<Left>
-inoremap { {}<C-G>U<Left>
 
 " create file in directory vi %foo/bar.md
 autocmd BufWritePre,FileWritePre * silent! call mkdir(expand('<afile>:p:h'), 'p')
