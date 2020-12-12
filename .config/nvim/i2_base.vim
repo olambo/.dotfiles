@@ -1,9 +1,9 @@
 " hyper: vim inspired keykjey movement, inside and outside of vim.  Apple macOS hyper-keys created/assigned/mapped via karabiner-elements (low level) and keyboard-maestro (higer level)
-" hyper key: <hyp> == hyper key == hold <caps-lock> down == hold <shift,contol,option,command> down
+" hyper key: <hyp> == hyper key == <caps-lock> down == <shift,contol,option,command> down
 "   caps-lock                       -> <hyp> on hold, <esc> on press and release
 "   <hyp> h, j, k, l                -> <left>, <down>, <up>, <right>
 "   <hyp> u, d                      -> <pageup>, <pagedown>
-"   <hyp> 9, 0, [, ]                -> <home>, <end>, <prev-tab>, <next-tab>
+"   <hyp> 9, 0                      -> <home>, <end>
 
 noremap <pageup> <c-u>
 noremap <pagedown> <c-d>
