@@ -41,10 +41,12 @@ nnoremap <expr> k v:count ? 'k' : 'gk'
 " various bats and bits
 set ignorecase
 set smartcase
-set expandtab
 set splitbelow splitright
 set backspace=2
 set tabstop=4
 set shiftwidth=4
 set iskeyword+=-,#
 set scrolloff=4
+
+autocmd Filetype java,scala,python set expandtab
+autocmd Filetype go set noexpandtab
