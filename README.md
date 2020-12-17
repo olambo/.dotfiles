@@ -1,6 +1,6 @@
 # Keep dotfiles in git without symlinks.
 
-This arrangement of dotfiles is taken from [here](https://github.com/anandpiyer/.dotfiles/tree/master/.dotfiles). The idea is to keep all the dotfiles in their original locations.
+This arrangement of dotfiles is based on ideas from [here](https://news.ycombinator.com/item?id=11070797) and [here](https://github.com/anandpiyer/.dotfiles/tree/master/.dotfiles). The idea is to keep all the dotfiles in their original locations.
 
 ## First time setup
 ```
@@ -9,7 +9,7 @@ alias dotf='/usr/local/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 dot config --local status.showUntrackedFiles no
 dot remote add origin git@github.com:${YOUR_GITHUB_REPOSITORY}/.dotfiles.git
 ```
-You'll need to change the remote URL to your git repo. You should also add the `dotfiles` alias command to your `.bashrc` or  `.zshrc`. Now, you can use the `dotfiles` command to do git operation from anywhere in your $HOME directory:
+You'll need to change the remote URL to your git repo. You should also add the `dot` alias command to your `.bashrc` or  `.zshrc`. Now, you can use the `dot` command to do git operation from anywhere in your $HOME directory:
 
 ### Operations
 ```
