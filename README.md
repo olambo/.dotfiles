@@ -5,7 +5,7 @@ This arrangement of dotfiles is based on ideas from [here](https://news.ycombina
 ## First time setup
 ```
 git init --bare $HOME/.dotfiles
-alias dotf='/usr/local/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+alias dot='/usr/local/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 dot config --local status.showUntrackedFiles no
 dot remote add origin git@github.com:${YOUR_GITHUB_REPOSITORY}/.dotfiles.git
 ```
