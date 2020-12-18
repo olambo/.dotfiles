@@ -9,7 +9,12 @@ if empty(glob('~/.config/nvim/autoload/plug.vim'))
 endif
 
 if exists('g:vscode')
+call plug#begin('~/.config/nvim/plugged')
+Plug 'asvetliakov/vim-easymotion', { 'as': 'vsc-easymotion' }
+call plug#end()
 source ~/.config/nvim/i2_base.vim
+source ~/.config/nvim/i3_extra.vim
+
 else
 source ~/.config/nvim/i1_plug.vim
 source ~/.config/nvim/i2_base.vim
@@ -17,8 +22,9 @@ source ~/.config/nvim/i3_extra.vim
 source ~/.config/nvim/i4_fzf.vim
 source ~/.config/nvim/i5_coc.vim
 source ~/.config/nvim/i6_statusline.vim
-map <Leader>em <Plug>(easymotion-prefix)
 let g:loaded_python_provider='/usr/bin/python2' 
 let g:python3_host_prog='/usr/local/bin/python3'
 set cmdheight=1
 endif
+
+map <Leader>em <Plug>(easymotion-prefix)

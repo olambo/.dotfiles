@@ -224,7 +224,8 @@
                                     {
                                         "bundle_identifiers": [
                                             "com.apple.Terminal",
-                                            "com.googlecode.iterm2"
+                                            "com.googlecode.iterm2",
+											"com.microsoft.VSCode"
                                         ],
                                         "type": "frontmost_application_if"
                                     }
@@ -256,7 +257,8 @@
                                     {
                                         "bundle_identifiers": [
                                             "com.apple.Terminal",
-                                            "com.googlecode.iterm2"
+                                            "com.googlecode.iterm2",
+											"com.microsoft.VSCode"
                                         ],
                                         "type": "frontmost_application_unless"
                                     }
@@ -288,7 +290,8 @@
                                     {
                                         "bundle_identifiers": [
                                             "com.apple.Terminal",
-                                            "com.googlecode.iterm2"
+                                            "com.googlecode.iterm2",
+											"com.microsoft.VSCode"
                                         ],
                                         "type": "frontmost_application_unless"
                                     }
@@ -320,7 +323,8 @@
                                     {
                                         "bundle_identifiers": [
                                             "com.apple.Terminal",
-                                            "com.googlecode.iterm2"
+                                            "com.googlecode.iterm2",
+											"com.microsoft.VSCode"
                                         ],
                                         "type": "frontmost_application_unless"
                                     }
@@ -352,7 +356,8 @@
                                     {
                                         "bundle_identifiers": [
                                             "com.apple.Terminal",
-                                            "com.googlecode.iterm2"
+                                            "com.googlecode.iterm2",
+											"com.microsoft.VSCode"
                                         ],
                                         "type": "frontmost_application_if"
                                     }
@@ -381,7 +386,8 @@
                                     {
                                         "bundle_identifiers": [
                                             "com.apple.Terminal",
-                                            "com.googlecode.iterm2"
+                                            "com.googlecode.iterm2",
+											"com.microsoft.VSCode"
                                         ],
                                         "type": "frontmost_application_if"
                                     }
@@ -415,7 +421,8 @@
                                     {
                                         "bundle_identifiers": [
                                             "com.apple.Terminal",
-                                            "com.googlecode.iterm2"
+                                            "com.googlecode.iterm2",
+											"com.microsoft.VSCode"
                                         ],
                                         "type": "frontmost_application_if"
                                     }
@@ -446,7 +453,8 @@
                                     {
                                         "bundle_identifiers": [
                                             "com.apple.Terminal",
-                                            "com.googlecode.iterm2"
+                                            "com.googlecode.iterm2",
+											"com.microsoft.VSCode"
                                         ],
                                         "type": "frontmost_application_if"
                                     }
@@ -477,7 +485,8 @@
                                     {
                                         "bundle_identifiers": [
                                             "com.apple.Terminal",
-                                            "com.googlecode.iterm2"
+                                            "com.googlecode.iterm2",
+											"com.microsoft.VSCode"
                                         ],
                                         "type": "frontmost_application_if"
                                     }
@@ -513,7 +522,8 @@
                                     {
                                         "bundle_identifiers": [
                                             "com.apple.Terminal",
-                                            "com.googlecode.iterm2"
+                                            "com.googlecode.iterm2",
+											"com.microsoft.VSCode"
                                         ],
                                         "type": "frontmost_application_if"
                                     }
@@ -531,13 +541,7 @@
                                 },
                                 "to": [
                                     {
-                                        "key_code": "backslash",
-                                        "modifiers": [
-                                            "control"
-                                        ]
-                                    },
-                                    {
-                                        "key_code": "backslash",
+                                        "key_code": "a",
                                         "modifiers": [
                                             "control"
                                         ]
@@ -550,7 +554,8 @@
                                     {
                                         "bundle_identifiers": [
                                             "com.apple.Terminal",
-                                            "com.googlecode.iterm2"
+                                            "com.googlecode.iterm2",
+											"com.microsoft.VSCode"
                                         ],
                                         "type": "frontmost_application_if"
                                     }
@@ -565,13 +570,7 @@
                                 },
                                 "to": [
                                     {
-                                        "key_code": "backslash",
-                                        "modifiers": [
-                                            "control"
-                                        ]
-                                    },
-                                    {
-                                        "key_code": "backslash",
+                                        "key_code": "a",
                                         "modifiers": [
                                             "control"
                                         ]
@@ -595,7 +594,8 @@
                                     {
                                         "bundle_identifiers": [
                                             "com.apple.Terminal",
-                                            "com.googlecode.iterm2"
+                                            "com.googlecode.iterm2",
+											"com.microsoft.VSCode"
                                         ],
                                         "type": "frontmost_application_if"
                                     }

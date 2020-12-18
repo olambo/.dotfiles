@@ -48,5 +48,18 @@ set shiftwidth=4
 set iskeyword+=-,#
 set scrolloff=4
 
+" only need these motions for easymotion
+map t <Plug>(easymotion-tl)
+map f <Plug>(easymotion-sl)
+map ;; <Plug>(easymotion-s2)
+
 autocmd Filetype java,scala,python set expandtab
 autocmd Filetype go set noexpandtab
+
+let mapleader="\<space>"
+
+" toggle highlight search
+nnoremap <leader>hh :set hlsearch! hlsearch?<CR>
+
+" <hyper-y> yank selection and save it into a file which is monitored
+vnoremap <c-a> "+y

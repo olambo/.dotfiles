@@ -5,13 +5,7 @@ set incsearch
 
 " icons stop left alignment
 let g:dirvish_git_show_icons = 0
-
-" only need these motions
-map t <Plug>(easymotion-tl)
-map f <Plug>(easymotion-sl)
-map ;w <Plug>(easymotion-bd-wl)
-map ;; <Plug>(easymotion-s2)
-
+ 
 " create file in directory vi %foo/bar.md
 autocmd BufWritePre,FileWritePre * silent! call mkdir(expand('<afile>:p:h'), 'p')
 " correctly set markdown for vim-commentary
@@ -41,7 +35,7 @@ nnoremap <tab> <c-w><c-w>
 " keyboard maestro assisted key combinations
  
 " <hyper-y> yank selection and save it into a file which is monitored
-vnoremap <c-\><c-\> :call It2copy()<cr>
+vnoremap <c-a> :call It2copy()<cr>
 
 " <cmd-/> comment/uncomment
 nmap <c-\>/ <Plug>CommentaryLine<cr>
