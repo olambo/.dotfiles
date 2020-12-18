@@ -61,5 +61,8 @@ let mapleader="\<space>"
 " toggle highlight search
 nnoremap <leader>hh :set hlsearch! hlsearch?<CR>
 
+" go to next split
+nmap <leader><leader> <c-w><c-w>
+
 " <hyper-y> yank selection and save it into a file which is monitored
 vnoremap <c-a> "+y

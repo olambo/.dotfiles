@@ -28,8 +28,6 @@ let g:PaperColor_Theme_Options = {
 colorscheme PaperColor
 set bg=light
 
-" go to next split
-nnoremap <tab> <c-w><c-w>
 
 " ----------------------------------------------------------------------------------------------
 " keyboard maestro assisted key combinations
@@ -46,7 +44,7 @@ let mapleader="\<space>"
 " set showcmd
 
 " set mouse mode on, show file path
-nnoremap <leader><leader> :call ToggleMouse()<CR>
+nnoremap <leader>mm :call ToggleMouse()<CR>
 " toggle numbers
 nnoremap <leader>nn :call ToggleNumber()<CR>
 " toggle highlight search
