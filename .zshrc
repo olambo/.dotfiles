@@ -20,10 +20,11 @@ fi
 }
 precmd () { vcs_info }
 if [[ $(whoami) == "red" ]]; then
-  PROMPT='%F{red}%n%F{240} $vcs_info_msg_0_:%F{green}%~%f %% '
+  PROMPT='%F{red}%n%F{240} $vcs_info_msg_0_:%F{59}%2~%f >> '
 else
-  PROMPT='%F{240}%n $vcs_info_msg_0_:%F{green}%~%f %% '
+  PROMPT='%F{240}%n $vcs_info_msg_0_:%F{59}%2~%f >> '
 fi
+
 
 export HISTFILE=~/.zsh_history
 export HISTSIZE=100000
