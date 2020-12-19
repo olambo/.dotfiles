@@ -28,7 +28,6 @@ let g:PaperColor_Theme_Options = {
 colorscheme PaperColor
 set bg=light
 
-
 " ----------------------------------------------------------------------------------------------
 " keyboard maestro assisted key combinations
  

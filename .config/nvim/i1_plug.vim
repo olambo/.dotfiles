@@ -1,15 +1,16 @@
 call plug#begin('~/.config/nvim/plugged')
 
-Plug 'NLKNguyen/papercolor-theme'
-Plug 'easymotion/vim-easymotion'
-Plug 'justinmk/vim-dirvish'
-Plug 'kristijanhusak/vim-dirvish-git'
-Plug 'tpope/vim-commentary'
-Plug 'junegunn/fzf'
+Plug 'justinmk/vim-sneak'
+if !exists('g:vscode')
+	Plug 'NLKNguyen/papercolor-theme'
+	Plug 'justinmk/vim-dirvish'
+	Plug 'tpope/vim-commentary'
+	Plug 'junegunn/fzf'
 
-if !has("gui_vimr")
-  Plug 'neoclide/coc.nvim', { 'branch': 'release' }
-  Plug 'scalameta/coc-metals', {'do': 'yarn install --frozen-lockfile'}
+	if !has("gui_vimr")
+  		Plug 'neoclide/coc.nvim', { 'branch': 'release' }
+  		Plug 'scalameta/coc-metals', {'do': 'yarn install --frozen-lockfile'}
+	endif
 endif
 
 call plug#end()

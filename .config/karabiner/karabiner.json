@@ -16,7 +16,7 @@
                 },
                 "rules": [
                     {
-                        "description": "1) caps_lock key to hyper-key. Disable system diagnostics",
+                        "description": "1) caps_lock key to hyper-key. Disable system diagnostics. hyper , to ctrl j",
                         "manipulators": [
                             {
                                 "from": {
@@ -60,6 +60,29 @@
                             },
                             {
                                 "from": {
+                                    "key_code": "semicolon",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "shift",
+                                            "command",
+                                            "control",
+                                            "option"
+                                        ]
+                                    }
+
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "j",
+                                        "modifiers": [
+                                            "control"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
                                     "key_code": "comma",
                                     "modifiers": {
                                         "mandatory": [
@@ -69,7 +92,16 @@
                                             "option"
                                         ]
                                     }
+
                                 },
+                                "to": [
+                                    {
+                                        "key_code": "k",
+                                        "modifiers": [
+                                            "control"
+                                        ]
+                                    }
+                                ],
                                 "type": "basic"
                             }
                         ]
