@@ -4,9 +4,13 @@ hs.hotkey.bind({"cmd", "alt", "ctrl", "shift"}, "Left", function()
   local screen = win:screen()
   local max = screen:frame()
 
+  if math.abs(f.w - max.w*.7) < 1 then
+  	f.w = max.w * .5
+  else
+	f.w = max.w * .7
+  end
   f.x = max.x
   f.y = max.y
-  f.w = max.w * .7
   f.h = max.h
   hs.window.animationDuration=0
   win:setFrame(f)
@@ -17,12 +21,19 @@ hs.hotkey.bind({"cmd", "alt", "ctrl", "shift"}, "right", function()
   local f = win:frame()
   local screen = win:screen()
   local max = screen:frame()
-  local halfw = max.w / 2
 
-  f.x = max.x + halfw
-  f.y = max.y
-  f.w = halfw
-  f.h = max.h
+  if f.w == max.w and f.h == max.h then
+  	local halfw = max.w / 2
+  	f.x = max.x + halfw
+  	f.y = max.y
+  	f.w = halfw
+  	f.h = max.h
+  else
+	f.x = max.x
+  	f.y = max.y
+  	f.w = max.w
+  	f.h = max.h
+  end
   hs.window.animationDuration=0
   win:setFrame(f)
 end)
@@ -55,20 +66,6 @@ hs.hotkey.bind({"cmd", "alt", "ctrl", "shift"}, "down", function()
   f.y = halfh
   f.w = halfw
   f.h = halfh
-  hs.window.animationDuration=0
-  win:setFrame(f)
-end)
-
-hs.hotkey.bind({"cmd", "alt", "ctrl", "shift"}, "return", function()
-  local win = hs.window.focusedWindow()
-  local f = win:frame()
-  local screen = win:screen()
-  local max = screen:frame()
-
-  f.x = max.x
-  f.y = max.y
-  f.w = max.w
-  f.h = max.h
   hs.window.animationDuration=0
   win:setFrame(f)
 end)
