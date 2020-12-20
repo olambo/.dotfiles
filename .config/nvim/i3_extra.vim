@@ -55,7 +55,7 @@ nnoremap <leader>] :cd <c-r>=expand('%:h')<CR><CR>
 " list buffers, move to one
 nnoremap <Leader>bb :ls<Cr>:b<Space>
 " diff between this buffer and original
-nnoremap <leader>bd :w !diff % -<CR>
+nnoremap <leader>bc :w !diff % -<CR>
 " go to alternate buffer
 nnoremap <leader>ba :b #<CR>
 " open finder at current directory
