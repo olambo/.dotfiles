@@ -3,8 +3,11 @@ set nowrap
 set mouse=nv " this is not going to allow command-c. can use option-mouse or turn off
 set incsearch
 
-" icons stop left alignment
-let g:dirvish_git_show_icons = 0
+inoremap " ""<left>
+inoremap ' ''<left>
+inoremap ( ()<left>
+inoremap [ []<left>
+inoremap { {}<left>
  
 " create file in directory vi %foo/bar.md
 autocmd BufWritePre,FileWritePre * silent! call mkdir(expand('<afile>:p:h'), 'p')
