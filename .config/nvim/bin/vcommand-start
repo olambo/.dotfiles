@@ -1,0 +1,12 @@
+#!/bin/bash
+
+running_proc=`ps -ax | awk '/[v]command$/{print $1}'`
+if [ -n "$running_proc" ]; then
+	kill $running_proc
+fi
+
+mkdir -p ~/.config/nvim/runcache
+
+vc_file=~/.config/nvim/runcache/vcommand.txt
+echo -n "" > $vc_file
+ls "$vc_file" | entr ~/.config/nvim/bin/vcommand &

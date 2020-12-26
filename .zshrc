@@ -57,9 +57,10 @@ export FZF_DEFAULT_OPTS=" --extended --color hl:202,hl+:202"
 # -----------------------------------------------------------------------------------------------------------
 
 alias dot='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
-alias vi='fvim() { nvim ${@:-.} };~/.config/nvim/bin/vim-clipboard;fvim'
+alias vi='fvim() { nvim ${@:-.} };~/.config/nvim/bin/vclipboard-start;fvim'
 alias doc='vi ~/Dropbox/doc'
 alias con='vi ~/.config'
 alias ip="ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1' |head -1"
 alias fi='open -a Finder .'
 alias dev='cd ~/dev'
+alias vcommand-start='~/.config/nvim/bin/vcommand-start'

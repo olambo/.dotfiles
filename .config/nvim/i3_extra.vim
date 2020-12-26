@@ -45,6 +45,10 @@ vmap <c-\>/ <Plug>Commentary
 let mapleader="\<space>"
 " set showcmd
  
+"go run
+noremap <leader>rr :call GoRun()<CR>
+"go test
+noremap <leader>tt :call GoTest()<CR>
 "organize imports
 noremap <leader>ii :call CocAction('runCommand', 'editor.action.organizeImport')<CR>
 " set mouse mode on, show file path
@@ -68,7 +72,7 @@ nnoremap <silent> <leader>fi :call GoFinder()<CR>
 " magic replace
 nnoremap <leader>/ :%s/\v/gc<Left><Left><Left>
 " show terminal
-nnoremap <silent> <leader>tt :call GoTerm()<CR>
+nnoremap <silent> <leader>te :call GoTerm()<CR>
 " show filepath
 nnoremap <silent> <leader>fp <c-g>
 
@@ -104,9 +108,19 @@ function! ToggleMouse()
   endif
 endfunction
  
+function! GoRun()
+	call writefile(["go run main.go"], expand("~/.config/nvim/runcache/vcommand.txt"))
+    echo "go run main.go"
+endfunction
+
+function! GoTest()
+	call writefile(["go test"], expand("~/.config/nvim/runcache/vcommand.txt"))
+    echo "go test"
+endfunction
+
 function! It2copy()
     execute "normal! `<v`>y"
     let regInfo = getreg('"')
-    call writefile(split(regInfo, "\n"), expand("~/.config/nvim/runcache/vim-clipboard.txt"))
+    call writefile(split(regInfo, "\n"), expand("~/.config/nvim/runcache/vclipboard.txt"))
     echo "i2copy"
 endfunction
