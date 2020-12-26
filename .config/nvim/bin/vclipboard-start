@@ -1,0 +1,12 @@
+#! /bin/bash
+
+running_proc=`ps -ax | awk '/[v]clipboard$/{print $1}'`
+if [ -n "$running_proc" ]; then
+  kill $running_proc
+fi
+
+vc_file=~/.config/nvim/runcache/vclipboard.txt
+
+mkdir -p ~/.config/nvim/runcache
+echo -n "" > $vc_file
+ls "$vc_file" | entr ~/.config/nvim/bin/vclipboard &
