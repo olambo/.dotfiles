@@ -44,7 +44,9 @@ vmap <c-\>/ <Plug>Commentary
 " ----------------------------------------------------------------------------------------------
 let mapleader="\<space>"
 " set showcmd
-
+ 
+"organize imports
+noremap <leader>ii :call CocAction('runCommand', 'editor.action.organizeImport')<CR>
 " set mouse mode on, show file path
 nnoremap <leader>mm :call ToggleMouse()<CR>
 " toggle numbers

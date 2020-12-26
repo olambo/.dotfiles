@@ -21,6 +21,7 @@ else
 	let g:loaded_python_provider='/usr/bin/python2' 
 	let g:python3_host_prog='/usr/local/bin/python3'
 	set cmdheight=1
+	" autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
 endif
 
 let g:sneak#label = 1
