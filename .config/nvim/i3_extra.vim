@@ -2,12 +2,6 @@ set belloff=all
 set nowrap
 set mouse=nv " this is not going to allow command-c. can use option-mouse or turn off
 set incsearch
-
-inoremap " ""<left>
-inoremap ' ''<left>
-inoremap ( ()<left>
-inoremap [ []<left>
-inoremap { {}<left>
  
 " create file in directory vi %foo/bar.md
 autocmd BufWritePre,FileWritePre * silent! call mkdir(expand('<afile>:p:h'), 'p')
@@ -109,13 +103,21 @@ function! ToggleMouse()
 endfunction
  
 function! GoRun()
+	if &mod == 1 
+		echo "WARNING, BUFFER NOT WRITTEN! vcommand: go run main.go"
+	else
+		echo "vcommand: go run main.go"
+	endif
 	call writefile(["go run main.go"], expand("~/.config/nvim/runcache/vcommand.txt"))
-    echo "go run main.go"
 endfunction
 
 function! GoTest()
+	if &mod == 1 
+		echo "WARNING, BUFFER NOT WRITTEN! vcommand: go test"
+	else
+		echo "vcommand: go test"
+	endif
 	call writefile(["go test"], expand("~/.config/nvim/runcache/vcommand.txt"))
-    echo "go test"
 endfunction
 
 function! It2copy()

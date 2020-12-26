@@ -3,6 +3,7 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'justinmk/vim-sneak'
 Plug 'tpope/vim-surround'
 if !exists('g:vscode')
+	Plug 'tmsvg/pear-tree'
 	Plug 'NLKNguyen/papercolor-theme'
 	Plug 'justinmk/vim-dirvish'
 	Plug 'tpope/vim-commentary'
