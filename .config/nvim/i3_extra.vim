@@ -43,6 +43,8 @@ let mapleader="\<space>"
 noremap <leader>rr :call GoRun()<CR>
 "go test
 noremap <leader>tt :call GoTest()<CR>
+"go test
+noremap <leader>T :call GoTest1()<CR>
 "organize imports
 noremap <leader>ii :call CocAction('runCommand', 'editor.action.organizeImport')<CR>
 " set mouse mode on, show file path
@@ -109,6 +111,16 @@ function! GoRun()
 		echo "vcommand: go run main.go"
 	endif
 	call writefile(["go run main.go"], expand("~/.config/nvim/runcache/vcommand.txt"))
+endfunction
+
+function! GoTest1()
+	let toTest = "go test -run " . expand("<cword>")
+	if &mod == 1 
+		echo "WARNING, BUFFER NOT WRITTEN! vcommand: go test"
+	else
+		echo "vcommand: ". toTest
+	endif
+	call writefile([toTest], expand("~/.config/nvim/runcache/vcommand.txt"))
 endfunction
 
 function! GoTest()
