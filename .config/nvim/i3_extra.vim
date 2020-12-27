@@ -40,11 +40,11 @@ let mapleader="\<space>"
 " set showcmd
  
 "go run
-noremap <leader>rr :call GoRun()<CR>
+noremap <leader>rr :call GoCommand("go run main.go")<CR>
 "go test
-noremap <leader>tt :call GoTest()<CR>
+noremap <leader>tt :call GoCommand("go test")<CR>
 "go test
-noremap <leader>T :call GoTest1()<CR>
+noremap <leader>T :call GoCommand("go test -run " . expand("<cword>"))<CR>
 "organize imports
 noremap <leader>ii :call CocAction('runCommand', 'editor.action.organizeImport')<CR>
 " set mouse mode on, show file path
@@ -104,32 +104,13 @@ function! ToggleMouse()
   endif
 endfunction
  
-function! GoRun()
+function! GoCommand(cmd)
 	if &mod == 1 
-		echohl WarningMsg | echo "WARNING, BUFFER NOT WRITTEN!" | echohl None | echo "vcommand: go run main.go"
+		echohl WarningMsg | echo "WARNING, BUFFER NOT WRITTEN!" | echohl None | echo a:cmd
 	else
-		echo "vcommand: go run main.go"
+		echo "vcommand: " . a:cmd
 	endif
-	call writefile(["go run main.go"], expand("~/.config/nvim/runcache/vcommand.txt"))
-endfunction
-
-function! GoTest1()
-	let toTest = "go test -run " . expand("<cword>")
-	if &mod == 1 
-		echohl WarningMsg | echo "WARNING, BUFFER NOT WRITTEN!" | echohl None | echo "vcommand: " . toTest
-	else
-		echo "vcommand: ". toTest
-	endif
-	call writefile([toTest], expand("~/.config/nvim/runcache/vcommand.txt"))
-endfunction
-
-function! GoTest()
-	if &mod == 1 
-		echohl WarningMsg | echo "WARNING, BUFFER NOT WRITTEN!" | echohl None | echo "vcommand: go test"
-	else
-		echo "vcommand: go test"
-	endif
-	call writefile(["go test"], expand("~/.config/nvim/runcache/vcommand.txt"))
+	call writefile([a:cmd], expand("~/.config/nvim/runcache/vcommand.txt"))
 endfunction
 
 function! It2copy()
