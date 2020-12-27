@@ -106,7 +106,7 @@ endfunction
  
 function! GoRun()
 	if &mod == 1 
-		echo "WARNING, BUFFER NOT WRITTEN! vcommand: go run main.go"
+		echohl WarningMsg | echo "WARNING, BUFFER NOT WRITTEN!" | echohl None | echo "vcommand: go run main.go"
 	else
 		echo "vcommand: go run main.go"
 	endif
@@ -116,7 +116,7 @@ endfunction
 function! GoTest1()
 	let toTest = "go test -run " . expand("<cword>")
 	if &mod == 1 
-		echo "WARNING, BUFFER NOT WRITTEN! vcommand: go test"
+		echohl WarningMsg | echo "WARNING, BUFFER NOT WRITTEN!" | echohl None | echo "vcommand: " . toTest
 	else
 		echo "vcommand: ". toTest
 	endif
@@ -125,7 +125,7 @@ endfunction
 
 function! GoTest()
 	if &mod == 1 
-		echo "WARNING, BUFFER NOT WRITTEN! vcommand: go test"
+		echohl WarningMsg | echo "WARNING, BUFFER NOT WRITTEN!" | echohl None | echo "vcommand: go test"
 	else
 		echo "vcommand: go test"
 	endif
