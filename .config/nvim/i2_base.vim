@@ -53,8 +53,8 @@ let mapleader="\<space>"
 " toggle highlight search
 nnoremap <leader>hh :set hlsearch! hlsearch?<CR>
 
-" go to next split. output path of file
-nmap <leader><leader> <c-g><c-w><c-w><c-g>
+" go to next split
+nmap <leader><leader> <c-w><c-w>
 
 " <hyper-y> copy to system clipboard
 vnoremap <c-a> "+y

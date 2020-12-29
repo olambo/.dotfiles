@@ -7,8 +7,8 @@ set incsearch
 let &t_ts = "\<Esc>]0"
 let &t_fs = "\x7"
 
-" put name of file into title, remove laststatus 
-autocmd BufEnter * let &titlestring = ' ' . expand("%:t") . " " . expand("[$USER]")
+" put file path into title, remove laststatus 
+autocmd BufEnter * let &titlestring = expand("[$USER]") . expand('%:~')
 set title
 set laststatus=0
  
