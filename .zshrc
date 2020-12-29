@@ -4,7 +4,7 @@
 setopt prompt_subst
 autoload -Uz vcs_info
 export CLICOLOR=1
-export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
+export LSCOLORS=exfxcxdxbxegedabagacad;
 zstyle ':vcs_info:*' stagedstr 'M' 
 zstyle ':vcs_info:*' unstagedstr '%F{red}M' 
 zstyle ':vcs_info:*' check-for-changes true
