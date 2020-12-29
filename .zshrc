@@ -1,5 +1,7 @@
 # User configuration sourced by interactive shells
 
+eval "$(lua /usr/local/Cellar/z.lua/1.8.10/share/z.lua/z.lua --init zsh)"
+
 # based on https://stackoverflow.com/questions/1128496/to-get-a-prompt-which-indicates-git-branch-in-zsh
 setopt prompt_subst
 autoload -Uz vcs_info
