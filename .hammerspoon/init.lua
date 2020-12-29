@@ -107,6 +107,10 @@ hs.hotkey.bind({"cmd", "alt", "ctrl", "shift"}, 'm', function()
     tryapp("Mail") 
 end)
 
-hs.hotkey.bind({"cmd", "alt", "ctrl", "shift"}, "space", function() 
+hs.hotkey.bind({"cmd", "alt", "ctrl", "shift"}, "f", function() 
     tryapp("Finder") 
+end)
+
+hs.hotkey.bind({"cmd", "alt", "ctrl", "shift"}, "a", function() 
+    tryapp("Dash") 
 end)
