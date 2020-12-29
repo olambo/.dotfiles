@@ -37,6 +37,7 @@ set bg=light
 " keyboard maestro assisted key combinations
  
 " <hyper-y> yank selection and save it into a file which is monitored
+" todo: find out why, multiple line selected, calling multiple times?
 vnoremap <c-a> :call It2copy()<cr>
 
 " <cmd-/> comment/uncomment
@@ -124,8 +125,7 @@ function! GoCommand(cmd)
 endfunction
 
 function! It2copy()
-    execute "normal! `<v`>y"
+    silent execute "normal! `<v`>y"
     let regInfo = getreg('"')
     call writefile(split(regInfo, "\n"), expand("~/.config/nvim/runcache/vclipboard.txt"))
-    echo "i2copy"
 endfunction
