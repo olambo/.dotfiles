@@ -3,8 +3,12 @@ set nowrap
 set mouse=nv " this is not going to allow command-c. can use option-mouse or turn off
 set incsearch
 
+" tmux title to iterm stuff
+let &t_ts = "\<Esc>]0"
+let &t_fs = "\x7"
+
 " put name of file into title, remove laststatus 
-autocmd BufEnter * let &titlestring = ' ' . expand("%:t")             
+autocmd BufEnter * let &titlestring = ' ' . expand("%:t") . " " . expand("[$USER]")
 set title
 set laststatus=0
  
