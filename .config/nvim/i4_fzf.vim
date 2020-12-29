@@ -1,9 +1,13 @@
 " FZF --------------------------------
 
-nnoremap <silent> <leader>ff :FZF<cr>
-nnoremap <silent> <Leader>fr :FZF <c-r>=expand('%:h')<cr><cr>
-nnoremap <silent> <Leader>fs :call FZF_files()<cr>
+" find files of wanted types 
+nnoremap <silent> <Leader>ff :call FZF_files()<cr>
+" find any type of file
+nnoremap <silent> <leader>fa :FZF<cr>
+" find files local to current directory
+nnoremap <silent> <Leader>fl :FZF <c-r>=expand('%:h')<cr><cr>
 
 function! FZF_files()
-  call fzf#run({'source': 'fd -t f "scala$|py$|conf$"', 'sink': 'e' })
+  let rg= "rg -t go -t md -t scala --files " . getcwd()
+  call fzf#run({'source': rg, 'sink': 'e' })
 endfunction

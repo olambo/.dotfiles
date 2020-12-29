@@ -20,10 +20,13 @@ else
 	source ~/.config/nvim/i6_statusline.vim
 	let g:loaded_python_provider='/usr/bin/python2' 
 	let g:python3_host_prog='/usr/local/bin/python3'
+	" on <cr> dont hide closing bracket. don't need . repeat here!
+	let g:pear_tree_repeatable_expand = 0
+	" override coc
 	set cmdheight=1
-	" autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
 endif
 
+" sneak with very bright lables!
 let g:sneak#label = 1
 map <c-j> <Plug>Sneak_s
 map <c-k> <Plug>Sneak_S

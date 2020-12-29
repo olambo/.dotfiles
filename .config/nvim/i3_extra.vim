@@ -2,6 +2,11 @@ set belloff=all
 set nowrap
 set mouse=nv " this is not going to allow command-c. can use option-mouse or turn off
 set incsearch
+
+" put name of file into title, remove laststatus 
+autocmd BufEnter * let &titlestring = ' ' . expand("%:t")             
+set title
+set laststatus=0
  
 " create file in directory vi %foo/bar.md
 autocmd BufWritePre,FileWritePre * silent! call mkdir(expand('<afile>:p:h'), 'p')
@@ -37,8 +42,8 @@ vmap <c-\>/ <Plug>Commentary
 
 " ----------------------------------------------------------------------------------------------
 let mapleader="\<space>"
-" set showcmd
- 
+set showcmd
+
 "go run
 noremap <leader>rr :call GoCommand("go run main.go")<CR>
 "go test
@@ -63,6 +68,8 @@ nnoremap <Leader>bb :ls<Cr>:b<Space>
 nnoremap <leader>bc :w !diff % -<CR>
 " go to alternate buffer
 nnoremap <leader>ba :b #<CR>
+" remove buffer
+nnoremap <leader>bd :bd<CR>
 " open finder at current directory
 nnoremap <silent> <leader>fi :call GoFinder()<CR>
 " magic replace
