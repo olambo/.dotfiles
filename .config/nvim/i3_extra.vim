@@ -2,9 +2,12 @@ set belloff=all
 set mouse=nv " this is not going to allow command-c. can use option-mouse or turn off
 set incsearch
 
-" tmux title to iterm stuff
-let &t_ts = "\<Esc>]0"
-let &t_fs = "\x7"
+if exists('$TMUX')
+	" tmux title to iterm stuff
+	let &t_ts = "\<Esc>]0"
+	let &t_fs = "\x7"
+endif
+
 
 " put file path into title, remove laststatus 
 autocmd BufEnter * let &titlestring = expand("[$USER]") . expand('%:~')
