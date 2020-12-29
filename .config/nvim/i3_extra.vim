@@ -1,5 +1,4 @@
 set belloff=all
-set nowrap
 set mouse=nv " this is not going to allow command-c. can use option-mouse or turn off
 set incsearch
 
