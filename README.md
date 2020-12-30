@@ -29,19 +29,20 @@ rm -r tmpdotfiles
 
 ### [Karabiner-Elements](https://pqrs.org/osx/karabiner/)
 I use Karabiner-Elements for key remapping. For instance, I remap my capslock
-key to both <kbd>Esc</kbd> (when pressed and released) and 
-<kbd>hyper</kbd> key (<kbd>shift</kbd>+<kbd>ctrl</kbd>+<kbd>option</kbd>+<kbd>command</kbd>). 
+key to 
+- <kbd>Esc</kbd> (when pressed and released) 
+- <kbd>hyper</kbd> key (<kbd>shift</kbd>+<kbd>ctrl</kbd>+<kbd>option</kbd>+<kbd>command</kbd>). 
 
 Some of the key, I remap
-  *   <hyp> h, j, k, l  -> <left>, <down>, <up>, <right>
-  *   <hyp> u, d        -> <pageup>, <pagedown>
-  *   <hyp> 9, 0        -> <c-a>, <c-e> (in macos gui apps, eg Safari)
-  *   <hyp> 9, 0        -> <home>, <end> (in iTerm2)
-  *   <cmd-c>           -> <c-a> (in iTerm2, copy from vim to system clipboard even from remote machines)
-  *   <hyp> [, ]        -> <shift,cmd,[ or ]> select next or previous tab
-  *   <hyp> return      -> <shift,cmd,return> iTerm2 expands pane to whole window
-  *   <hyp> n           -> <opt,cmd,down> iTerm2 select pane below (if no pane below, go to top)
-  *   <hyp> b           -> <opt,cmd,left> iTerm2 select pane left (if no pane left, go to far right)
+-  <hyp> h, j, k, l  -> <left>, <down>, <up>, <right>
+-  <hyp> u, d        -> <pageup>, <pagedown>
+-  <hyp> 9, 0        -> <c-a>, <c-e> (in macos gui apps, eg Safari)
+-  <hyp> 9, 0        -> <home>, <end> (in iTerm2)
+-  <cmd-c>           -> <c-a> (in iTerm2, copy from vim to system clipboard even from remote machines)
+-  <hyp> [, ]        -> <shift,cmd,[ or ]> select next or previous tab
+-  <hyp> return      -> <shift,cmd,return> iTerm2 expands pane to whole window
+-  <hyp> n           -> <opt,cmd,down> iTerm2 select pane below (if no pane below, go to top)
+-  <hyp> b           -> <opt,cmd,left> iTerm2 select pane left (if no pane left, go to far right)
 
 ### [Hammerspoon](https://www.hammerspoon.org)
 I use hammerspoon to map <kbd>hyper</kbd> keys to open various applications and position windows
