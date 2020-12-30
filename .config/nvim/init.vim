@@ -25,13 +25,11 @@ else
 	" on <cr> dont hide closing bracket. don't need . repeat here and don't
 	" want to override coc <cr>
 	let g:pear_tree_repeatable_expand = 0
-	imap <M-z> <Plug>(PearTreeExpand)
+	imap <c-x><c-e> <Plug>(PearTreeExpand)
 endif
 
 " sneak with very bright lables!
 let g:sneak#label = 1
 map <c-x><c-j> <Plug>Sneak_s
 map <c-x><c-k> <Plug>Sneak_S
-" map <c-j> <Plug>Sneak_s
-" map <c-k> <Plug>Sneak_S
 
