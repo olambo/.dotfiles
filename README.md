@@ -32,18 +32,22 @@ I use Karabiner-Elements for key remapping. For instance, I remap my capslock ke
 - <kbd>esc</kbd> when pressed and immediately released
 - <kbd>hyp</kbd> key (<kbd>shift</kbd>+<kbd>ctrl</kbd>+<kbd>option</kbd>+<kbd>command</kbd>) 
 
-Some of the keys, I remap
+Some of the keys, I remap are listed below.
+
 ```
-<hyp> h, j, k, l -> <left>, <down>, <up>, <right>
-<hyp> u, d       -> <pageup>, <pagedown>
-<hyp> [, ]       -> <shift,cmd,[ or ]> next or previous tab
-<hyp> 9, 0       -> <c-a>, <c-e> (in macos gui apps, eg Safari) begining and end of line
-<hyp> 9, 0       -> <home>, <end> terminal - begining and end of line
-<cmd-c>          -> <cmd-c><c-a> terminal vim - copy to system clipboard, even from remote machines
-<hyp> return     -> <shift,cmd,return> iTerm2 - expands pane to whole window
-<hyp> n          -> <opt,cmd,down> iTerm2 - select pane below (if no pane below, go to top)
-<hyp> b          -> <opt,cmd,left> iTerm2 - select pane left (if no pane left, go to far right)
+<hyp> h, j, k, l -> <left>, <down>, <up>, <right> - vim like motions (all apps)
+<hyp> u, d       -> <pageup>, <pagedown> - vim like motions (all apps)
+<hyp> [, ]       -> <shift,cmd, [ or ]> next or previous tab (all apps)
+<hyp> 9, 0       -> <c-a>, <c-e>  begining and end of line (gui apps, eg safari) 
+<hyp> 9, 0       -> <home>, <end> begining and end of line (iterm2 and vim)
+<hyp> ;, comma   -> <ctrl, j or k> vim-sneak label mode - I use the 's' key (vim)
+<hyp> return     -> <shift,cmd,return> expands pane to whole iterm2 window (iTerm2) 
+<hyp> n          -> <opt,cmd,down> select pane below (if no pane below, go to top) (iTerm2) 
+<hyp> b          -> <opt,cmd,left> select pane left (if no pane left, go to far right) (iTerm2) 
+<cmd-c>          -> <cmd-c><c-a> copy to system clipboard, even from remote machines (iTerm2 vim)
 ```
+Vim can't directly map <hyp> keys. So I have Karabiner-Elements first map a <hyp> key to a key (or combination) that vim can recognize.
+For instance, when I press <hyp-;> I have karabiner execute <ctrl-j>. This key is mapped to the vim's Sneak_s pluggin. Note: I've never used <ctrl-j> in Vim for anything. If you do, map to a key you don't use.
 
 ### [Hammerspoon](https://www.hammerspoon.org)
 I use hammerspoon to set some <kbd>hyp</kbd> keys to open various applications and position windows
