@@ -35,20 +35,18 @@ I use Karabiner-Elements for key remapping. For instance, I remap my capslock ke
 Some of the keys, I remap are listed below.
 
 ```
-<hyp> h, j, k, l -> <left>, <down>, <up>, <right> - vim like motions (all apps)
-<hyp> u, d       -> <pageup>, <pagedown> - vim like motions (all apps)
-<hyp> [, ]       -> <shift,cmd, [ or ]> next or previous tab (all apps)
-<hyp> 9, 0       -> <c-a>, <c-e>  begining and end of line (gui apps, eg safari) 
-<hyp> 9, 0       -> <home>, <end> begining and end of line (iterm2 and vim)
-<hyp> ;, ','     -> <c-x><c-j>, <c-x><c-k> vim-sneak label mode 
-<hyp> return     -> <shift,cmd,return> expands pane to whole iterm2 window (iTerm2) 
-<hyp> n          -> <opt,cmd,down> select pane below (if no pane below, go to top) (iTerm2) 
-<hyp> b          -> <opt,cmd,left> select pane left (if no pane left, go to far right) (iTerm2) 
-<cmd-c>          -> <c-x><c-y><cmd-c> copy to system clipboard, even from remote machines (iTerm2 vim)
+<hyp> h j k l -> left, down, up, right. Vim like motions (all apps)
+<hyp> u d     -> pageup, pagedown. Vim like motions (all apps)
+<hyp> [ ]     -> next or previous tab (all apps)
+<hyp> 9 0     -> begining or end of line (all apps)
+<hyp> ; ,     -> Vim-sneak label mode (Vim)
+<hyp> return  -> expand pane (iTerm2) 
+<hyp> n b     -> next vertical or horizontal pane (iTerm2) 
+<cmd-c>       -> copy to system clipboard from remote machine (iTerm2 Vim)
 ```
-Vim can't directly map <kbd>hyp</kbd> keys. So I have Karabiner-Elements first map a <kbd>hyp</kbd> key to key(s) that vim can recognize.
-For instance, when I press <kbd>hyp-;</kbd>, I have karabiner execute <kbd>ctrl-x ctrl-j</kbd>. This key combination is mapped to the vim's Sneak_s pluggin. 
-Note: I use the 's' key in vim normal mode so I can't use vim-sneaks suggestion of using that key.
+Vim can't directly map <kbd>hyp</kbd> keys. So I have Karabiner-Elements first map a <kbd>hyp</kbd> key to key(s) that Vim can recognize.
+For instance, when I press <kbd>hyp-;</kbd>, I have karabiner execute <kbd>ctrl-x ctrl-j</kbd>. This key combination is mapped to the Vim Sneak_s pluggin. 
+Note: I use the 's' key in Vim normal mode so I can't use Vim-sneaks suggestion of using that key.
 
 ### [Hammerspoon](https://www.hammerspoon.org)
 I use hammerspoon to set some <kbd>hyp</kbd> keys to open various applications and position windows

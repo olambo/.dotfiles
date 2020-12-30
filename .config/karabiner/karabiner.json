@@ -16,7 +16,7 @@
                 },
                 "rules": [
                     {
-                        "description": "1) caps_lock key to hyp-key. Disable system diagnostics. <hyp-;> to <c-x><c-j>. <hyp-,> to <c-x><c-k>", 
+                        "description": "1) <caps_lock> key to <hyp>, <hyp-.> to nothing, <hyp-;> to <c-x><c-j>, <hyp-,> to <c-x><c-k>",
                         "manipulators": [
                             {
                                 "from": {
@@ -119,7 +119,7 @@
                         ]
                     },
                     {
-                        "description": "2) <hyp-u>, <hyp-d> to page up and down",
+                        "description": "2) <hyp-u> to pageup, <hyp-d> to pagedown",
                         "manipulators": [
                             {
                                 "from": {
@@ -168,7 +168,7 @@
                         ]
                     },
                     {
-                        "description": "3) hyp: h, u, k, l to left, up, down and right arrows",
+                        "description": "3) <hyp-h>, <hyp-j>, <hyp-k>, <hyp-l> to left, down, up, right arrows",
                         "manipulators": [
                             {
                                 "from": {
@@ -261,7 +261,7 @@
                         ]
                     },
                     {
-                        "description": "4) hyp: delete word, go startOfLine, go endOfLine",
+                        "description": "4) <hyp-del> to delete word, <hyp-9> to startOfLine, <hyp-0> to endOfLine",
                         "manipulators": [
                             {
                                 "conditions": [
@@ -458,7 +458,7 @@
                         ]
                     },
                     {
-                        "description": "5) hyp: c, r and t to control keys",
+                        "description": "5) <hyp-c>, <hyp-r>, <hyp-t> to corresponding control keys",
                         "manipulators": [
                             {
                                 "conditions": [
@@ -559,7 +559,7 @@
                         ]
                     },
                     {
-                        "description": "6) <hyp-y>, command-c, yank using experimental clipboard",
+                        "description": "6) <hyp-y> to <c-x><c-y>, <cmd-c> to <c-x><c-y><cmd-c>, yank to system clipboard",
                         "manipulators": [
                             {
                                 "conditions": [
@@ -643,7 +643,7 @@
                         ]
                     },
                     {
-                        "description": "7)  hyp [ ] - prev next tab",
+                        "description": "7)  <hyp-[>, <hyp-]>  prev next tab",
                         "manipulators": [
                             {
                                 "from": {
@@ -694,7 +694,7 @@
                         ]
                     },
                     {
-                        "description": "8)  hyp b n - go left go down",
+                        "description": "8)  <hyp-b> to <opt,cmd,leftarrow>, <hyp-n> to <opt,cmd,downarrow>",
                         "manipulators": [
                             {
                                 "from": {
@@ -745,7 +745,7 @@
                         ]
                     },
                     {
-                        "description": "9) command / - comment",
+                        "description": "9) <cmd-/> to <c-x><c-x>, or <c-/> in vscode",
                         "manipulators": [
                             {
                                 "conditions": [
@@ -800,9 +800,37 @@
                                 },
                                 "to": [
                                     {
-                                        "key_code": "/",
+                                        "key_code": "slash",
                                         "modifiers": [
                                             "control"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "10) <hyp-ret> to <shift,cmd,return> in iterm2",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "return_or_enter",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "shift",
+                                            "command",
+                                            "control",
+                                            "option"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "return_or_enter",
+                                        "modifiers": [
+                                            "shift",
+                                            "command"
                                         ]
                                     }
                                 ],
