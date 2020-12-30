@@ -30,7 +30,7 @@ rm -r tmpdotfiles
 ### [Karabiner-Elements](https://pqrs.org/osx/karabiner/)
 I use Karabiner-Elements for key remapping. For instance, I remap my capslock key
 - <kbd>esc</kbd> when pressed and immediately released
-- <kbd>hyp</kbd> key (<kbd>shift</kbd>+<kbd>ctrl</kbd>+<kbd>option</kbd>+<kbd>command</kbd>) 
+- <kbd>hyp</kbd> key (<kbd>shift</kbd>+<kbd>ctrl</kbd>+<kbd>option</kbd>+<kbd>command</kbd>) + normal key
 
 Some of the keys, I remap are listed below.
 
@@ -40,14 +40,15 @@ Some of the keys, I remap are listed below.
 <hyp> [, ]       -> <shift,cmd, [ or ]> next or previous tab (all apps)
 <hyp> 9, 0       -> <c-a>, <c-e>  begining and end of line (gui apps, eg safari) 
 <hyp> 9, 0       -> <home>, <end> begining and end of line (iterm2 and vim)
-<hyp> ;, comma   -> <ctrl, j or k> vim-sneak label mode - I use the 's' key (vim)
+<hyp> ;, ','     -> <c-x><c-j>, <c-x><c-k> vim-sneak label mode 
 <hyp> return     -> <shift,cmd,return> expands pane to whole iterm2 window (iTerm2) 
 <hyp> n          -> <opt,cmd,down> select pane below (if no pane below, go to top) (iTerm2) 
 <hyp> b          -> <opt,cmd,left> select pane left (if no pane left, go to far right) (iTerm2) 
-<cmd-c>          -> <cmd-c><c-a> copy to system clipboard, even from remote machines (iTerm2 vim)
+<cmd-c>          -> <c-x><c-y><cmd-c> copy to system clipboard, even from remote machines (iTerm2 vim)
 ```
-Vim can't directly map <kbd>hyp</kbd> keys. So I have Karabiner-Elements first map a <kbd>hyp</kbd> key to a key (or combination) that vim can recognize.
-For instance, when I press <kbd>hyp-;</kbd> I have karabiner execute <kbd>ctrl-j</kbd>. This key is mapped to the vim's Sneak_s pluggin. Note: I've never used <kbd>ctrl-j</kbd> in Vim for anything. If you do, map to a key you don't use.
+Vim can't directly map <kbd>hyp</kbd> keys. So I have Karabiner-Elements first map a <kbd>hyp</kbd> key to key(s) that vim can recognize.
+For instance, when I press <kbd>hyp-;</kbd>, I have karabiner execute <kbd><c-x><c-j></kbd>. This key is mapped to the vim's Sneak_s pluggin. 
+Note: I use the 's' key in vim normal mode so I can't use vim-sneaks suggestion of using that key.
 
 ### [Hammerspoon](https://www.hammerspoon.org)
 I use hammerspoon to set some <kbd>hyp</kbd> keys to open various applications and position windows

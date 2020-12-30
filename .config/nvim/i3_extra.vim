@@ -40,11 +40,11 @@ set bg=light
  
 " <hyper-y> yank selection and save it into a file which is monitored
 " todo: find out why, multiple line selected, calling multiple times?
-vnoremap <c-a> :call It2copy()<cr>
+vnoremap <c-x><c-y> :call It2copy()<cr>
 
 " <cmd-/> comment/uncomment
-nmap <c-\>/ <Plug>CommentaryLine<cr>
-vmap <c-\>/ <Plug>Commentary
+nmap <c-x><c-x> <Plug>CommentaryLine<cr>
+vmap <c-x><c-x> <Plug>Commentary
 
 " ----------------------------------------------------------------------------------------------
 let mapleader="\<space>"

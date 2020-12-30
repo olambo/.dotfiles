@@ -30,6 +30,8 @@ endif
 
 " sneak with very bright lables!
 let g:sneak#label = 1
-map <c-j> <Plug>Sneak_s
-map <c-k> <Plug>Sneak_S
+map <c-x><c-j> <Plug>Sneak_s
+map <c-x><c-k> <Plug>Sneak_S
+" map <c-j> <Plug>Sneak_s
+" map <c-k> <Plug>Sneak_S
 

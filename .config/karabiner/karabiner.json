@@ -16,7 +16,7 @@
                 },
                 "rules": [
                     {
-                        "description": "1) caps_lock key to hyp-key. Disable system diagnostics. hyp-semicolon to ctrl j. hyp-comma to ctrl k", 
+                        "description": "1) caps_lock key to hyp-key. Disable system diagnostics. <hyp-;> to <c-x><c-j>. <hyp-,> to <c-x><c-k>", 
                         "manipulators": [
                             {
                                 "from": {
@@ -73,6 +73,12 @@
                                 },
                                 "to": [
                                     {
+                                        "key_code": "x",
+                                        "modifiers": [
+                                            "control"
+                                        ]
+                                    },
+                                    {
                                         "key_code": "j",
                                         "modifiers": [
                                             "control"
@@ -96,6 +102,12 @@
                                 },
                                 "to": [
                                     {
+                                        "key_code": "x",
+                                        "modifiers": [
+                                            "control"
+                                        ]
+                                    },
+                                    {
                                         "key_code": "k",
                                         "modifiers": [
                                             "control"
@@ -107,7 +119,7 @@
                         ]
                     },
                     {
-                        "description": "2) hyp: u and d to page up and down",
+                        "description": "2) <hyp-u>, <hyp-d> to page up and down",
                         "manipulators": [
                             {
                                 "from": {
@@ -547,7 +559,7 @@
                         ]
                     },
                     {
-                        "description": "6) hyp-y, command-c, yank using experimental clipboard",
+                        "description": "6) <hyp-y>, command-c, yank using experimental clipboard",
                         "manipulators": [
                             {
                                 "conditions": [
@@ -573,7 +585,13 @@
                                 },
                                 "to": [
                                     {
-                                        "key_code": "a",
+                                        "key_code": "x",
+                                        "modifiers": [
+                                            "control"
+                                        ]
+                                    },
+                                    {
+                                        "key_code": "y",
                                         "modifiers": [
                                             "control"
                                         ]
@@ -602,7 +620,13 @@
                                 },
                                 "to": [
                                     {
-                                        "key_code": "a",
+                                        "key_code": "x",
+                                        "modifiers": [
+                                            "control"
+                                        ]
+                                    },
+                                    {
+                                        "key_code": "y",
                                         "modifiers": [
                                             "control"
                                         ]
@@ -743,13 +767,16 @@
                                 },
                                 "to": [
                                     {
-                                        "key_code": "backslash",
+                                        "key_code": "x",
                                         "modifiers": [
                                             "control"
                                         ]
                                     },
                                     {
-                                        "key_code": "slash"
+                                        "key_code": "x",
+                                        "modifiers": [
+                                            "control"
+                                        ]
                                     }
                                 ],
                                 "type": "basic"
@@ -773,13 +800,10 @@
                                 },
                                 "to": [
                                     {
-                                        "key_code": "slash",
+                                        "key_code": "/",
                                         "modifiers": [
                                             "control"
                                         ]
-                                    },
-                                    {
-                                        "key_code": "slash"
                                     }
                                 ],
                                 "type": "basic"

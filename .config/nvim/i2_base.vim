@@ -56,4 +56,4 @@ nnoremap <leader>hh :set hlsearch! hlsearch?<CR>
 nmap <leader><leader> <c-w><c-w>
 
 " <hyper-y> copy to system clipboard
-vnoremap <c-a> "+y
+vnoremap <c-x><c-y> "+y
