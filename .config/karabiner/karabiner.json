@@ -16,7 +16,7 @@
                 },
                 "rules": [
                     {
-                        "description": "1) caps_lock key to hyper-key. Disable system diagnostics. hyper , to ctrl j",
+                        "description": "1) caps_lock key to hyp-key. Disable system diagnostics. hyp-semicolon to ctrl j. hyp-comma to ctrl k", 
                         "manipulators": [
                             {
                                 "from": {
@@ -107,7 +107,7 @@
                         ]
                     },
                     {
-                        "description": "2) hyper: u and d to page up and down",
+                        "description": "2) hyp: u and d to page up and down",
                         "manipulators": [
                             {
                                 "from": {
@@ -156,7 +156,7 @@
                         ]
                     },
                     {
-                        "description": "3) hyper: h, u, k, l to left, up, down and right arrows",
+                        "description": "3) hyp: h, u, k, l to left, up, down and right arrows",
                         "manipulators": [
                             {
                                 "from": {
@@ -249,7 +249,7 @@
                         ]
                     },
                     {
-                        "description": "4) hyper: delete word, go startOfLine, go endOfLine",
+                        "description": "4) hyp: delete word, go startOfLine, go endOfLine",
                         "manipulators": [
                             {
                                 "conditions": [
@@ -446,7 +446,7 @@
                         ]
                     },
                     {
-                        "description": "5) hyper: c, r and t to control keys",
+                        "description": "5) hyp: c, r and t to control keys",
                         "manipulators": [
                             {
                                 "conditions": [
@@ -547,7 +547,7 @@
                         ]
                     },
                     {
-                        "description": "6) hyper-y, command-c, yank using experimental clipboard",
+                        "description": "6) hyp-y, command-c, yank using experimental clipboard",
                         "manipulators": [
                             {
                                 "conditions": [
@@ -619,7 +619,7 @@
                         ]
                     },
                     {
-                        "description": "7)  hyper [ ] - prev next tab",
+                        "description": "7)  hyp [ ] - prev next tab",
                         "manipulators": [
                             {
                                 "from": {
@@ -670,7 +670,7 @@
                         ]
                     },
                     {
-                        "description": "8)  hyper b n - go left go down",
+                        "description": "8)  hyp b n - go left go down",
                         "manipulators": [
                             {
                                 "from": {
@@ -914,7 +914,7 @@
                     }
                 }
             ],
-            "name": "hyper key profile",
+            "name": "hyp key profile",
             "one_to_many_mappings": {},
             "parameters": {
                 "delay_milliseconds_before_open_device": 1000
