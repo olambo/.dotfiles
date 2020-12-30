@@ -47,7 +47,7 @@ Some of the keys, I remap are listed below.
 <cmd-c>          -> <c-x><c-y><cmd-c> copy to system clipboard, even from remote machines (iTerm2 vim)
 ```
 Vim can't directly map <kbd>hyp</kbd> keys. So I have Karabiner-Elements first map a <kbd>hyp</kbd> key to key(s) that vim can recognize.
-For instance, when I press <kbd>hyp-;</kbd>, I have karabiner execute <kbd><c-x><c-j></kbd>. This key is mapped to the vim's Sneak_s pluggin. 
+For instance, when I press <kbd>hyp-;</kbd>, I have karabiner execute <kbd>ctrl-x ctrl-j</kbd>. This key combination is mapped to the vim's Sneak_s pluggin. 
 Note: I use the 's' key in vim normal mode so I can't use vim-sneaks suggestion of using that key.
 
 ### [Hammerspoon](https://www.hammerspoon.org)
