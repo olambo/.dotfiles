@@ -4,7 +4,6 @@
 nnoremap <silent> <Leader>bb :Buffers<CR>
 " find files of wanted types 
 nnoremap <silent> <Leader>ff :call FZF_files()<cr>
-" nnoremap <silent> <Leader>ff :Goo<cr>
 " find any type of file
 nnoremap <silent> <leader>fa :FZF<cr>
 " find files local to current directory

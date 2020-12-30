@@ -3,7 +3,7 @@ set mouse=nv " this is not going to allow command-c. can use option-mouse or tur
 set incsearch
 
 if exists('$TMUX')
-	" tmux title to iterm stuff
+	" tmux title to iterm title. todo: working in neovim, not working in vim
 	let &t_ts = "\<Esc>]0"
 	let &t_fs = "\x7"
 endif
