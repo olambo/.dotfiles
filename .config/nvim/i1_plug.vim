@@ -6,7 +6,8 @@ if !exists('g:vscode')
 	Plug 'NLKNguyen/papercolor-theme'
 	Plug 'justinmk/vim-dirvish'
 	Plug 'tpope/vim-commentary'
-	Plug 'junegunn/fzf'
+	Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+	Plug 'junegunn/fzf.vim'
 
 	if !has("gui_vimr")
   		Plug 'neoclide/coc.nvim', { 'branch': 'release' }

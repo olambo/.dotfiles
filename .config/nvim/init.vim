@@ -4,7 +4,6 @@
 "
 " auto-install vim-plug                                                                                                                
 if empty(glob('~/.config/nvim/autoload/plug.vim'))                                                                                    
-  silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim                                                             
   autocmd VimEnter * PlugInstall                                                                                                      
 endif
 
@@ -24,6 +23,8 @@ else
 	let g:pear_tree_repeatable_expand = 0
 	" override coc
 	set cmdheight=1
+	" dont need a preview
+	let g:fzf_preview_window = []
 endif
 
 " sneak with very bright lables!

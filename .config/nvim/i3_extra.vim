@@ -8,7 +8,6 @@ if exists('$TMUX')
 	let &t_fs = "\x7"
 endif
 
-
 " put file path into title, remove laststatus 
 autocmd BufEnter * let &titlestring = expand("[$USER]") . expand('%:~')
 set title
@@ -70,7 +69,7 @@ nnoremap <leader>[ :e `pwd`<CR>
 " new starting path
 nnoremap <leader>] :cd <c-r>=expand('%:h')<CR><CR>
 " list buffers, move to one
-nnoremap <Leader>bb :ls<Cr>:b<Space>
+nnoremap <Leader>bb :Buffers<CR>
 " diff between this buffer and original
 nnoremap <leader>bc :w !diff % -<CR>
 " go to alternate buffer
