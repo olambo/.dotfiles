@@ -19,12 +19,13 @@ else
 	source ~/.config/nvim/i6_statusline.vim
 	let g:loaded_python_provider='/usr/bin/python2' 
 	let g:python3_host_prog='/usr/local/bin/python3'
-	" on <cr> dont hide closing bracket. don't need . repeat here!
-	let g:pear_tree_repeatable_expand = 0
+
 	" override coc
 	set cmdheight=1
-	" dont need a preview
-	let g:fzf_preview_window = []
+	" on <cr> dont hide closing bracket. don't need . repeat here and don't
+	" want to override coc <cr>
+	let g:pear_tree_repeatable_expand = 0
+	imap <M-z> <Plug>(PearTreeExpand)
 endif
 
 " sneak with very bright lables!

@@ -1,5 +1,7 @@
 " FZF --------------------------------
 
+" dont need a preview
+let g:fzf_preview_window = []
 " list buffers, move to one
 nnoremap <silent> <Leader>bb :Buffers<CR>
 " find files of wanted types 

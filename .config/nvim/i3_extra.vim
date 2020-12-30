@@ -36,7 +36,7 @@ colorscheme PaperColor
 set bg=light
 
 " ----------------------------------------------------------------------------------------------
-" keyboard maestro assisted key combinations
+"  karabiner elements assisted key combinations
  
 " <hyper-y> yank selection and save it into a file which is monitored
 " todo: find out why, multiple line selected, calling multiple times?

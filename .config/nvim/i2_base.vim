@@ -43,7 +43,6 @@ set backspace=2
 set tabstop=4
 set shiftwidth=4
 set iskeyword+=-,#
-set scrolloff=4
 
 autocmd Filetype java,scala,python set expandtab
 autocmd Filetype go set noexpandtab
