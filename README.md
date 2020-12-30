@@ -46,8 +46,8 @@ Some of the keys, I remap are listed below.
 <hyp> b          -> <opt,cmd,left> select pane left (if no pane left, go to far right) (iTerm2) 
 <cmd-c>          -> <cmd-c><c-a> copy to system clipboard, even from remote machines (iTerm2 vim)
 ```
-Vim can't directly map <hyp> keys. So I have Karabiner-Elements first map a <hyp> key to a key (or combination) that vim can recognize.
-For instance, when I press <hyp-;> I have karabiner execute <ctrl-j>. This key is mapped to the vim's Sneak_s pluggin. Note: I've never used <ctrl-j> in Vim for anything. If you do, map to a key you don't use.
+Vim can't directly map <kbd>hyp<kbd> keys. So I have Karabiner-Elements first map a <kbd>hyp<kbd> key to a key (or combination) that vim can recognize.
+For instance, when I press <kbd>hyp-;<kbd> I have karabiner execute <kbd>ctrl-j<kbd>. This key is mapped to the vim's Sneak_s pluggin. Note: I've never used <kbd>ctrl-j<kbd> in Vim for anything. If you do, map to a key you don't use.
 
 ### [Hammerspoon](https://www.hammerspoon.org)
 I use hammerspoon to set some <kbd>hyp</kbd> keys to open various applications and position windows
