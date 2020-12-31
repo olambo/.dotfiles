@@ -1,18 +1,18 @@
 {
   "languageserver": {
-    "golang": {
-      "command": "gopls",
-      "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
-      "filetypes": ["go"],
-      "initializationOptions": {
-        "usePlaceholders": true
-      }
-  },
+	"golang": {
+		"command": "gopls",
+		"rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
+		"filetypes": ["go"],
+		"initializationOptions": {
+		"usePlaceholders": true
+		}
+	},
 	"rls": {
-			"command": "rustup",
-			"args": ["run", "nightly", "rls"],
-			"filetypes": ["rust"],
-			"rootPatterns": ["Cargo.toml"]
+		"command": "rustup",
+		"args": ["run", "nightly", "rls"],
+		"filetypes": ["rust"],
+		"rootPatterns": ["Cargo.toml"]
 		}
 	}
 }

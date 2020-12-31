@@ -8,7 +8,7 @@ if exists('$TMUX')
 	let &t_fs = "\x7"
 endif
 
-" put file path into title, remove laststatus 
+" put file path into title, remove laststatus - I'd rather have an extra line!
 autocmd BufEnter * let &titlestring = expand("[$USER]") . expand('%:~')
 set title
 set laststatus=0
@@ -40,6 +40,7 @@ set bg=light
  
 " <hyper-y> yank selection and save it into a file which is monitored
 " todo: find out why, multiple line selected, calling multiple times?
+" this doesn't work when selection get too big!
 vnoremap <c-x><c-y> :call It2copy()<cr>
 
 " <cmd-/> comment/uncomment
@@ -68,8 +69,6 @@ nnoremap <leader>hh :set hlsearch! hlsearch?<CR>
 nnoremap <leader>[ :e `pwd`<CR>
 " new starting path
 nnoremap <leader>] :cd <c-r>=expand('%:h')<CR><CR>
-" list buffers, move to one
-nnoremap <Leader>bb :Buffers<CR>
 " diff between this buffer and original
 nnoremap <leader>bc :w !diff % -<CR>
 " go to alternate buffer

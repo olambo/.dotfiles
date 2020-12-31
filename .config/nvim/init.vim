@@ -7,12 +7,9 @@ if empty(glob('~/.config/nvim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall                                                                                                      
 endif
 
-if exists('g:vscode')
-	source ~/.config/nvim/i1_plug.vim
-	source ~/.config/nvim/i2_base.vim
-else
-	source ~/.config/nvim/i1_plug.vim
-	source ~/.config/nvim/i2_base.vim
+source ~/.config/nvim/i1_plug.vim
+source ~/.config/nvim/i2_base.vim
+if !exists('g:vscode')
 	source ~/.config/nvim/i3_extra.vim
 	source ~/.config/nvim/i4_fzf.vim
 	source ~/.config/nvim/i5_coc.vim

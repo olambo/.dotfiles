@@ -2,7 +2,7 @@
 "   caps-lock                       -> <hyp> on hold, <esc> on press and release
 "   <hyp> h, j, k, l                -> <left>, <down>, <up>, <right>
 "   <hyp> u, d                      -> <pageup>, <pagedown>
-"   <hyp> 9, 0                      -> <home>, <end>
+"   <hyp> (, )                      -> <home>, <end>
 
 noremap <pageup> <c-u>
 noremap <pagedown> <c-d>
@@ -44,6 +44,7 @@ set tabstop=4
 set shiftwidth=4
 set iskeyword+=-,#
 
+" for most enviroments don't want tab spacing. But for Go, go fmt uses tabs
 autocmd Filetype java,scala,python set expandtab
 autocmd Filetype go set noexpandtab
 
@@ -55,5 +56,5 @@ nnoremap <leader>hh :set hlsearch! hlsearch?<CR>
 " go to next split
 nmap <leader><leader> <c-w><c-w>
 
-" <hyper-y> copy to system clipboard
+" <hyper-y> copy to system clipboard. This is overriden, if i3_extra is used.
 vnoremap <c-x><c-y> "+y
