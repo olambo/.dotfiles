@@ -307,7 +307,7 @@
                                         "type": "frontmost_application_unless"
                                     }
                                 ],
-                                "description": "term startOfLine",
+                                "description": "non term startOfLine",
                                 "from": {
                                     "key_code": "9",
                                     "modifiers": {
@@ -340,7 +340,7 @@
                                         "type": "frontmost_application_unless"
                                     }
                                 ],
-                                "description": "term endOfLine",
+                                "description": "non term endOfLine",
                                 "from": {
                                     "key_code": "0",
                                     "modifiers": {
@@ -373,7 +373,7 @@
                                         "type": "frontmost_application_unless"
                                     }
                                 ],
-                                "description": "non-term delete",
+                                "description": "non term delete",
                                 "from": {
                                     "key_code": "delete_or_backspace",
                                     "modifiers": {
@@ -406,7 +406,7 @@
                                         "type": "frontmost_application_if"
                                     }
                                 ],
-                                "description": "non-term startOfLine",
+                                "description": "term startOfLine",
                                 "from": {
                                     "key_code": "9",
                                     "modifiers": {
@@ -436,7 +436,7 @@
                                         "type": "frontmost_application_if"
                                     }
                                 ],
-                                "description": "non-term endOfLine",
+                                "description": "term endOfLine",
                                 "from": {
                                     "key_code": "0",
                                     "modifiers": {
