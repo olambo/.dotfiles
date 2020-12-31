@@ -38,7 +38,7 @@ Some of the keys, I remap are listed below.
 <hyp> h j k l -> left, down, up, right. Vim like motions (all apps)
 <hyp> u d     -> pageup, pagedown. Vim like motions (all apps)
 <hyp> [ ]     -> next or previous tab (all apps)
-<hyp> 9 0     -> begining or end of line (all apps)
+<hyp> ( )     -> begining or end of line (all apps)
 <hyp> ; ,     -> Vim-sneak label mode (Vim)
 <hyp> return  -> expand pane (iTerm2) 
 <hyp> n b     -> next vertical or horizontal pane (iTerm2) 
