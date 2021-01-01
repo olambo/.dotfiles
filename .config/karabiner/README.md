@@ -14,6 +14,5 @@ Keyboard Maestro could also map most of these keys, but it's one more dependency
 6)  <hyp-y> to <c-x><c-y>, <cmd-c> to <c-x><c-y><cmd-c>, yank to system clipboard",
 7)  <hyp-[>, <hyp-]>  prev next tab",
 8)  <hyp-b> to <opt,cmd,leftarrow>, <hyp-n> to <opt,cmd,downarrow>",
-9)  <cmd-/> to <c-x><c-x>, or <c-/> in vscode",
-10) <hyp-ret> to <shift,cmd,return> in iterm2",
+9)  <hyp-ret> to <shift,cmd,return> in iterm2",
 ```

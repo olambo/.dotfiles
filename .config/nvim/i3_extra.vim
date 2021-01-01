@@ -43,10 +43,6 @@ set bg=light
 " this doesn't work when selection get too big!
 vnoremap <c-x><c-y> :call It2copy()<cr>
 
-" <cmd-/> comment/uncomment
-nmap <c-x><c-x> <Plug>CommentaryLine<cr>
-vmap <c-x><c-x> <Plug>Commentary
-
 " ----------------------------------------------------------------------------------------------
 let mapleader="\<space>"
 set showcmd
@@ -83,6 +79,8 @@ nnoremap <leader>/ :%s//gI<Left><Left><Left>
 nnoremap <silent> <leader>te :call GoTerm()<CR>
 " show filepath
 nnoremap <silent> <leader>fp <c-g>
+" visual select Block
+nnoremap <silent> <leader>vb vaBV
 
 " ----------------------------------------------------------------------------------------------
 function! GoTerm()
