@@ -81,6 +81,8 @@ nnoremap <silent> <leader>te :call GoTerm()<CR>
 nnoremap <silent> <leader>fp <c-g>
 " visual select Block
 nnoremap <silent> <leader>vb vaBV
+" start vcommand
+nnoremap <silent> <leader>vc :call system("osascript ~/.config/nvim/bin/vcommand-split")<CR>
 
 " ----------------------------------------------------------------------------------------------
 function! GoTerm()
