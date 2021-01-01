@@ -77,8 +77,8 @@ nnoremap <leader>ba :b #<CR>
 nnoremap <leader>bd :bd<CR>
 " open finder at current directory
 nnoremap <silent> <leader>fi :call GoFinder()<CR>
-" magic replace
-nnoremap <leader>/ :%s/\v/gc<Left><Left><Left>
+" replace
+nnoremap <leader>/ :%s//gI<Left><Left><Left>
 " show terminal
 nnoremap <silent> <leader>te :call GoTerm()<CR>
 " show filepath
