@@ -114,3 +114,28 @@ end)
 hs.hotkey.bind({"cmd", "alt", "ctrl", "shift"}, "a", function() 
     tryapp("Dash") 
 end)
+
+myDoKeyStroke = function(modifiers, character)
+    local event = require("hs.eventtap").event
+    event.newKeyEvent(modifiers, string.lower(character), true):post()
+    event.newKeyEvent(modifiers, string.lower(character), false):post()
+end
+
+hs.hotkey.bind({"cmd", "alt", "ctrl", "shift"}, "g", function() 
+	local curapp = hs.application.frontmostApplication():name()
+	if curapp ~= "iTerm2" then
+		return
+	end
+	myDoKeyStroke({'cmd','shift'}, 'd')
+	myDoKeyStroke({'cmd','ctrl'}, 'down')
+	myDoKeyStroke({'cmd','ctrl'}, 'down')
+	myDoKeyStroke({'cmd','ctrl'}, 'down')
+	myDoKeyStroke({'cmd','ctrl'}, 'down')
+	myDoKeyStroke({'cmd','ctrl'}, 'down')
+	myDoKeyStroke({'cmd','ctrl'}, 'down')
+	myDoKeyStroke({'cmd','ctrl'}, 'down')
+	myDoKeyStroke({'cmd','ctrl'}, 'down')
+	myDoKeyStroke({'cmd','ctrl'}, 'down')
+	hs.eventtap.keyStrokes('vcommand-start\n')
+	myDoKeyStroke({'cmd'}, '[')
+end)

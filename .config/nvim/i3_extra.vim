@@ -55,8 +55,8 @@ vnoremap <c-x><c-y> :OSCYank<CR>
 let mapleader="\<space>"
 set showcmd
 
-" open pane below and start vcommand
-nnoremap <silent> <leader>H :call system("osascript ~/.config/nvim/bin/vcommand-split")<CR>
+" deprecated open pane below and start vcommand
+" nnoremap <silent> <leader>H :call system("osascript ~/.config/nvim/bin/vcommand-split")<CR>
 "go run using vcommand
 noremap <leader>M :call GoCommand("go run main.go")<CR>
 "go test using vcommand
