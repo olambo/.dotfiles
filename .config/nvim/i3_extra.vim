@@ -8,6 +8,9 @@ if exists('$TMUX')
 	let &t_fs = "\x7"
 endif
 
+" insert mode for terminal
+au TermOpen * startinsert
+
 " put file path into title, remove laststatus - I'd rather have an extra line!
 autocmd BufEnter * let &titlestring = expand("[$USER]") . expand('%:~')
 set title
@@ -48,11 +51,13 @@ let mapleader="\<space>"
 set showcmd
 
 "go run
-noremap <leader>r :call GoCommand("go run main.go")<CR>
+noremap <leader>P :call FilePath()<CR>
+"go run
+noremap <leader>R :call GoCommand("go run main.go")<CR>
 "go test
-noremap <leader>t :call GoCommand("go test")<CR>
+noremap <leader>T :call GoCommand("go test")<CR>
 "go test
-noremap <leader>T :call GoCommand("go test -run " . expand("<cword>"))<CR>
+noremap <leader>t :call GoCommand("go test -run " . expand("<cword>"))<CR>
 "organize imports
 noremap <leader>i :call CocAction('runCommand', 'editor.action.organizeImport')<CR>
 " remove buffer
@@ -60,7 +65,7 @@ nnoremap <leader>d :bd<CR>
 " replace
 nnoremap <leader>/ :%s//gI<Left><Left><Left>
 " open pane below and start vcommand
-nnoremap <silent> <leader>h :call system("osascript ~/.config/nvim/bin/vcommand-split")<CR>
+nnoremap <silent> <leader>hh :call system("osascript ~/.config/nvim/bin/vcommand-split")<CR>
 
 " ----------------------------------------------------------------------------------------------
 function! PathHere()
@@ -76,7 +81,9 @@ function! VisualBlock()
 endfunction
 
 function! FilePath()
-    execute "echo %:p"
+	let path = expand("%:p")
+	call writefile([path], expand("~/.config/nvim/runcache/vclipboard.txt"))
+	echo path
 endfunction
 
 function! BufferDiff()
@@ -89,13 +96,6 @@ endfunction
 
 function! ToggleHlight()
     execute "set hlsearch! hlsearch?"
-endfunction
-
-function! GoTerm()
-    :set nonumber 
-    :set norelativenumber
-    :term
-    :startinsert
 endfunction
 
 function! ToggleNumber()

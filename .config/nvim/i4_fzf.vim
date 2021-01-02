@@ -5,7 +5,9 @@ noremap <leader>l :call fzf#run({'source': 'cat ~/.config/nvim/bin/lkeyFunctions
 " list buffers, move to one
 nnoremap <silent> <Leader>b :Buffers<CR>
 " find files of wanted types 
-nnoremap <silent> <Leader>z :call FzfFiles()<cr>
+nnoremap <silent> <Leader>ff :call ZFiles()<cr>
+nnoremap <silent> <Leader>fa :call ZAll()<cr>
+nnoremap <silent> <Leader>fl :call ZLocal()<cr>
 
 function! ZAll()
   execute "FZF"
@@ -15,7 +17,7 @@ function! ZLocal()
   execute "FZF %:h"
 endfunction
 
-function! FzfFiles()
+function! ZFiles()
   let rg= "rg -t go -t md -t scala --iglob='!Library/*' --files " . getcwd()
   call fzf#run({'source': rg, 'sink': 'e', 'window': { 'width': 0.9, 'height': 0.7 } })
 endfunction
