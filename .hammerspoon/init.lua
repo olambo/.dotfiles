@@ -123,10 +123,13 @@ end
 
 hs.hotkey.bind({"cmd", "alt", "ctrl", "shift"}, "g", function() 
 	local curapp = hs.application.frontmostApplication():name()
+    -- print(" cur:".. curapp)
 	if curapp ~= "iTerm2" then
 		return
 	end
 	myDoKeyStroke({'cmd','shift'}, 'd')
+	-- doesnt work remotely without this eventtap
+	hs.eventtap.keyStroke({'cmd','ctrl'}, 'down')
 	myDoKeyStroke({'cmd','ctrl'}, 'down')
 	myDoKeyStroke({'cmd','ctrl'}, 'down')
 	myDoKeyStroke({'cmd','ctrl'}, 'down')
