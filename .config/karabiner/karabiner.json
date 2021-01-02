@@ -458,7 +458,7 @@
                         ]
                     },
                     {
-                        "description": "5)  <hyp-c>, <hyp-r>, <hyp-t> to corresponding control keys",
+                        "description": "5)  <hyp> c, r, t, i, o to corresponding control keys in vim",
                         "manipulators": [
                             {
                                 "conditions": [
@@ -549,6 +549,70 @@
                                 "to": [
                                     {
                                         "key_code": "t",
+                                        "modifiers": [
+                                            "control"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "com.apple.Terminal",
+                                            "com.googlecode.iterm2",
+											"com.microsoft.VSCode"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "i",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "shift",
+                                            "command",
+                                            "control",
+                                            "option"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "i",
+                                        "modifiers": [
+                                            "control"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "com.apple.Terminal",
+                                            "com.googlecode.iterm2",
+											"com.microsoft.VSCode"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "o",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "shift",
+                                            "command",
+                                            "control",
+                                            "option"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "o",
                                         "modifiers": [
                                             "control"
                                         ]
@@ -694,11 +758,11 @@
                         ]
                     },
                     {
-                        "description": "8)  <hyp-b> to <opt,cmd,leftarrow>, <hyp-n> to <opt,cmd,downarrow>",
+                        "description": "8)  <hyp-m> to <opt,cmd,rightarrow>, <hyp-n> to <opt,cmd,downarrow>",
                         "manipulators": [
                             {
                                 "from": {
-                                    "key_code": "b",
+                                    "key_code": "m",
                                     "modifiers": {
                                         "mandatory": [
                                             "shift",
@@ -710,7 +774,7 @@
                                 },
                                 "to": [
                                     {
-                                        "key_code": "left_arrow",
+                                        "key_code": "right_arrow",
                                         "modifiers": [
                                             "option",
                                             "command"

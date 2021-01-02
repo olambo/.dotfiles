@@ -103,7 +103,7 @@ hs.hotkey.bind({"cmd", "alt", "ctrl", "shift"}, 's', function()
     tryapp("Safari") 
 end)
 
-hs.hotkey.bind({"cmd", "alt", "ctrl", "shift"}, 'm', function() 
+hs.hotkey.bind({"cmd", "alt", "ctrl", "shift"}, 'b', function() 
     tryapp("Mail") 
 end)
 
