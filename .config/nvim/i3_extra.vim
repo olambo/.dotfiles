@@ -8,8 +8,10 @@ if exists('$TMUX')
 	let &t_fs = "\x7"
 endif
 
-" insert mode for terminal
-au TermOpen * startinsert
+if has('nvim')
+	" insert mode for terminal
+	au TermOpen * startinsert
+endif
 
 " put file path into title, remove laststatus - I'd rather have an extra line!
 autocmd BufEnter * let &titlestring = expand("[$USER]") . expand('%:~')
@@ -44,7 +46,10 @@ set bg=light
 " <hyper-y> yank selection and save it into a file which is monitored
 " todo: find out why, multiple line selected, calling multiple times?
 " this doesn't work when selection get too big!
-vnoremap <c-x><c-y> :call It2copy()<cr>
+" deprecated vnoremap <c-x><c-y> :call It2copy()<cr>
+
+" copy to system clipboard
+vnoremap <c-x><c-y> :OSCYank<CR>
 
 " ----------------------------------------------------------------------------------------------
 let mapleader="\<space>"
