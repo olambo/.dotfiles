@@ -50,24 +50,24 @@ vnoremap <c-x><c-y> :call It2copy()<cr>
 let mapleader="\<space>"
 set showcmd
 
-"go run
-noremap <leader>P :call FilePath()<CR>
-"go run
+" open pane below and start vcommand
+nnoremap <silent> <leader>H :call system("osascript ~/.config/nvim/bin/vcommand-split")<CR>
+"go run using vcommand
 noremap <leader>R :call GoCommand("go run main.go")<CR>
-"go test
+"go test using vcommand
 noremap <leader>T :call GoCommand("go test")<CR>
-"go test
+"go individual test using vcommand
 noremap <leader>t :call GoCommand("go test -run " . expand("<cword>"))<CR>
 "organize imports
 noremap <leader>i :call CocAction('runCommand', 'editor.action.organizeImport')<CR>
+" yank file path to system buffer
+noremap <leader>y :call FilePath()<CR>
 " remove buffer
 nnoremap <leader>d :bd<CR>
-" replace
+" set up find replace
 nnoremap <leader>/ :%s//gI<Left><Left><Left>
-" open pane below and start vcommand
-nnoremap <silent> <leader>hh :call system("osascript ~/.config/nvim/bin/vcommand-split")<CR>
 
-" ----------------------------------------------------------------------------------------------
+"----------------------------------------------------------------------------------------------
 function! PathHere()
     execute "cd %:p:h"
 endfunction
