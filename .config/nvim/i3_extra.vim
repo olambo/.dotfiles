@@ -48,43 +48,49 @@ let mapleader="\<space>"
 set showcmd
 
 "go run
-noremap <leader>rr :call GoCommand("go run main.go")<CR>
+noremap <leader>r :call GoCommand("go run main.go")<CR>
 "go test
-noremap <leader>tt :call GoCommand("go test")<CR>
+noremap <leader>t :call GoCommand("go test")<CR>
 "go test
 noremap <leader>T :call GoCommand("go test -run " . expand("<cword>"))<CR>
 "organize imports
-noremap <leader>ii :call CocAction('runCommand', 'editor.action.organizeImport')<CR>
-" set mouse mode on, show file path
-nnoremap <leader>mm :call ToggleMouse()<CR>
-" toggle numbers
-nnoremap <leader>nn :call ToggleNumber()<CR>
-" toggle highlight search
-nnoremap <leader>hh :set hlsearch! hlsearch?<CR>
-" go to starting path
-nnoremap <leader>[ :e `pwd`<CR>
-" new starting path
-nnoremap <leader>] :cd <c-r>=expand('%:h')<CR><CR>
-" diff between this buffer and original
-nnoremap <leader>bc :w !diff % -<CR>
-" go to alternate buffer
-nnoremap <leader>ba :b #<CR>
+noremap <leader>i :call CocAction('runCommand', 'editor.action.organizeImport')<CR>
 " remove buffer
-nnoremap <leader>bd :bd<CR>
-" open finder at current directory
-nnoremap <silent> <leader>fi :call GoFinder()<CR>
+nnoremap <leader>d :bd<CR>
 " replace
 nnoremap <leader>/ :%s//gI<Left><Left><Left>
-" show terminal
-nnoremap <silent> <leader>te :call GoTerm()<CR>
-" show filepath
-nnoremap <silent> <leader>fp <c-g>
-" visual select Block
-nnoremap <silent> <leader>vb vaBV
-" start vcommand
-nnoremap <silent> <leader>vc :call system("osascript ~/.config/nvim/bin/vcommand-split")<CR>
+" open pane below and start vcommand
+nnoremap <silent> <leader>h :call system("osascript ~/.config/nvim/bin/vcommand-split")<CR>
 
 " ----------------------------------------------------------------------------------------------
+function! PathHere()
+    execute "cd %:p:h"
+endfunction
+
+function! PathOrig()
+    execute "e `pwd`"
+endfunction
+
+function! VisualBlock()
+    execute "normal! vaBV"
+endfunction
+
+function! FilePath()
+    execute "echo %:p"
+endfunction
+
+function! BufferDiff()
+    execute "w !diff % -"
+endfunction
+
+function! BufferAlt()
+    execute "b #"
+endfunction
+
+function! ToggleHlight()
+    execute "set hlsearch! hlsearch?"
+endfunction
+
 function! GoTerm()
     :set nonumber 
     :set norelativenumber
