@@ -72,27 +72,26 @@ end)
 
 local function tryapp(appname)
     local curapp = hs.application.frontmostApplication():name()
+	local appToRun
     if prvapp == nil then
         prvapp = "none"
     end
-    print("prv:" .. prvapp .. " cur:".. curapp .. " appname:" .. appname)
-    if appname == curapp and appname ~= "none" then
-        -- print("go:" .. prvapp)
-        if prvapp == "iTerm2" then
-            hs.application.launchOrFocus("iTerm") 
-        else
-            hs.application.launchOrFocus(prvapp) 
-        end
+    if hs.application.get(appname) == nil then
+		print(appname .. " NOT running open " .. appname)
+		appToRun = appname
+	elseif appname == curapp then 	
+		print(appname .. " already frontmost goto " .. prvapp)
+		appToRun = prvapp
         prvapp = appname
-    else 
-        -- print("go:" .. appname)
-        if appname == "iTerm2" then
-            hs.application.launchOrFocus("iTerm") 
-        else
-            hs.application.launchOrFocus(appname) 
-        end
+	else
+		print("prvapp " .. prvapp .. " curapp " .. curapp .. " goto " .. appname)
+		appToRun = appname
         prvapp = curapp
     end
+    if appToRun == "iTerm2" then
+		appToRun = "iTerm"
+	end 
+    hs.application.launchOrFocus(appToRun) 
 end
 
 hs.hotkey.bind({"cmd", "alt", "ctrl", "shift"}, 'i', function() 
@@ -123,7 +122,6 @@ end
 
 hs.hotkey.bind({"cmd", "alt", "ctrl", "shift"}, "v", function() 
 	local curapp = hs.application.frontmostApplication():name()
-    -- print(" cur:".. curapp)
 	if curapp ~= "iTerm2" then
 		return
 	end
