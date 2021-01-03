@@ -71,20 +71,20 @@ local function winToPos(posLR, wx, hx, wxIfAlready)
     local win = hs.window.focusedWindow()
     local f = win:frame()
     local max = win:screen():frame()
-	local widthx = max.w * wx
-	if math.abs(widthx - f.w) < 1 and math.abs(max.h * hx - f.h) < 1 then
-	    widthx = max.w * wxIfAlready
+    local widthx = max.w * wx
+    if math.abs(widthx - f.w) < 1 and math.abs(max.h * hx - f.h) < 1 then
+        widthx = max.w * wxIfAlready
     end
     f.x = max.x
     f.y = max.y
     f.w = widthx
     f.h = max.h * hx
-	if posLR == "right" and f.w ~= max.w then
-		f.x = max.w - f.w 
-	end
-	if posLR == "right" and f.h ~= max.h then
-		f.y = max.h - f.h 
-	end
+    if posLR == "right" and f.w ~= max.w then
+        f.x = max.w - f.w 
+    end
+    if posLR == "right" and f.h ~= max.h then
+        f.y = max.h - f.h 
+    end
     win:setFrame(f, 0)
 end
 
