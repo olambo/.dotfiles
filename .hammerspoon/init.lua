@@ -6,14 +6,14 @@ local function focusToFromApp(appname)
         prvapp = "none"
     end
     if hs.application.get(appname) == nil then
-        print(appname .. " NOT running open " .. appname)
+        -- print(appname .. " NOT running open " .. appname)
         appToRun = appname
     elseif appname == curapp then
-        print(appname .. " already frontmost goto " .. prvapp)
+        -- print(appname .. " already frontmost goto " .. prvapp)
         appToRun = prvapp
         prvapp = appname
     else
-        print("prvapp " .. prvapp .. " curapp " .. curapp .. " goto " .. appname)
+        -- print("prvapp " .. prvapp .. " curapp " .. curapp .. " goto " .. appname)
         appToRun = appname
         prvapp = curapp
     end
@@ -65,74 +65,45 @@ hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, "v", function()
     doKeyStroke({'cmd'}, '[')
 end)
 
+-- position windows. If the width is already set, use an alternative.
+-- keeps the number of keys to be bound to a minimum
+local function winToPos(posLR, wx, hx, wxIfAlready) 
+    local win = hs.window.focusedWindow()
+    local f = win:frame()
+    local max = win:screen():frame()
+	local widthx = max.w * wx
+	if math.abs(widthx - f.w) < 1 and math.abs(max.h * hx - f.h) < 1 then
+	    widthx = max.w * wxIfAlready
+    end
+    f.x = max.x
+    f.y = max.y
+    f.w = widthx
+    f.h = max.h * hx
+	if posLR == "right" and f.w ~= max.w then
+		f.x = max.w - f.w 
+	end
+	if posLR == "right" and f.h ~= max.h then
+		f.y = max.h - f.h 
+	end
+    win:setFrame(f, 0)
+end
+
 -- position the window to left at 70% width, or if already this, left half of screen
 hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, "Left", function()
-  local win = hs.window.focusedWindow()
-  local f = win:frame()
-  local screen = win:screen()
-  local max = screen:frame()
-
-  if math.abs(f.w - max.w*.7) < 1 then
-      f.w = max.w * .5
-  else
-    f.w = max.w * .7
-  end
-  f.x = max.x
-  f.y = max.y
-  f.h = max.h
-  win:setFrame(f, 0)
+    winToPos("left", .7, 1, .5)
 end)
 
 -- position the window full width or if already full width, right half of screen
 hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, "right", function()
-  local win = hs.window.focusedWindow()
-  local f = win:frame()
-  local screen = win:screen()
-  local max = screen:frame()
-
-  if f.w == max.w and f.h == max.h then
-      local halfw = max.w / 2
-      f.x = max.x + halfw
-      f.y = max.y
-      f.w = halfw
-      f.h = max.h
-  else
-    f.x = max.x
-      f.y = max.y
-      f.w = max.w
-      f.h = max.h
-  end
-  win:setFrame(f, 0)
+    winToPos("right", 1, 1, .5)
 end)
 
--- position to upper left of screen
+-- position to upper half of screen, or upper left
 hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, "up", function()
-  local win = hs.window.focusedWindow()
-  local f = win:frame()
-  local screen = win:screen()
-  local max = screen:frame()
-  local halfh = max.h / 2
-  local halfw = max.w / 2
-
-  f.x = max.x
-  f.y = max.y
-  f.w = halfw
-  f.h = halfh
-  win:setFrame(f, 0)
+    winToPos("left", 1, .5, .5)
 end)
 
--- position to lower right of screen
+-- position to lower half of screen, or lower right
 hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, "down", function()
-  local win = hs.window.focusedWindow()
-  local f = win:frame()
-  local screen = win:screen()
-  local max = screen:frame()
-  local halfh = max.h / 2
-  local halfw = max.w / 2
-
-  f.x = halfw
-  f.y = halfh
-  f.w = halfw
-  f.h = halfh
-  win:setFrame(f, 0)
+    winToPos("right", 1, .5, .5)
 end)
