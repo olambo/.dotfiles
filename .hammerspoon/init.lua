@@ -1,5 +1,8 @@
+-- hyp key. hold down all modifiers
+hyp = {"shift", "alt", "ctrl", "cmd"}
+
 -- position the window to left at 70% width, or if already this, left half of screen
-hs.hotkey.bind({"cmd", "alt", "ctrl", "shift"}, "Left", function()
+hs.hotkey.bind(hyp, "Left", function()
   local win = hs.window.focusedWindow()
   local f = win:frame()
   local screen = win:screen()
@@ -13,12 +16,11 @@ hs.hotkey.bind({"cmd", "alt", "ctrl", "shift"}, "Left", function()
   f.x = max.x
   f.y = max.y
   f.h = max.h
-  hs.window.animationDuration=0
-  win:setFrame(f)
+  win:setFrame(f, 0)
 end)
 
 -- position the window full width or if already full width, right half of screen
-hs.hotkey.bind({"cmd", "alt", "ctrl", "shift"}, "right", function()
+hs.hotkey.bind(hyp, "right", function()
   local win = hs.window.focusedWindow()
   local f = win:frame()
   local screen = win:screen()
@@ -36,12 +38,11 @@ hs.hotkey.bind({"cmd", "alt", "ctrl", "shift"}, "right", function()
   	f.w = max.w
   	f.h = max.h
   end
-  hs.window.animationDuration=0
-  win:setFrame(f)
+  win:setFrame(f, 0)
 end)
 
 -- position to upper left of screen
-hs.hotkey.bind({"cmd", "alt", "ctrl", "shift"}, "up", function()
+hs.hotkey.bind(hyp, "up", function()
   local win = hs.window.focusedWindow()
   local f = win:frame()
   local screen = win:screen()
@@ -53,12 +54,11 @@ hs.hotkey.bind({"cmd", "alt", "ctrl", "shift"}, "up", function()
   f.y = max.y
   f.w = halfw
   f.h = halfh
-  hs.window.animationDuration=0
-  win:setFrame(f)
+  win:setFrame(f, 0)
 end)
 
 -- position to lower right of screen
-hs.hotkey.bind({"cmd", "alt", "ctrl", "shift"}, "down", function()
+hs.hotkey.bind(hyp, "down", function()
   local win = hs.window.focusedWindow()
   local f = win:frame()
   local screen = win:screen()
@@ -70,8 +70,7 @@ hs.hotkey.bind({"cmd", "alt", "ctrl", "shift"}, "down", function()
   f.y = halfh
   f.w = halfw
   f.h = halfh
-  hs.window.animationDuration=0
-  win:setFrame(f)
+  win:setFrame(f, 0)
 end)
 
 -- open/focus on the app or if its already focused, the previous app
@@ -100,23 +99,23 @@ local function focusToFromApp(appname)
     hs.application.launchOrFocus(appToRun) 
 end
 
-hs.hotkey.bind({"cmd", "alt", "ctrl", "shift"}, 'i', function() 
+hs.hotkey.bind(hyp, 'i', function() 
     focusToFromApp("iTerm2") 
 end)
 
-hs.hotkey.bind({"cmd", "alt", "ctrl", "shift"}, 's', function() 
+hs.hotkey.bind(hyp, 's', function() 
     focusToFromApp("Safari") 
 end)
 
-hs.hotkey.bind({"cmd", "alt", "ctrl", "shift"}, 'b', function() 
+hs.hotkey.bind(hyp, 'b', function() 
     focusToFromApp("Mail") 
 end)
 
-hs.hotkey.bind({"cmd", "alt", "ctrl", "shift"}, "f", function() 
+hs.hotkey.bind(hyp, "f", function() 
     focusToFromApp("Finder") 
 end)
 
-hs.hotkey.bind({"cmd", "alt", "ctrl", "shift"}, "a", function() 
+hs.hotkey.bind(hyp, "a", function() 
     focusToFromApp("Dash") 
 end)
 
@@ -128,7 +127,7 @@ end
 
 -- in iTerm2, open a small height split pane below the current one, 
 -- run vcommand-start and move back to previous pane
-hs.hotkey.bind({"cmd", "alt", "ctrl", "shift"}, "v", function() 
+hs.hotkey.bind(hyp, "v", function() 
 	local curapp = hs.application.frontmostApplication():name()
 	if curapp ~= "iTerm2" then
 		return
@@ -145,5 +144,6 @@ hs.hotkey.bind({"cmd", "alt", "ctrl", "shift"}, "v", function()
 	doKeyStroke({'cmd','ctrl'}, 'down')
 	doKeyStroke({'cmd','ctrl'}, 'down')
 	hs.eventtap.keyStrokes('vcommand-start\n')
+	-- previous pane
 	doKeyStroke({'cmd'}, '[')
 end)
