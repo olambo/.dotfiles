@@ -1,3 +1,4 @@
+-- position the window to left at 70% width, or if already this, left half of screen
 hs.hotkey.bind({"cmd", "alt", "ctrl", "shift"}, "Left", function()
   local win = hs.window.focusedWindow()
   local f = win:frame()
@@ -16,6 +17,7 @@ hs.hotkey.bind({"cmd", "alt", "ctrl", "shift"}, "Left", function()
   win:setFrame(f)
 end)
 
+-- position the window full width or if already full width, right half of screen
 hs.hotkey.bind({"cmd", "alt", "ctrl", "shift"}, "right", function()
   local win = hs.window.focusedWindow()
   local f = win:frame()
@@ -38,6 +40,7 @@ hs.hotkey.bind({"cmd", "alt", "ctrl", "shift"}, "right", function()
   win:setFrame(f)
 end)
 
+-- position to upper left of screen
 hs.hotkey.bind({"cmd", "alt", "ctrl", "shift"}, "up", function()
   local win = hs.window.focusedWindow()
   local f = win:frame()
@@ -54,6 +57,7 @@ hs.hotkey.bind({"cmd", "alt", "ctrl", "shift"}, "up", function()
   win:setFrame(f)
 end)
 
+-- position to lower right of screen
 hs.hotkey.bind({"cmd", "alt", "ctrl", "shift"}, "down", function()
   local win = hs.window.focusedWindow()
   local f = win:frame()
@@ -70,7 +74,8 @@ hs.hotkey.bind({"cmd", "alt", "ctrl", "shift"}, "down", function()
   win:setFrame(f)
 end)
 
-local function tryapp(appname)
+-- open/focus on the app or if its already focused, the previous app
+local function focusToFromApp(appname)
     local curapp = hs.application.frontmostApplication():name()
 	local appToRun
     if prvapp == nil then
@@ -89,37 +94,40 @@ local function tryapp(appname)
         prvapp = curapp
     end
     if appToRun == "iTerm2" then
+		-- strange but needed
 		appToRun = "iTerm"
 	end 
     hs.application.launchOrFocus(appToRun) 
 end
 
 hs.hotkey.bind({"cmd", "alt", "ctrl", "shift"}, 'i', function() 
-    tryapp("iTerm2") 
+    focusToFromApp("iTerm2") 
 end)
 
 hs.hotkey.bind({"cmd", "alt", "ctrl", "shift"}, 's', function() 
-    tryapp("Safari") 
+    focusToFromApp("Safari") 
 end)
 
 hs.hotkey.bind({"cmd", "alt", "ctrl", "shift"}, 'b', function() 
-    tryapp("Mail") 
+    focusToFromApp("Mail") 
 end)
 
 hs.hotkey.bind({"cmd", "alt", "ctrl", "shift"}, "f", function() 
-    tryapp("Finder") 
+    focusToFromApp("Finder") 
 end)
 
 hs.hotkey.bind({"cmd", "alt", "ctrl", "shift"}, "a", function() 
-    tryapp("Dash") 
+    focusToFromApp("Dash") 
 end)
 
-myDoKeyStroke = function(modifiers, character)
+local function doKeyStroke(modifiers, character)
     local event = require("hs.eventtap").event
     event.newKeyEvent(modifiers, string.lower(character), true):post()
     event.newKeyEvent(modifiers, string.lower(character), false):post()
 end
 
+-- in iTerm2, open a small height split pane below the current one, 
+-- run vcommand-start and move back to previous pane
 hs.hotkey.bind({"cmd", "alt", "ctrl", "shift"}, "v", function() 
 	local curapp = hs.application.frontmostApplication():name()
 	if curapp ~= "iTerm2" then
@@ -127,15 +135,15 @@ hs.hotkey.bind({"cmd", "alt", "ctrl", "shift"}, "v", function()
 	end
 	-- doesnt appear to work remotely without an eventtap
 	hs.eventtap.keyStroke({'cmd','shift'}, 'd')
-	myDoKeyStroke({'cmd','ctrl'}, 'down')
-	myDoKeyStroke({'cmd','ctrl'}, 'down')
-	myDoKeyStroke({'cmd','ctrl'}, 'down')
-	myDoKeyStroke({'cmd','ctrl'}, 'down')
-	myDoKeyStroke({'cmd','ctrl'}, 'down')
-	myDoKeyStroke({'cmd','ctrl'}, 'down')
-	myDoKeyStroke({'cmd','ctrl'}, 'down')
-	myDoKeyStroke({'cmd','ctrl'}, 'down')
-	myDoKeyStroke({'cmd','ctrl'}, 'down')
+	doKeyStroke({'cmd','ctrl'}, 'down')
+	doKeyStroke({'cmd','ctrl'}, 'down')
+	doKeyStroke({'cmd','ctrl'}, 'down')
+	doKeyStroke({'cmd','ctrl'}, 'down')
+	doKeyStroke({'cmd','ctrl'}, 'down')
+	doKeyStroke({'cmd','ctrl'}, 'down')
+	doKeyStroke({'cmd','ctrl'}, 'down')
+	doKeyStroke({'cmd','ctrl'}, 'down')
+	doKeyStroke({'cmd','ctrl'}, 'down')
 	hs.eventtap.keyStrokes('vcommand-start\n')
-	myDoKeyStroke({'cmd'}, '[')
+	doKeyStroke({'cmd'}, '[')
 end)
