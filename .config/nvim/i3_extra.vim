@@ -87,7 +87,9 @@ endfunction
 
 function! FilePath()
 	let path = expand("%:p")
-	call writefile([path], expand("~/.config/nvim/runcache/vclipboard.txt"))
+	" deprecated
+	" call writefile([passth], expand("~/.config/nvim/runcache/vclipboard.txt"))
+	call YankOSC52(path)
 	echo path
 endfunction
 
