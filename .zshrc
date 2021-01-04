@@ -27,7 +27,6 @@ else
   PROMPT='%F{240}%n $vcs_info_msg_0_:%F{59}%2~%f >> '
 fi
 
-
 export HISTFILE=~/.zsh_history
 export HISTSIZE=100000
 export SAVEHIST=100000
@@ -68,3 +67,6 @@ alias ip="ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0
 alias fi='open -a Finder .'
 alias dev='cd ~/dev'
 alias vcommand-start='~/.config/nvim/bin/vcommand-start'
+alias c='cd  $(z |sort +1 -r| fzf --height=40% --layout=reverse| cut -d" " -f2-)'
+alias v=~/.config/nvim/bin/viFZF
+alias vcd='cd `cat ~/.config/nvim/runcache/viDirFZF`'

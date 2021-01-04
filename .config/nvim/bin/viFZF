@@ -1,0 +1,9 @@
+#! /bin/sh
+
+path=$(rg -t go -t md -t scala --iglob="!Library/*" --iglob="!Pictures/*" --files |fzf --height=40% --layout=reverse)
+pathdir="."
+if ! test -z "$path"; then
+    vi $path
+	pathdir=$(dirname $path)
+fi
+echo "$pathdir" > ~/.config/nvim/runcache/viDirFZF
