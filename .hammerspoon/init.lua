@@ -32,16 +32,16 @@ hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, 's', function()
     focusToFromApp("Safari")
 end)
 
-hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, 'b', function()
+hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, 'e', function()
     focusToFromApp("Mail")
 end)
 
-hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, "f", function()
-    focusToFromApp("Finder")
+hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, "d", function()
+    focusToFromApp("Dash")
 end)
 
-hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, "a", function()
-    focusToFromApp("Dash")
+hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, "u", function()
+    focusToFromApp("Finder")
 end)
 
 -- in iTerm2, open a low height split pane below the current one,

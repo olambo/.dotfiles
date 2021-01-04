@@ -1,14 +1,12 @@
 " hyper key <hyp> == <shift,contol,option,command> down (via karabiner elements)
 "   caps-lock                       -> <hyp> on hold, <esc> on press and release
 "   <hyp> h, j, k, l                -> <left>, <down>, <up>, <right>
-"   <hyp> u, d                      -> <pageup>, <pagedown>
+"   <hyp> f, b                      -> <pagedown>, <pageup>
 "   <hyp> (, )                      -> <home>, <end>
 
-noremap <pageup> <c-u>
-noremap <pagedown> <c-d>
 " insert mode no movement
-inoremap <pagedown> <nop>
 inoremap <pageup> <nop>
+inoremap <pagedown> <nop>
 
 " insert mode drop down list selection.
 inoremap <down> <c-n>
