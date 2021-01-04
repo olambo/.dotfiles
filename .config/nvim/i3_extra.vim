@@ -58,11 +58,11 @@ set showcmd
 " deprecated open pane below and start vcommand
 " nnoremap <silent> <leader>H :call system("osascript ~/.config/nvim/bin/vcommand-split")<CR>
 "go run using vcommand
-noremap <leader>M :call GoCommand("go run main.go")<CR>
+noremap <leader>m :call GoCommand("go run main.go")<CR>
 "go test using vcommand
-noremap <leader>T :call GoCommand("go test")<CR>
+noremap <leader>t :call GoCommand("go test")<CR>
 "go individual test using vcommand
-noremap <leader>t :call GoCommand("go test -run " . expand("<cword>"))<CR>
+noremap <leader>T :call GoCommand("go test -run " . expand("<cword>"))<CR>
 "organize imports
 noremap <leader>i :call CocAction('runCommand', 'editor.action.organizeImport')<CR>
 " yank file path to system buffer
@@ -105,7 +105,7 @@ function! ToggleHlight()
     execute "set hlsearch! hlsearch?"
 endfunction
 
-function! ToggleNumber()
+function! ToggleRNumber()
   if &number == '' && &relativenumber == ''
     set number relativenumber 
   else

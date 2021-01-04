@@ -51,10 +51,13 @@ autocmd Filetype go set noexpandtab
 let mapleader="\<space>"
 
 " toggle highlight search
-nnoremap <leader>hh :set hlsearch! hlsearch?<CR>
+nnoremap <leader>h :set hlsearch! hlsearch?<cr>
 
 " go to next split
 nmap <leader><leader> <c-w><c-w>
+
+" toggle numbers
+noremap <leader>n :set number!<cr>:se norelativenumber<cr>
 
 " <hyper-y> copy to system clipboard. This is overriden, if i3_extra is used.
 vnoremap <c-x><c-y> "+y
