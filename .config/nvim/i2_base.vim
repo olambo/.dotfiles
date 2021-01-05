@@ -16,9 +16,12 @@ inoremap <expr> <left> pumvisible() ? "\<C-e>" : "\<left>"
 " next previous paragraph, start of text
 nnoremap <down> }E^
 nnoremap <up> {{E^
-" for <left> look for } bracket on first column. For <right> look for matching '{' 
+
+" <left> look for prev } bracket on first column. 
 nnoremap <left> []
-nnoremap <expr> <right> matchstr(getline('.'), '\%' . col('.') . 'c.') == '{' ? '%][%' : '][%'
+" <right> look for next } and go to matching '{' 
+" any error from the first % ignored 
+nnoremap <silent> <right> :<C-U>exe "norm! %" <bar> exe "norm! ][%"<CR>
 
 " move to start and end of paragraphs and to the end of Words
 vnoremap <down> j}gE
