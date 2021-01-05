@@ -16,7 +16,7 @@ inoremap <expr> <left> pumvisible() ? "\<C-e>" : "\<left>"
 " next previous paragraph, start of text
 nnoremap <down> }E^
 nnoremap <up> {{E^
-" for <left> look for } brace on first column. For <right> look for matching '{' 
+" for <left> look for } bracket on first column. For <right> look for matching '{' 
 nnoremap <left> []
 nnoremap <expr> <right> matchstr(getline('.'), '\%' . col('.') . 'c.') == '{' ? '%][%' : '][%'
 
@@ -41,10 +41,13 @@ set backspace=2
 set tabstop=4
 set shiftwidth=4
 set iskeyword+=-,#
+set ruler
+set expandtab
 
 " for most enviroments don't want tab spacing. But for Go, go fmt uses tabs
-autocmd Filetype java,scala,python set expandtab
-autocmd Filetype go set noexpandtab
+autocmd BufEnter *.go set noexpandtab
+autocmd BufRead *.go set noexpandtab
+autocmd BufLeave * set expandtab
 
 let mapleader="\<space>"
 
