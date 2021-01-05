@@ -16,15 +16,15 @@ inoremap <expr> <left> pumvisible() ? "\<C-e>" : "\<left>"
 " next previous paragraph, start of text
 nnoremap <down> }E^
 nnoremap <up> {{E^
-" move a bit
-nnoremap <left> B
-nnoremap <right> W
+" for <left> look for } brace on first column. For <right> look for matching '{' 
+nnoremap <left> []
+nnoremap <expr> <right> matchstr(getline('.'), '\%' . col('.') . 'c.') == '{' ? '%][%' : '][%'
 
 " move to start and end of paragraphs and to the end of Words
 vnoremap <down> j}gE
 vnoremap <up> k{
-vnoremap <left> gE
-vnoremap <right> E
+vnoremap <left> []
+vnoremap <right> ][
 
 " yank until end of line (ie. work like C, D)
 nnoremap Y y$
