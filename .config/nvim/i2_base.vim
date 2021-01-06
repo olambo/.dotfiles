@@ -17,9 +17,9 @@ inoremap <expr> <left> pumvisible() ? "\<C-e>" : "\<left>"
 nnoremap <down> }E^
 nnoremap <up> {{E^
 
-" <left> look for prev } bracket on first column. 
-nnoremap <left> []
-" <right> look for next } and go to matching '{' 
+" <left> look for prev } and go to matching {
+nnoremap <left> []%
+" <right> look for next } and go to matching {
 " any error from the first % ignored 
 nnoremap <silent> <right> :<C-U>exe "norm! %" <bar> exe "norm! ][%"<CR>
 

@@ -81,16 +81,17 @@ function! PathOrig()
     execute "e `pwd`"
 endfunction
 
-function! VisualBlock()
-    execute "normal! vaBV"
-endfunction
-
 function! FilePath()
 	let path = expand("%:p")
 	" deprecated
 	" call writefile([passth], expand("~/.config/nvim/runcache/vclipboard.txt"))
 	call YankOSC52(path)
 	echo path
+endfunction
+
+function! ExampleMap()
+    let example = 'nnoremap <leader>; :!vcommand go test -run TestWomble<cr>'
+	call YankOSC52(example)
 endfunction
 
 function! BufferDiff()
@@ -122,10 +123,12 @@ function! ToggleMouse()
     set nonumber 
     set norelativenumber
     set mouse=
-    echo "Mouse OFF for:" expand('%:p')
+    let &titlestring = "MOUSE OFF " . expand("[$USER]") . expand('%:~')
+    set title
   else
     set mouse=nv
-    echo "Mouse usage enabled"
+    let &titlestring = expand("[$USER]") . expand('%:~')
+    set title
   endif
 endfunction
  
@@ -138,6 +141,7 @@ function! GoCommand(cmd)
 	call writefile([a:cmd], expand("~/.config/nvim/runcache/vcommand.txt"))
 endfunction
 
+" deprecated
 function! It2copy()
     silent execute "normal! `<v`>y"
     let regInfo = getreg('"')

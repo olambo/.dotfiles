@@ -37,7 +37,7 @@ setopt HIST_IGNORE_SPACE
 setopt APPEND_HISTORY
 setopt EXTENDED_HISTORY
 
-export PATH=/usr/local/opt/python/libexec/bin:/usr/local/bin:$PATH
+export PATH=~/.config/nvim/bin:/usr/local/opt/python/libexec/bin:/usr/local/bin:$PATH
 
 if [[ $(uname 2> /dev/null) == "Linux" ]] ; then
     alias ls='ls --color=auto'
@@ -66,7 +66,6 @@ alias con='vi +":cd ~/.config/nvim" ~/.config/nvim'
 alias ip="ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1' |head -1"
 alias fi='open -a Finder .'
 alias dev='cd ~/dev'
-alias vcommand-start='~/.config/nvim/bin/vcommand-start'
 alias c='cd  $(z |sort +1 -r| fzf --height=40% --layout=reverse| cut -d" " -f2-)'
 alias v=~/.config/nvim/bin/viFZF
 alias vcd='cd `cat ~/.config/nvim/runcache/viDirFZF`'
