@@ -118,6 +118,11 @@ function! GoFinder()
   :!exec open -a Finder %:p:h
 endfunction
 
+" echo when running fzf#run. Output doesnt appear!. So echo via a timer
+function! TimerEcho(timer)
+    echo g:echoToBuffer
+endfunction
+
 function! ToggleMouse()
   if &mouse != ''
     set nonumber 
@@ -125,11 +130,14 @@ function! ToggleMouse()
     set mouse=
     let &titlestring = "MOUSE OFF " . expand("[$USER]") . expand('%:~')
     set title
+    let g:echoToBuffer = "Mouse is off"
   else
     set mouse=nv
     let &titlestring = expand("[$USER]") . expand('%:~')
     set title
+    let g:echoToBuffer = "Mouse enabled"
   endif
+    call timer_start(1, "TimerEcho")
 endfunction
  
 function! GoCommand(cmd)
