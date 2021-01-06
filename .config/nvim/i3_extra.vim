@@ -119,8 +119,10 @@ function! GoFinder()
 endfunction
 
 " echo when running fzf#run. Output doesnt appear!. So echo via a timer
-function! TimerEcho(timer)
-    echo g:echoToBuffer
+function! TimerEcho(msg, timer)
+    if len(a:msg) > 0
+        echo a:msg
+    endif
 endfunction
 
 function! ToggleMouse()
@@ -130,14 +132,14 @@ function! ToggleMouse()
     set mouse=
     let &titlestring = "MOUSE OFF " . expand("[$USER]") . expand('%:~')
     set title
-    let g:echoToBuffer = "Mouse is off"
+    let msgToEcho = "Mouse is off"
   else
     set mouse=nv
     let &titlestring = expand("[$USER]") . expand('%:~')
     set title
-    let g:echoToBuffer = "Mouse enabled"
+    let msgToEcho = "Mouse enabled"
   endif
-    call timer_start(1, "TimerEcho")
+    call timer_start(1, function('TimerEcho', [msgToEcho]))
 endfunction
  
 function! GoCommand(cmd)
