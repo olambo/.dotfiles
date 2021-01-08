@@ -3,14 +3,14 @@ set mouse=nv " this is not going to allow command-c. can use option-mouse or tur
 set incsearch
 
 if exists('$TMUX')
-	" tmux title to iterm title. todo: working in neovim, not working in vim
-	let &t_ts = "\<Esc>]0"
-	let &t_fs = "\x7"
+    " tmux title to iterm title. todo: working in neovim, not working in vim
+    let &t_ts = "\<Esc>]0"
+    let &t_fs = "\x7"
 endif
 
 if has('nvim')
-	" insert mode for terminal
-	au TermOpen * startinsert
+    " insert mode for terminal
+    au TermOpen * startinsert
 endif
 
 " put file path into title, remove laststatus - I'd rather have an extra line!
@@ -82,16 +82,16 @@ function! PathOrig()
 endfunction
 
 function! FilePath()
-	let path = expand("%:p")
-	" deprecated
-	" call writefile([passth], expand("~/.config/nvim/runcache/vclipboard.txt"))
-	call YankOSC52(path)
-	echo path
+    let path = expand("%:p")
+    " deprecated
+    " call writefile([passth], expand("~/.config/nvim/runcache/vclipboard.txt"))
+    call YankOSC52(path)
+    echo path
 endfunction
 
 function! ExampleMap()
-    let example = 'nnoremap <leader>; :!vcommand go test -run TestWomble<cr>'
-	call YankOSC52(example)
+    let example = "nnoremap <leader>; :call GoCommand('go run main.go arg1')<cr>"
+    call YankOSC52(example)
 endfunction
 
 function! BufferDiff()
@@ -141,14 +141,14 @@ function! ToggleMouse()
   endif
     call timer_start(1, function('TimerEcho', [msgToEcho]))
 endfunction
- 
+
 function! GoCommand(cmd)
-	if &mod == 1 
-		echohl WarningMsg | echo "WARNING, BUFFER NOT WRITTEN!" | echohl None | echo a:cmd
-	else
-		echo "vcommand: " . a:cmd
-	endif
-	call writefile([a:cmd], expand("~/.config/nvim/runcache/vcommand.txt"))
+    if &mod == 1 
+        echohl WarningMsg | echo "WARNING, BUFFER NOT WRITTEN!" | echohl None | echo a:cmd
+    else
+        echo "vcommand: " . a:cmd
+    endif
+    call writefile([a:cmd], expand("~/.config/nvim/runcache/vcommand.txt"))
 endfunction
 
 " deprecated

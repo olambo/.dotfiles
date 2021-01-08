@@ -9,4 +9,4 @@ mkdir -p ~/.config/nvim/runcache
 
 vc_file=~/.config/nvim/runcache/vcommand.txt
 echo -n "" > $vc_file
-ls "$vc_file" | entr ~/.config/nvim/bin/vcommand-listen &
+ls "$vc_file" | entr vcommand-listen &
