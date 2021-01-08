@@ -37,7 +37,7 @@ setopt HIST_IGNORE_SPACE
 setopt APPEND_HISTORY
 setopt EXTENDED_HISTORY
 
-export PATH=~/.config/nvim/bin:/usr/local/opt/python/libexec/bin:/usr/local/bin:$PATH
+export PATH=~/.config/nvim/bin:~/go/bin:/usr/local/opt/python/libexec/bin:/usr/local/bin:$PATH
 
 if [[ $(uname 2> /dev/null) == "Linux" ]] ; then
     alias ls='ls --color=auto'
