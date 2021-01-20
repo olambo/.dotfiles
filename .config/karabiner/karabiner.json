@@ -69,7 +69,6 @@
                                             "option"
                                         ]
                                     }
-
                                 },
                                 "to": [
                                     {
@@ -98,7 +97,6 @@
                                             "option"
                                         ]
                                     }
-
                                 },
                                 "to": [
                                     {
@@ -261,7 +259,7 @@
                         ]
                     },
                     {
-                        "description": "4)  <hyp-del> to delete word, <hyp-9> to startOfLine, <hyp-0> to endOfLine",
+                        "description": "4)  <hyp-w> to delete word, <hyp-9> to startOfLine, <hyp-0> to endOfLine",
                         "manipulators": [
                             {
                                 "conditions": [
@@ -276,7 +274,7 @@
                                 ],
                                 "description": "term delete",
                                 "from": {
-                                    "key_code": "delete_or_backspace",
+                                    "key_code": "w",
                                     "modifiers": {
                                         "mandatory": [
                                             "shift",
@@ -375,7 +373,7 @@
                                 ],
                                 "description": "non term delete",
                                 "from": {
-                                    "key_code": "delete_or_backspace",
+                                    "key_code": "w",
                                     "modifiers": {
                                         "mandatory": [
                                             "shift",
@@ -451,6 +449,26 @@
                                 "to": [
                                     {
                                         "key_code": "end"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "description": "forward delete",
+                                "from": {
+                                    "key_code": "delete_or_backspace",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "shift",
+                                            "command",
+                                            "control",
+                                            "option"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "delete_forward"
                                     }
                                 ],
                                 "type": "basic"
@@ -830,6 +848,30 @@
                                             "shift",
                                             "command"
                                         ]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "10)  <hyp-space> to <del>",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "spacebar",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "shift",
+                                            "command",
+                                            "control",
+                                            "option"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "delete_or_backspace"
                                     }
                                 ],
                                 "type": "basic"
