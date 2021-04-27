@@ -5,13 +5,17 @@ local function focusToFromApp(appname)
     if prvapp == nil then
         prvapp = "none"
     end
+    if appname == "" then
+        appname = prvapp
+    end
     if hs.application.get(appname) == nil then
         -- print(appname .. " NOT running open " .. appname)
         appToRun = appname
     elseif appname == curapp then
         -- print(appname .. " already frontmost goto " .. prvapp)
-        appToRun = prvapp
-        prvapp = appname
+        -- appToRun = prvapp
+        -- prvapp = appname
+        appToRun = appname
     else
         -- print("prvapp " .. prvapp .. " curapp " .. curapp .. " goto " .. appname)
         appToRun = appname
@@ -24,8 +28,20 @@ local function focusToFromApp(appname)
     hs.application.launchOrFocus(appToRun)
 end
 
+hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, 'a', function()
+    focusToFromApp("Slack")
+end)
+
+hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, '8', function()
+    focusToFromApp("")
+end)
+
 hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, 'i', function()
     focusToFromApp("iTerm2")
+end)
+
+hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, 'p', function()
+    focusToFromApp("IntelliJ IDEA")
 end)
 
 hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, 's', function()
