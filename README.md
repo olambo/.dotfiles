@@ -51,3 +51,4 @@ Note: I use the 's' key in Vim normal mode so I can't use Vim-sneaks suggestion 
 ### [Hammerspoon](https://www.hammerspoon.org)
 I use hammerspoon to set some <kbd>hyp</kbd> keys to open various applications and position windows
 
+
