@@ -660,7 +660,6 @@
                                         "bundle_identifiers": [
                                             "com.apple.Terminal",
                                             "com.googlecode.iterm2",
-                                            "com.jetbrains.intellij",
                                             "com.microsoft.VSCode"
                                         ],
                                         "type": "frontmost_application_if"
@@ -699,7 +698,6 @@
                                         "bundle_identifiers": [
                                             "com.apple.Terminal",
                                             "com.googlecode.iterm2",
-                                            "com.jetbrains.intellij",
                                             "com.microsoft.VSCode"
                                         ],
                                         "type": "frontmost_application_if"

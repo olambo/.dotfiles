@@ -36,11 +36,11 @@ hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, '8', function()
     focusToFromApp("")
 end)
 
-hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, 'i', function()
+hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, 'p', function()
     focusToFromApp("iTerm2")
 end)
 
-hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, 'p', function()
+hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, 'd', function()
     focusToFromApp("IntelliJ IDEA")
 end)
 
@@ -50,10 +50,6 @@ end)
 
 hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, 'e', function()
     focusToFromApp("Mail")
-end)
-
-hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, "d", function()
-    focusToFromApp("Dash")
 end)
 
 hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, "u", function()
