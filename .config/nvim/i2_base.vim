@@ -4,30 +4,26 @@
 "   <hyp> f, b                      -> <pagedown>, <pageup>
 "   <hyp> (, )                      -> <home>, <end>
 
-" insert mode no movement
-inoremap <pageup> <nop>
-inoremap <pagedown> <nop>
-
 " insert mode drop down list selection.
 inoremap <down> <c-n>
 inoremap <up> <c-p>
 inoremap <expr> <left> pumvisible() ? "\<C-e>" : "\<left>"
 
+" insert mode no movement
+inoremap <pageup> <nop>
+inoremap <pagedown> <nop>
+
+" move down and up a bit more than normal
+nnoremap <up> 10k
+nnoremap <down> 10j
+vnoremap <up> 10k
+vnoremap <down> 10j
+
 " next previous paragraph, start of text
-nnoremap <down> }E^
-nnoremap <up> {{E^
-
-" <left> look for prev } and go to matching {
-nnoremap <left> []%
-" <right> look for next } and go to matching {
-" any error from the first % ignored 
-nnoremap <silent> <right> :<C-U>exe "norm! %" <bar> exe "norm! ][%"<CR>
-
-" move to start and end of paragraphs and to the end of Words
-vnoremap <down> j}gE
-vnoremap <up> k{
-vnoremap <left> []
-vnoremap <right> ][
+nnoremap <left> {{E^
+nnoremap <right> }E^
+vnoremap <left> k{
+vnoremap <right> j}gE
 
 " yank until end of line (ie. work like C, D)
 nnoremap Y y$
