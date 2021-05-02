@@ -2,6 +2,16 @@ set belloff=all
 set mouse=nv " this is not going to allow command-c. can use option-mouse or turn off
 set incsearch
 
+" insert mode drop down list selection.
+inoremap <down> <c-n>
+inoremap <up> <c-p>
+inoremap <expr> <left> pumvisible() ? "\<C-e>" : "\<left>"
+
+" for most enviroments don't want tab spacing. But for Go, go fmt uses tabs
+autocmd BufEnter *.go set noexpandtab
+autocmd BufRead *.go set noexpandtab
+autocmd BufLeave * set expandtab
+
 if exists('$TMUX')
     " tmux title to iterm title. todo: working in neovim, not working in vim
     let &t_ts = "\<Esc>]0"
@@ -48,6 +58,8 @@ set bg=light
 " this doesn't work when selection get too big!
 " deprecated vnoremap <c-x><c-y> :call It2copy()<cr>
 
+" <hyper-y> copy to system clipboard.
+" vnoremap <c-x><c-y> "+y
 " copy to system clipboard
 vnoremap <c-x><c-y> :OSCYank<CR>
 

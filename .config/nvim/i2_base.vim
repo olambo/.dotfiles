@@ -4,12 +4,9 @@
 "   <hyp> f, b                      -> <pagedown>, <pageup>
 "   <hyp> (, )                      -> <home>, <end>
 
-" insert mode drop down list selection.
-inoremap <down> <c-n>
-inoremap <up> <c-p>
-inoremap <expr> <left> pumvisible() ? "\<C-e>" : "\<left>"
-
 " insert mode no movement
+inoremap <up> <nop>
+inoremap <down> <nop>
 inoremap <pageup> <nop>
 inoremap <pagedown> <nop>
 
@@ -43,11 +40,6 @@ set iskeyword+=-,#
 set ruler
 set expandtab
 
-" for most enviroments don't want tab spacing. But for Go, go fmt uses tabs
-autocmd BufEnter *.go set noexpandtab
-autocmd BufRead *.go set noexpandtab
-autocmd BufLeave * set expandtab
-
 let mapleader="\<space>"
 
 " toggle highlight search
@@ -59,5 +51,3 @@ nmap <leader><leader> <c-w><c-w>
 " toggle numbers
 noremap <leader>n :set number!<cr>:se norelativenumber<cr>
 
-" <hyper-y> copy to system clipboard. This is overriden, if i3_extra is used.
-vnoremap <c-x><c-y> "+y
