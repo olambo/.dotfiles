@@ -1,1 +1,17 @@
 source ~/.config/nvim/i2_base.vim
+
+nnoremap ga :action GotoAction<CR>
+
+nnoremap gf :action FindInPath<CR>
+nnoremap gp :action SelectInProjectView<CR>
+nnoremap gs :action FileStructurePopup<CR>
+nnoremap gu :action FindUsages<CR>
+
+nnoremap gb :action JumpToLastChange<CR>
+nnoremap gd :action GotoDeclaration<CR>
+nnoremap - :action SelectInProjectView<CR>
+nnoremap gi :action GotoImplementation<CR>
+
+nnoremap <left> :action MethodUp<CR>
+nnoremap <right> :action MethodDown<CR>
+
