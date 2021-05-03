@@ -53,13 +53,6 @@ set bg=light
 " ----------------------------------------------------------------------------------------------
 "  karabiner elements assisted key combinations
  
-" <hyper-y> yank selection and save it into a file which is monitored
-" todo: find out why, multiple line selected, calling multiple times?
-" this doesn't work when selection get too big!
-" deprecated vnoremap <c-x><c-y> :call It2copy()<cr>
-
-" <hyper-y> copy to system clipboard.
-" vnoremap <c-x><c-y> "+y
 " copy to system clipboard
 vnoremap <c-x><c-y> :OSCYank<CR>
 
@@ -163,9 +156,3 @@ function! GoCommand(cmd)
     call writefile([a:cmd], expand("~/.config/nvim/runcache/vcommand.txt"))
 endfunction
 
-" deprecated
-function! It2copy()
-    silent execute "normal! `<v`>y"
-    let regInfo = getreg('"')
-    call writefile(split(regInfo, "\n"), expand("~/.config/nvim/runcache/vclipboard.txt"))
-endfunction
