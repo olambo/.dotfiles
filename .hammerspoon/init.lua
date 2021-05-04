@@ -1,5 +1,5 @@
 -- open/focus on the app or if its already focused, the previous app
-local function focusToFromApp(appname)
+local function focusToFromApp(appname, bounce)
     local curapp = hs.application.frontmostApplication():name()
     local appToRun
     if prvapp == nil then
@@ -13,9 +13,12 @@ local function focusToFromApp(appname)
         appToRun = appname
     elseif appname == curapp then
         -- print(appname .. " already frontmost goto " .. prvapp)
-        -- appToRun = prvapp
-        -- prvapp = appname
-        appToRun = appname
+        if bounce == nil then
+            appToRun = appname
+        else
+            appToRun = prvapp
+            prvapp = appname
+        end
     else
         -- print("prvapp " .. prvapp .. " curapp " .. curapp .. " goto " .. appname)
         appToRun = appname
@@ -29,11 +32,15 @@ local function focusToFromApp(appname)
 end
 
 hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, 'a', function()
-    focusToFromApp("Slack")
+    focusToFromApp("Slack", true)
 end)
 
 hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, '8', function()
     focusToFromApp("")
+end)
+
+hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, "'", function()
+    focusToFromApp("Terminal", true)
 end)
 
 hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, 'p', function()
@@ -49,11 +56,11 @@ hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, 's', function()
 end)
 
 hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, 'e', function()
-    focusToFromApp("Mail")
+    focusToFromApp("Mail", true)
 end)
 
 hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, "u", function()
-    focusToFromApp("Finder")
+    focusToFromApp("Finder", true)
 end)
 
 -- in iTerm2, open a low height split pane below the current one,
@@ -84,7 +91,9 @@ local function winToPos(posLR, wx, hx, wxIfAlready)
     local f = win:frame()
     local max = win:screen():frame()
     local widthx = max.w * wx
-    if math.abs(widthx - f.w) < 1 and math.abs(max.h * hx - f.h) < 1 then
+    print(" xxxx " .. math.abs(widthx - f.w) )
+    print(" hhhh " .. math.abs(max.h * hx - f.h) )
+    if math.abs(widthx - f.w) < 20 and math.abs(max.h * hx - f.h) < 20 then
         widthx = max.w * wxIfAlready
     end
     f.x = max.x
