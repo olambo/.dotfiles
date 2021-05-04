@@ -32,7 +32,7 @@ local function focusToFromApp(appname, bounce)
 end
 
 hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, 'a', function()
-    focusToFromApp("Slack", true)
+    focusToFromApp("Slack")
 end)
 
 hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, '8', function()
@@ -56,7 +56,7 @@ hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, 's', function()
 end)
 
 hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, 'e', function()
-    focusToFromApp("Mail", true)
+    focusToFromApp("Mail")
 end)
 
 hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, "u", function()
@@ -91,8 +91,6 @@ local function winToPos(posLR, wx, hx, wxIfAlready)
     local f = win:frame()
     local max = win:screen():frame()
     local widthx = max.w * wx
-    print(" xxxx " .. math.abs(widthx - f.w) )
-    print(" hhhh " .. math.abs(max.h * hx - f.h) )
     if math.abs(widthx - f.w) < 20 and math.abs(max.h * hx - f.h) < 20 then
         widthx = max.w * wxIfAlready
     end
