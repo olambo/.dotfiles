@@ -54,7 +54,11 @@ set bg=light
 "  karabiner elements assisted key combinations
  
 " copy to system clipboard
-vnoremap <c-x><c-y> :OSCYank<CR>
+if $TERM_PROGRAM == "Apple_Terminal"
+    vnoremap <c-x><c-y> "+y
+else
+    vnoremap <c-x><c-y> :OSCYank<CR>
+endif
 
 " ----------------------------------------------------------------------------------------------
 let mapleader="\<space>"
