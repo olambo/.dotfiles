@@ -6,22 +6,28 @@ set noerrorbells
 nnoremap <left> :action MethodUp<CR>
 nnoremap <right> :action MethodDown<CR>
 
-nnoremap gs :action FileStructurePopup<CR>
 nnoremap gu :action FindUsages<CR>
+nnoremap gt :action Scala.TypeInfo<CR>:action ExpressionTypeInfo<CR>
 
 nnoremap gd :action GotoDeclaration<CR>
 nnoremap gi :action GotoImplementation<CR>
 
-nnoremap gb :action JumpToLastChange<CR>
 nnoremap - :action SelectInProjectView<CR>
+nnoremap gb :action JumpToLastChange<CR>
 
-nnoremap gt :action Scala.TypeInfo<CR>:action ExpressionTypeInfo<CR>
-nnoremap gh :action HideActiveWindow<CR>
+" nnoremap gh :action HideActiveWindow<CR>
+" nnoremap gs :action FileStructurePopup<CR>
+" nnoremap gs :action ActivateStructureToolWindow<CR>
 
-" not sure these belong, but I find it difficult to type the idea shortcuts
-nnoremap ga :action GotoAction<CR>
+" not sure these belong, but I find it difficult to type some of the idea shortcuts
 nnoremap gf :action GotoFile<CR>
+nnoremap <leader>ff :action FindInPath<CR>
 
 nnoremap gr :action RecentFiles<CR>
-nnoremap <leader>ff :action FindInPath<CR>
+nnoremap gm :action Switcher<CR>
+
+nnoremap ga :action GotoAction<CR>
+nnoremap gn :action JumpToLastWindow<CR>
+
+nnoremap gd :action RestoreDefaultLayout<CR>
 
