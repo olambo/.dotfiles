@@ -51,3 +51,5 @@ nmap <leader><leader> <c-w><c-w>
 " toggle numbers
 noremap <leader>n :set number!<cr>:se norelativenumber<cr>
 
+" stay away from shift character
+noremap gl G

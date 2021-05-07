@@ -31,7 +31,7 @@ local function focusToFromApp(appname, bounce)
     hs.application.launchOrFocus(appToRun)
 end
 
-hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, 'a', function()
+hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, 'd', function()
     focusToFromApp("Slack")
 end)
 
@@ -39,15 +39,15 @@ hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, '8', function()
     focusToFromApp("")
 end)
 
-hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, "'", function()
+hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, "o", function()
     focusToFromApp("Terminal", true)
 end)
 
-hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, 'p', function()
+hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, 'u', function()
     focusToFromApp("iTerm2")
 end)
 
-hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, 'd', function()
+hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, 'i', function()
     focusToFromApp("IntelliJ IDEA")
 end)
 
@@ -59,7 +59,7 @@ hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, 'e', function()
     focusToFromApp("Mail")
 end)
 
-hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, "u", function()
+hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, "p", function()
     focusToFromApp("Finder", true)
 end)
 
