@@ -3,6 +3,9 @@ source ~/.config/nvim/i2_base.vim
 set visualbell
 set noerrorbells
 
+nnoremap <M-A-C-S-'> w
+
+" below are actions on the current file
 nnoremap <left> :action MethodUp<CR>
 nnoremap <right> :action MethodDown<CR>
 
@@ -12,19 +15,22 @@ nnoremap gi :action GotoImplementation<CR>
 nnoremap gu :action FindUsages<CR>
 nnoremap gt :action Scala.TypeInfo<CR>:action ExpressionTypeInfo<CR>
 
-nnoremap gb :action JumpToLastChange<CR>
+nnoremap gr :action Refactorings.QuickListPopupAction<CR>
+nnoremap gs :action GotoSuperMethod<CR>
+
 nnoremap - :action SelectInProjectView<CR>
 
-" not sure these belong, but I find it difficult to type some of the idea shortcuts
-nnoremap gf :action GotoFile<CR>
-nnoremap gr :action RecentFiles<CR>
-
-nnoremap <leader>ff :action FindInPath<CR>
+" not sure these belong on the g key
 nnoremap gm :action Switcher<CR>
+nnoremap gf :action GotoFile<CR>
 
+nnoremap go :action GotoClass<CR>
 nnoremap ga :action GotoAction<CR>
-nnoremap gn :action JumpToLastWindow<CR>
 
-nnoremap gs :action GotoSuperMethod<CR>
-nnoremap gw :action RestoreDefaultLayout<CR>
+nnoremap gy :action GotoSymbol<CR>
+nnoremap gb :action JumpToLastChange<CR>
+
+" leader key mappings (suspect I don't type space with left hand)
+nnoremap <leader>w :action RestoreDefaultLayout<CR>
+nnoremap <leader>ff :action FindInPath<CR>
 
