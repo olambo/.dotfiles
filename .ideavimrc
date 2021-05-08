@@ -3,8 +3,6 @@ source ~/.config/nvim/i2_base.vim
 set visualbell
 set noerrorbells
 
-nnoremap <M-A-C-S-'> w
-
 " below are actions on the current file
 nnoremap <left> :action MethodUp<CR>
 nnoremap <right> :action MethodDown<CR>
