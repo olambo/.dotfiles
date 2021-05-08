@@ -160,12 +160,6 @@
                                             "control",
                                             "option"
                                         ]
-                                    },
-                                    {
-                                        "key_code": "k",
-                                        "modifiers": [
-                                            "control"
-                                        ]
                                     }
                                 ],
                                 "type": "basic"
