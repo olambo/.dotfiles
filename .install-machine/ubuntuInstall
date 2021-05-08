@@ -1,0 +1,25 @@
+#! /bin/bash
+
+# terminal apps
+term_apps=(
+wget
+tmux
+git
+vim
+neovim
+maven
+httpie
+fzf
+ripgrep
+scala
+node
+open-vm-tools
+entr
+)
+sudo apt-get install ${term_apps[@]}
+
+git clone https://github.com/k-takata/minpac.git ~/.config/nvim/pack/minpac/opt/minpac
+
+echo "install is done!"
+
+# problems with shared tools - https://communities.vmware.com/t5/VMware-Fusion-Discussions/Shared-folders-no-longer-showing-up-in-guest-OS-Ubuntu-16-04/m-p/509366

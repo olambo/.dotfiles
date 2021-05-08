@@ -7,9 +7,11 @@ nnoremap <silent> <Leader>b :Buffers<CR>
 nnoremap <silent> <Leader>g :Rg<CR>
 
 " find files of wanted types 
+nnoremap <silent> gf :call ZGlobal()<cr>
+
 nnoremap <silent> <Leader>fs :call ZSFiles()<cr>
-nnoremap <silent> <Leader>ff :call ZGlobal()<cr>
 nnoremap <silent> <Leader>fl :call ZLocal()<cr>
+
 
 function! ZGlobal()
   execute "FZF"
