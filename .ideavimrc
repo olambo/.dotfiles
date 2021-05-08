@@ -28,7 +28,3 @@ nnoremap gn :action JumpToLastWindow<CR>
 nnoremap gs :action GotoSuperMethod<CR>
 nnoremap gw :action RestoreDefaultLayout<CR>
 
-" nnoremap gh :action HideActiveWindow<CR>
-" nnoremap gs :action FileStructurePopup<CR>
-" nnoremap gs :action ActivateStructureToolWindow<CR>
-
