@@ -11,10 +11,10 @@ inoremap <pageup> <nop>
 inoremap <pagedown> <nop>
 
 " move down and up a bit more than normal
-nnoremap <up> 10k
-nnoremap <down> 10j
-vnoremap <up> 10k
-vnoremap <down> 10j
+nnoremap <up> 5k
+nnoremap <down> 5j
+vnoremap <up> 5k
+vnoremap <down> 5j
 
 " next previous paragraph, start of text
 nnoremap <left> {{E^
