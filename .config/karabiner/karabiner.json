@@ -353,7 +353,7 @@
                                         "type": "frontmost_application_unless"
                                     }
                                 ],
-                                "description": "term delete",
+                                "description": "non term delete",
                                 "from": {
                                     "key_code": "delete_or_backspace",
                                     "modifiers": {
@@ -438,40 +438,6 @@
                                         "key_code": "e",
                                         "modifiers": [
                                             "control"
-                                        ]
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "bundle_identifiers": [
-                                            "com.apple.Terminal",
-                                            "com.googlecode.iterm2",
-                                            "com.jetbrains.intellij",
-                                            "com.microsoft.VSCode"
-                                        ],
-                                        "type": "frontmost_application_unless"
-                                    }
-                                ],
-                                "description": "non term delete",
-                                "from": {
-                                    "key_code": "w",
-                                    "modifiers": {
-                                        "mandatory": [
-                                            "shift",
-                                            "command",
-                                            "control",
-                                            "option"
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "delete_or_backspace",
-                                        "modifiers": [
-                                            "option"
                                         ]
                                     }
                                 ],
