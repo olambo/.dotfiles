@@ -2,6 +2,10 @@ set belloff=all
 set mouse=nv " this is not going to allow command-c. can use option-mouse or turn off
 set incsearch
 
+" use ctrl-/ to comment (mapped from cmd-_ from karabiner elements)
+nmap <C-_> gcc
+xmap <C-_> gc
+
 " insert mode drop down list selection.
 inoremap <down> <c-n>
 inoremap <up> <c-p>

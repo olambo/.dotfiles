@@ -859,7 +859,7 @@
                         ]
                     },
                     {
-                        "description": "9)  <hyp-ret> to <shift,cmd,return> in iterm2",
+                        "description": "9)  <hyp-ret> to <shift,cmd,return> in iterm2, <shift,cmd,f12> in intellij",
                         "manipulators": [
                             {
                                 "conditions": [
@@ -1002,6 +1002,39 @@
                                         "key_code": "e",
                                         "modifiers": [
                                             "command"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "11)  <command-slash> to <ctrl-_>",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "com.apple.Terminal",
+                                            "com.googlecode.iterm2"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "slash",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "command"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "hyphen",
+                                        "modifiers": [
+                                            "control"
                                         ]
                                     }
                                 ],
