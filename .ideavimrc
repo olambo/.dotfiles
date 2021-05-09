@@ -16,7 +16,7 @@ nnoremap gt :action Scala.TypeInfo<CR>:action ExpressionTypeInfo<CR>
 nnoremap gs :action GotoSuperMethod<CR>
 nnoremap gr :action Refactorings.QuickListPopupAction<CR>
 
-nnoremap gc :action ShowIntentionActions<CR>
+nnoremap g; :action ShowIntentionActions<CR>
 noremap - :action SelectInProjectView<CR>
 
 nnoremap ge :action GotoNextError<CR>
