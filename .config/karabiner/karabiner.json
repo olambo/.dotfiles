@@ -16,11 +16,37 @@
                 },
                 "rules": [
                     {
-                        "description": "1)  <caps_lock> key to <hyp>, <hyp-.> to nothing, <hyp-;> to <c-x><c-j>, <hyp-,> to <c-x><c-k>",
+                        "description": "1)  <caps_lock> key to <hyp>, <hyp-.> to nothing, <hyp-;> to <hyp-8>",
                         "manipulators": [
                             {
                                 "from": {
                                     "key_code": "caps_lock",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "left_shift",
+                                        "modifiers": [
+                                            "command",
+                                            "control",
+                                            "option"
+                                        ]
+                                    }
+                                ],
+                                "to_if_alone": [
+                                    {
+                                        "key_code": "escape"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "right_option",
                                     "modifiers": {
                                         "optional": [
                                             "any"
@@ -59,51 +85,6 @@
                                 "type": "basic"
                             },
                             {
-                                "conditions": [
-                                    {
-                                        "bundle_identifiers": [
-                                            "com.apple.Terminal",
-                                            "com.googlecode.iterm2"
-                                        ],
-                                        "type": "frontmost_application_if"
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "semicolon",
-                                    "modifiers": {
-                                        "mandatory": [
-                                            "shift",
-                                            "command",
-                                            "control",
-                                            "option"
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "x",
-                                        "modifiers": [
-                                            "control"
-                                        ]
-                                    },
-                                    {
-                                        "key_code": "j",
-                                        "modifiers": [
-                                            "control"
-                                        ]
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "bundle_identifiers": [
-                                            "com.jetbrains.intellij"
-                                        ],
-                                        "type": "frontmost_application_unless"
-                                    }
-                                ],
                                 "from": {
                                     "key_code": "comma",
                                     "modifiers": {
@@ -117,43 +98,7 @@
                                 },
                                 "to": [
                                     {
-                                        "key_code": "x",
-                                        "modifiers": [
-                                            "control"
-                                        ]
-                                    },
-                                    {
-                                        "key_code": "k",
-                                        "modifiers": [
-                                            "control"
-                                        ]
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "bundle_identifiers": [
-                                            "com.jetbrains.intellij"
-                                        ],
-                                        "type": "frontmost_application_if"
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "comma",
-                                    "modifiers": {
-                                        "mandatory": [
-                                            "shift",
-                                            "command",
-                                            "control",
-                                            "option"
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "semicolon",
+                                        "key_code": "8",
                                         "modifiers": [
                                             "shift",
                                             "command",
@@ -970,36 +915,6 @@
                                 "to": [
                                     {
                                         "key_code": "up_arrow",
-                                        "modifiers": [
-                                            "command"
-                                        ]
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "bundle_identifiers": [
-                                            "com.jetbrains.intellij"
-                                        ],
-                                        "type": "frontmost_application_if"
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "m",
-                                    "modifiers": {
-                                        "mandatory": [
-                                            "shift",
-                                            "command",
-                                            "control",
-                                            "option"
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "e",
                                         "modifiers": [
                                             "command"
                                         ]

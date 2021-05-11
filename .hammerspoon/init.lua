@@ -55,7 +55,7 @@ hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, 's', function()
     focusToFromApp("Safari")
 end)
 
-hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, 'e', function()
+hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, 'm', function()
     focusToFromApp("Mail")
 end)
 

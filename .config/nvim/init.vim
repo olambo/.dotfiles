@@ -27,6 +27,9 @@ endif
 
 " sneak with very bright lables!
 let g:sneak#label = 1
-map <c-x><c-j> <Plug>Sneak_s
-map <c-x><c-k> <Plug>Sneak_S
+let g:sneak#use_ic_scs = 1
+" map <c-x><c-j> <Plug>Sneak_s
+" map <c-x><c-k> <Plug>Sneak_S
+map g; <Plug>Sneak_s
+map g, <Plug>Sneak_S
 
