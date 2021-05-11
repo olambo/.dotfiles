@@ -7,6 +7,9 @@ set noerrorbells
 nnoremap <left> :action MethodUp<CR>
 nnoremap <right> :action MethodDown<CR>
 
+nmap g; :action KJumpAction.Char2<cr>
+nmap g, :action KJumpAction.Char2<cr>
+
 nnoremap gd :action GotoDeclaration<CR>
 nnoremap gi :action GotoImplementation<CR>
 
@@ -16,25 +19,34 @@ nnoremap gt :action Scala.TypeInfo<CR>:action ExpressionTypeInfo<CR>
 nnoremap gs :action GotoSuperMethod<CR>
 nnoremap gr :action Refactorings.QuickListPopupAction<CR>
 
-nnoremap g; :action ShowIntentionActions<CR>
+nnoremap gn :action ShowIntentionActions<CR>
 noremap - :action SelectInProjectView<CR>
 
 nnoremap ge :action GotoNextError<CR>
 nnoremap gE :action GotoPreviousError<CR>
 
-" not sure these belong on the g key
-nnoremap gm :action Switcher<CR>
-nnoremap gf :action GotoFile<CR>
+nnoremap gh :action JumpToLastChange<CR>
+nnoremap gl :action JumpToNextChange<CR>
 
-nnoremap go :action GotoClass<CR>
+nnoremap gk :action Back<CR>
+nnoremap gj :action Forward<CR>
+
+nnoremap gb :action ToggleBookmark<CR>
+
+" not sure these belong on the g key
+nnoremap gB :action ShowBookmarks<CR>
 nnoremap ga :action GotoAction<CR>
 
+nnoremap gf :action GotoFile<CR>
+nnoremap gm :action Switcher<CR>
+
+nnoremap go :action GotoClass<CR>
 nnoremap gy :action GotoSymbol<CR>
-nnoremap gb :action JumpToLastChange<CR>
 
 " leader key mappings (suspect I don't type space with left hand)
-nnoremap <leader>ff :action FindInPath<CR>
 nnoremap <leader>w :action RestoreDefaultLayout<CR>
-
 nnoremap <leader>x :action ChooseRunConfiguration<CR>
+
+nnoremap <leader>ff :action FindInPath<CR>
+nnoremap <leader>tt :action JumpToLastWindow<CR>
 
