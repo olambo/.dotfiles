@@ -19,9 +19,6 @@ nnoremap gt :action Scala.TypeInfo<CR>:action ExpressionTypeInfo<CR>
 nnoremap gs :action GotoSuperMethod<CR>
 nnoremap gr :action Refactorings.QuickListPopupAction<CR>
 
-nnoremap gn :action ShowIntentionActions<CR>
-nnoremap gb :action ToggleBookmark<CR>
-
 nnoremap gh :action JumpToLastChange<CR>
 nnoremap gl :action JumpToNextChange<CR>
 
@@ -31,24 +28,20 @@ nnoremap gj :action Forward<CR>
 noremap - :action SelectInProjectView<CR>
 nnoremap <leader>tt :action JumpToLastWindow<CR>
 
-nnoremap g] :action GotoNextError<CR>
-nnoremap g[ :action GotoPreviousError<CR>
+nnoremap ge :action GotoNextError<CR>
+nnoremap gE :action GotoPreviousError<CR>
+
+nnoremap gb :action ToggleBookmark<CR>
 
 " not sure these belong on the g key
-nnoremap g<space> :action Switcher<CR>
+nnoremap gB :action ShowBookmarks<CR>
 nnoremap gf :action GotoFile<CR>
 
-nnoremap ge :action RecentFiles<CR>
-nnoremap gE :action RecentChangedFiles<CR>
-
-nnoremap go :action GotoClass<CR>
-nnoremap gy :action GotoSymbol<CR>
-
-nnoremap ga :action GotoAction<CR>
-nnoremap gB :action ShowBookmarks<CR>
+nnoremap gy :action GotoAction<CR>
+nnoremap gn :action ShowIntentionActions<CR>
 
 " leader key mappings (suspect I don't type space with left hand)
-nnoremap <leader>w :action RestoreDefaultLayout<CR>
+nnoremap <lader>w :action RestoreDefaultLayout<CR>
 nnoremap <leader>x :action ChooseRunConfiguration<CR>
 
 nnoremap <leader>ff :action FindInPath<CR>
