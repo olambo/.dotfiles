@@ -2,8 +2,11 @@ curapp = hs.application.frontmostApplication():name()
 prvapp = hs.application.frontmostApplication():name()
 function applicationWatcher(appName, eventType, appObject)
     if (eventType == hs.application.watcher.deactivated) then
-        prvapp = appName
-        curapp = hs.application.frontmostApplication():name()
+        capp = hs.application.frontmostApplication():name()
+        if capp ~= 'loginwindow' and appName ~= 'loginwindow' then
+            prvapp = appName
+            curapp = capp
+        end
         -- print("prvapp " .. prvapp)
         -- print("curapp " .. curapp)
     end
@@ -12,14 +15,14 @@ appWatcher = hs.application.watcher.new(applicationWatcher)
 appWatcher:start()
 
 -- open/focus on the app or if its already focused, the previous app
-local function focusToFromApp(appname, nobounce)
+local function focusToFromApp(appname, bounce)
     local appToRun
     if hs.application.get(appname) == nil then
         -- print(appname .. " NOT running open " .. appname)
         appToRun = appname
     elseif appname == curapp then
         -- print(appname .. " already frontmost goto " .. prvapp)
-        if nobounce ~= nil then
+        if bounce == nil then
             appToRun = appname
         else
             appToRun = prvapp
@@ -35,36 +38,40 @@ local function focusToFromApp(appname, nobounce)
     hs.application.launchOrFocus(appToRun)
 end
 
-hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, 'd', function()
-    focusToFromApp("Slack")
-end)
-
-hs.hotkey.bind({"alt", "ctrl", "cmd"}, '8', function()
-    focusToFromApp(prvapp, true)
-end)
-
-hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, "o", function()
-    focusToFromApp("Terminal")
-end)
+local function spaceapp(appname, altapp)
+    if appname == curapp then
+        focusToFromApp(altapp)
+    else
+        focusToFromApp(appname)
+    end
+end
 
 hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, 'u', function()
-    focusToFromApp("iTerm2")
+    spaceapp("Mail", "Slack")
 end)
 
 hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, 'i', function()
     focusToFromApp("IntelliJ IDEA")
 end)
 
-hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, 's', function()
-    focusToFromApp("Safari")
+hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, 'o', function()
+    spaceapp("Safari", "Calendar")
 end)
 
-hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, 'm', function()
-    focusToFromApp("Mail")
+hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, 'p', function()
+    focusToFromApp("iTerm2")
 end)
 
-hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, "p", function()
-    focusToFromApp("Finder")
+hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, '8', function()
+    focusToFromApp(prvapp, true)
+end)
+
+hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, "m", function()
+    focusToFromApp("Terminal", true)
+end)
+
+hs.hotkey.bind({"alt", "ctrl", "cmd"}, "8", function()
+    focusToFromApp("Finder", true)
 end)
 
 -- in iTerm2, open a low height split pane below the current one,
