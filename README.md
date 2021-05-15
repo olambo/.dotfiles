@@ -39,9 +39,8 @@ Some of the keys, I remap are listed below.
 <hyp> f b     -> pagedown, pageup. Vim like motions (all apps)
 <hyp> [ ]     -> next or previous tab (all apps)
 <hyp> ( )     -> begining or end of line (all apps)
-<hyp> ; ,     -> Vim-sneak label mode (Vim)
-<hyp> return  -> expand pane (iTerm2) 
-<hyp> n m     -> next vertical or horizontal pane (iTerm2) 
+<hyp> return  -> expand/contract pane (iTerm2) 
+<hyp> n       -> next pane (iTerm2) 
 <cmd> c       -> copy to system clipboard from remote machine (iTerm2 Vim)
 ```
 Vim can't directly map <kbd>hyp</kbd> keys. So I have Karabiner-Elements first map a <kbd>hyp</kbd> key to key(s) that Vim can recognize.
