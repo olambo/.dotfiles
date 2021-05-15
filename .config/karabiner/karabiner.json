@@ -16,7 +16,7 @@
                 },
                 "rules": [
                     {
-                        "description": "1)  <caps_lock> key to <hyp>, <hyp-.> to nothing, <hyp-;> to <hyp-8>",
+                        "description": "1)  <caps_lock> key to <hyp>, <hyp-.> to nothing, <hyp-,> to <ctr-opt-cmd-8>",
                         "manipulators": [
                             {
                                 "from": {
@@ -123,7 +123,6 @@
                                     {
                                         "key_code": "8",
                                         "modifiers": [
-                                            "shift",
                                             "command",
                                             "control",
                                             "option"

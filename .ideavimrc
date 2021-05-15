@@ -44,3 +44,4 @@ nnoremap gy :action ChooseRunConfiguration<CR>
 nnoremap <leader>w :action RestoreDefaultLayout<CR>
 nnoremap <leader>ff :action FindInPath<CR>
 
+nnoremap <leader>x <nop>
