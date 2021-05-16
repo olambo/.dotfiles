@@ -3,15 +3,9 @@ source ~/.config/nvim/i2_base.vim
 set visualbell
 set noerrorbells
 
-nnoremap <s-esc> ;
-inoremap <s-esc> <esc>
-
 " below are actions on the current editor buffer
 nnoremap <left> :action MethodUp<CR>
 nnoremap <right> :action MethodDown<CR>
-
-nmap g<s-esc> :action KJumpAction.Char2<cr>
-nmap g, :action KJumpAction.Char2<cr>
 
 nnoremap gd :action GotoDeclaration<CR>
 nnoremap gi :action GotoImplementation<CR>
@@ -28,7 +22,7 @@ nnoremap gl :action JumpToNextChange<CR>
 nnoremap gk :action Back<CR>
 nnoremap gj :action Forward<CR>
 
-noremap - :action SelectInProjectView<CR>
+nnoremap - :action SelectInProjectView<CR>
 nnoremap <leader>tt :action JumpToLastWindow<CR>
 
 nnoremap ge :action GotoNextError<CR>
@@ -48,3 +42,12 @@ nnoremap <leader>w :action RestoreDefaultLayout<CR>
 nnoremap <leader>ff :action FindInPath<CR>
 
 nnoremap <leader>x <nop>
+
+" look for two character in screen buffer
+nnoremap g<s-esc> :action KJumpAction.Char2<cr>
+nnoremap g, :action KJumpAction.Char2<cr>
+
+" map back to semicolon
+map <s-esc> ;
+imap <s-esc> ;
+

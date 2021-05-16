@@ -56,7 +56,7 @@ set bg=light
 
 " ----------------------------------------------------------------------------------------------
 "  karabiner elements assisted key combinations
-map <c-x><c-x> ;
+noremap <c-x><c-x> ;
 inoremap <c-x><c-x> <esc>
  
 " copy to system clipboard
