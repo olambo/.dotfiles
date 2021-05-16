@@ -3,11 +3,14 @@ source ~/.config/nvim/i2_base.vim
 set visualbell
 set noerrorbells
 
+nnoremap <s-esc> ;
+inoremap <s-esc> <esc>
+
 " below are actions on the current editor buffer
 nnoremap <left> :action MethodUp<CR>
 nnoremap <right> :action MethodDown<CR>
 
-nmap g; :action KJumpAction.Char2<cr>
+nmap g<s-esc> :action KJumpAction.Char2<cr>
 nmap g, :action KJumpAction.Char2<cr>
 
 nnoremap gd :action GotoDeclaration<CR>

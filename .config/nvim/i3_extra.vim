@@ -56,6 +56,8 @@ set bg=light
 
 " ----------------------------------------------------------------------------------------------
 "  karabiner elements assisted key combinations
+map <c-x><c-x> ;
+inoremap <c-x><c-x> <esc>
  
 " copy to system clipboard
 if $TERM_PROGRAM == "Apple_Terminal"

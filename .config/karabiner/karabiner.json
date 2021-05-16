@@ -46,81 +46,6 @@
                             },
                             {
                                 "from": {
-                                    "key_code": "quote",
-                                    "modifiers": {
-                                        "optional": [
-                                            "any"
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "left_shift",
-                                        "modifiers": [
-                                            "command",
-                                            "control",
-                                            "option"
-                                        ]
-                                    }
-                                ],
-                                "to_if_alone": [
-                                    {
-                                        "key_code": "quote"
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
-
-                                    "key_code": "right_option",
-                                    "modifiers": {
-                                        "optional": [
-                                            "any"
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "left_shift",
-                                        "modifiers": [
-                                            "command",
-                                            "control",
-                                            "option"
-                                        ]
-                                    }
-                                ],
-                                "to_if_alone": [
-                                    {
-                                        "key_code": "escape"
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
-
-                                    "key_code": "right_command",
-                                    "modifiers": {
-                                        "optional": [
-                                            "any"
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "right_command"
-                                    }
-                                ],
-                                "to_if_alone": [
-                                    {
-                                        "key_code": "escape"
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
                                     "key_code": "period",
                                     "modifiers": {
                                         "mandatory": [
@@ -625,7 +550,7 @@
                         ]
                     },
                     {
-                        "description": "6)  <hyp-y> to <c-x><c-y>, <cmd-c> to <c-x><c-y><cmd-c>, yank to system clipboard",
+                        "description": "6)  <hyp-y> to <c-x><c-y>, <cmd-c> to <c-x><c-y><cmd-c> - yank to system clipboard",
                         "manipulators": [
                             {
                                 "conditions": [
@@ -736,7 +661,7 @@
                         ]
                     },
                     {
-                        "description": "7)  <hyp-[>, <hyp-]>  prev next tab",
+                        "description": "7)  <hyp-[>, <hyp-]>  prev or next tab",
                         "manipulators": [
                             {
                                 "from": {
@@ -787,7 +712,64 @@
                         ]
                     },
                     {
-                        "description": "8)  <hyp-n> to <cmd-]> for iterm2, <opt-tab> for intellij",
+                        "description": "8)  <hyp-space> to <del>",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "spacebar",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "shift",
+                                            "command",
+                                            "control",
+                                            "option"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "delete_or_backspace"
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "9)  <command-slash> to <ctrl-_> - commenting",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "com.apple.Terminal",
+                                            "com.googlecode.iterm2"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "slash",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "command"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "hyphen",
+                                        "modifiers": [
+                                            "control"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "10)  <hyp-n> to <cmd-]> for iterm2, <opt-tab> for intellij - next pane",
                         "manipulators": [
                             {
                                 "conditions": [
@@ -852,7 +834,7 @@
                         ]
                     },
                     {
-                        "description": "9)  <hyp-ret> to <shift,cmd,return> in iterm2, <shift,cmd,f12> in intellij",
+                        "description": "11)  <hyp-ret> to <shift,cmd,return> in iterm2, <shift,cmd,f12> in intellij - expand window",
                         "manipulators": [
                             {
                                 "conditions": [
@@ -919,11 +901,19 @@
                         ]
                     },
                     {
-                        "description": "10)  <hyp-space> to <del>, <hyp-dash> to cmd-up in intellij, <hyp-e> to <s-cmd-e> in intellij",
+                        "description": "12)  intellij only - hyper-d to action, <hyp-dash> to cmd-up, <hyp-e> to <s-cmd-e>",
                         "manipulators": [
                             {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "com.jetbrains.intellij"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
                                 "from": {
-                                    "key_code": "spacebar",
+                                    "key_code": "d",
                                     "modifiers": {
                                         "mandatory": [
                                             "shift",
@@ -935,7 +925,11 @@
                                 },
                                 "to": [
                                     {
-                                        "key_code": "delete_or_backspace"
+                                        "key_code": "a",
+                                        "modifiers": [
+                                            "shift",
+                                            "command"
+                                        ]
                                     }
                                 ],
                                 "type": "basic"
@@ -1000,42 +994,11 @@
                                     }
                                 ],
                                 "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "bundle_identifiers": [
-                                            "com.jetbrains.intellij"
-                                        ],
-                                        "type": "frontmost_application_if"
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "a",
-                                    "modifiers": {
-                                        "mandatory": [
-                                            "shift",
-                                            "command",
-                                            "control",
-                                            "option"
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "a",
-                                        "modifiers": [
-                                            "shift",
-                                            "command"
-                                        ]
-                                    }
-                                ],
-                                "type": "basic"
                             }
                         ]
                     },
                     {
-                        "description": "11)  <command-slash> to <ctrl-_>",
+                        "description": "13)  semicolon as hyper key, hyper-semicolon as semicolon",
                         "manipulators": [
                             {
                                 "conditions": [
@@ -1048,19 +1011,86 @@
                                     }
                                 ],
                                 "from": {
-                                    "key_code": "slash",
+                                    "key_code": "semicolon"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "left_shift",
+                                        "modifiers": [
+                                            "command",
+                                            "control",
+                                            "option"
+                                        ]
+                                    }
+                                ],
+                                "to_if_alone": [
+                                    {
+                                        "key_code": "x",
+                                        "modifiers": [
+                                            "control"
+                                        ]
+                                    },
+                                    {
+                                        "key_code": "x",
+                                        "modifiers": [
+                                            "control"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "com.apple.Terminal",
+                                            "com.googlecode.iterm2"
+                                        ],
+                                        "type": "frontmost_application_unless"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "semicolon",
+                                    "modifiers": {
+                                        "optional": []
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "left_shift",
+                                        "modifiers": [
+                                            "command",
+                                            "control",
+                                            "option"
+                                        ]
+                                    }
+                                ],
+                                "to_if_alone": [
+                                    {
+                                        "key_code": "escape",
+                                        "modifiers": [
+                                            "shift"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "semicolon",
                                     "modifiers": {
                                         "mandatory": [
-                                            "command"
+                                            "shift",
+                                            "command",
+                                            "control",
+                                            "option"
                                         ]
                                     }
                                 },
                                 "to": [
                                     {
-                                        "key_code": "hyphen",
-                                        "modifiers": [
-                                            "control"
-                                        ]
+                                        "key_code": "semicolon",
+                                        "modifiers": []
                                     }
                                 ],
                                 "type": "basic"
