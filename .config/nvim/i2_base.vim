@@ -41,6 +41,7 @@ set shiftwidth=4
 set iskeyword+=-,#
 set ruler
 set expandtab
+set nu
 
 let mapleader="\<space>"
 

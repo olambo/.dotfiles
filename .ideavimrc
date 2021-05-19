@@ -22,25 +22,26 @@ nnoremap gl :action JumpToNextChange<CR>
 nnoremap gk :action Back<CR>
 nnoremap gj :action Forward<CR>
 
-nnoremap - :action SelectInProjectView<CR>
-nnoremap <leader>tt :action JumpToLastWindow<CR>
-
 nnoremap ge :action GotoNextError<CR>
 nnoremap gE :action GotoPreviousError<CR>
 
-nnoremap gb :action ToggleBookmark<CR>
-nnoremap gB :action ShowBookmarks<CR>
+nnoremap gm :action ToggleBookmark<CR>
+nnoremap gM :action ShowBookmarks<CR>
+
+nnoremap gb :action ToggleLineBreakpoint<CR>
+nnoremap gB :action ViewBreakpoints<CR>
 
 nnoremap gn :action ShowIntentionActions<CR>
+nnoremap - :action SelectInProjectView<CR>
+
+nnoremap <leader>t :action JumpToLastWindow<CR>
 
 " these are not buffer related
-nnoremap gf :action GotoFile<CR>
-nnoremap gy :action ChooseRunConfiguration<CR>
+nnoremap gf :action FindInPath<CR>
+nnoremap go :action ChooseRunConfiguration<CR>
 
 " leader key mappings (timeout effected. suspect I don't type space with left hand)
 nnoremap <leader>w :action RestoreDefaultLayout<CR>
-nnoremap <leader>ff :action FindInPath<CR>
-
 nnoremap <leader>x <nop>
 
 " look for two character in screen buffer

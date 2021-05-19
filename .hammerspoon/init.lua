@@ -59,7 +59,7 @@ hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, 'o', function()
 end)
 
 hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, 'p', function()
-    focusToFromApp("iTerm2")
+    spaceapp("iTerm2", "Postman")
 end)
 
 hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, '8', function()
@@ -67,11 +67,11 @@ hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, '8', function()
 end)
 
 hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, "m", function()
-    focusToFromApp("Terminal", true)
+    focusToFromApp("Finder", true)
 end)
 
 hs.hotkey.bind({"alt", "ctrl", "cmd"}, "8", function()
-    focusToFromApp("Finder", true)
+    focusToFromApp("Terminal", true)
 end)
 
 -- in iTerm2, open a low height split pane below the current one,

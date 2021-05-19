@@ -39,6 +39,7 @@ vlc
 spectacle
 vimr
 dbeaver-community
+postman
 )
 brew cask install --appdir="/Applications" ${cask_apps[@]}
 
