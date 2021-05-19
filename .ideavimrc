@@ -35,20 +35,17 @@ nnoremap gn :action ShowIntentionActions<CR>
 nnoremap - :action SelectInProjectView<CR>
 
 nnoremap <leader>t :action JumpToLastWindow<CR>
+nnoremap <leader>w :action HideActiveWindow<cr>
+
+noremap <s-esc> ;
+inoremap <s-esc> ;
+
+nnoremap g<s-esc> :action KJumpAction.Char2<cr>
+nnoremap g, :action KJumpAction.Char2<cr>
 
 " these are not buffer related
 nnoremap gf :action FindInPath<CR>
 nnoremap go :action ChooseRunConfiguration<CR>
 
-" leader key mappings (timeout effected. suspect I don't type space with left hand)
-nnoremap <leader>w :action RestoreDefaultLayout<CR>
-nnoremap <leader>x <nop>
-
-" look for two character in screen buffer
-nnoremap g<s-esc> :action KJumpAction.Char2<cr>
-nnoremap g, :action KJumpAction.Char2<cr>
-
-" map back to semicolon
-map <s-esc> ;
-imap <s-esc> ;
+nnoremap gw :action RestoreDefaultLayout<CR>
 
