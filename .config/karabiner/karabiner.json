@@ -1024,6 +1024,45 @@
                                     }
                                 ],
                                 "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "com.jetbrains.intellij"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "s",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "shift",
+                                            "command",
+                                            "control",
+                                            "option"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "escape"
+                                    },
+                                    {
+                                        "key_code": "escape"
+                                    },
+                                    {
+                                        "key_code": "escape"
+                                    },
+                                    {
+                                        "key_code": "escape",
+                                        "modifiers": [
+                                            "shift"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
                             }
                         ]
                     },
@@ -1045,7 +1084,7 @@
                                 },
                                 "to": [
                                     {
-                                        "key_code": "left_shift",
+                                        "key_code": "right_shift",
                                         "modifiers": [
                                             "command",
                                             "control",
@@ -1080,14 +1119,11 @@
                                     }
                                 ],
                                 "from": {
-                                    "key_code": "semicolon",
-                                    "modifiers": {
-                                        "optional": []
-                                    }
+                                    "key_code": "semicolon"
                                 },
                                 "to": [
                                     {
-                                        "key_code": "left_shift",
+                                        "key_code": "right_shift",
                                         "modifiers": [
                                             "command",
                                             "control",
@@ -1099,8 +1135,17 @@
                                     {
                                         "key_code": "escape",
                                         "modifiers": [
-                                            "shift"
+                                            "option"
                                         ]
+                                    },
+                                    {
+                                        "key_code": "escape"
+                                    },
+                                    {
+                                        "key_code": "escape"
+                                    },
+                                    {
+                                        "key_code": "escape"
                                     }
                                 ],
                                 "type": "basic"
@@ -1119,8 +1164,7 @@
                                 },
                                 "to": [
                                     {
-                                        "key_code": "semicolon",
-                                        "modifiers": []
+                                        "key_code": "semicolon"
                                     }
                                 ],
                                 "type": "basic"

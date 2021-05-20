@@ -34,18 +34,17 @@ nnoremap gB :action ViewBreakpoints<CR>
 nnoremap gn :action ShowIntentionActions<CR>
 nnoremap - :action SelectInProjectView<CR>
 
-nnoremap <leader>t :action JumpToLastWindow<CR>
-nnoremap <leader>w :action HideActiveWindow<cr>
+noremap <A-esc><esc><esc><esc> ;
+inoremap <A-esc><esc><esc><esc> ;
 
-noremap <s-esc> ;
-inoremap <s-esc> ;
-
-nnoremap g<s-esc> :action KJumpAction.Char2<cr>
+nnoremap g<A-esc><esc><esc><esc> :action KJumpAction.Char2<cr>
 nnoremap g, :action KJumpAction.Char2<cr>
+
+nnoremap <leader>t :action JumpToLastWindow<CR>
 
 " these are not buffer related
 nnoremap gf :action FindInPath<CR>
 nnoremap go :action ChooseRunConfiguration<CR>
 
-nnoremap gw :action RestoreDefaultLayout<CR>
+nnoremap <leader>w :action RestoreDefaultLayout<CR>
 
