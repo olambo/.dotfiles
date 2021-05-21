@@ -31,15 +31,16 @@ nnoremap gM :action ShowBookmarks<CR>
 nnoremap gb :action ToggleLineBreakpoint<CR>
 nnoremap gB :action ViewBreakpoints<CR>
 
-nnoremap gn :action ShowIntentionActions<CR>
-nnoremap - :action SelectInProjectView<CR>
-
 noremap <A-esc><esc><esc><esc> ;
 inoremap <A-esc><esc><esc><esc> ;
 
 nnoremap g<A-esc><esc><esc><esc> :action KJumpAction.Char2<cr>
 nnoremap g, :action KJumpAction.Char2<cr>
 
+nnoremap - :action ActivateProjectToolWindow<CR>
+nnoremap g- :action SelectInProjectView<CR>
+
+nnoremap gn :action ShowIntentionActions<CR>
 nnoremap <leader>t :action JumpToLastWindow<CR>
 
 " these are not buffer related
