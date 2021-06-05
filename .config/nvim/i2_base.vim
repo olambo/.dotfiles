@@ -10,8 +10,6 @@ inoremap <down> <nop>
 inoremap <pageup> <nop>
 inoremap <pagedown> <nop>
 
-nnoremap s <nop>
-
 " move down and up a bit more than normal
 nnoremap <up> 5k
 nnoremap <down> 5j

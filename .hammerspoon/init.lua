@@ -119,13 +119,39 @@ local function winToPos(posLR, wx, hx, wxIfAlready)
 end
 
 -- position the window to left at 70% width, or if already this, left half of screen
+hs.hotkey.bind({"alt", "ctrl", "cmd"}, "Return", function()
+    winToPos("left", 1, 1, .7)
+end)
+
+-- position the window to left at 70% width, or if already this, left half of screen
+hs.hotkey.bind({"alt", "ctrl", "cmd"}, "Left", function()
+    winToPos("left", .9, 1, .5)
+end)
+
+-- position the window full width or if already full width, right half of screen
+hs.hotkey.bind({"alt", "ctrl", "cmd"}, "right", function()
+    winToPos("right", .9, 1, .5)
+end)
+
+-- position to upper half of screen, or upper left
+hs.hotkey.bind({"alt", "ctrl", "cmd"}, "up", function()
+    winToPos("left", 1, .5, .5)
+end)
+
+-- position to lower half of screen, or lower right
+hs.hotkey.bind({"alt", "ctrl", "cmd"}, "down", function()
+    winToPos("right", 1, .5, .5)
+end)
+
+
+-- position the window to left at 70% width, or if already this, left half of screen
 hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, "Left", function()
     winToPos("left", .7, 1, .5)
 end)
 
 -- position the window full width or if already full width, right half of screen
 hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, "right", function()
-    winToPos("right", 1, 1, .5)
+    wintopos("right", 1, 1, .5)
 end)
 
 -- position to upper half of screen, or upper left

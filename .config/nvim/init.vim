@@ -29,6 +29,9 @@ endif
 let g:sneak#label = 1
 let g:sneak#use_ic_scs = 1
 let g:sneak#target_labels = "ftunq/SFGHLTUNRMQZ?0"
-nmap g<c-x><c-x> <Plug>Sneak_s
-nmap g, <Plug>Sneak_S
+nmap s <Plug>Sneak_s
+nmap S <Plug>Sneak_S
+
+" nmap g<c-x><c-x> <Plug>Sneak_s
+" nmap g, <Plug>Sneak_S
 
