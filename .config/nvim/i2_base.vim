@@ -1,7 +1,7 @@
 " hyper key <hyp> == <shift,contol,option,command> down (via karabiner elements)
 "   caps-lock                       -> <hyp> on hold, <esc> on press and release
 "   <hyp> h, j, k, l                -> <left>, <down>, <up>, <right>
-"   <hyp> f, b                      -> <pagedown>, <pageup>
+"   <hyp> g, b                      -> <pagedown>, <pageup>
 "   <hyp> (, )                      -> <home>, <end>
 
 " insert mode no movement
