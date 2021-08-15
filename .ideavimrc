@@ -13,42 +13,42 @@ nnoremap <right> :action MethodDown<CR>
 nnoremap s :action KJumpAction.Char2<cr>
 nnoremap S :action KJumpAction.Char2<cr>
 
-nnoremap - :action SelectInProjectView<CR>
-nnoremap g- :action ActivateProjectToolWindow<CR>
+noremap - :action SelectInProjectView<CR>
+noremap g- :action ActivateProjectToolWindow<CR>
 
-nnoremap gd :action GotoDeclaration<CR>
-nnoremap gi :action GotoImplementation<CR>
+noremap gd :action GotoDeclaration<CR>
+noremap gi :action GotoImplementation<CR>
 
-nnoremap gu :action ShowUsages<CR>
-nnoremap gt :action Scala.TypeInfo<CR>:action ExpressionTypeInfo<CR>
+noremap gu :action ShowUsages<CR>
+noremap gt :action Scala.TypeInfo<CR>:action ExpressionTypeInfo<CR>
 
-nnoremap gs :action GotoSuperMethod<CR>
-nnoremap gr :action Refactorings.QuickListPopupAction<CR>
+noremap gs :action GotoSuperMethod<CR>
+noremap gr :action Refactorings.QuickListPopupAction<CR>
 
-nnoremap gh :action JumpToLastChange<CR>
-nnoremap gl :action JumpToNextChange<CR>
+noremap gh :action JumpToLastChange<CR>
+noremap gl :action JumpToNextChange<CR>
 
-nnoremap gk :action Back<CR>
-nnoremap gj :action Forward<CR>
+noremap gk :action Back<CR>
+noremap gj :action Forward<CR>
 
-nnoremap ge :action GotoNextError<CR>
-nnoremap gE :action GotoPreviousError<CR>
+noremap ge :action GotoNextError<CR>
+noremap gE :action GotoPreviousError<CR>
 
-nnoremap gm :action ToggleBookmark<CR>
-nnoremap gM :action ShowBookmarks<CR>
+noremap gm :action ToggleBookmark<CR>
+noremap gM :action ShowBookmarks<CR>
 
-nnoremap gb :action ToggleLineBreakpoint<CR>
-nnoremap gB :action ViewBreakpoints<CR>
+noremap gb :action ToggleLineBreakpoint<CR>
+noremap gB :action ViewBreakpoints<CR>
 
-nnoremap gn :action ShowIntentionActions<CR>
-nnoremap gf :action FileStructurePopup<CR>
+noremap gn :action ShowIntentionActions<CR>
+noremap gf :action FileStructurePopup<CR>
 
+noremap go :action ChooseRunConfiguration<CR>
 nnoremap gv F}f{v%V
-nnoremap go :action ChooseRunConfiguration<CR>
 
 " not editor buffer related
-nnoremap <leader>t :action JumpToLastWindow<CR>
-nnoremap <leader>w :action RestoreDefaultLayout<CR>
+noremap <leader>t :action JumpToLastWindow<CR>
+noremap <leader>w :action RestoreDefaultLayout<CR>
 
-nnoremap <leader>f :action FindInPath<CR>
+noremap <leader>f :action FindInPath<CR>
 

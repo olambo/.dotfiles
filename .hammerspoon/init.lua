@@ -46,33 +46,19 @@ local function spaceapp(appname, altapp)
     end
 end
 
-hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, 'u', function()
-    spaceapp("Mail", "Slack")
-end)
+hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, 'u', function() spaceapp("Safari", "Calendar") end)
 
-hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, 'i', function()
-    focusToFromApp("IntelliJ IDEA")
-end)
+hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, 'i', function() spaceapp("IntelliJ IDEA", "Asana") end)
 
-hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, 'o', function()
-    spaceapp("Safari", "Calendar")
-end)
+hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, 'o', function() spaceapp("Mail", "Slack") end)
 
-hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, 'p', function()
-    spaceapp("iTerm2", "Postman")
-end)
+hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, 'p', function() spaceapp("iTerm2", "Postman") end)
 
-hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, '8', function()
-    focusToFromApp(prvapp, true)
-end)
+hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, '8', function() focusToFromApp(prvapp, true) end)
 
-hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, "m", function()
-    focusToFromApp("Finder", true)
-end)
+hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, "m", function() focusToFromApp("Finder", true) end)
 
-hs.hotkey.bind({"alt", "ctrl", "cmd"}, "8", function()
-    focusToFromApp("Terminal", true)
-end)
+hs.hotkey.bind({"alt", "ctrl", "cmd"}, "8", function() focusToFromApp("Terminal", true) end)
 
 -- in iTerm2, open a low height split pane below the current one,
 -- run vcommand-start and move back to previous pane
@@ -96,13 +82,14 @@ hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, "v", function()
 end)
 
 -- position windows. If the width is already set, use an alternative.
--- keeps the number of keys to be bound to a minimum
 local function winToPos(posLR, wx, hx, wxIfAlready) 
     local win = hs.window.focusedWindow()
     local f = win:frame()
     local max = win:screen():frame()
     local widthx = max.w * wx
-    if math.abs(widthx - f.w) < 20 and math.abs(max.h * hx - f.h) < 20 then
+    if posLR == "left" and f.x > 90 then
+        -- dont change width
+    elseif math.abs(widthx - f.w) < 20 and math.abs(max.h * hx - f.h) < 20 then
         widthx = max.w * wxIfAlready
     end
     f.x = max.x
@@ -115,51 +102,64 @@ local function winToPos(posLR, wx, hx, wxIfAlready)
     if posLR == "right" and f.h ~= max.h then
         f.y = max.h - f.h 
     end
+    if posLR == "left" and f.w ~= max.w then
+        f.x = 10
+    end
     win:setFrame(f, 0)
 end
 
--- position the window to left at 70% width, or if already this, left half of screen
-hs.hotkey.bind({"alt", "ctrl", "cmd"}, "Return", function()
-    winToPos("left", 1, 1, .7)
-end)
+-- move the window to the right, or if at far right to far left
+local function winMove() 
+    local win = hs.window.focusedWindow()
+    local f = win:frame()
+    local max = win:screen():frame()
+    local extrax = max.w - f.w
+    if f.x < 50 and max.w > 3000 then
+        f.x = extrax/2
+    elseif max.w > 3000 and f.x + f.w < max.w then
+        f.x = extrax
+    elseif f.x < 50 then
+        f.x = extrax
+    else
+        f.x = 10
+    end
+    win:setFrame(f, 0)
+end
 
--- position the window to left at 70% width, or if already this, left half of screen
-hs.hotkey.bind({"alt", "ctrl", "cmd"}, "Left", function()
-    winToPos("left", .9, 1, .5)
-end)
+-- size the window
+local function winSize(x, y) 
+    local win = hs.window.focusedWindow()
+    local f = win:frame()
+    f.w = f.w + x
+    f.h = f.h + y
+    win:setFrame(f, 0)
+end
 
--- position the window full width or if already full width, right half of screen
-hs.hotkey.bind({"alt", "ctrl", "cmd"}, "right", function()
-    winToPos("right", .9, 1, .5)
-end)
+-- position the window to left 
+hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, "Left", function() winToPos("left", .5, 1, .7) end)
 
--- position to upper half of screen, or upper left
-hs.hotkey.bind({"alt", "ctrl", "cmd"}, "up", function()
-    winToPos("left", 1, .5, .5)
-end)
+-- move the window to the right 
+hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, "right", function() winMove() end)
 
--- position to lower half of screen, or lower right
-hs.hotkey.bind({"alt", "ctrl", "cmd"}, "down", function()
-    winToPos("right", 1, .5, .5)
-end)
+-- position to upper left
+hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, "up", function() winToPos("left", .5, .5, .3) end)
 
+-- position to lower right
+hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, "down", function() winToPos("right", .5, .5, .3) end)
 
--- position the window to left at 70% width, or if already this, left half of screen
-hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, "Left", function()
-    winToPos("left", .7, 1, .5)
-end)
+-- not hyperkey keys
+-- maximize window
+hs.hotkey.bind({"alt", "ctrl", "cmd"}, "Return", function() winToPos("left", 1, 1, .8) end)
 
--- position the window full width or if already full width, right half of screen
-hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, "right", function()
-    wintopos("right", 1, 1, .5)
-end)
+-- smaller width
+hs.hotkey.bind({"alt", "ctrl", "cmd"}, "left", function() winSize(-10, 0) end, nil, function() winSize(-10, 0) end)
 
--- position to upper half of screen, or upper left
-hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, "up", function()
-    winToPos("left", 1, .5, .5)
-end)
+-- larger width
+hs.hotkey.bind({"alt", "ctrl", "cmd"}, "right", function() winSize(10, 0) end, nil, function() winSize(10, 0) end)
 
--- position to lower half of screen, or lower right
-hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, "down", function()
-    winToPos("right", 1, .5, .5)
-end)
+-- smaller height
+hs.hotkey.bind({"alt", "ctrl", "cmd"}, "up", function() winSize(0, -10) end, nil, function() winSize(0, -10) end)
+
+-- larger height
+hs.hotkey.bind({"alt", "ctrl", "cmd"}, "down", function() winSize(0, 10) end, nil, function() winSize(0, 10) end)
+
