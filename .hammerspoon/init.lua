@@ -58,7 +58,7 @@ hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, '8', function() focusToFromApp(p
 
 hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, "m", function() focusToFromApp("Finder", true) end)
 
--- <hyp>-, this is been rebound by hammerspoon to prevent runnning of apple diagnostics
+-- <hyp>-comma - this is been rebound by karabiner elements to prevent runnning of apple diagnostics.
 hs.hotkey.bind({"alt", "ctrl", "cmd"}, "8", function() focusToFromApp("Terminal", true) end)
 
 -- in iTerm2, open a low height split pane below the current one,
