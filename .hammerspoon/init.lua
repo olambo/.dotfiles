@@ -46,18 +46,19 @@ local function spaceapp(appname, altapp)
     end
 end
 
-hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, 'u', function() spaceapp("Safari", "Calendar") end)
+hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, 'u', function() spaceapp("iTerm2", "Postman") end)
 
 hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, 'i', function() spaceapp("IntelliJ IDEA", "Asana") end)
 
-hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, 'o', function() spaceapp("Mail", "Slack") end)
+hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, 'o', function() spaceapp("Safari", "Calendar") end)
 
-hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, 'p', function() spaceapp("iTerm2", "Postman") end)
+hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, 'p', function() spaceapp("Mail", "Slack") end)
 
 hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, '8', function() focusToFromApp(prvapp, true) end)
 
 hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, "m", function() focusToFromApp("Finder", true) end)
 
+-- <hyp>-, this is been rebound by hammerspoon to prevent runnning of apple diagnostics
 hs.hotkey.bind({"alt", "ctrl", "cmd"}, "8", function() focusToFromApp("Terminal", true) end)
 
 -- in iTerm2, open a low height split pane below the current one,
