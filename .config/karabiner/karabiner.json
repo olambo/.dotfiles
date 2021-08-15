@@ -85,7 +85,7 @@
                         ]
                     },
                     {
-                        "description": "2)  <hyp-f> to pagedown, <hyp-b> to pageup",
+                        "description": "2)  <hyp-g> to pagedown, <hyp-b> to pageup",
                         "manipulators": [
                             {
                                 "from": {
