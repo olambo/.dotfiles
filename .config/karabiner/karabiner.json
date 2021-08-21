@@ -365,9 +365,6 @@
                                 "conditions": [
                                     {
                                         "bundle_identifiers": [
-                                            "com.apple.Terminal",
-                                            "com.googlecode.iterm2",
-                                            "com.jetbrains.intellij",
                                             "com.microsoft.VSCode"
                                         ],
                                         "type": "frontmost_application_if"
@@ -388,6 +385,39 @@
                                 "to": [
                                     {
                                         "key_code": "home"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "com.apple.Terminal",
+                                            "com.googlecode.iterm2",
+                                            "com.jetbrains.intellij"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "description": "term startOfLine",
+                                "from": {
+                                    "key_code": "9",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "shift",
+                                            "command",
+                                            "control",
+                                            "option"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "6",
+                                        "modifiers": [
+                                            "shift"
+                                        ]
                                     }
                                 ],
                                 "type": "basic"
@@ -520,7 +550,6 @@
                                         "bundle_identifiers": [
                                             "com.apple.Terminal",
                                             "com.googlecode.iterm2",
-                                            "com.jetbrains.intellij",
                                             "com.microsoft.VSCode"
                                         ],
                                         "type": "frontmost_application_if"
@@ -543,6 +572,42 @@
                                         "modifiers": [
                                             "control"
                                         ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "com.jetbrains.intellij"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "t",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "shift",
+                                            "command",
+                                            "control",
+                                            "option"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "return_or_enter",
+                                        "modifiers": [
+                                            "option"
+                                        ]
+                                    },
+                                    {
+                                        "key_code": "t"
+                                    },
+                                    {
+                                        "key_code": "a"
                                     }
                                 ],
                                 "type": "basic"
