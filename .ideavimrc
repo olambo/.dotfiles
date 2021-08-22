@@ -51,7 +51,9 @@ noremap <A-j> :action EditorCloneCaretBelow<CR>
 noremap <A-k> :action EditorCloneCaretAbove<CR>
 
 map <A-l> <Plug>NextWholeOccurrence
-map <A-h> <Plug>SkipOccurrence
+map <A-h> <Plug>RemoveOccurrence
+
+map <S-A-l> <Plug>SkipOccurrence
 
 " not editor buffer related
 noremap <leader>t :action JumpToLastWindow<CR>
