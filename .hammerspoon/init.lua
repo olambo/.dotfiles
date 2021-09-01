@@ -18,7 +18,7 @@ appWatcher:start()
 local function focusToFromApp(appname, bounce)
     local appToRun
     if hs.application.get(appname) == nil then
-        print(appname .. " NOT running open " .. appname)
+       -- print(appname .. " NOT running open " .. appname)
         appToRun = appname
     elseif appname == curapp then
         print(appname .. " already frontmost goto " .. prvapp)
@@ -28,14 +28,14 @@ local function focusToFromApp(appname, bounce)
             appToRun = prvapp
         end
     else
-        print("prvapp " .. prvapp .. " curapp " .. curapp .. " goto " .. appname)
+       -- print("prvapp " .. prvapp .. " curapp " .. curapp .. " goto " .. appname)
         appToRun = appname
     end
     if appToRun == "iTerm2" then
         -- strange but needed
         appToRun = "iTerm"
     end
-        print(" apptorun " .. appToRun)
+       -- print(" apptorun " .. appToRun)
     hs.application.launchOrFocus(appToRun)
 end
 
