@@ -41,19 +41,20 @@ noremap gM :action ShowBookmarks<CR>
 noremap gb :action ToggleLineBreakpoint<CR>
 noremap gB :action ViewBreakpoints<CR>
 
-noremap ga :action ShowIntentionActions<CR>
 noremap gf :action FileStructurePopup<CR>
-
 noremap go :action ChooseRunConfiguration<CR>
-nnoremap gv F}f{v%V
+
+" noremap ga :action ShowIntentionActions<CR>
+" nnoremap gv F}f{v%V
 
 noremap <A-j> :action EditorCloneCaretBelow<CR>
 noremap <A-k> :action EditorCloneCaretAbove<CR>
 
 map <A-l> <Plug>NextWholeOccurrence
-map <A-h> <Plug>RemoveOccurrence
+map <C-A-l> <Plug>NextOccurrence
 
 map <S-A-l> <Plug>SkipOccurrence
+map <A-h> <Plug>RemoveOccurrence
 
 " not editor buffer related
 noremap <leader>t :action JumpToLastWindow<CR>

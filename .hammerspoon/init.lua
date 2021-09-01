@@ -18,23 +18,24 @@ appWatcher:start()
 local function focusToFromApp(appname, bounce)
     local appToRun
     if hs.application.get(appname) == nil then
-        -- print(appname .. " NOT running open " .. appname)
+        print(appname .. " NOT running open " .. appname)
         appToRun = appname
     elseif appname == curapp then
-        -- print(appname .. " already frontmost goto " .. prvapp)
+        print(appname .. " already frontmost goto " .. prvapp)
         if bounce == nil then
             appToRun = appname
         else
             appToRun = prvapp
         end
     else
-        -- print("prvapp " .. prvapp .. " curapp " .. curapp .. " goto " .. appname)
+        print("prvapp " .. prvapp .. " curapp " .. curapp .. " goto " .. appname)
         appToRun = appname
     end
     if appToRun == "iTerm2" then
         -- strange but needed
         appToRun = "iTerm"
     end
+        print(" apptorun " .. appToRun)
     hs.application.launchOrFocus(appToRun)
 end
 
@@ -46,7 +47,7 @@ local function spaceapp(appname, altapp)
     end
 end
 
-hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, 'u', function() spaceapp("iTerm2", "Postman") end)
+hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, 'u', function() spaceapp("iTerm2", "iTerm2") end)
 
 hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, 'i', function() spaceapp("IntelliJ IDEA", "Asana") end)
 
@@ -56,10 +57,9 @@ hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, 'p', function() spaceapp("Mail",
 
 hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, '8', function() focusToFromApp(prvapp, true) end)
 
-hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, "m", function() focusToFromApp("Finder", true) end)
+hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, "m", function() focusToFromApp("Terminal", true) end)
 
--- <hyp>-comma - this is been rebound by karabiner elements to prevent runnning of apple diagnostics.
-hs.hotkey.bind({"alt", "ctrl", "cmd"}, "8", function() focusToFromApp("Terminal", true) end)
+hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, "n", function() focusToFromApp("Finder", true) end)
 
 -- in iTerm2, open a low height split pane below the current one,
 -- run vcommand-start and move back to previous pane

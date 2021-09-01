@@ -46,20 +46,6 @@
                             },
                             {
                                 "from": {
-                                    "key_code": "period",
-                                    "modifiers": {
-                                        "mandatory": [
-                                            "shift",
-                                            "command",
-                                            "control",
-                                            "option"
-                                        ]
-                                    }
-                                },
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
                                     "key_code": "comma",
                                     "modifiers": {
                                         "mandatory": [
@@ -72,11 +58,62 @@
                                 },
                                 "to": [
                                     {
-                                        "key_code": "8",
+                                        "key_code": "comma",
                                         "modifiers": [
+                                            "shift"
+                                        ]
+                                    },
+                                    {
+                                        "key_code": "hyphen"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "period",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "shift",
                                             "command",
                                             "control",
                                             "option"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "hyphen"
+                                    },
+                                    {
+                                        "key_code": "period",
+                                        "modifiers": [
+                                            "shift"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "equal_sign",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "shift",
+                                            "command",
+                                            "control",
+                                            "option"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "equal_sign"
+                                    },
+                                    {
+                                        "key_code": "period",
+                                        "modifiers": [
+                                            "shift"
                                         ]
                                     }
                                 ],
@@ -834,7 +871,7 @@
                         ]
                     },
                     {
-                        "description": "10)  <hyp-n> to <cmd-]> for iterm2, <opt-tab> for intellij - next pane",
+                        "description": "10)  <hyp-s> to <cmd-]> for iterm2, <opt-tab> for intellij - next pane",
                         "manipulators": [
                             {
                                 "conditions": [
@@ -846,7 +883,7 @@
                                     }
                                 ],
                                 "from": {
-                                    "key_code": "n",
+                                    "key_code": "s",
                                     "modifiers": {
                                         "mandatory": [
                                             "shift",
@@ -876,7 +913,7 @@
                                     }
                                 ],
                                 "from": {
-                                    "key_code": "n",
+                                    "key_code": "s",
                                     "modifiers": {
                                         "mandatory": [
                                             "shift",
@@ -1100,7 +1137,7 @@
                                     }
                                 ],
                                 "from": {
-                                    "key_code": "s",
+                                    "key_code": "a",
                                     "modifiers": {
                                         "mandatory": [
                                             "shift",
