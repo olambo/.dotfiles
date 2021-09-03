@@ -153,14 +153,14 @@ hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, "down", function() winToPos("rig
 hs.hotkey.bind({"alt", "ctrl", "cmd"}, "Return", function() winToPos("left", 1, 1, .8) end)
 
 -- smaller width
-hs.hotkey.bind({"alt", "ctrl", "cmd"}, "left", function() winSize(-10, 0) end, nil, function() winSize(-10, 0) end)
+hs.hotkey.bind({"alt", "ctrl", "cmd"}, "left", function() winSize(-20, 0) end, nil, function() winSize(-20, 0) end)
 
 -- larger width
-hs.hotkey.bind({"alt", "ctrl", "cmd"}, "right", function() winSize(10, 0) end, nil, function() winSize(10, 0) end)
+hs.hotkey.bind({"alt", "ctrl", "cmd"}, "right", function() winSize(20, 0) end, nil, function() winSize(20, 0) end)
 
 -- smaller height
-hs.hotkey.bind({"alt", "ctrl", "cmd"}, "up", function() winSize(0, -10) end, nil, function() winSize(0, -10) end)
+hs.hotkey.bind({"alt", "ctrl", "cmd"}, "up", function() winSize(0, -20) end, nil, function() winSize(0, -20) end)
 
 -- larger height
-hs.hotkey.bind({"alt", "ctrl", "cmd"}, "down", function() winSize(0, 10) end, nil, function() winSize(0, 10) end)
+hs.hotkey.bind({"alt", "ctrl", "cmd"}, "down", function() winSize(0, 20) end, nil, function() winSize(0, 20) end)
 

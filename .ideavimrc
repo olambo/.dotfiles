@@ -44,9 +44,6 @@ noremap gB :action ViewBreakpoints<CR>
 noremap gf :action FileStructurePopup<CR>
 noremap go :action ChooseRunConfiguration<CR>
 
-" noremap ga :action ShowIntentionActions<CR>
-" nnoremap gv F}f{v%V
-
 noremap <A-j> :action EditorCloneCaretBelow<CR>
 noremap <A-k> :action EditorCloneCaretAbove<CR>
 
@@ -61,4 +58,7 @@ noremap <leader>t :action JumpToLastWindow<CR>
 noremap <leader>w :action RestoreDefaultLayout<CR>
 
 noremap <leader>f :action FindInPath<CR>
+
+" noremap ga :action ShowIntentionActions<CR>
+" nnoremap gv F}f{v%V
 
