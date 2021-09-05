@@ -59,6 +59,3 @@ noremap <leader>w :action RestoreDefaultLayout<CR>
 
 noremap <leader>f :action FindInPath<CR>
 
-" noremap ga :action ShowIntentionActions<CR>
-" nnoremap gv F}f{v%V
-

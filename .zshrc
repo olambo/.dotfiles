@@ -71,5 +71,4 @@ alias c='cd  $(z |sort +1 -r| fzf --height=40% --layout=reverse| cut -d" " -f2-)
 alias v=~/.config/nvim/bin/viFZF
 alias vcd='cd `cat ~/.config/nvim/runcache/viDirFZF`'
 
-export PATH="$PATH:/Users/oliver/Library/Application\ Support/Coursier/bin"
-export JAVA_HOME=/usr/local/Cellar/openjdk@11/11.0.10/libexec/openjdk.jdk/Contents/Hom
+export PATH="$PATH:$HOME/Library/Application\ Support/Coursier/bin"
