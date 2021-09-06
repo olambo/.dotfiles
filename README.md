@@ -43,7 +43,7 @@ Some of the keys, remaped are listed below.
 <hyp> [ ]     -> next or previous tab (all apps)
 <hyp> ( )     -> begining or end of line (all apps)
 <hyp> return  -> expand/contract pane (iTerm2) 
-<hyp> n       -> next pane (iTerm2) 
+<hyp> s       -> next pane (iTerm2) 
 <cmd> c       -> copy to system clipboard from remote machine (iTerm2 Vim)
 ```
 Vim can't directly map <kbd>hyp</kbd> keys. So where needed, have Karabiner-Elements first map a <kbd>hyp</kbd> key to key(s) that Vim can recognize.
