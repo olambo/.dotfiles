@@ -9,6 +9,8 @@ if !exists('g:vscode')
 	Plug 'justinmk/vim-dirvish'
 	Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 	Plug 'junegunn/fzf.vim'
+
+    " do I want to use vim as ide?
   	" Plug 'neoclide/coc.nvim', { 'branch': 'release' }
   	" Plug 'scalameta/coc-metals', {'do': 'yarn install --frozen-lockfile'}
 endif
