@@ -3,6 +3,7 @@ source ~/.config/nvim/i2_base.vim
 set visualbell
 set noerrorbells
 set multiple-cursors
+set commentary
 
 " below are actions on the current editor buffer
 noremap <A-esc><esc><esc><esc> ;
