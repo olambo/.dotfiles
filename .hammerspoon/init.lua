@@ -87,11 +87,11 @@ local function winToPos(posLR, wx, hx, wxIfAlready)
     local win = hs.window.focusedWindow()
     local f = win:frame()
     local max = win:screen():frame()
-    local widthx = max.w * wx
-    if posLR == "left" and f.x > 90 then
-        -- dont change width
-    elseif math.abs(widthx - f.w) < 20 and math.abs(max.h * hx - f.h) < 20 then
-        widthx = max.w * wxIfAlready
+    local widthx = math.floor(max.w * wx)
+
+    if posLR == "mid" and math.floor((max.w - f.w) / 2) ~= f.x then
+    elseif widthx == f.w then
+        widthx = math.floor(max.w * wxIfAlready)
     end
     f.x = max.x
     f.y = max.y
@@ -106,22 +106,42 @@ local function winToPos(posLR, wx, hx, wxIfAlready)
     if posLR == "left" and f.w ~= max.w then
         f.x = 10
     end
+    if posLR == "mid"  then
+        f.x = math.floor((max.w - f.w) / 2)
+    end
     win:setFrame(f, 0)
 end
 
--- move the window to the right, or if at far right to far left
-local function winMove() 
+local function winRight() 
     local win = hs.window.focusedWindow()
-    local f = win:frame()
     local max = win:screen():frame()
-    local extrax = max.w - f.w
-    if f.x < 50 and max.w > 3000 then
-        f.x = extrax/2
-    elseif max.w > 3000 and f.x + f.w < max.w then
-        f.x = extrax
-    elseif f.x < 50 then
-        f.x = extrax
+    local f = win:frame()
+    local ex = (max.w - f.w) / 4
+
+    if f.x == 10 then
+        f.x = 0
+    end
+
+    if f.x >= ex * 4 then
+        f.x = 10
     else
+        f.x = f.x + ex
+    end
+    win:setFrame(f, 0)
+end
+
+local function winLeft() 
+    local win = hs.window.focusedWindow()
+    local max = win:screen():frame()
+    local f = win:frame()
+    local ex = (max.w - f.w) / 4
+
+    if f.x <= 10 then
+        f.x = ex * 4
+    else
+        f.x = f.x - ex
+    end
+    if f.x < 10 then
         f.x = 10
     end
     win:setFrame(f, 0)
@@ -136,14 +156,14 @@ local function winSize(x, y)
     win:setFrame(f, 0)
 end
 
--- position the window to left 
-hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, "Left", function() winToPos("left", .5, 1, .7) end)
+-- move left
+hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, "Left", function() winLeft() end)
 
--- move the window to the right 
-hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, "right", function() winMove() end)
+-- move right
+hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, "right", function() winRight() end)
 
--- position to upper left
-hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, "up", function() winToPos("left", .5, .5, .3) end)
+-- position mid
+hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, "up", function() winToPos("mid", .5, 1, .7) end)
 
 -- position to lower right
 hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, "down", function() winToPos("right", .5, .5, .3) end)
