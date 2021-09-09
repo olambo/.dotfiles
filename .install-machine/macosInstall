@@ -1,4 +1,6 @@
 #! /bin/bash
+-- set iterm to load preferences from custom location
+
 xcode-select --install
 
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
