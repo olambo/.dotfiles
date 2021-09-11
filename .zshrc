@@ -37,7 +37,7 @@ setopt HIST_IGNORE_SPACE
 setopt APPEND_HISTORY
 setopt EXTENDED_HISTORY
 
-export PATH=~/.config/nvim/bin:~/go/bin:/usr/local/opt/python/libexec/bin:/usr/local/bin:$PATH
+export PATH=~/.config/nvim/bin:~/go/bin:/usr/local/opt/python/libexec/bin:/usr/local/bin:$PATH:/opt/homebrew/bin
 
 if [[ $(uname 2> /dev/null) == "Linux" ]] ; then
     alias ls='ls --color=auto'
@@ -71,4 +71,4 @@ alias c='cd  $(z |sort +1 -r| fzf --height=40% --layout=reverse| cut -d" " -f2-)
 alias v=~/.config/nvim/bin/viFZF
 alias vcd='cd `cat ~/.config/nvim/runcache/viDirFZF`'
 
-export PATH="$PATH:$HOME/Library/Application\ Support/Coursier/bin"
+export PATH=$PATH:$HOME/Library/Application\ Support/Coursier/bin
