@@ -5,3 +5,7 @@ create-export
 dependency-reduced-pom.xml
 
 .idea
+.metals/
+.bloop/
+.ammonite/
+metals.sbt
