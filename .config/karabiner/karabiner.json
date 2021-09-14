@@ -1009,7 +1009,8 @@
                                 "conditions": [
                                     {
                                         "bundle_identifiers": [
-                                            "com.jetbrains.intellij"
+                                            "com.jetbrains.intellij",
+                                            "com.microsoft.VSCode"
                                         ],
                                         "type": "frontmost_application_if"
                                     }
@@ -1070,7 +1071,8 @@
                                 "conditions": [
                                     {
                                         "bundle_identifiers": [
-                                            "com.jetbrains.intellij"
+                                            "com.jetbrains.intellij",
+                                            "com.microsoft.VSCode"
                                         ],
                                         "type": "frontmost_application_if"
                                     }
