@@ -55,15 +55,16 @@ hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, 'o', function() spaceapp("Safari
 
 hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, 'p', function() spaceapp("Mail", "Slack") end)
 
+hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, 'v', function() spaceapp("Visual Studio Code", "Visual Studio Code") end)
+
 hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, '8', function() focusToFromApp(prvapp, true) end)
 
-hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, "m", function() focusToFromApp("Terminal", true) end)
+hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, 'm', function() focusToFromApp("Terminal", true) end)
 
-hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, "n", function() focusToFromApp("Finder", true) end)
+hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, 'n', function() focusToFromApp("Finder", true) end)
 
--- in iTerm2, open a low height split pane below the current one,
--- run vcommand-start and move back to previous pane
-hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, "v", function()
+-- in iTerm2, open a low height split pane below the current one, Run vcommand-start and move back to previous pane
+hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, 'z', function()
     local function doKeyStroke(modifiers, character)
         local event = require("hs.eventtap").event
         event.newKeyEvent(modifiers, string.lower(character), true):post()
