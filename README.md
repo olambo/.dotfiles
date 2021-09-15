@@ -31,7 +31,7 @@ rm -r tmpdotfiles
 ## Apps used to modify keyboard mappings
 
 ### [Karabiner-Elements](https://pqrs.org/osx/karabiner/)
-using Karabiner-Elements for key remapping. For instance, capslock key
+using Karabiner-Elements for low level key remapping. For instance, capslock key
 - <kbd>esc</kbd> when pressed and immediately released
 - <kbd>hyp</kbd> key (<kbd>shift</kbd>+<kbd>ctrl</kbd>+<kbd>option</kbd>+<kbd>command</kbd>) + normal key
 
@@ -42,8 +42,8 @@ Some of the keys, remaped are listed below.
 <hyp> g b     -> pagedown, pageup (all apps)
 <hyp> [ ]     -> next or previous tab (all apps)
 <hyp> ( )     -> begining or end of line (all apps)
-<hyp> return  -> expand/contract pane (iTerm2) 
-<hyp> s       -> next pane (iTerm2) 
+<hyp> return  -> expand/contract pane (iTerm2, vscode, intellij) 
+<hyp> s       -> next pane (iTerm2, vscode, intellij) 
 <cmd> c       -> copy to system clipboard from remote machine (iTerm2 Vim)
 ```
 Vim can't directly map <kbd>hyp</kbd> keys. So where needed, have Karabiner-Elements first map a <kbd>hyp</kbd> key to key(s) that Vim can recognize.
