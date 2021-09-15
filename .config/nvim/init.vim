@@ -27,9 +27,6 @@ if !exists('g:vscode')
 endif
 
 " sneak with very bright lables!
-let g:sneak#label = 1
-let g:sneak#use_ic_scs = 1
-let g:sneak#target_labels = "ftunq/SFGHLTUNRMQZ?0"
 nmap s <Plug>Sneak_s
 nmap S <Plug>Sneak_S
 
