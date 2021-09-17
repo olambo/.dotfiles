@@ -1,6 +1,17 @@
+" sneak with very bright lables!
+nmap s <Plug>Sneak_s
+nmap S <Plug>Sneak_S
+
 " down when number given: j, otherwise gj. (similar with k)
 nnoremap <expr> j v:count ? 'j' : 'gj'
 nnoremap <expr> k v:count ? 'k' : 'gk'
+
+let g:loaded_python_provider='/usr/bin/python2' 
+let g:python3_host_prog='/usr/local/bin/python3'
+
+" on <cr> dont hide closing bracket. don't need . repeat here and don't want to override coc <cr>
+let g:pear_tree_repeatable_expand = 0
+imap <c-x><c-e> <Plug>(PearTreeExpand)
 
 " used in ideavim
 " noremap g- <nop>
