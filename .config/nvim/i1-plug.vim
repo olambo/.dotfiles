@@ -16,8 +16,8 @@ if !exists('g:vscode')
 	Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 	Plug 'junegunn/fzf.vim'
     " vim as ide?
-  	" Plug 'neoclide/coc.nvim', { 'branch': 'release' }
-  	" Plug 'scalameta/coc-metals', {'do': 'yarn install --frozen-lockfile'}
+    " Plug 'scalameta/nvim-metals'
+    " Plug 'nvim-lua/completion-nvim'
 endif
 
 call plug#end()
