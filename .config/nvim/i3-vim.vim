@@ -43,6 +43,9 @@ noremap gB <nop>
 noremap gf <nop>
 noremap go <nop>
 
+nnoremap gk <c-o>
+nnoremap gj <c-i>
+
 set belloff=all
 set mouse=nv " this is not going to allow command-c. can use option-mouse or turn off
 set incsearch
@@ -101,8 +104,8 @@ set bg=light
 
 " ----------------------------------------------------------------------------------------------
 "  karabiner elements assisted key combinations
-noremap <c-x><c-x> ;
-inoremap <c-x><c-x> <esc>
+noremap <c-x><c-x> '
+inoremap <c-x><c-x> '
  
 " copy to system clipboard
 if $TERM_PROGRAM == "Apple_Terminal"
