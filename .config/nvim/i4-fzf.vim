@@ -12,7 +12,6 @@ nnoremap <silent> gf :call ZGlobal()<cr>
 nnoremap <silent> <Leader>fs :call ZSFiles()<cr>
 nnoremap <silent> <Leader>fl :call ZLocal()<cr>
 
-
 function! ZGlobal()
   execute "FZF"
 endfunction
