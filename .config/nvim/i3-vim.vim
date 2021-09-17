@@ -1,3 +1,37 @@
+" down when number given: j, otherwise gj. (similar with k)
+nnoremap <expr> j v:count ? 'j' : 'gj'
+nnoremap <expr> k v:count ? 'k' : 'gk'
+
+" used in ideavim
+" noremap g- <nop>
+
+" noremap gd <nop>
+noremap gi <nop>
+
+noremap gu <nop>
+noremap gt <nop>
+
+noremap gs <nop>
+noremap gr <nop>
+
+noremap gh <nop>
+noremap gl <nop>
+
+noremap gk <nop>
+noremap gj <nop>
+
+noremap ge <nop>
+noremap gE <nop>
+
+noremap gm <nop>
+noremap gM <nop>
+
+noremap gb <nop>
+noremap gB <nop>
+
+noremap gf <nop>
+noremap go <nop>
+
 set belloff=all
 set mouse=nv " this is not going to allow command-c. can use option-mouse or turn off
 set incsearch
