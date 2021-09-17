@@ -1,3 +1,9 @@
+" install vim-plug: https://github.com/junegunn/vim-plug
+ 
+" install node
+" install python for coc
+" python3 -m pip install --user --upgrade pynvim
+
 call plug#begin('~/.config/nvim/plugged')
 
 Plug 'justinmk/vim-sneak'
@@ -9,8 +15,7 @@ if !exists('g:vscode')
 	Plug 'justinmk/vim-dirvish'
 	Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 	Plug 'junegunn/fzf.vim'
-
-    " do I want to use vim as ide?
+    " vim as ide?
   	" Plug 'neoclide/coc.nvim', { 'branch': 'release' }
   	" Plug 'scalameta/coc-metals', {'do': 'yarn install --frozen-lockfile'}
 endif
