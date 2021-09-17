@@ -7,6 +7,6 @@ else
 	source ~/.config/nvim/i3-vim.vim
 	source ~/.config/nvim/i4-fzf.vim
 	source ~/.config/nvim/i5-statusline.vim
-    " use vim as ide uncomment next line and set cmdheight=1
-	" source ~/.config/nvim/i6-coc.vim
+    " use vim as ide uncomment next line
+	" source ~/.config/nvim/i6-lsp.vim
 endif
