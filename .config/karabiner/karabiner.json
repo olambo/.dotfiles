@@ -402,37 +402,10 @@
                                 "conditions": [
                                     {
                                         "bundle_identifiers": [
-                                            "com.microsoft.VSCode"
-                                        ],
-                                        "type": "frontmost_application_if"
-                                    }
-                                ],
-                                "description": "term startOfLine",
-                                "from": {
-                                    "key_code": "9",
-                                    "modifiers": {
-                                        "mandatory": [
-                                            "shift",
-                                            "command",
-                                            "control",
-                                            "option"
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "home"
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "bundle_identifiers": [
                                             "com.apple.Terminal",
                                             "com.googlecode.iterm2",
-                                            "com.jetbrains.intellij"
+                                            "com.jetbrains.intellij",
+                                            "com.microsoft.VSCode"
                                         ],
                                         "type": "frontmost_application_if"
                                     }
