@@ -42,8 +42,13 @@
         "when": "editorTextFocus"
     },
     {
-        "key": "alt+l",
+        "key": "shift+alt+l",
         "command": "editor.action.changeAll",
         "when": "editorTextFocus"
-    }
+    },
+    {
+        "key": "alt+l",
+        "command": "editor.action.addSelectionToNextFindMatch",
+        "when": "editorFocus"
+      }
 ]

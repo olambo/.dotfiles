@@ -5,6 +5,8 @@
 "   <hyp> (, )                      -> <home>, <end>
 
 " insert mode no movement
+nnoremap <home> ^
+
 inoremap <up> <nop>
 inoremap <down> <nop>
 inoremap <pageup> <nop>

@@ -424,10 +424,7 @@
                                 },
                                 "to": [
                                     {
-                                        "key_code": "6",
-                                        "modifiers": [
-                                            "shift"
-                                        ]
+                                        "key_code": "home"
                                     }
                                 ],
                                 "type": "basic"
