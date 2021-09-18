@@ -10,7 +10,7 @@ noremap - <Cmd>call VSCodeNotify('workbench.view.explorer')<CR>
 " noremap gf <Cmd>call VSCodeNotify('workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup')<CR>
 noremap gf <Cmd>call VSCodeNotify('workbench.action.showAllEditorsByMostRecentlyUsed')<CR>
 
-noremap gd <Cmd>call VSCodeNotify('editor.action.goToDefinition')<CR>
+" noremap gd <Cmd>call VSCodeNotify('editor.action.goToDefinition')<CR>
 noremap gi <Cmd>call VSCodeNotify('editor.action.goToImplementation')<CR>
 
 noremap gu <Cmd>call VSCodeNotify('editor.action.goToReferences')<CR>
