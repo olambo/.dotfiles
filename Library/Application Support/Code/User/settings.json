@@ -1,0 +1,51 @@
+{
+    "editor.minimap.enabled":false,
+    "files.watcherExclude": {
+        "**/.bloop": true,
+        "**/.metals": true,
+        "**/.ammonite": true,
+        "**/.git/objects/**": true,
+        "**/.git/subtree-cache/**": true,
+        "**/node_modules/**": true,
+        "**/.direnv/**": true,
+        "**/.venv/**": true
+    },
+    "search.exclude":{
+        "**/node_modules":true,
+        "**/bower_components":true,
+        "**/venv/**":true,
+        "**/.git/**":true,
+        "**/project":true,
+        "**/target":true,
+        "**/.bloop":true,
+        "**/.metals":true
+     },
+    "vscode-neovim.highlightGroups.highlights": {
+
+        "Directory": "vim",
+        "IncSearch": {
+            "backgroundColor": "theme.editor.findMatchBackground",
+            "borderColor": "theme.editor.findMatchBorder"
+        },
+        "Search": {
+            "backgroundColor": "theme.editor.findMatchHighlightBackground",
+            "borderColor": "theme.editor.findMatchHighlightBorder"
+        },
+        "Visual": {
+            "backgroundColor": "theme.editor.selectionBackground"
+        },
+        "Conceal": "vim",
+        "Substitute": "vim"
+    },
+    "window.autoDetectColorScheme": true,
+    "workbench.colorTheme": "Default Light+",
+    "vscode-neovim.neovimInitVimPaths.linux": "/usr/local/bin/nvim",
+    "vscode-neovim.textDecorationsAtTop": true,
+    "vim.commandLineModeKeyBindings": [
+    
+    ],
+    "vscode-neovim.neovimExecutablePaths.darwin": "/usr/local/bin/nvim",
+    "go.toolsManagement.autoUpdate": true,
+    "window.zoomLevel": 1,
+    "editor.fontSize": 13
+}
