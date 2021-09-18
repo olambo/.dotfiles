@@ -972,36 +972,6 @@
                                     }
                                 ],
                                 "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "bundle_identifiers": [
-                                            "com.microsoft.VSCode"
-                                        ],
-                                        "type": "frontmost_application_if"
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "return_or_enter",
-                                    "modifiers": {
-                                        "mandatory": [
-                                            "shift",
-                                            "command",
-                                            "control",
-                                            "option"
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "9",
-                                        "modifiers": [
-                                            "command"
-                                        ]
-                                    }
-                                ],
-                                "type": "basic"
                             }
                         ]
                     },
@@ -1012,8 +982,7 @@
                                 "conditions": [
                                     {
                                         "bundle_identifiers": [
-                                            "com.jetbrains.intellij",
-                                            "com.microsoft.VSCode"
+                                            "com.jetbrains.intellij"
                                         ],
                                         "type": "frontmost_application_if"
                                     }
@@ -1074,8 +1043,7 @@
                                 "conditions": [
                                     {
                                         "bundle_identifiers": [
-                                            "com.jetbrains.intellij",
-                                            "com.microsoft.VSCode"
+                                            "com.jetbrains.intellij"
                                         ],
                                         "type": "frontmost_application_if"
                                     }
