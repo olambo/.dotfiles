@@ -59,6 +59,7 @@ export FZF_DEFAULT_OPTS=" --extended --color hl:202,hl+:202"
 
 alias dot='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias vi='fvim() { nvim ${@:-.} };fvim'
+alias mvi='fvim() { nvim --cmd "let g:useMetals=1" ${@:-.} };fvim'
 # ln -s ~/Library/Mobile\ Documents/*byword/Documents ~/.byworddoc
 alias doc='cd ~/.byworddoc; vi ~/.byworddoc'
 alias con='vi +":cd ~/.config/nvim" ~/.config/nvim'
