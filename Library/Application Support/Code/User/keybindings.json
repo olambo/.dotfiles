@@ -42,6 +42,11 @@
         "command": "workbench.action.quickOpen"
     },
     {
+        "key": "alt+h",
+        "command": "cursorUndo",
+        "when": "editorTextFocus"
+    },
+    {
         "key": "alt+j",
         "command": "editor.action.insertCursorBelow",
         "when": "editorTextFocus"
