@@ -47,5 +47,6 @@
     "vscode-neovim.neovimExecutablePaths.darwin": "/usr/local/bin/nvim",
     "go.toolsManagement.autoUpdate": true,
     "window.zoomLevel": 1,
-    "editor.fontSize": 13
+    "editor.fontSize": 13,
+    "workbench.editor.showTabs": false
 }
