@@ -103,9 +103,6 @@ colorscheme PaperColor
 set bg=light
 
 " ----------------------------------------------------------------------------------------------
-"  karabiner elements assisted key combinations
-noremap <c-x><c-x> '
-inoremap <c-x><c-x> '
  
 " copy to system clipboard
 if $TERM_PROGRAM == "Apple_Terminal"
