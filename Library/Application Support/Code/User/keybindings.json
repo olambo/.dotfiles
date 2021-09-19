@@ -28,7 +28,17 @@
         "command": "workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup"
     },
     {
+        "key": "ctrl+x ctrl+x",
+        "command": "type",
+        "args": { "text": "'" },
+        "when": "editorTextFocus"
+    },
+    {
         "key": "cmd+o",
+        "command": "workbench.action.quickOpen"
+    },
+    {
+        "key": "shift shift",
         "command": "workbench.action.quickOpen"
     },
     {
