@@ -123,8 +123,6 @@ noremap <leader>m :call GoCommand("go run main.go")<CR>
 noremap <leader>t :call GoCommand("go test")<CR>
 "go individual test using vcommand
 noremap <leader>T :call GoCommand("go test -run " . expand("<cword>"))<CR>
-"organize imports
-noremap <leader>i :call CocAction('runCommand', 'editor.action.organizeImport')<CR>
 " yank file path to system buffer
 noremap <leader>y :call FilePath()<CR>
 " remove buffer

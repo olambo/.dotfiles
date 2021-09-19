@@ -7,10 +7,9 @@
 "  karabiner elements assisted key combinations
 noremap <c-x><c-x> '
 inoremap <c-x><c-x> '
-
-" insert mode no movement
 nnoremap <home> ^
 
+" insert mode no movement
 inoremap <up> <nop>
 inoremap <down> <nop>
 inoremap <pageup> <nop>
