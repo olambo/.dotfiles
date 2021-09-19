@@ -4,10 +4,6 @@ set multiple-cursors
 set commentary
 set sneak
 
-" below are actions on the current editor buffer
-noremap <A-esc><esc><esc><esc> ;
-inoremap <A-esc><esc><esc><esc> ;
-
 nnoremap <left> :action MethodUp<CR>
 nnoremap <right> :action MethodDown<CR>
 
@@ -46,6 +42,8 @@ noremap go :action ChooseRunConfiguration<CR>
 
 noremap <A-j> :action EditorCloneCaretBelow<CR>
 noremap <A-k> :action EditorCloneCaretAbove<CR>
+
+noremap g<cr> :action ShowIntentionActions<CR>
 
 map <A-l> <Plug>NextWholeOccurrence
 map <C-A-l> <Plug>NextOccurrence

@@ -28,3 +28,6 @@ noremap ge <Cmd>call VSCodeNotify('editor.action.marker.nextInFiles')<CR>
 noremap gE <Cmd>call VSCodeNotify('editor.action.marker.prevInFiles')<CR>
 
 noremap go <Cmd>call VSCodeNotify('workbench.action.debug.start')<CR>
+
+noremap g<cr> <Cmd>call VSCodeNotify('editor.action.quickFix')<CR>
+

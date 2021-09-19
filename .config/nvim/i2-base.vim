@@ -4,6 +4,10 @@
 "   <hyp> g, b                      -> <pagedown>, <pageup>
 "   <hyp> (, )                      -> <home>, <end>
 
+"  karabiner elements assisted key combinations
+noremap <c-x><c-x> '
+inoremap <c-x><c-x> '
+
 " insert mode no movement
 nnoremap <home> ^
 
