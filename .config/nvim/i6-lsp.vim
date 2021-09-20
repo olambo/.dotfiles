@@ -66,11 +66,11 @@ EOF
   augroup end
 
 "-----------------------------------------------------------------------------
-" completion-nvim settings
+" completion-nvim settings - https://github.com/nvim-lua/completion-nvim#changing-completion-confirm-key
 "-----------------------------------------------------------------------------
-" Use <Tab> and <S-Tab> to navigate through popup menu
-inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+let g:completion_confirm_key = ""
+inoremap <expr> <cr> pumvisible() ? complete_info()["selected"] != "-1" ? "\<c-y>" : "\<c-n>\<c-y>" : "\<cr>"
+inoremap <expr> <Tab> pumvisible() ? complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-n><C-y>" : "\<Tab>"
 
 "-----------------------------------------------------------------------------
 " Helpful general settings
@@ -86,3 +86,4 @@ set shortmess+=c
 
 " Ensure autocmd works for Filetype
 set shortmess-=F
+
