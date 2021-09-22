@@ -1,6 +1,11 @@
 // Place your key bindings in this file to override the defaults
 [
     {
+        "command": "vscode-neovim.escape",
+        "key": "Escape",
+        "when": "editorTextFocus && neovim.init"
+    },
+    {
         "key": "cmd+enter",
         "command": "workbench.action.togglePanel",
         "when": "!terminalFocus"
