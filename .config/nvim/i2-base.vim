@@ -44,6 +44,8 @@ set nu
 
 let mapleader="\<space>"
 
+nnoremap <space>s :update<cr>
+
 " toggle highlight search
 nnoremap <leader>h :set hlsearch! hlsearch?<cr>
 

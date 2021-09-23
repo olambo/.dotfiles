@@ -20,7 +20,7 @@ nnoremap <silent> gs         <cmd>lua vim.lsp.buf.document_symbol()<CR>
 nnoremap <silent> gw         <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
 
 nnoremap <silent> gr          <cmd>lua vim.lsp.buf.rename()<CR>
-nnoremap <silent> gx       <cmd>lua vim.lsp.buf.formatting()<CR>
+nnoremap g=                 <cmd>lua vim.lsp.buf.formatting()<CR>
 nnoremap <silent> g<cr>    <cmd>lua vim.lsp.buf.code_action()<CR>
 
 nnoremap <silent> <leader>a   <cmd>lua require'metals'.open_all_diagnostics()<CR>
