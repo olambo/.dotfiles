@@ -219,7 +219,7 @@ chooser = hs.chooser.new(chooserChoice)
 
 chooser:choices({
   { ["text"] = ";",          ["command"] = ';'},
-  { ["text"] = "iTerm",      ["command"] = 'u'},
+  { ["text"] = "iTerm",      ["command"] = 't'},
   { ["text"] = "Intellij",   ["command"] = 'i'},
   { ["text"] = "Vscode",     ["command"] = 'v'},
   { ["text"] = "Safari",     ["command"] = 's'},
