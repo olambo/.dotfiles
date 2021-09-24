@@ -39,6 +39,7 @@ local function focusToFromApp(appname, bounce)
     hs.application.launchOrFocus(appToRun)
 end
 
+
 local function spaceapp(appname, altapp)
     if appname == curapp then
         focusToFromApp(altapp)
@@ -47,21 +48,21 @@ local function spaceapp(appname, altapp)
     end
 end
 
-hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, 'u', function() spaceapp("iTerm2", "iTerm2") end)
+-- hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, 'u', function() spaceapp("iTerm2", "iTerm2") end)
 
-hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, 'i', function() spaceapp("IntelliJ IDEA", "Asana") end)
+-- hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, 'i', function() spaceapp("IntelliJ IDEA", "Asana") end)
 
-hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, 'o', function() spaceapp("Safari", "Calendar") end)
+-- hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, 'o', function() spaceapp("Safari", "Calendar") end)
 
-hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, 'p', function() spaceapp("Mail", "Slack") end)
+-- hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, 'p', function() spaceapp("Mail", "Slack") end)
 
-hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, 'v', function() spaceapp("Visual Studio Code", "Visual Studio Code") end)
+-- hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, 'v', function() spaceapp("Visual Studio Code", "Visual Studio Code") end)
 
-hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, '8', function() focusToFromApp(prvapp, true) end)
+-- hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, '8', function() focusToFromApp(prvapp, true) end)
 
-hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, 'm', function() focusToFromApp("Terminal", true) end)
+-- hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, 'm', function() focusToFromApp("Terminal", true) end)
 
-hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, 'n', function() focusToFromApp("Finder", true) end)
+-- hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, 'n', function() focusToFromApp("Finder", true) end)
 
 -- in iTerm2, open a low height split pane below the current one, Run vcommand-start and move back to previous pane
 hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, 'z', function()
@@ -185,3 +186,59 @@ hs.hotkey.bind({"alt", "ctrl", "cmd"}, "up", function() winSize(0, -20) end, nil
 -- larger height
 hs.hotkey.bind({"alt", "ctrl", "cmd"}, "down", function() winSize(0, 20) end, nil, function() winSize(0, 20) end)
 
+-- https://stackoverflow.com/questions/56751409/paste-text-from-hs-chooser-in-hammerspoon
+
+local chooser
+
+local chooserDict = {
+    ["t"] = "iTerm2",
+    ["i"] = "Intellij IDEA",
+    ["v"] = "Visual Studio Code",
+    ["s"] = "Safari",
+    ["m"] = "Mail",
+    ["f"] = "Finder",
+    ["n"] = "Terminal",
+}
+
+local function chooserApp(appChar)
+    app = chooserDict[appChar]
+    if (appChar == ';') then app = prvapp end
+    if (app) then
+      print(" app:" .. app)
+      focusToFromApp(app)
+    end 
+end
+
+local function chooserChoice(localchoice)
+  if not localchoice then chooser:selectedRow(1); return end
+  chooser:selectedRow(1)
+  chooserApp(localchoice["command"])
+end
+
+chooser = hs.chooser.new(chooserChoice)
+
+chooser:choices({
+  { ["text"] = ";",          ["command"] = ';'},
+  { ["text"] = "iTerm",      ["command"] = 'u'},
+  { ["text"] = "Intellij",   ["command"] = 'i'},
+  { ["text"] = "Vscode",     ["command"] = 'v'},
+  { ["text"] = "Safari",     ["command"] = 's'},
+  { ["text"] = "Mail",       ["command"] = 'm'},
+  { ["text"] = "Finder",     ["command"] = 'f'},
+  { ["text"] = "Notes-term", ["command"] = 'n'},
+})
+
+
+local function queryChangedCallback(query)
+  if query ~= '' then
+     print("query " .. query)
+     chooser:query('')
+     chooser:selectedRow(1)
+     chooser:cancel()
+     chooserApp(query)
+  end
+end
+
+chooser:queryChangedCallback(queryChangedCallback)
+
+hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, ";", function() chooser:show() end)
