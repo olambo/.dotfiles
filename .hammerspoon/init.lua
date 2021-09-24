@@ -204,7 +204,7 @@ local function chooserApp(appChar)
     app = chooserDict[appChar]
     if (appChar == ';') then app = prvapp end
     if (app) then
-      print(" app:" .. app)
+      -- print(" app:" .. app)
       focusToFromApp(app)
     end 
 end
@@ -231,7 +231,7 @@ chooser:choices({
 
 local function queryChangedCallback(query)
   if query ~= '' then
-     print("query " .. query)
+     -- print("query " .. query)
      chooser:query('')
      chooser:selectedRow(1)
      chooser:cancel()
