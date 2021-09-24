@@ -191,7 +191,7 @@ hs.hotkey.bind({"alt", "ctrl", "cmd"}, "down", function() winSize(0, 20) end, ni
 local chooser
 
 local chooserDict = {
-    ["t"] = "iTerm2",
+    ["u"] = "iTerm2",
     ["i"] = "Intellij IDEA",
     ["v"] = "Visual Studio Code",
     ["s"] = "Safari",
@@ -219,7 +219,7 @@ chooser = hs.chooser.new(chooserChoice)
 
 chooser:choices({
   { ["text"] = ";",          ["command"] = ';'},
-  { ["text"] = "iTerm",      ["command"] = 't'},
+  { ["text"] = "Unix-iterm",    ["command"] = 'u'},
   { ["text"] = "Intellij",   ["command"] = 'i'},
   { ["text"] = "Vscode",     ["command"] = 'v'},
   { ["text"] = "Safari",     ["command"] = 's'},
