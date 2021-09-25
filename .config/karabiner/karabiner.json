@@ -841,7 +841,7 @@
                         ]
                     },
                     {
-                        "description": "10)  <hyp-s> to <cmd-]> for iterm2, <opt-tab> for intellij - next pane",
+                        "description": "10)  <hyp-n> to <cmd-]> for iterm2, <opt-tab> for intellij - next pane",
                         "manipulators": [
                             {
                                 "conditions": [
@@ -853,7 +853,7 @@
                                     }
                                 ],
                                 "from": {
-                                    "key_code": "s",
+                                    "key_code": "n",
                                     "modifiers": {
                                         "mandatory": [
                                             "shift",
@@ -883,7 +883,7 @@
                                     }
                                 ],
                                 "from": {
-                                    "key_code": "s",
+                                    "key_code": "n",
                                     "modifiers": {
                                         "mandatory": [
                                             "shift",
@@ -1147,6 +1147,47 @@
                                 "to": [
                                     {
                                         "key_code": "quote"
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "14)  <hyp-f> - iterm",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "com.googlecode.iterm2"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "f",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "shift",
+                                            "command",
+                                            "control",
+                                            "option"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "x",
+                                        "modifiers": [
+                                            "control"
+                                        ]
+                                    },
+                                    {
+                                        "key_code": "f",
+                                        "modifiers": [
+                                            "control"
+                                        ]
                                     }
                                 ],
                                 "type": "basic"
