@@ -119,11 +119,11 @@ set showcmd
 " deprecated open pane below and start vcommand
 " nnoremap <silent> <leader>H :call system("osascript ~/.config/nvim/bin/vcommand-split")<CR>
 "go run using vcommand
-noremap <leader>m :call GoCommand("go run main.go")<CR>
+noremap go :call GoCommand("clear; bloop run root")<CR>
 "go test using vcommand
-noremap <leader>t :call GoCommand("go test")<CR>
+noremap <leader>t :call GoCommand("clear; bloop run root-test")<CR>
 "go individual test using vcommand
-noremap <leader>T :call GoCommand("go test -run " . expand("<cword>"))<CR>
+noremap <leader>T :call GoCommand("clear; bloop run root-test -m uol/" . expand("<cword>"))<CR>
 " yank file path to system buffer
 noremap <leader>y :call FilePath()<CR>
 " remove buffer
