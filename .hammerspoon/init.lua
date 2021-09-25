@@ -14,56 +14,6 @@ end
 appWatcher = hs.application.watcher.new(applicationWatcher)
 appWatcher:start()
 
--- open/focus on the app or if its already focused, the previous app
-local function focusToFromApp(appname, bounce)
-    local appToRun
-    if hs.application.get(appname) == nil then
-       -- print(appname .. " NOT running open " .. appname)
-        appToRun = appname
-    elseif appname == curapp then
-        print(appname .. " already frontmost goto " .. prvapp)
-        if bounce == nil then
-            appToRun = appname
-        else
-            appToRun = prvapp
-        end
-    else
-       -- print("prvapp " .. prvapp .. " curapp " .. curapp .. " goto " .. appname)
-        appToRun = appname
-    end
-    if appToRun == "iTerm2" then
-        -- strange but needed
-        appToRun = "iTerm"
-    end
-       -- print(" apptorun " .. appToRun)
-    hs.application.launchOrFocus(appToRun)
-end
-
-
-local function spaceapp(appname, altapp)
-    if appname == curapp then
-        focusToFromApp(altapp)
-    else
-        focusToFromApp(appname)
-    end
-end
-
--- hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, 'u', function() spaceapp("iTerm2", "iTerm2") end)
-
--- hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, 'i', function() spaceapp("IntelliJ IDEA", "Asana") end)
-
--- hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, 'o', function() spaceapp("Safari", "Calendar") end)
-
--- hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, 'p', function() spaceapp("Mail", "Slack") end)
-
--- hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, 'v', function() spaceapp("Visual Studio Code", "Visual Studio Code") end)
-
--- hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, '8', function() focusToFromApp(prvapp, true) end)
-
--- hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, 'm', function() focusToFromApp("Terminal", true) end)
-
--- hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, 'n', function() focusToFromApp("Finder", true) end)
-
 -- in iTerm2, open a low height split pane below the current one, Run vcommand-start and move back to previous pane
 hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, 'z', function()
     local function doKeyStroke(modifiers, character)
@@ -186,8 +136,8 @@ hs.hotkey.bind({"alt", "ctrl", "cmd"}, "up", function() winSize(0, -20) end, nil
 -- larger height
 hs.hotkey.bind({"alt", "ctrl", "cmd"}, "down", function() winSize(0, 20) end, nil, function() winSize(0, 20) end)
 
+-- 
 -- https://stackoverflow.com/questions/56751409/paste-text-from-hs-chooser-in-hammerspoon
-
 local chooser
 
 local chooserDict = {
@@ -201,12 +151,11 @@ local chooserDict = {
 }
 
 local function chooserApp(appChar)
-    app = chooserDict[appChar]
+    local app = chooserDict[appChar]
     if (appChar == ';') then app = prvapp end
-    if (app) then
-      -- print(" app:" .. app)
-      focusToFromApp(app)
-    end 
+    if (app == nil) then return end
+    if app == "iTerm2" then app = "iTerm" end
+    hs.application.launchOrFocus(app)
 end
 
 local function chooserChoice(localchoice)
@@ -219,7 +168,7 @@ chooser = hs.chooser.new(chooserChoice)
 
 chooser:choices({
   { ["text"] = ";",          ["command"] = ';'},
-  { ["text"] = "Unix-iterm",    ["command"] = 'u'},
+  { ["text"] = "Unix-iterm", ["command"] = 'u'},
   { ["text"] = "Intellij",   ["command"] = 'i'},
   { ["text"] = "Vscode",     ["command"] = 'v'},
   { ["text"] = "Safari",     ["command"] = 's'},
@@ -227,7 +176,6 @@ chooser:choices({
   { ["text"] = "Finder",     ["command"] = 'f'},
   { ["text"] = "Notes-term", ["command"] = 'n'},
 })
-
 
 local function queryChangedCallback(query)
   if query ~= '' then
