@@ -121,9 +121,9 @@ set showcmd
 "go run using vcommand
 noremap go :call GoCommand("clear; bloop run root")<CR>
 "go test using vcommand
-noremap <leader>t :call GoCommand("clear; bloop run root-test")<CR>
+noremap <leader>t :call GoCommand("clear; bloop test root-test")<CR>
 "go individual test using vcommand
-noremap <leader>T :call GoCommand("clear; bloop run root-test -m uol/" . expand("<cword>"))<CR>
+noremap <leader>T :call GoCommand("clear; bloop test root-test -o uol." . expand("<cword>"))<CR>
 " yank file path to system buffer
 noremap <leader>y :call FilePath()<CR>
 " remove buffer
