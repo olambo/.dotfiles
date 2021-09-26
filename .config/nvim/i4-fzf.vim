@@ -8,9 +8,9 @@ nnoremap <silent> <c-x><c-f> :Buffers<CR>
 nnoremap <silent> <Leader>g :Rg<CR>
 
 " find files of wanted types 
-nnoremap <silent> gf :call ZGlobal()<cr>
+nnoremap <silent> gf :call ZSFiles()<cr>
 
-nnoremap <silent> <Leader>fs :call ZSFiles()<cr>
+nnoremap <silent> <Leader>ff :call ZGlobal()<cr>
 nnoremap <silent> <Leader>fl :call ZLocal()<cr>
 
 function! ZGlobal()
@@ -22,6 +22,6 @@ function! ZLocal()
 endfunction
 
 function! ZSFiles()
-  let rg= "rg -t go -t md -t scala --iglob='!Library/*' --files " . getcwd()
+  let rg= "rg --type-add 'sc:*.worksheet.sc' -g '!target/' -t sc -t md -t scala --iglob='!Library/*' --files " . getcwd()
   call fzf#run({'source': rg, 'sink': 'e', 'window': { 'width': 0.9, 'height': 0.7 } })
 endfunction
