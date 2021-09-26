@@ -110,47 +110,45 @@ if $TERM_PROGRAM == "Apple_Terminal"
     vnoremap <c-x><c-y> "+y
 else
     vnoremap <c-x><c-y> :OSCYank<CR>
+    nnoremap <c-x><c-y><c-x><c-y> :call YankLine()<CR>
 endif
 
 " ----------------------------------------------------------------------------------------------
-let mapleader="\<space>"
 set showcmd
-
-" deprecated open pane below and start vcommand
-" nnoremap <silent> <leader>H :call system("osascript ~/.config/nvim/bin/vcommand-split")<CR>
 "go run using vcommand
 noremap go :call GoCommand("clear; bloop run root")<CR>
+" set up find replace
+nnoremap g/ :%s///gIc<Left><Left><Left><Left><Left>
+
+let mapleader="\<space>"
 "go test using vcommand
 noremap <leader>t :call GoCommand("clear; bloop test root-test")<CR>
 "go individual test using vcommand
 noremap <leader>T :call GoCommand("clear; bloop test root-test -o uol." . expand("<cword>"))<CR>
-" yank file path to system buffer
-noremap <leader>y :call FilePath()<CR>
-" remove buffer
-nnoremap <leader>d :bd<CR>
-" set up find replace
-nnoremap <leader>/ :%s//gI<Left><Left><Left>
-
 "----------------------------------------------------------------------------------------------
-function! PathHere()
+ 
+function! YankLine()
+   let line = getline(".")
+   call OSCYankString(line) 
+endfunction
+
+function! BufferWipeout()
+    execute "bw"
+    execute "normal \<C-o>"
+endfunction
+
+function! CdHere()
     execute "cd %:p:h"
 endfunction
 
-function! PathOrig()
+function! CdOrig()
     execute "e `pwd`"
 endfunction
 
 function! FilePath()
     let path = expand("%:p")
-    " deprecated
-    " call writefile([passth], expand("~/.config/nvim/runcache/vclipboard.txt"))
-    call YankOSC52(path)
+    call OSCYankString(path)
     echo path
-endfunction
-
-function! ExampleMap()
-    let example = "nnoremap <leader>; :call GoCommand('go run main.go arg1')<cr>"
-    call YankOSC52(example)
 endfunction
 
 function! BufferDiff()
@@ -159,18 +157,6 @@ endfunction
 
 function! BufferAlt()
     execute "b #"
-endfunction
-
-function! ToggleHlight()
-    execute "set hlsearch! hlsearch?"
-endfunction
-
-function! ToggleRNumber()
-  if &number == '' && &relativenumber == ''
-    set number relativenumber 
-  else
-    set nonumber norelativenumber 
-  endif
 endfunction
 
 function! GoFinder()

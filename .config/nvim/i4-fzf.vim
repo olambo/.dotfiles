@@ -1,9 +1,8 @@
 "All dont need a preview
 let g:fzf_preview_window = []
 " list functions to run 
-noremap <leader>l :call fzf#run({'source': 'cat ~/.config/nvim/bin/lkeyFunctions', 'sink': 'call', 'window': { 'width': 0.9, 'height': 0.7 } })<cr> 
+noremap <leader>; :call fzf#run({'source': 'cat ~/.config/nvim/bin/lkeyFunctions', 'sink': 'call', 'window': { 'width': 0.9, 'height': 0.7 } })<cr> 
 " list buffers, move to one
-" nnoremap <silent> <Leader>b :Buffers<CR>
 nnoremap <silent> <c-x><c-f> :Buffers<CR>
 nnoremap <silent> <Leader>g :Rg<CR>
 
