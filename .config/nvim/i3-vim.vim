@@ -1,7 +1,8 @@
-" sneak with very bright lables!
 nmap s <Plug>Sneak_s
 nmap S <Plug>Sneak_S
 let g:sneak#use_ic_scs = 1
+
+nnoremap <F5> :UndotreeToggle<CR>
 
 " down when number given: j, otherwise gj. (similar with k)
 nnoremap <expr> j v:count ? 'j' : 'gj'
@@ -159,7 +160,7 @@ function! BufferAlt()
     execute "b #"
 endfunction
 
-function! GoFinder()
+function! OpenFinder()
   :!exec open -a Finder %:p:h
 endfunction
 

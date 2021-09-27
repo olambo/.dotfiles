@@ -9,6 +9,7 @@ if !exists('g:vscode')
 	Plug 'tmsvg/pear-tree'
 	Plug 'NLKNguyen/papercolor-theme'
 	Plug 'justinmk/vim-dirvish'
+    Plug 'mbbill/undotree'
 	Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 	Plug 'junegunn/fzf.vim'
     if exists('g:useMetals')
