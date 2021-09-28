@@ -22,8 +22,8 @@ noremap gt :action Scala.TypeInfo<CR>:action ExpressionTypeInfo<CR>
 noremap gs :action GotoSuperMethod<CR>
 noremap gr :action Refactorings.QuickListPopupAction<CR>
 
-noremap gh :action JumpToLastChange<CR>
-noremap gl :action JumpToNextChange<CR>
+noremap g; :action JumpToLastChange<CR>
+noremap g, :action JumpToNextChange<CR>
 
 noremap gk :action Back<CR>
 noremap gj :action Forward<CR>

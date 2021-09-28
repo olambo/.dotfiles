@@ -19,9 +19,6 @@ noremap gt <Cmd>call VSCodeNotify('editor.action.showHover')<CR>
 
 noremap gr <Cmd>call VSCodeNotify('editor.action.rename')<CR>
 
-noremap gh <Cmd>call VSCodeNotify('workbench.action.navigateToLastEditLocation')<CR>
-noremap gl <Cmd>call VSCodeNotify('workbench.action.navigateToNextEditLocation')<CR>
-
 noremap gk <Cmd>call VSCodeNotify('workbench.action.navigateBack')<CR>
 noremap gj <Cmd>call VSCodeNotify('workbench.action.navigateForward')<CR>
 

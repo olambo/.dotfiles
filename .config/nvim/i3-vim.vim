@@ -3,14 +3,10 @@ nmap S <Plug>Sneak_S
 let g:sneak#use_ic_scs = 1
 
 nnoremap <F5> :UndotreeToggle<CR>
-nnoremap <leader>k ?^[o\|c\|t]
 
 " down when number given: j, otherwise gj. (similar with k)
 nnoremap <expr> j v:count ? 'j' : 'gj'
 nnoremap <expr> k v:count ? 'k' : 'gk'
-
-let g:loaded_python_provider='/usr/bin/python2' 
-let g:python3_host_prog='/usr/local/bin/python3'
 
 " on <cr> dont hide closing bracket. don't need . repeat here and don't want to override coc <cr>
 let g:pear_tree_repeatable_expand = 0
@@ -27,12 +23,6 @@ noremap gt <nop>
 
 noremap gs <nop>
 noremap gr <nop>
-
-noremap gh <nop>
-noremap gl <nop>
-
-noremap gk <nop>
-noremap gj <nop>
 
 noremap ge <nop>
 noremap gE <nop>
@@ -121,6 +111,10 @@ noremap go :call GoCommand("clear; bloop run root")<CR>
 nnoremap g/ :%s///gIc<Left><Left><Left><Left><Left>
 
 let mapleader="\<space>"
+"experimental look for object class type, above on first column
+nnoremap <leader>k ?^[o\|c\|t]
+"visual block
+noremap <leader>v <c-v>
 "go test using vcommand
 noremap <leader>t :call GoCommand("clear; bloop test root-test")<CR>
 "go individual test using vcommand

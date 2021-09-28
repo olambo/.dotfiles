@@ -7,7 +7,11 @@
 "  karabiner elements assisted key combinations
 noremap <c-x><c-x> '
 inoremap <c-x><c-x> '
+" start of line
 nnoremap <home> ^
+" visual block mode to start, end of line
+ xnoremap <home> ^
+ xnoremap <end> $
 
 " insert mode no movement
 inoremap <up> <nop>
