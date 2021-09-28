@@ -15,15 +15,13 @@ appWatcher = hs.application.watcher.new(applicationWatcher)
 appWatcher:start()
 
 -- in iTerm2, open a low height split pane below the current one, Run vcommand-start and move back to previous pane
-hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, 'z', function()
+hs.hotkey.bind({}, 'f6', function()
     local function doKeyStroke(modifiers, character)
         local event = require("hs.eventtap").event
         event.newKeyEvent(modifiers, string.lower(character), true):post()
         event.newKeyEvent(modifiers, string.lower(character), false):post()
     end
-    if hs.application.frontmostApplication():name() ~= "iTerm2" then
-        return
-    end
+    if hs.application.frontmostApplication():name() ~= "iTerm2" then return end
     -- doesnt appear to work remotely without an eventtap
     hs.eventtap.keyStroke({'cmd','shift'}, 'd')
     for i = 1,10,1 do
