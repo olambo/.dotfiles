@@ -1100,61 +1100,7 @@
                         ]
                     },
                     {
-                        "description": "13)  quote as hyper key, hyper-quote as quote",
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "quote"
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "right_shift",
-                                        "modifiers": [
-                                            "command",
-                                            "control",
-                                            "option"
-                                        ]
-                                    }
-                                ],
-                                "to_if_alone": [
-                                    {
-                                        "key_code": "x",
-                                        "modifiers": [
-                                            "control"
-                                        ]
-                                    },
-                                    {
-                                        "key_code": "x",
-                                        "modifiers": [
-                                            "control"
-                                        ]
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "key_code": "quote",
-                                    "modifiers": {
-                                        "mandatory": [
-                                            "shift",
-                                            "command",
-                                            "control",
-                                            "option"
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "quote"
-                                    }
-                                ],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "14)  <hyp-f> - iterm",
+                        "description": "13)  <hyp-f> - iterm",
                         "manipulators": [
                             {
                                 "conditions": [
