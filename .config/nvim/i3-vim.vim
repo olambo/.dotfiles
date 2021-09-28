@@ -107,18 +107,17 @@ endif
 set showcmd
 "go run using vcommand
 noremap go :call GoCommand("clear; bloop run root")<CR>
-" set up find replace
-nnoremap g/ :%s///gIc<Left><Left><Left><Left><Left>
+" set up replace on current word
+nnoremap <expr> g/ ':%s/'.expand('<cword>').'//gIc<Left><Left><Left><Left>'
 
 let mapleader="\<space>"
 "experimental look for object class type, above on first column
 nnoremap <leader>k ?^[o\|c\|t]
-"visual block
-noremap <leader>v <c-v>
 "go test using vcommand
 noremap <leader>t :call GoCommand("clear; bloop test root-test")<CR>
 "go individual test using vcommand
 noremap <leader>T :call GoCommand("clear; bloop test root-test -o uol." . expand("<cword>"))<CR>
+
 "----------------------------------------------------------------------------------------------
  
 function! YankLine()

@@ -7,8 +7,10 @@
 "  karabiner elements assisted key combinations
 noremap <c-x><c-x> '
 inoremap <c-x><c-x> '
+
 " start of line
 nnoremap <home> ^
+
 " visual block mode to start, end of line
  xnoremap <home> ^
  xnoremap <end> $
@@ -48,6 +50,10 @@ set nu
 
 let mapleader="\<space>"
 
+"visual block
+noremap <leader>v <c-v>
+
+"save
 nnoremap <space>s :update<cr>
 
 " toggle highlight search

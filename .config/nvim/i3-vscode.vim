@@ -3,6 +3,9 @@ nmap s <Plug>Sneak_s
 nmap S <Plug>Sneak_S
 let g:sneak#use_ic_scs = 1
 
+" set up replace on current word
+nnoremap <expr> g/ ':%s/'.expand('<cword>').'/'
+
 " down when number given: j, otherwise gj. (similar with k)
 nnoremap <expr> j v:count ? 'j' : 'gj'
 nnoremap <expr> k v:count ? 'k' : 'gk'
