@@ -39,6 +39,7 @@ nnoremap <silent> ge         <cmd>lua vim.lsp.diagnostic.goto_next { wrap = fals
 "-----------------------------------------------------------------------------
 :lua << EOF
   metals_config = require'metals'.bare_config
+  metals_config.init_options.statusBarProvider = "on"
   metals_config.settings = {
      showImplicitArguments = true,
      excludedPackages = {

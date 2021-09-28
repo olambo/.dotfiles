@@ -3,6 +3,7 @@ nmap S <Plug>Sneak_S
 let g:sneak#use_ic_scs = 1
 
 nnoremap <F5> :UndotreeToggle<CR>
+nnoremap <leader>k ?^[o\|c\|t]
 
 " down when number given: j, otherwise gj. (similar with k)
 nnoremap <expr> j v:count ? 'j' : 'gj'
@@ -77,6 +78,7 @@ if has('nvim')
     au TermOpen * startinsert
 endif
 
+
 " put file path into title, remove laststatus - I'd rather have an extra line!
 autocmd BufEnter * let &titlestring = expand("[$USER]") . expand('%:~')
 set title
@@ -87,22 +89,19 @@ autocmd BufWritePre,FileWritePre * silent! call mkdir(expand('<afile>:p:h'), 'p'
 " correctly set markdown for vim-commentary
 autocmd FileType markdown setlocal commentstring=#\ %s
 
-let g:PaperColor_Theme_Options = {
-  \   'theme': {
-  \     'default': {
-  \       'override' : {
-  \         'color00' : ['#ffffff', '231'],
-  \         'linenumber_bg' : ['#ffffff', '231'],
-  \       }
-  \     },
-  \     'default.dark': {
-  \       'override' : {
-  \       }
-  \     }
-  \   }
-  \ }
-colorscheme PaperColor
-set bg=light
+:lua <<EOF
+  require'nvim-treesitter.configs'.setup {
+    ensure_installed = "maintained",    -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+    ignore_install = { },               -- List of parsers to ignore installing
+    highlight = {
+      enable = true,                    -- false will disable the whole extension
+      disable = { },                    -- list of language that will be disabled
+    },
+  }
+EOF
+
+let g:vscode_style = "light"
+colorscheme vscode
 
 " ----------------------------------------------------------------------------------------------
  
