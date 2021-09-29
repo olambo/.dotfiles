@@ -21,6 +21,6 @@ function! ZLocal()
 endfunction
 
 function! ZSFiles()
-  let rg= "rg --type-add 'sc:*.worksheet.sc' -g '!target/' -t sc -t md -t scala --iglob='!Library/*' --files " . getcwd()
+  let rg= "rg --type-add 'sc:*.worksheet.sc' -t md -t scala --glob='!target/' --glob='!Library/' --files " . fnameescape(getcwd())
   call fzf#run({'source': rg, 'sink': 'e', 'window': { 'width': 0.9, 'height': 0.7 } })
 endfunction
