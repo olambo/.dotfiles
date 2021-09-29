@@ -63,12 +63,6 @@ if exists('$TMUX')
     let &t_fs = "\x7"
 endif
 
-if has('nvim')
-    " insert mode for terminal
-    au TermOpen * startinsert
-endif
-
-
 " put file path into title, remove laststatus - I'd rather have an extra line!
 autocmd BufEnter * let &titlestring = expand("[$USER]") . expand('%:~')
 set title
@@ -79,6 +73,7 @@ autocmd BufWritePre,FileWritePre * silent! call mkdir(expand('<afile>:p:h'), 'p'
 " correctly set markdown for vim-commentary
 autocmd FileType markdown setlocal commentstring=#\ %s
 
+if has('nvim')
 :lua <<EOF
   require'nvim-treesitter.configs'.setup {
     ensure_installed = "maintained",    -- one of "all", "maintained" (parsers with maintainers), or a list of languages
@@ -89,18 +84,21 @@ autocmd FileType markdown setlocal commentstring=#\ %s
     },
   }
 EOF
-
-let g:vscode_style = "light"
-colorscheme vscode
-
+ " insert mode for terminal
+ au TermOpen * startinsert
+endif
 " ----------------------------------------------------------------------------------------------
  
 " copy to system clipboard
 if $TERM_PROGRAM == "Apple_Terminal"
-    vnoremap <c-x><c-y> "+y
+  vnoremap <c-x><c-y> "+y
 else
-    vnoremap <c-x><c-y> :OSCYank<CR>
-    nnoremap <c-x><c-y><c-x><c-y> :call YankLine()<CR>
+  vnoremap <c-x><c-y> :OSCYank<CR>
+  nnoremap <c-x><c-y><c-x><c-y> :call YankLine()<CR>
+  if has('nvim')
+    let g:vscode_style = "light"
+    colorscheme vscode
+  endif
 endif
 
 " ----------------------------------------------------------------------------------------------
