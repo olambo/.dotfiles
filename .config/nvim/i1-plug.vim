@@ -8,14 +8,16 @@ if !exists('g:vscode')
 	Plug 'ojroques/vim-oscyank'
 	Plug 'tmsvg/pear-tree'
 
-    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-    Plug 'Mofiqul/vscode.nvim'
-
 	Plug 'justinmk/vim-dirvish'
     Plug 'mbbill/undotree'
     
 	Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 	Plug 'junegunn/fzf.vim'
+
+    if has('nvim')
+        Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+        Plug 'Mofiqul/vscode.nvim'
+    endif
 
     if exists('g:useMetals')
         Plug 'scalameta/nvim-metals'
