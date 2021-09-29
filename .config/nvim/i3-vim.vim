@@ -92,7 +92,9 @@ endif
 " copy to system clipboard
 if $TERM_PROGRAM == "Apple_Terminal"
   vnoremap <c-x><c-y> "+y
+  let g:enable_spelunker_vim = 1
 else
+  let g:enable_spelunker_vim = 0
   vnoremap <c-x><c-y> :OSCYank<CR>
   nnoremap <c-x><c-y><c-x><c-y> :call YankLine()<CR>
   if has('nvim')
@@ -103,21 +105,34 @@ endif
 
 " ----------------------------------------------------------------------------------------------
 set showcmd
-"go run using vcommand
-noremap go :call GoCommand("clear; bloop run root")<CR>
 " set up replace on current word
 nnoremap <expr> g/ ':%s/'.expand('<cword>').'//gIc<Left><Left><Left><Left>'
 
 let mapleader="\<space>"
 "experimental look for object class type, above on first column
 nnoremap <leader>k ?^[o\|c\|t]
+
+if !exists("g:bloop")
+  let g:bloop="root"
+endif
+"go run using vcommand
+noremap go :call GoCommand("clear; bloop run " . expand(g:bloop))<CR>
 "go test using vcommand
-noremap <leader>t :call GoCommand("clear; bloop test root-test")<CR>
+noremap <leader>t :call GoCommand("clear; bloop test " . expand(g:bloop))<CR>
 "go individual test using vcommand
-noremap <leader>T :call GoCommand("clear; bloop test root-test -o uol." . expand("<cword>"))<CR>
+noremap <leader>T :call GoCommand("clear; bloop test " . expand(g:bloop) . " -o " . expand(split(getline('1'))[1]) . "." . expand("<cword>"))<CR>
 
 "----------------------------------------------------------------------------------------------
  
+function! MetalsRunDoctor()
+   execute "MetalsRunDoctor"
+endfunction
+
+function! MetalsOrganizeImports()
+   execute "MetalsOrganizeImports"
+endfunction
+
+
 function! YankLine()
    let line = getline(".")
    call OSCYankString(line) 

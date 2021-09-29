@@ -1,4 +1,11 @@
 " check i1-plug for vim-plug install instructions
+ 
+function! SourceIfExists(file)
+  if filereadable(expand(a:file))
+    exe 'source' a:file
+  endif
+endfunction
+
 source ~/.config/nvim/i1-plug.vim
 source ~/.config/nvim/i2-base.vim
 if exists('g:vscode')
@@ -9,5 +16,6 @@ else
 	source ~/.config/nvim/i5-statusline.vim
     if exists('g:useMetals')
 	    source ~/.config/nvim/i6-lsp.vim
+        call SourceIfExists("./.vscode/metals.vim")
     endif
 endif

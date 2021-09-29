@@ -14,8 +14,11 @@ if !exists('g:vscode')
 	Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 	Plug 'junegunn/fzf.vim'
 
+    Plug 'kamykn/spelunker.vim'
+
     if has('nvim')
         Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+        " change vscPopupBack = '#f7f0f7'
         Plug 'Mofiqul/vscode.nvim'
     endif
 
