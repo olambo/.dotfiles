@@ -270,6 +270,7 @@
                                 "conditions": [
                                     {
                                         "bundle_identifiers": [
+                                            "io.alacritty",
                                             "com.apple.Terminal",
                                             "com.googlecode.iterm2"
                                         ],
@@ -302,6 +303,7 @@
                                 "conditions": [
                                     {
                                         "bundle_identifiers": [
+                                            "io.alacritty",
                                             "com.apple.Terminal",
                                             "com.googlecode.iterm2"
                                         ],
@@ -334,6 +336,7 @@
                                 "conditions": [
                                     {
                                         "bundle_identifiers": [
+                                            "io.alacritty",
                                             "com.apple.Terminal",
                                             "com.googlecode.iterm2",
                                             "com.jetbrains.intellij",
@@ -368,6 +371,7 @@
                                 "conditions": [
                                     {
                                         "bundle_identifiers": [
+                                            "io.alacritty",
                                             "com.apple.Terminal",
                                             "com.googlecode.iterm2",
                                             "com.jetbrains.intellij",
@@ -402,6 +406,7 @@
                                 "conditions": [
                                     {
                                         "bundle_identifiers": [
+                                            "io.alacritty",
                                             "com.apple.Terminal",
                                             "com.googlecode.iterm2",
                                             "com.jetbrains.intellij",
@@ -433,6 +438,7 @@
                                 "conditions": [
                                     {
                                         "bundle_identifiers": [
+                                            "io.alacritty",
                                             "com.apple.Terminal",
                                             "com.googlecode.iterm2",
                                             "com.jetbrains.intellij",
@@ -489,6 +495,7 @@
                                 "conditions": [
                                     {
                                         "bundle_identifiers": [
+                                            "io.alacritty",
                                             "com.apple.Terminal",
                                             "com.googlecode.iterm2",
                                             "com.jetbrains.intellij",
@@ -522,6 +529,7 @@
                                 "conditions": [
                                     {
                                         "bundle_identifiers": [
+                                            "io.alacritty",
                                             "com.apple.Terminal",
                                             "com.googlecode.iterm2",
                                             "com.jetbrains.intellij",
@@ -555,6 +563,7 @@
                                 "conditions": [
                                     {
                                         "bundle_identifiers": [
+                                            "io.alacritty",
                                             "com.apple.Terminal",
                                             "com.googlecode.iterm2",
                                             "com.microsoft.VSCode"
@@ -628,6 +637,7 @@
                                 "conditions": [
                                     {
                                         "bundle_identifiers": [
+                                            "io.alacritty",
                                             "com.apple.Terminal",
                                             "com.googlecode.iterm2",
                                             "com.microsoft.VSCode"
@@ -666,6 +676,7 @@
                                 "conditions": [
                                     {
                                         "bundle_identifiers": [
+                                            "io.alacritty",
                                             "com.apple.Terminal",
                                             "com.googlecode.iterm2",
                                             "com.microsoft.VSCode"
@@ -814,6 +825,7 @@
                                 "conditions": [
                                     {
                                         "bundle_identifiers": [
+                                            "io.alacritty",
                                             "com.apple.Terminal",
                                             "com.googlecode.iterm2"
                                         ],
