@@ -4,10 +4,6 @@
 "   <hyp> g, b                      -> <pagedown>, <pageup>
 "   <hyp> (, )                      -> <home>, <end>
 
-"  karabiner elements assisted key combinations
-noremap <c-x><c-x> '
-inoremap <c-x><c-x> '
-
 " start of line
 nnoremap <home> ^
 

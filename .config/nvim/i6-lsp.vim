@@ -12,21 +12,22 @@
 " nvim-lsp Mappings
 "-----------------------------------------------------------------------------
 nnoremap <silent> gd          <cmd>lua vim.lsp.buf.definition()<CR>
-nnoremap <silent> gt           <cmd>lua vim.lsp.buf.hover()<CR>
+nnoremap <silent> gt          <cmd>lua vim.lsp.buf.hover()<CR>
 nnoremap <silent> gi          <cmd>lua vim.lsp.buf.implementation()<CR>
 nnoremap <silent> gu          <cmd>lua vim.lsp.buf.references()<CR>
 
-nnoremap <silent> gs         <cmd>lua vim.lsp.buf.document_symbol()<CR>
-nnoremap <silent> gw         <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
-
 nnoremap <silent> gr          <cmd>lua vim.lsp.buf.rename()<CR>
-nnoremap g=                 <cmd>lua vim.lsp.buf.formatting()<CR>
-nnoremap <silent> g<cr>    <cmd>lua vim.lsp.buf.code_action()<CR>
+nnoremap <silent> g=          <cmd>lua vim.lsp.buf.formatting()<CR>
+nnoremap <silent> g<cr>       <cmd>lua vim.lsp.buf.code_action()<CR>
 
+nnoremap <silent> gE          <cmd>lua vim.lsp.diagnostic.goto_prev { wrap = false }<CR>
+nnoremap <silent> ge          <cmd>lua vim.lsp.diagnostic.goto_next { wrap = false }<CR>
+
+" what are these?
+nnoremap <silent> gs          <cmd>lua vim.lsp.buf.document_symbol()<CR>
+nnoremap <silent> gw          <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
 nnoremap <silent> <leader>a   <cmd>lua require'metals'.open_all_diagnostics()<CR>
 nnoremap <silent> <space>d    <cmd>lua vim.lsp.diagnostic.set_loclist()<CR>
-nnoremap <silent> gE          <cmd>lua vim.lsp.diagnostic.goto_prev { wrap = false }<CR>
-nnoremap <silent> ge         <cmd>lua vim.lsp.diagnostic.goto_next { wrap = false }<CR>
 
 "-----------------------------------------------------------------------------
 " nvim-lsp Settings
