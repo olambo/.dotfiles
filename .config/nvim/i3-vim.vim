@@ -8,11 +8,12 @@ nnoremap <F5> :UndotreeToggle<CR>
 nnoremap <expr> j v:count ? 'j' : 'gj'
 nnoremap <expr> k v:count ? 'k' : 'gk'
 
-" on <cr> dont hide closing bracket. don't need . repeat here and don't want to override coc <cr>
+" on <cr> dont hide closing bracket. don't need . repeat here
 let g:pear_tree_repeatable_expand = 0
+" this stops expansion on <CR> but no mapping in karabiner elements. Probably can remove
 imap <c-x><c-e> <Plug>(PearTreeExpand)
 
-" used in ideavim
+" used in ideavim. Probably remove
 " noremap g- <nop>
 
 " noremap gd <nop>
@@ -89,7 +90,7 @@ EOF
 endif
 
 " ----------------------------------------------------------------------------------------------
-" copy to system clipboard
+" copy to system clipboard. <hyp-y> mapped to <c-x><c-y> via karabiner elements
 if $TERM_PROGRAM == "Apple_Terminal"
   vnoremap <c-x><c-y> "+y
   let g:enable_spelunker_vim = 1

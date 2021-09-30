@@ -2,7 +2,7 @@
 let g:fzf_preview_window = []
 
 " list functions to run. Ensure functions are defined below
-noremap <leader>; :call fzf#run({'source': 'cat ~/.config/nvim/bin/lkeyFunctions', 'sink': funcref("ZRunner"), 'window': { 'width': 0.9, 'height': 0.7 } })<cr> 
+noremap <leader>; :call fzf#run({'source': 'cat ~/.config/nvim/bin/lkeyFunctions', 'sink': funcref("ZRunner"), 'window': { 'width': 0.6, 'height': 0.7 } })<cr> 
 " list buffers, mapped from <hyp-f> via karabiner elements
 nnoremap <silent> <c-x><c-f> :Buffers<CR>
 " find files of wanted types 
@@ -29,7 +29,7 @@ command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
 "  run via lkeyFunctions file
  
 function! ZRunner(item)
-  execute "call " . a:item . "()"
+  execute "call " . split(a:item)[0] . "()"
 endfunction
 
 function! BufferDiff()
@@ -37,8 +37,7 @@ function! BufferDiff()
 endfunction
 
 function! BufferWipeout()
-    execute "bw"
-    execute "normal \<C-o>"
+    execute "silent! bufdo! bw"
 endfunction
 
 function! OpenFinder()
@@ -76,7 +75,7 @@ function! FindFileLocal()
 endfunction
 
 nnoremap <leader>k ?^[o\|c\|t]
-function! ObjFirstColumn_k()
+function! ObjFirstColumn()
     "experimental look for object class type, above on first column. 
     execute "?^[o\|c\|t]"
 endfunction

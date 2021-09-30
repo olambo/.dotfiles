@@ -60,3 +60,6 @@ nmap <leader><leader> <c-w><c-w>
 
 " toggle numbers
 noremap <leader>n :set number!<cr>:se norelativenumber<cr>
+
+" wipeout buffer
+nnoremap <silent> <leader>q :bw<cr>

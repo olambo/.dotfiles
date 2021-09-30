@@ -9,5 +9,5 @@ OrganizeImports
 ToggleMouse
 FindFileAny
 FindFileLocal
-ObjFirstColumn_k
+ObjFirstColumn                                 <leader>k
 
