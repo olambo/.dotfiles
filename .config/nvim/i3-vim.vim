@@ -87,8 +87,8 @@ EOF
  " insert mode for terminal
  au TermOpen * startinsert
 endif
+
 " ----------------------------------------------------------------------------------------------
- 
 " copy to system clipboard
 if $TERM_PROGRAM == "Apple_Terminal"
   vnoremap <c-x><c-y> "+y
@@ -103,14 +103,17 @@ else
   endif
 endif
 
+function! YankLine()
+   let line = getline(".")
+   call OSCYankString(line) 
+endfunction
+
 " ----------------------------------------------------------------------------------------------
 set showcmd
 " set up replace on current word
 nnoremap <expr> g/ ':%s/'.expand('<cword>').'//gIc<Left><Left><Left><Left>'
 
 let mapleader="\<space>"
-"experimental look for object class type, above on first column
-nnoremap <leader>k ?^[o\|c\|t]
 
 if !exists("g:bloop")
   let g:bloop="root"
@@ -122,77 +125,6 @@ noremap <leader>t :call GoCommand("clear; bloop test " . expand(g:bloop))<CR>
 "go individual test using vcommand
 noremap <leader>T :call GoCommand("clear; bloop test " . expand(g:bloop) . " -o " . expand(split(getline('1'))[1]) . "." . expand("<cword>"))<CR>
 
-"----------------------------------------------------------------------------------------------
- 
-function! MetalsRunDoctor()
-   execute "MetalsRunDoctor"
-endfunction
-
-function! MetalsOrganizeImports()
-   execute "MetalsOrganizeImports"
-endfunction
-
-
-function! YankLine()
-   let line = getline(".")
-   call OSCYankString(line) 
-endfunction
-
-function! BufferWipeout()
-    execute "bw"
-    execute "normal \<C-o>"
-endfunction
-
-function! CdHere()
-    execute "cd %:p:h"
-endfunction
-
-function! CdOrig()
-    execute "e `pwd`"
-endfunction
-
-function! FilePath()
-    let path = expand("%:p")
-    call OSCYankString(path)
-    echo path
-endfunction
-
-function! BufferDiff()
-    execute "w !diff % -"
-endfunction
-
-function! BufferAlt()
-    execute "b #"
-endfunction
-
-function! OpenFinder()
-  :!exec open -a Finder %:p:h
-endfunction
-
-" echo when running fzf#run. Output doesnt appear!. So echo via a timer
-function! TimerEcho(msg, timer)
-    if len(a:msg) > 0
-        echo a:msg
-    endif
-endfunction
-
-function! ToggleMouse()
-  if &mouse != ''
-    set nonumber 
-    set norelativenumber
-    set mouse=
-    let &titlestring = "MOUSE OFF " . expand("[$USER]") . expand('%:~')
-    set title
-    let msgToEcho = "Mouse is off"
-  else
-    set mouse=nv
-    let &titlestring = expand("[$USER]") . expand('%:~')
-    set title
-    let msgToEcho = "Mouse enabled"
-  endif
-    call timer_start(1, function('TimerEcho', [msgToEcho]))
-endfunction
-
 function! GoCommand(cmd)
     if &mod == 1 
         echohl WarningMsg | echo "WARNING, BUFFER NOT WRITTEN!" | echohl None | echo a:cmd
@@ -201,4 +133,6 @@ function! GoCommand(cmd)
     endif
     call writefile([a:cmd], expand("~/.config/nvim/runcache/vcommand.txt"))
 endfunction
+"----------------------------------------------------------------------------------------------
+ 
 

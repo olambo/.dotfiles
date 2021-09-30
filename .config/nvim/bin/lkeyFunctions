@@ -2,8 +2,12 @@ BufferDiff
 BufferWipeout
 OpenFinder
 FilePath
-ToggleMouse
 CdHere
 CdOrig
 MetalsRunDoctor
-MetalsOrganizeImports
+OrganizeImports
+ToggleMouse
+FindFileAny
+FindFileLocal
+ObjFirstColumn_k
+
