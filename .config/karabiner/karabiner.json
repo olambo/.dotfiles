@@ -1118,6 +1118,8 @@
                                 "conditions": [
                                     {
                                         "bundle_identifiers": [
+                                            "io.alacritty",
+                                            "com.apple.Terminal",
                                             "com.googlecode.iterm2"
                                         ],
                                         "type": "frontmost_application_if"
