@@ -145,7 +145,7 @@ local chooserDict = {
     ["s"] = "Safari",
     ["m"] = "Mail",
     ["f"] = "Finder",
-    ["n"] = "Alacritty",
+    ["n"] = "Terminal",
 }
 
 local function chooserApp(appChar)
