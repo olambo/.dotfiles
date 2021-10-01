@@ -95,6 +95,22 @@ endif
 if $TERM_PROGRAM == "Apple_Terminal"
   vnoremap <c-x><c-y> "+y
   let g:enable_spelunker_vim = 1
+  let g:PaperColor_Theme_Options = {
+   \   'theme': {
+   \     'default': {
+   \       'override' : {
+   \         'color00' : ['#ffffff', '231'],
+   \         'linenumber_bg' : ['#ffffff', '231'],
+   \       }
+   \     },
+   \     'default.dark': {
+   \       'override' : {
+   \       }
+   \     }
+   \   }
+   \ }
+ colorscheme PaperColor
+ set bg=light
 else
   let g:enable_spelunker_vim = 0
   vnoremap <c-x><c-y> :OSCYank<CR>
