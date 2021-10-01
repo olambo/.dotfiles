@@ -12,22 +12,25 @@
 " nvim-lsp Mappings
 "-----------------------------------------------------------------------------
 nnoremap <silent> gd          <cmd>lua vim.lsp.buf.definition()<CR>
-nnoremap <silent> gt          <cmd>lua vim.lsp.buf.hover()<CR>
 nnoremap <silent> gi          <cmd>lua vim.lsp.buf.implementation()<CR>
-nnoremap <silent> gu          <cmd>lua vim.lsp.buf.references()<CR>
 
-nnoremap <silent> gr          <cmd>lua vim.lsp.buf.rename()<CR>
-nnoremap <silent> g=          <cmd>lua vim.lsp.buf.formatting()<CR>
+nnoremap <silent> gr          <cmd>lua vim.lsp.buf.references()<CR>
+nnoremap <silent> gR          <cmd>lua vim.lsp.buf.rename()<CR>
+
+nnoremap <silent> gh          <cmd>lua vim.lsp.buf.hover()<CR>
 nnoremap <silent> g<cr>       <cmd>lua vim.lsp.buf.code_action()<CR>
 
 nnoremap <silent> gE          <cmd>lua vim.lsp.diagnostic.goto_prev { wrap = false }<CR>
 nnoremap <silent> ge          <cmd>lua vim.lsp.diagnostic.goto_next { wrap = false }<CR>
 
+nnoremap <silent> g=          <cmd>lua vim.lsp.buf.formatting()<CR>
+
 " what are these?
 nnoremap <silent> gs          <cmd>lua vim.lsp.buf.document_symbol()<CR>
-nnoremap <silent> gw          <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
-nnoremap <silent> <leader>a   <cmd>lua require'metals'.open_all_diagnostics()<CR>
-nnoremap <silent> <space>d    <cmd>lua vim.lsp.diagnostic.set_loclist()<CR>
+nnoremap  gws                 <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
+" nnoremap  gww                 <cmd>lua require'metals'.open_all_diagnostics()<CR>
+" nnoremap  gwl                 <cmd>lua vim.lsp.diagnostic.set_loclist()<CR>
+
 
 "-----------------------------------------------------------------------------
 " nvim-lsp Settings
@@ -77,7 +80,7 @@ inoremap <expr> <Tab> pumvisible() ? complete_info()["selected"] != "-1" ? "\<C-
 "-----------------------------------------------------------------------------
 " Helpful general settings
 "-----------------------------------------------------------------------------
-" Needed for compltions _only_ if you aren't using completion-nvim
+" Needed for completions _only_ if you aren't using completion-nvim
 autocmd FileType scala setlocal omnifunc=v:lua.vim.lsp.omnifunc
 
 " Set completeopt to have a better completion experience

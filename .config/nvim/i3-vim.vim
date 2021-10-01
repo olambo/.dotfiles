@@ -19,11 +19,12 @@ imap <c-x><c-e> <Plug>(PearTreeExpand)
 " noremap gd <nop>
 noremap gi <nop>
 
-noremap gu <nop>
-noremap gt <nop>
-
-noremap gs <nop>
 noremap gr <nop>
+noremap gR <nop>
+
+noremap gh <nop>
+noremap gs <nop>
+noremap gS <nop>
 
 noremap ge <nop>
 noremap gE <nop>

@@ -11,16 +11,17 @@ nnoremap s :action KJumpAction.Char1<cr>
 nnoremap S :action KJumpAction.Char1<cr>
 
 noremap - :action SelectInProjectView<CR>
-noremap g- :action ActivateProjectToolWindow<CR>
+noremap g<cr> :action ShowIntentionActions<CR>
+" noremap g- :action ActivateProjectToolWindow<CR>
 
 noremap gd :action GotoDeclaration<CR>
 noremap gi :action GotoImplementation<CR>
 
-noremap gu :action ShowUsages<CR>
-noremap gt :action Scala.TypeInfo<CR>:action ExpressionTypeInfo<CR>
+noremap gr :action ShowUsages<CR>
+noremap gR :action Refactorings.QuickListPopupAction<CR>
 
-noremap gs :action GotoSuperMethod<CR>
-noremap gr :action Refactorings.QuickListPopupAction<CR>
+noremap gh :action Scala.TypeInfo<CR>:action ExpressionTypeInfo<CR>
+noremap gS :action GotoSuperMethod<CR>
 
 noremap g; :action JumpToLastChange<CR>
 noremap g, :action JumpToNextChange<CR>
@@ -31,9 +32,6 @@ noremap gj :action Forward<CR>
 noremap ge :action GotoNextError<CR>
 noremap gE :action GotoPreviousError<CR>
 
-noremap gm :action ToggleBookmark<CR>
-noremap gM :action ShowBookmarks<CR>
-
 noremap gb :action ToggleLineBreakpoint<CR>
 noremap gB :action ViewBreakpoints<CR>
 
@@ -43,7 +41,8 @@ noremap go :action ChooseRunConfiguration<CR>
 noremap <A-j> :action EditorCloneCaretBelow<CR>
 noremap <A-k> :action EditorCloneCaretAbove<CR>
 
-noremap g<cr> :action ShowIntentionActions<CR>
+noremap gm :action ToggleBookmark<CR>
+noremap gM :action ShowBookmarks<CR>
 
 map <A-l> <Plug>NextWholeOccurrence
 map <C-A-l> <Plug>NextOccurrence

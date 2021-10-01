@@ -10,17 +10,16 @@ nnoremap <expr> g/ ':%s/'.expand('<cword>').'/'
 nnoremap <expr> j v:count ? 'j' : 'gj'
 nnoremap <expr> k v:count ? 'k' : 'gk'
 
-noremap - <Cmd>call VSCodeNotify('workbench.view.explorer')<CR>
 " noremap gf <Cmd>call VSCodeNotify('workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup')<CR>
+" noremap gd <Cmd>call VSCodeNotify('editor.action.goToDefinition')<CR>
+noremap - <Cmd>call VSCodeNotify('workbench.view.explorer')<CR>
 noremap gf <Cmd>call VSCodeNotify('workbench.action.showAllEditorsByMostRecentlyUsed')<CR>
 
-" noremap gd <Cmd>call VSCodeNotify('editor.action.goToDefinition')<CR>
 noremap gi <Cmd>call VSCodeNotify('editor.action.goToImplementation')<CR>
+noremap gh <Cmd>call VSCodeNotify('editor.action.showHover')<CR>
 
-noremap gu <Cmd>call VSCodeNotify('editor.action.goToReferences')<CR>
-noremap gt <Cmd>call VSCodeNotify('editor.action.showHover')<CR>
-
-noremap gr <Cmd>call VSCodeNotify('editor.action.rename')<CR>
+noremap gr <Cmd>call VSCodeNotify('editor.action.goToReferences')<CR>
+noremap gR <Cmd>call VSCodeNotify('editor.action.rename')<CR>
 
 noremap gk <Cmd>call VSCodeNotify('workbench.action.navigateBack')<CR>
 noremap gj <Cmd>call VSCodeNotify('workbench.action.navigateForward')<CR>
