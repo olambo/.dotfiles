@@ -52,17 +52,68 @@ nnoremap  gws                 <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
      }
   }
 
-  metals_config.on_attach = function()
-    require'completion'.on_attach();
-  end
+--  metals_config.on_attach = function()
+--    require'completion'.on_attach();
+--  end
+--
+--  metals_config.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+--    vim.lsp.diagnostic.on_publish_diagnostics, {
+--      virtual_text = {
+--        prefix = '',
+--      }
+--    }
+--  )
 
-  metals_config.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-    vim.lsp.diagnostic.on_publish_diagnostics, {
-      virtual_text = {
-        prefix = '',
-      }
+    -- Setup nvim-cmp.
+  local cmp = require'cmp'
+
+  cmp.setup({
+    snippet = {
+      expand = function(args)
+        -- For `vsnip` user.
+        -- vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` user.
+
+        -- For `luasnip` user.
+        require('luasnip').lsp_expand(args.body)
+
+        -- For `ultisnips` user.
+        -- vim.fn["UltiSnips#Anon"](args.body)
+      end,
+    },
+    mapping = {
+      ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+      ['<C-f>'] = cmp.mapping.scroll_docs(4),
+      ['<C-Space>'] = cmp.mapping.complete(),
+      ['<C-e>'] = cmp.mapping.close(),
+      ['<CR>'] =  cmp.mapping.confirm({ select = false }),
+      ['<Tab>'] = cmp.mapping.confirm({ select = true }),
+      ['<C-e>'] = cmp.mapping.close(),
+    },
+    sources = {
+      { name = 'nvim_lsp' },
+
+      -- For vsnip user.
+      -- { name = 'vsnip' },
+
+      -- For luasnip user.
+      { name = 'luasnip' },
+
+      -- For ultisnips user.
+      -- { name = 'ultisnips' },
+
+      { name = 'buffer' },
     }
-  )
+  })
+
+  local ls = require('luasnip')
+  ls.snippets = {
+   all = require('snippets/all')
+  }
+
+  -- Setup lspconfig.
+  -- require('lspconfig')[%YOUR_LSP_SERVER%].setup {
+  --   capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+  -- }
 EOF
 
   augroup lsp
@@ -73,9 +124,14 @@ EOF
 "-----------------------------------------------------------------------------
 " completion-nvim settings - https://github.com/nvim-lua/completion-nvim#changing-completion-confirm-key
 "-----------------------------------------------------------------------------
-let g:completion_confirm_key = ""
-inoremap <expr> <cr> pumvisible() ? complete_info()["selected"] != "-1" ? "\<c-y>" : "\<c-n>\<c-y>" : "\<cr>"
-inoremap <expr> <Tab> pumvisible() ? complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-n><C-y>" : "\<Tab>"
+" let g:completion_confirm_key = ""
+
+" completion - use <tab> the same as <cr>. Don't use tab to move
+" inoremap <expr> <cr> pumvisible() ? complete_info()["selected"] != "-1" ? "\<c-y>" : "\<c-n>\<c-y>" : "\<cr>"
+"
+inoremap <expr> <Tab> pumvisible() ? complete_info()["selected"] != "-1" ? "\<c-y>" : "\<c-n>\<c-y>" : "\<Tab>"
+inoremap <expr> <Down> pumvisible() ? "\<c-n>" : "\<cmd>lua require'luasnip'.jump(1)<Cr>"
+inoremap <expr> <Up> pumvisible() ? "\<c-p>" : "\<cmd>lua require'luasnip'.jump(-1)<Cr>"
 
 "-----------------------------------------------------------------------------
 " Helpful general settings

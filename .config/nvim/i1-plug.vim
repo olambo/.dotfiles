@@ -20,14 +20,18 @@ if !exists('g:vscode')
         Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
         " change vscPopupBack = '#f7f0f7'
         Plug 'Mofiqul/vscode.nvim'
-
-        " Macos Terminal only supports 256 colors - for now use
-        Plug 'NLKNguyen/papercolor-theme'
     endif
+    " Macos Terminal only supports 256 colors - for now use
+    Plug 'NLKNguyen/papercolor-theme'
 
     if exists('g:useMetals')
         Plug 'scalameta/nvim-metals'
-        Plug 'nvim-lua/completion-nvim'
+
+        Plug 'hrsh7th/cmp-nvim-lsp'
+        Plug 'hrsh7th/cmp-buffer'
+        Plug 'hrsh7th/nvim-cmp'
+        Plug 'saadparwaiz1/cmp_luasnip'
+        Plug 'L3MON4D3/LuaSnip'
     endif
 endif
 
