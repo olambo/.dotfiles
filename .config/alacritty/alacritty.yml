@@ -5,23 +5,24 @@ window:
 
 # Font configuration (changes require restart)
 font:
-  normal:
-    family: Monaco
-    style: Regular
-
-  bold:
-    family: Monaco
-    style: Bold
-
-  italic:
-    family: Monaco
-    style: Italic
-
-  bold_italic:
-    family: Monaco
-    style: Bold Italic
   size: 15.0
+  scale_with_dpi: true
   use_thin_strokes: true
+  style: Light
+  normal:
+    family: 'JetBrains Mono'
+    style: Regular
+  bold:
+    family: 'JetBrains Mono'
+    style: Bold
+  italic:
+    family: 'JetBrains Mono'
+    style: Italic
+  bold_italic:
+    family: 'JetBrains Mono'
+    style: Bold Italic
+  offset:
+    y: 3
 
 # Colors (Pencil Light)
 colors:
