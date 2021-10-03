@@ -16,6 +16,10 @@ nnoremap <silent> ge          <cmd>lua vim.lsp.diagnostic.goto_next { wrap = fal
 nnoremap <silent> g=          <cmd>lua vim.lsp.buf.formatting()<CR>
 nnoremap <silent> gs          <cmd>lua vim.lsp.buf.document_symbol()<CR>
 
+" Needed for luasnip if I dont' use supertab
+inoremap <expr> <Down> pumvisible() ? "\<c-n>" : "\<cmd>lua require'luasnip'.jump(1)<Cr>"
+inoremap <expr> <Up> pumvisible() ? "\<c-p>" : "\<cmd>lua require'luasnip'.jump(-1)<Cr>"
+
 "-----------------------------------------------------------------------------
 " nvim-metals setup
 "-----------------------------------------------------------------------------
@@ -37,18 +41,16 @@ local function t(str)
     return vim.api.nvim_replace_termcodes(str, true, true, true)
 end
 
+-- problematic, as I can't reproduce (easily) in intellij
 local function tab(fallback)
     if fn.pumvisible() == 1 then
         fn.feedkeys(t "<C-n>", "n")
     elseif luasnip.expand_or_jumpable() then
         fn.feedkeys(t "<Plug>luasnip-expand-or-jump", "")
-    elseif check_back_space() then
-        fn.feedkeys(t "<tab>", "n")
     else
         fallback()
     end
 end
-
 local function shift_tab(fallback)
     if fn.pumvisible() == 1 then
         fn.feedkeys(t "<C-p>", "n")
@@ -70,8 +72,11 @@ cmp.setup({
   mapping = {
     ['<C-e>'] = cmp.mapping.close(),
     ['<CR>'] =  cmp.mapping.confirm({ select = false }),
-    ["<Tab>"] = cmp.mapping(tab, { "i", "s" }),
-    ["<S-Tab>"] = cmp.mapping(shift_tab, { "i", "s" }),
+    ['<Tab>'] = cmp.mapping.confirm({ select = true }),
+    -- supertab and Right mapping problematic. I can't reproduce (easily) in intellij!
+    -- ['<Right>'] = cmp.mapping.confirm({ select = true }),
+    -- ["<Tab>"] = cmp.mapping(tab, { "i", "s" }),
+    -- ["<S-Tab>"] = cmp.mapping(shift_tab, { "i", "s" }),
   },
   sources = {
     { name = 'nvim_lsp' },
@@ -89,9 +94,6 @@ augroup lsp
   au!
   au FileType scala,sbt lua require('metals').initialize_or_attach(metals_config)
 augroup end
-
-" inoremap <expr> <Down> pumvisible() ? "\<c-n>" : "\<cmd>lua require'luasnip'.jump(1)<Cr>"
-" inoremap <expr> <Up> pumvisible() ? "\<c-p>" : "\<cmd>lua require'luasnip'.jump(-1)<Cr>"
 
 " Needed for completions _only_ if you aren't using completion-nvim
 autocmd FileType scala setlocal omnifunc=v:lua.vim.lsp.omnifunc
