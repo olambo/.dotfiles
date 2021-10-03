@@ -1,13 +1,3 @@
-"=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+
-" These are example settings to use with nvim-metals and the nvim built in
-" LSP.  Be sure to thoroughly read the the help docs to get an idea of what
-" everything does.
-"
-" The below configuration also makes use of the following plugins besides
-" nvim-metals
-" - https://github.com/nvim-lua/completion-nvim
-"=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+
-
 "-----------------------------------------------------------------------------
 " nvim-lsp Mappings
 "-----------------------------------------------------------------------------
@@ -24,118 +14,85 @@ nnoremap <silent> gE          <cmd>lua vim.lsp.diagnostic.goto_prev { wrap = fal
 nnoremap <silent> ge          <cmd>lua vim.lsp.diagnostic.goto_next { wrap = false }<CR>
 
 nnoremap <silent> g=          <cmd>lua vim.lsp.buf.formatting()<CR>
-
-" what are these?
 nnoremap <silent> gs          <cmd>lua vim.lsp.buf.document_symbol()<CR>
-nnoremap  gws                 <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
-" nnoremap  gww                 <cmd>lua require'metals'.open_all_diagnostics()<CR>
-" nnoremap  gwl                 <cmd>lua vim.lsp.diagnostic.set_loclist()<CR>
-
 
 "-----------------------------------------------------------------------------
-" nvim-lsp Settings
-"-----------------------------------------------------------------------------
-" If you just use the latest stable version, then setting this isn't necessary
-" let g:metals_server_version = '0.9.8+10-334e402e-SNAPSHOT'
-
-"-----------------------------------------------------------------------------
-" nvim-metals setup with a few additions such as nvim-completions
+" nvim-metals setup
 "-----------------------------------------------------------------------------
 :lua << EOF
-  metals_config = require'metals'.bare_config
-  metals_config.init_options.statusBarProvider = "on"
-  metals_config.settings = {
-     showImplicitArguments = true,
-     excludedPackages = {
-       "akka.actor.typed.javadsl",
-       "com.github.swagger.akka.javadsl"
-     }
+metals_config = require'metals'.bare_config
+metals_config.init_options.statusBarProvider = "on"
+metals_config.settings = {
+   showImplicitArguments = true,
+   excludedPackages = {
+     "akka.actor.typed.javadsl",
+     "com.github.swagger.akka.javadsl"
+   }
+}
+
+local fn = vim.fn
+local luasnip = require "luasnip"
+
+local function t(str)
+    return vim.api.nvim_replace_termcodes(str, true, true, true)
+end
+
+local function tab(fallback)
+    if fn.pumvisible() == 1 then
+        fn.feedkeys(t "<C-n>", "n")
+    elseif luasnip.expand_or_jumpable() then
+        fn.feedkeys(t "<Plug>luasnip-expand-or-jump", "")
+    elseif check_back_space() then
+        fn.feedkeys(t "<tab>", "n")
+    else
+        fallback()
+    end
+end
+
+local function shift_tab(fallback)
+    if fn.pumvisible() == 1 then
+        fn.feedkeys(t "<C-p>", "n")
+    elseif luasnip.jumpable(-1) then
+        fn.feedkeys(t "<Plug>luasnip-jump-prev", "")
+    else
+        fallback()
+    end
+end
+
+  -- Setup nvim-cmp.
+local cmp = require'cmp'
+cmp.setup({
+  snippet = {
+    expand = function(args)
+      require('luasnip').lsp_expand(args.body)
+   end,
+  },
+  mapping = {
+    ['<C-e>'] = cmp.mapping.close(),
+    ['<CR>'] =  cmp.mapping.confirm({ select = false }),
+    ["<Tab>"] = cmp.mapping(tab, { "i", "s" }),
+    ["<S-Tab>"] = cmp.mapping(shift_tab, { "i", "s" }),
+  },
+  sources = {
+    { name = 'nvim_lsp' },
+    { name = 'luasnip' },
+    { name = 'buffer' },
   }
+})
 
---  metals_config.on_attach = function()
---    require'completion'.on_attach();
---  end
---
---  metals_config.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
---    vim.lsp.diagnostic.on_publish_diagnostics, {
---      virtual_text = {
---        prefix = '',
---      }
---    }
---  )
-
-    -- Setup nvim-cmp.
-  local cmp = require'cmp'
-
-  cmp.setup({
-    snippet = {
-      expand = function(args)
-        -- For `vsnip` user.
-        -- vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` user.
-
-        -- For `luasnip` user.
-        require('luasnip').lsp_expand(args.body)
-
-        -- For `ultisnips` user.
-        -- vim.fn["UltiSnips#Anon"](args.body)
-      end,
-    },
-    mapping = {
-      ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-      ['<C-f>'] = cmp.mapping.scroll_docs(4),
-      ['<C-Space>'] = cmp.mapping.complete(),
-      ['<C-e>'] = cmp.mapping.close(),
-      ['<CR>'] =  cmp.mapping.confirm({ select = false }),
-      ['<Tab>'] = cmp.mapping.confirm({ select = true }),
-      ['<C-e>'] = cmp.mapping.close(),
-    },
-    sources = {
-      { name = 'nvim_lsp' },
-
-      -- For vsnip user.
-      -- { name = 'vsnip' },
-
-      -- For luasnip user.
-      { name = 'luasnip' },
-
-      -- For ultisnips user.
-      -- { name = 'ultisnips' },
-
-      { name = 'buffer' },
-    }
-  })
-
-  local ls = require('luasnip')
-  ls.snippets = {
-   all = require('snippets/all')
-  }
-
-  -- Setup lspconfig.
-  -- require('lspconfig')[%YOUR_LSP_SERVER%].setup {
-  --   capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-  -- }
+luasnip.snippets = {
+ all = require('snippets/all')
+}
 EOF
 
-  augroup lsp
-    au!
-    au FileType scala,sbt lua require('metals').initialize_or_attach(metals_config)
-  augroup end
+augroup lsp
+  au!
+  au FileType scala,sbt lua require('metals').initialize_or_attach(metals_config)
+augroup end
 
-"-----------------------------------------------------------------------------
-" completion-nvim settings - https://github.com/nvim-lua/completion-nvim#changing-completion-confirm-key
-"-----------------------------------------------------------------------------
-" let g:completion_confirm_key = ""
+" inoremap <expr> <Down> pumvisible() ? "\<c-n>" : "\<cmd>lua require'luasnip'.jump(1)<Cr>"
+" inoremap <expr> <Up> pumvisible() ? "\<c-p>" : "\<cmd>lua require'luasnip'.jump(-1)<Cr>"
 
-" completion - use <tab> the same as <cr>. Don't use tab to move
-" inoremap <expr> <cr> pumvisible() ? complete_info()["selected"] != "-1" ? "\<c-y>" : "\<c-n>\<c-y>" : "\<cr>"
-"
-inoremap <expr> <Tab> pumvisible() ? complete_info()["selected"] != "-1" ? "\<c-y>" : "\<c-n>\<c-y>" : "\<Tab>"
-inoremap <expr> <Down> pumvisible() ? "\<c-n>" : "\<cmd>lua require'luasnip'.jump(1)<Cr>"
-inoremap <expr> <Up> pumvisible() ? "\<c-p>" : "\<cmd>lua require'luasnip'.jump(-1)<Cr>"
-
-"-----------------------------------------------------------------------------
-" Helpful general settings
-"-----------------------------------------------------------------------------
 " Needed for completions _only_ if you aren't using completion-nvim
 autocmd FileType scala setlocal omnifunc=v:lua.vim.lsp.omnifunc
 
