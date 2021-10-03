@@ -31,6 +31,9 @@ vnoremap <right> j}gE
 
 " yank until end of line (ie. work like C, D)
 nnoremap Y y$
+" keep centred
+nnoremap n nzzzv
+nnoremap N Nzzzv
 
 " various bats and bits
 set ignorecase
