@@ -123,17 +123,12 @@ if $TERM_PROGRAM == "Apple_Terminal"
    \   }
    \ }
  let g:colorscheme = "PaperColor"
- colorscheme PaperColor
- set bg=light
 else
   let g:enable_spelunker_vim = 0
   vnoremap <c-x><c-y> :OSCYank<CR>
   nnoremap <c-x><c-y><c-x><c-y> :call YankLine()<CR>
   if has('nvim')
     let g:colorscheme = "vscode"
-    let g:vscode_style = "light"
-    "let g:vscode_style = "dark"
-    colorscheme vscode
   endif
 endif
 
