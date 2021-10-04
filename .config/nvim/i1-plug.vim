@@ -20,6 +20,7 @@ if !exists('g:vscode')
         Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
         " change vscPopupBack = '#f7f0f7'
         Plug 'Mofiqul/vscode.nvim'
+        Plug 'cormacrelf/dark-notify'
     endif
     " Macos Terminal only supports 256 colors - for now use
     Plug 'NLKNguyen/papercolor-theme'

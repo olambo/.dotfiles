@@ -1,3 +1,4 @@
+hs.ipc.cliInstall()
 curapp = hs.application.frontmostApplication():name()
 prvapp = hs.application.frontmostApplication():name()
 function applicationWatcher(appName, eventType, appObject)

@@ -3,6 +3,7 @@ nmap S <Plug>Sneak_S
 let g:sneak#use_ic_scs = 1
 
 nnoremap <F5> :UndotreeToggle<CR>
+nmap <f7> :lua require('dark_notify').toggle()<cr>
 
 " down when number given: j, otherwise gj. (similar with k)
 nnoremap <expr> j v:count ? 'j' : 'gj'
@@ -85,6 +86,15 @@ if has('nvim')
       disable = { },                    -- list of language that will be disabled
     },
   }
+local dn = require('dark_notify')
+dn.run({
+  onchange = function(mode)
+    if vim.g.vscode_style ~= mode then
+      vim.g.vscode_style = mode 
+      vim.cmd('colorscheme ' .. vim.g.colorscheme)
+    end
+  end,
+})
 EOF
 set guicursor=n-v-c:block-nCursor,i-ci-ve:ver25,r-cr:hor20,o:hor50
   \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
@@ -112,6 +122,7 @@ if $TERM_PROGRAM == "Apple_Terminal"
    \     }
    \   }
    \ }
+ let g:colorscheme = "PaperColor"
  colorscheme PaperColor
  set bg=light
 else
@@ -119,7 +130,9 @@ else
   vnoremap <c-x><c-y> :OSCYank<CR>
   nnoremap <c-x><c-y><c-x><c-y> :call YankLine()<CR>
   if has('nvim')
+    let g:colorscheme = "vscode"
     let g:vscode_style = "light"
+    "let g:vscode_style = "dark"
     colorscheme vscode
   endif
 endif

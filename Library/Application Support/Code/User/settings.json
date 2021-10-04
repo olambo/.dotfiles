@@ -38,7 +38,6 @@
         "Substitute": "vim"
     },
     "window.autoDetectColorScheme": true,
-    "workbench.colorTheme": "Default Light+",
     "vscode-neovim.neovimInitVimPaths.linux": "/usr/local/bin/nvim",
     "vscode-neovim.textDecorationsAtTop": true,
     "vim.commandLineModeKeyBindings": [
@@ -46,7 +45,9 @@
     ],
     "vscode-neovim.neovimExecutablePaths.darwin": "/usr/local/bin/nvim",
     "go.toolsManagement.autoUpdate": true,
-    "window.zoomLevel": 1,
-    "editor.fontSize": 13,
-    "workbench.editor.showTabs": false
+    "editor.fontSize": 15,
+    "workbench.editor.showTabs": false,
+    "editor.fontFamily": "JetBrains Mono",
+    "debug.console.lineHeight": 1.1,
+    "workbench.colorTheme": "Default Light+"
 }
