@@ -188,4 +188,4 @@ end
 
 chooser:queryChangedCallback(queryChangedCallback)
 
-hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, ";", function() chooser:show() end)
+hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, "space", function() chooser:show() end)
