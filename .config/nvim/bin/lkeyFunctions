@@ -10,4 +10,4 @@ ToggleMouse
 FindFileAny
 FindFileLocal
 ObjFirstColumn                                 <leader>k
-
+GetVisPos
