@@ -4,12 +4,24 @@
 "   <hyp> g, b                      -> <pagedown>, <pageup>
 "   <hyp> (, )                      -> <home>, <end>
 
+let mapleader="\<space>"
+
+" visual mode to start, end of line
+xnoremap <home> ^
+xnoremap <end> $
+" visual mode <-> visual line mode
+xnoremap <expr> v mode() ==# "v" ? "V" : "v"
+" visual mode <-> visual block mode
+xnoremap <expr> <leader><leader> mode() ==# "v" ? "\<c-v>" : "v"
+" bigger smaller range -- todo properly
+xnoremap <right> <right>o<left>o
+xnoremap <left> <left>o<right>o
+
 " start of line
 nnoremap <home> ^
-
-" visual block mode to start, end of line
- xnoremap <home> ^
- xnoremap <end> $
+" visualy select word
+nnoremap <left> vaw
+nnoremap <right> viw
 
 " insert mode no movement
 inoremap <up> <nop>
@@ -20,14 +32,8 @@ inoremap <pagedown> <nop>
 " move down and up a bit more than normal
 nnoremap <up> 5k
 nnoremap <down> 5j
-vnoremap <up> 5k
-vnoremap <down> 5j
-
-" next previous paragraph, start of text
-nnoremap <left> {{E^
-nnoremap <right> }E^
-vnoremap <left> k{
-vnoremap <right> j}gE
+xnoremap <up> 5k
+xnoremap <down> 5j
 
 " yank until end of line (ie. work like C, D)
 nnoremap Y y$
@@ -47,11 +53,6 @@ set ruler
 set expandtab
 set nu
 
-let mapleader="\<space>"
-
-"visual block
-noremap <leader>v <c-v>
-
 "save
 nnoremap <space>s :update<cr>
 
@@ -59,7 +60,7 @@ nnoremap <space>s :update<cr>
 nnoremap <leader>h :set hlsearch! hlsearch?<cr>
 
 " go to next split
-nmap <leader><leader> <c-w><c-w>
+nnoremap <leader><leader> <c-w><c-w>
 
 " toggle numbers
 noremap <leader>n :set number!<cr>:se norelativenumber<cr>
