@@ -42,7 +42,8 @@ function yakMoved(tv, who)
 end
 
 function _G.yakExpand()
-  local t = {"'", '"', '(', '[', '{'}
+  local t = {'\'', '"', '(', '[', '{'}
+  local quotes = {"'", '"'}
   local tv = getVisualSelection()
 
   if (tv['sline'] ~= tv['eline']) then return end
@@ -63,9 +64,19 @@ function _G.yakExpand()
   for i = col, 1, -1 do 
      local chr = string.sub(txt, i, i)
      if (existsIn(chr, t)) then 
-         local op = ' i'
-         if (i == col) then op = ' a' end
-         vim.cmd('normal' .. op .. chr)
+         if (existsIn(chr, quotes)) then 
+           vim.cmd('normal i' .. chr)
+           local tv1 = getVisualSelection()
+           -- todo: is the variable select of a inner quote here, a bug or feature
+           if (chr .. tv["stext"] .. chr ~= tv1["stext"]) then 
+             vim.cmd('normal o')
+             vim.cmd('normal h')
+             vim.cmd('normal o')
+             vim.cmd('normal l')
+           end
+         else
+           vim.cmd('normal a' .. chr)
+         end
          if yakMoved(tv, 'textobject') then break end
      end
      if (i == 1) then
