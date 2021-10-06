@@ -165,14 +165,13 @@ endfunction
 "----------------------------------------------------------------------------------------------
  
 noremap <leader>m :exec 'source '.bufname('%')<CR>
-"nnoremap <left> <Cmd>lua _G.tmpExpand()<Cr>
-nnoremap <right> :call echo "run me in visual mode"<cr>
-  --
-nnoremap <right> <Cmd>lua _G.yakInit()<Cr>
-xnoremap <right> <Cmd>lua _G.yak()<Cr>
-
-map <Left> <Plug>(expand_region_shrink)
+"map <Left> <Plug>(expand_region_shrink)
 "map <Right> <Plug>(expand_region_expand)
+
+nnoremap <right> <Cmd>lua _G.yakInit("moveOn")<Cr>
+xnoremap <right> <Cmd>lua _G.yakExpand()<Cr>
+nnoremap <left> <Cmd>lua _G.yakInit()<Cr>
+xnoremap <left> <Cmd>lua _G.yakContract()<Cr>
 
 lua << EOF
 local function existsIn(val, tab)
@@ -183,52 +182,78 @@ local function existsIn(val, tab)
     end
     return false
 end
-function _G.yakInit()
+
+yakStack = {}
+yakLine = 1
+function _G.yakInit(moveOn)
+    yakStack = {}
     vim.cmd('normal v')
-    _G.yak()
-end
-function yakMoved(tv)
-  local tv1 = getVisualSelection()
-  local inspect = require('vim.inspect')
-  print(tv['scol'],tv1['scol'],tv['ecol'],tv1['ecol'])
-  return (tv['scol'] ~= tv1['scol'] or tv['ecol'] ~= tv1['ecol'])
+    local tv = getVisualSelection()
+    yakLine = tv['sline']
+    local yak = {}
+    yak["scol"] = tv['scol']
+    yak["ecol"] = tv['ecol']
+    table.insert(yakStack, yak) 
+    vim.cmd('normal iw')
+    yakMoved(tv, 'init')
+    if (moveOn) then
+        yakExpand()
+    end
 end
 
-function _G.yak()
-  local t = {"'", '"', '(', '['}
-  local tv = getVisualSelection()
+function yakMoved(tv, who)
+  local tv1 = getVisualSelection()
   local inspect = require('vim.inspect')
+  local moved = tv['scol'] ~= tv1['scol'] or tv['ecol'] ~= tv1['ecol']
+  if (moved) then 
+      yakLine = tv1['sline']
+      local yak = {}
+      yak["scol"] = tv1['scol']
+      yak["ecol"] = tv1['ecol']
+      ccol = tv1['ccol']
+      table.insert(yakStack, yak) 
+      --print(who, 'old', tv['scol'], tv['ecol'] ,'new', tv1['scol'], tv1['ecol'], 'ccol', ccol )
+  end
+  return moved
+end
+
+function _G.yakContract()
+  local yak = table.remove(yakStack)
+  if (yak == nil) then return end
+  local scol = yak['scol']
+  local ecol = yak['ecol']
+  local tv = getVisualSelection()
+  local ccol = tv['ccol']
+  if (ccol > scol) then vim.cmd('normal o') end
+  vim.fn.setpos(".", {0, yakLine, scol})
+  vim.cmd('normal o')
+  vim.fn.setpos(".", {0, yakLine, ecol})
+  vim.cmd('normal o')
+  vim.cmd('normal o')
+  --print("scol, ecol", scol, ecol, "ccol", ccol)
+end
+
+function _G.yakExpand()
+  local t = {"'", '"', '(', '[', '{'}
+  local tv = getVisualSelection()
   local txt = tv['lineText']
   local col = tv['scol'] - 1
-  if (tv['scol'] == tv['ecol']) then
-    vim.cmd('normal iw')
-    return
-  end
-  --print(inspect(tv))
   for i = col, 1, -1 do 
      local chr = string.sub(txt, i, i)
      if (existsIn(chr, t)) then 
          local op = ' i'
          if (i == col) then op = ' a' end
          vim.cmd('normal' .. op .. chr)
-         if yakMoved(tv) then break end
+         if yakMoved(tv, 'textobject') then break end
      end
      if (i == 1) then
         vim.cmd('normal $o^')
-        if yakMoved(tv) then break end
-        vim.cmd('normal $o0')
-        if yakMoved(tv) then break end
-        vim.cmd('normal ip')
+        if yakMoved(tv, 'short line') then break end
+        vim.cmd('normal $o0', 'line')
+        if yakMoved(tv, 'whole line') then return end
      end
   end
-end
-
-function _G.tmpExpand()
-  --vim.cmd('v')
-  --vim.api.nvim_input("v")
-  
-  --vim.fn['expand_region#init']()
-  vim.fn['expand_region#next']('v', '+')
+  if (col <= 1) then vim.cmd('normal ip') end
 end
 
 -- https://www.reddit.com/r/neovim/comments/p4u4zy/how_to_pass_visual_selection_range_to_lua_function/
@@ -281,26 +306,11 @@ function _G.getVisualSelection()
   local tb = {}
   tb["ccol"] = ccol + 1
   tb["sline"] = sline
+  tb["eline"] = eline
   tb["scol"] = scol
   tb["ecol"] = ecol
   tb["stext"] = startText
   tb["lineText"] = lines[1]
   return tb
-end
-function _G.expand()
-  local tb = getVisualSelection()
-  vim.cmd('normal o')
-  vim.fn.setpos(".", {0, tb['sline'], tb['scol']-1})
-  vim.cmd('normal o')
-  vim.fn.setpos(".", {0, tb['sline'], tb['ecol']+1})
-end
-function _G.contract()
-  local tb = getVisualSelection()
-  vim.cmd('normal o')
-  vim.fn.setpos(".", {0, tb['sline'], tb['scol']+1})
-  vim.cmd('normal o')
-  vim.fn.setpos(".", {0, tb['sline'], tb['ecol']-1})
-  local inspect = require('vim.inspect')
-  --print(inspect(tb))
 end
 EOF
