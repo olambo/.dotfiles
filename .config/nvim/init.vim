@@ -8,6 +8,7 @@ endfunction
 
 source ~/.config/nvim/i1-plug.vim
 source ~/.config/nvim/i2-base.vim
+source ~/.config/nvim/i3-yak.vim
 if exists('g:vscode')
 	source ~/.config/nvim/i3-vscode.vim
 else

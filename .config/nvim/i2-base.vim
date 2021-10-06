@@ -13,16 +13,11 @@ xnoremap <end> $
 xnoremap <expr> v mode() ==# "v" ? "V" : "v"
 " visual mode <-> visual block mode
 xnoremap <expr> <leader><leader> mode() ==# "v" ? "\<c-v>" : "v"
-" bigger smaller range -- todo properly
-xnoremap <right> <right>o<left>o
-xnoremap <left> <left>o<right>o
+" visual block mode
+noremap <leader>j <c-v>j
 
 " start of line
 nnoremap <home> ^
-" visualy select word
-nnoremap <left> viw
-nnoremap <right> viw"
-nnoremap <leader>j <c-v>j
 
 " insert mode no movement"
 inoremap <up> <nop>

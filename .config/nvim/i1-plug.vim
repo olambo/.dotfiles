@@ -15,7 +15,6 @@ if !exists('g:vscode')
 	Plug 'junegunn/fzf.vim'
 
     Plug 'kamykn/spelunker.vim'
-    Plug 'landock/vim-expand-region'
 
     if has('nvim')
         Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
@@ -28,6 +27,7 @@ if !exists('g:vscode')
 
     if exists('g:useMetals')
         Plug 'scalameta/nvim-metals'
+        Plug 'nvim-lua/plenary.nvim'
 
         Plug 'hrsh7th/cmp-nvim-lsp'
         Plug 'hrsh7th/cmp-buffer'
