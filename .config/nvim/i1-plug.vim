@@ -15,6 +15,7 @@ if !exists('g:vscode')
 	Plug 'junegunn/fzf.vim'
 
     Plug 'kamykn/spelunker.vim'
+    Plug 'landock/vim-expand-region'
 
     if has('nvim')
         Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}

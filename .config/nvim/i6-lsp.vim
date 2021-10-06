@@ -71,7 +71,7 @@ cmp.setup({
   },
   mapping = {
     ['<C-e>'] = cmp.mapping.close(),
-    ['<CR>'] =  cmp.mapping.confirm({ select = true }),
+    ['<CR>'] =  cmp.mapping.confirm({ select = false }),
     ['<Tab>'] = cmp.mapping.confirm({ select = true }),
     -- supertab and Right mapping problematic. I can't reproduce (easily) in intellij!
     -- ['<Right>'] = cmp.mapping.confirm({ select = true }),

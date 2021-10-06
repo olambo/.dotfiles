@@ -20,10 +20,11 @@ xnoremap <left> <left>o<right>o
 " start of line
 nnoremap <home> ^
 " visualy select word
-nnoremap <left> vaw
-nnoremap <right> viw
+nnoremap <left> viw
+nnoremap <right> viw"
+nnoremap <leader>j <c-v>j
 
-" insert mode no movement
+" insert mode no movement"
 inoremap <up> <nop>
 inoremap <down> <nop>
 inoremap <pageup> <nop>
