@@ -165,12 +165,11 @@ endfunction
 "----------------------------------------------------------------------------------------------
  
 noremap <leader>m :exec 'source '.bufname('%')<CR>
-"map <Left> <Plug>(expand_region_shrink)
-"map <Right> <Plug>(expand_region_expand)
+" map 7 <Plug>(expand_region_shrink)
+" map 8 <Plug>(expand_region_expand)
 
-nnoremap <right> <Cmd>lua _G.yakInit("moveOn")<Cr>
+nnoremap <right> <Cmd>lua _G.yakInit()<Cr>
 xnoremap <right> <Cmd>lua _G.yakExpand()<Cr>
-nnoremap <left> <Cmd>lua _G.yakInit()<Cr>
 xnoremap <left> <Cmd>lua _G.yakContract()<Cr>
 
 lua << EOF
@@ -187,15 +186,9 @@ yakStack = {}
 yakLine = 1
 function _G.yakInit(moveOn)
     yakStack = {}
+    vim.cmd('normal V')
     vim.cmd('normal v')
-    local tv = getVisualSelection()
-    yakLine = tv['sline']
-    local yak = {}
-    yak["scol"] = tv['scol']
-    yak["ecol"] = tv['ecol']
-    table.insert(yakStack, yak) 
-    vim.cmd('normal iw')
-    yakMoved(tv, 'init')
+    yakExpand()
     if (moveOn) then
         yakExpand()
     end
@@ -217,25 +210,23 @@ function yakMoved(tv, who)
   return moved
 end
 
-function _G.yakContract()
-  local yak = table.remove(yakStack)
-  if (yak == nil) then return end
-  local scol = yak['scol']
-  local ecol = yak['ecol']
-  local tv = getVisualSelection()
-  local ccol = tv['ccol']
-  if (ccol > scol) then vim.cmd('normal o') end
-  vim.fn.setpos(".", {0, yakLine, scol})
-  vim.cmd('normal o')
-  vim.fn.setpos(".", {0, yakLine, ecol})
-  vim.cmd('normal o')
-  vim.cmd('normal o')
-  --print("scol, ecol", scol, ecol, "ccol", ccol)
-end
-
 function _G.yakExpand()
   local t = {"'", '"', '(', '[', '{'}
   local tv = getVisualSelection()
+
+  if (tv['sline'] ~= tv['eline']) then return end
+
+  if ( tv['scol'] == tv['ecol'] ) then 
+    yakStack = {}
+    local yak = {}
+    yak["scol"] = tv['scol']
+    yak["ecol"] = tv['ecol']
+    table.insert(yakStack, yak) 
+    vim.cmd('normal iw')
+    if (yakMoved(tv)) then
+        return
+    end
+  end
   local txt = tv['lineText']
   local col = tv['scol'] - 1
   for i = col, 1, -1 do 
@@ -254,6 +245,26 @@ function _G.yakExpand()
      end
   end
   if (col <= 1) then vim.cmd('normal ip') end
+end
+
+function _G.yakContract()
+  local yak = table.remove(yakStack)
+  if (yak == nil) then return end
+  local scol = yak['scol']
+  local ecol = yak['ecol']
+  local tv = getVisualSelection()
+  if (tv['sline'] ~= tv['eline']) then 
+      vim.cmd('normal VV')
+      vim.cmd('normal v')
+  end
+  local ccol = tv['ccol']
+  if (ccol > scol) then vim.cmd('normal o') end
+  vim.fn.setpos(".", {0, yakLine, scol})
+  vim.cmd('normal o')
+  vim.fn.setpos(".", {0, yakLine, ecol})
+  vim.cmd('normal o')
+  vim.cmd('normal o')
+  --print("scol, ecol", scol, ecol, "ccol", ccol)
 end
 
 -- https://www.reddit.com/r/neovim/comments/p4u4zy/how_to_pass_visual_selection_range_to_lua_function/
