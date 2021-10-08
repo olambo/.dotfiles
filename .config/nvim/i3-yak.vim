@@ -172,10 +172,10 @@ function _G.getVisualSelection()
     ecol = ecol + 1
   end
 
-  if mode == "V" or mode == "CTRL-V" or mode == "\22" then
-    scol = 1
-    ecol = nil
-  end
+  --if mode == "V" or mode == "CTRL-V" or mode == "\22" then
+  --  scol = 1
+  --  ecol = nil
+  --end
 
   local lines = vim.api.nvim_buf_get_lines(0, sline - 1, eline, 0)
   if #lines == 0 then return end
@@ -184,7 +184,7 @@ function _G.getVisualSelection()
   if #lines == 1 then
     startText = string.sub(lines[1], scol, ecol)
   else
-    startText = string.sub(lines[1], scol)
+    startText = string.sub(lines[1], scol, ecol)
     endText = string.sub(lines[#lines], 1, ecol)
   end
 
@@ -210,7 +210,7 @@ end
 local function getOp(chr, isSearchTerm)
   if chr == '[' or chr == ']' then
     if isSearchTerm then
-      return [[\[]], [===[\]]===]
+      return [===[\[]===], [===[\]]===]
     else 
       return '[', ']'
     end
@@ -234,6 +234,7 @@ local function applySingle(chr)
   local tv = getVisualSelection()
   local txt, col = tv["stext"], tv["scol"]
   if not txt or txt == '' then return end
+  local txtLen = string.len(txt)
   local xsm, xem = string.sub(txt, 1, 1), string.sub(txt, string.len(txt))
   local osm, oem = getOp(xsm, true)
 
@@ -241,15 +242,15 @@ local function applySingle(chr)
   if sm == '?' or (sm == ";" and osm == "?") then return end
   if (osm == '?' or oem == '?') and osm ~= oem then return end
   
-   -- one two ('and' [then some] old stuff)
-  local mstr = [[s/]].. osm .. [[\([^]] .. osm ..[[]*\)]] .. oem .. '/' .. sm .. [[\1]] .. em .. '/'
+   -- one two ("and" [then some] stuff) b
+   -- one two ("and" [or some] cars) 
+  local mstr = [[s/\%]] .. col .. 'c' .. osm .. [[\([^]] .. osm ..[[]*\)]] .. oem .. '/' .. sm .. [[\1]] .. em .. '/'
   if osm == '?' then
-    mstr = [[s/]].. txt .. '/' .. sm .. txt .. em .. '/' 
+    mstr = [[s/\%]] .. col .. 'c' .. [[\(.\{]] .. txtLen .. [[}\)]]  .. '/' .. sm .. [[\1]]  .. em .. '/' 
   end
   vim.cmd('mess clear')
-  print('mstr', mstr)
-  vim.cmd(mstr)
-  vim.api.nvim_input("o<esc>")
+  print('mstr', mstr, 'txt=', txt, 'lineText=', tv["lineText"])
+  vim.api.nvim_input(':' .. mstr)
 end
 
 function _G.getYakPattern()
