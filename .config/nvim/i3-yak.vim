@@ -9,6 +9,8 @@ xnoremap <left> <Cmd>lua _G.yakContract()<Cr>
 xnoremap = <Cmd>lua _G.yakExpand1Chr()<Cr>
 xnoremap - <Cmd>lua _G.yakContract1Chr()<Cr>
  
+noremap <leader>k <Cmd>lua _G.getYakPattern()<cr>
+
 lua << EOF
 local function existsIn(val, tab)
     for index, value in ipairs(tab) do
@@ -195,5 +197,63 @@ function _G.getVisualSelection()
   tb["stext"] = startText
   tb["lineText"] = lines[1]
   return tb
+end
+
+local function getInput()
+  local curline = vim.fn.getline('.')
+  vim.fn.inputsave()
+  local pattern = vim.fn.input('Pattern;')
+  vim.fn.inputrestore()
+  return pattern
+end
+
+local function getOp(chr, isSearchTerm)
+  if chr == '[' or chr == ']' then
+    if isSearchTerm then
+      return [[\[]], [===[\]]===]
+    else 
+      return '[', ']'
+    end
+  elseif chr == '{' or chr == '}' then
+    return '{', '}'
+  elseif chr == '(' or chr == ')' then
+    return '(', ')'
+  elseif chr == '(' or chr == ')' then
+    return '(', ')'
+  elseif chr == '"' then
+    return '"', '"'
+  elseif chr == "'" then
+    return "'", "'"
+  elseif chr == ';' and isSearchTerm then
+    return '', ''
+  end
+  return '?', '?'
+end
+
+local function applySingle(chr)
+  local tv = getVisualSelection()
+  local txt, col = tv["stext"], tv["scol"]
+  if not txt or txt == '' then return end
+  local xsm, xem = string.sub(txt, 1, 1), string.sub(txt, string.len(txt))
+  local osm, oem = getOp(xsm, true)
+
+  local sm, em = getOp(chr, false)
+  if sm == '?' or (sm == ";" and osm == "?") then return end
+  if (osm == '?' or oem == '?') and osm ~= oem then return end
+  
+   -- one two ('and' [then some] old stuff)
+  local mstr = [[s/]].. osm .. [[\([^]] .. osm ..[[]*\)]] .. oem .. '/' .. sm .. [[\1]] .. em .. '/'
+  if osm == '?' then
+    mstr = [[s/]].. txt .. '/' .. sm .. txt .. em .. '/' 
+  end
+  vim.cmd('mess clear')
+  print('mstr', mstr)
+  vim.cmd(mstr)
+  vim.api.nvim_input("o<esc>")
+end
+
+function _G.getYakPattern()
+  local pattern = getInput()
+  applySingle(pattern)
 end
 EOF
