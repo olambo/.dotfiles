@@ -3,13 +3,15 @@
 " will perform a final expand to a paragraph before ignoring more expansion
 " requests.
 
+noremap <leader>k <Cmd>lua _G.getYakPattern()<cr>
 nnoremap <right> <Cmd>lua _G.yakInit()<Cr>
+
 xnoremap <right> <Cmd>lua _G.yakExpand()<Cr>
 xnoremap <left> <Cmd>lua _G.yakContract()<Cr>
 xnoremap = <Cmd>lua _G.yakExpand1Chr()<Cr>
 xnoremap - <Cmd>lua _G.yakContract1Chr()<Cr>
- 
-noremap <leader>k <Cmd>lua _G.getYakPattern()<cr>
+xnoremap ii <Cmd>lua _G.yakInsert()<cr>
+xnoremap aa <Cmd>lua _G.yakAppend()<cr>
 
 lua << EOF
 local function existsIn(val, tab)
@@ -147,61 +149,40 @@ function _G.yakContract()
   vim.cmd('normal o')
 end
 
-function _G.getVisualSelection()
+function _G.getVisualSelection(setCur)
   local modeInfo = vim.api.nvim_get_mode()
   local mode = modeInfo.mode
 
   local cursor = vim.api.nvim_win_get_cursor(0)
-  local cline, ccol = cursor[1], cursor[2]
+  -- todo: does this have to be global to get the cursor info
+  local cline, ccol = cursor[1], cursor[2] + 1
   local vline, vcol = vim.fn.line('v'), vim.fn.col('v')
 
-  local sline, scol
-  local eline, ecol
-  if cline == vline then
-    if ccol <= vcol then
+  local sline, scol = vline, vcol
+  local eline, ecol = cline, ccol
+  if ccol <= vcol or cline < vline  then
       sline, scol = cline, ccol
       eline, ecol = vline, vcol
-      scol = scol + 1
-    else
-      sline, scol = vline, vcol
-      eline, ecol = cline, ccol
-      ecol = ecol + 1
-    end
-  elseif cline < vline then
-    sline, scol = cline, ccol
-    eline, ecol = vline, vcol
-    scol = scol + 1
-  else
-    sline, scol = vline, vcol
-    eline, ecol = cline, ccol
-    ecol = ecol + 1
   end
-
-  --if mode == "V" or mode == "CTRL-V" or mode == "\22" then
-  --  scol = 1
-  --  ecol = nil
-  --end
+  if (setCur == 'start' and ccol > vcol) then
+      vim.api.nvim_input('o') 
+  elseif (setCur == 'end' and ccol < vcol) then 
+      vim.api.nvim_input('o') 
+  end
 
   local lines = vim.api.nvim_buf_get_lines(0, sline - 1, eline, 0)
-  if #lines == 0 then return end
+  local startText = string.sub(lines[1], scol, ecol)
+  -- if #lines > 1 then endText = string.sub(lines[#lines], 1, ecol) end
 
-  local startText, endText
-  if #lines == 1 then
-    startText = string.sub(lines[1], scol, ecol)
-  else
-    startText = string.sub(lines[1], scol, ecol)
-    endText = string.sub(lines[#lines], 1, ecol)
-  end
-
-  local tb = {}
-  tb["ccol"] = ccol + 1
-  tb["sline"] = sline
-  tb["eline"] = eline
-  tb["scol"] = scol
-  tb["ecol"] = ecol
-  tb["stext"] = startText
-  tb["lineText"] = lines[1]
-  return tb
+  local tv = {}
+  tv["ccol"] = ccol
+  tv["sline"] = sline
+  tv["eline"] = eline
+  tv["scol"] = scol
+  tv["ecol"] = ecol
+  tv["stext"] = startText
+  tv["lineText"] = lines[1]
+  return tv
 end
 
 local function getInput()
@@ -263,29 +244,14 @@ function _G.getYakPattern()
   applySingle(pattern)
 end
 
--- todo: does this have to be global to get the cursor info
-function _G.yakSel(setCur)
-  local modeInfo = vim.api.nvim_get_mode()
-  local mode = modeInfo.mode
-  local cursor = vim.api.nvim_win_get_cursor(0)
-  local cline, ccol = cursor[1], cursor[2]
-  local vline, vcol = vim.fn.line('v'), vim.fn.col('v')
-  print("a) mode ccol vcol", mode, ccol, vcol )
-  if (setCur == 'b' and ccol ~= vcol) then
-      vim.api.nvim_input('o') 
-  elseif (setCur == 'e' and ccol == vcol) then 
-      vim.api.nvim_input('o') 
-  end
-  return mode, ccol, vcol, cline, vline
-end
-
 function _G.yakInsert()
-  _G.yakSel('b')
+  _G.getVisualSelection('start')
   vim.api.nvim_input('<c-[>i')
 end
+
+function _G.yakAppend()
+    _G.getVisualSelection('end')
+  vim.api.nvim_input('<c-[>a')
+end
 EOF
-xnoremap 8 <Cmd>lua _G.yakInsert()<cr>
-"
-"
-"lls
 
