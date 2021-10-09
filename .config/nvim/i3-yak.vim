@@ -25,9 +25,14 @@ yakStack = {}
 yakLine = 1
 function _G.yakInit()
     yakStack = {}
-    vim.cmd('normal V')
+    -- just in case it's called from visual mode to reinitialize
+    vim.cmd('normal <c-v>')
     vim.cmd('normal v')
-    yakExpand()
+    local modeInfo = vim.api.nvim_get_mode()
+    local mode = modeInfo.mode
+    if mode == 'v' then yakExpand()
+    else print("Not in correct mode:", mode)
+    end
 end
 
 function yakIsMoved(tv)
@@ -257,4 +262,30 @@ function _G.getYakPattern()
   local pattern = getInput()
   applySingle(pattern)
 end
+
+-- todo: does this have to be global to get the cursor info
+function _G.yakSel(setCur)
+  local modeInfo = vim.api.nvim_get_mode()
+  local mode = modeInfo.mode
+  local cursor = vim.api.nvim_win_get_cursor(0)
+  local cline, ccol = cursor[1], cursor[2]
+  local vline, vcol = vim.fn.line('v'), vim.fn.col('v')
+  print("a) mode ccol vcol", mode, ccol, vcol )
+  if (setCur == 'b' and ccol ~= vcol) then
+      vim.api.nvim_input('o') 
+  elseif (setCur == 'e' and ccol == vcol) then 
+      vim.api.nvim_input('o') 
+  end
+  return mode, ccol, vcol, cline, vline
+end
+
+function _G.yakInsert()
+  _G.yakSel('b')
+  vim.api.nvim_input('<c-[>i')
+end
 EOF
+xnoremap 8 <Cmd>lua _G.yakInsert()<cr>
+"
+"
+"lls
+
