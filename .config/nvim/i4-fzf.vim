@@ -74,12 +74,6 @@ function! FindFileLocal()
   execute "FZF %:h"
 endfunction
 
-nnoremap <leader>k ?^[o\|c\|t]
-function! ObjFirstColumn()
-    "experimental look for object class type, above on first column. 
-    execute "?^[o\|c\|t]"
-endfunction
-
 " when running fzf#run. Output doesnt appear!. So echo via a timer
 function! ToggleMouse()
   if &mouse != ''

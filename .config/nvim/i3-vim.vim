@@ -4,6 +4,7 @@ let g:sneak#use_ic_scs = 1
 
 nnoremap <F5> :UndotreeToggle<CR>
 nmap <f7> :lua require('dark_notify').toggle()<cr>
+nnoremap <f8> :source $MYVIMRC<CR>
 
 " down when number given: j, otherwise gj. (similar with k)
 nnoremap <expr> j v:count ? 'j' : 'gj'
@@ -162,8 +163,4 @@ function! GoCommand(cmd)
     endif
     call writefile([a:cmd], expand("~/.config/nvim/runcache/vcommand.txt"))
 endfunction
-
-"----------------------------------------------------------------------------------------------
-" Just for testing 
-noremap <leader>m :exec 'source '.bufname('%')<CR>
 
