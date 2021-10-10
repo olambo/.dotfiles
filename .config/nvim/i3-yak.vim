@@ -3,7 +3,7 @@
 " will perform a final expand to a paragraph before ignoring more expansion
 " requests.
 
-noremap <leader>k <Cmd>lua _G.getYakPattern()<cr>
+nnoremap <leader>k <Cmd>lua _G.getYakPattern()<cr>
 nnoremap <right> <Cmd>lua _G.yakInit()<Cr>
 
 xnoremap <right> <Cmd>lua _G.yakExpand()<Cr>
@@ -12,6 +12,10 @@ xnoremap = <Cmd>lua _G.yakExpand1Chr()<Cr>
 xnoremap - <Cmd>lua _G.yakContract1Chr()<Cr>
 xnoremap ii <Cmd>lua _G.yakInsert()<cr>
 xnoremap aa <Cmd>lua _G.yakAppend()<cr>
+
+xnoremap <expr> g/ ':s/'.expand('<cword>').'//g<Left><Left>'
+xnoremap g/ <Cmd>lua _G.getYakPatternTxt()<cr>
+" 'one tow'
 
 lua << EOF
 local function existsIn(val, tab)
@@ -188,7 +192,7 @@ end
 local function getInput()
   local curline = vim.fn.getline('.')
   vim.fn.inputsave()
-  local pattern = vim.fn.input('Pattern;')
+  local pattern = vim.fn.input('Yak;')
   vim.fn.inputrestore()
   return pattern
 end
@@ -210,38 +214,85 @@ local function getOp(chr, isSearchTerm)
     return '"', '"'
   elseif chr == "'" then
     return "'", "'"
-  elseif chr == ';' and isSearchTerm then
+  elseif chr == ';' then --todo: and isSearchTerm then
     return '', ''
+  elseif chr == '.' then --todo: and isSearchTerm then
+    return '.', '.'
   end
   return '?', '?'
 end
 
-local function applySingle(chr)
+local function oneTxtChange(chr)
   local tv = getVisualSelection()
   local txt, col = tv["stext"], tv["scol"]
   if not txt or txt == '' then return end
   local txtLen = string.len(txt)
-  local xsm, xem = string.sub(txt, 1, 1), string.sub(txt, string.len(txt))
+  local xsm, xtxt, xem = string.sub(txt, 1, 1), txt, string.sub(txt, string.len(txt))
+  local osm, oem = getOp(xsm, true)
+  local sm, em = getOp(chr, false)
+
+  if sm == '?' or (sm == ";" and osm == "?") then return end
+  if (osm == '?' or oem == '?') and osm ~= oem then return end
+  if osm ~= '?' then xtxt = string.sub(txt, 2, string.len(txt)-1) end
+  
+  vim.cmd('mess clear')
+  local command = 'c' .. sm .. xtxt .. em
+  print('mstr', mstr, 'txt=', txt, 'xtxt=', xtxt, 'sm=', sm, 'command=', command)
+  vim.api.nvim_input(command)
+  vim.api.nvim_input('<c-[>')
+end
+
+function patternChange(chr, patternType)
+  local tv = getVisualSelection()
+  local txt, col = tv["stext"], tv["scol"]
+  if not txt or txt == '' then return end
+  local txtLen = string.len(txt)
+  local xsm, xtxt, xem = string.sub(txt, 1, 1), txt, string.sub(txt, string.len(txt))
   local osm, oem = getOp(xsm, true)
 
   local sm, em = getOp(chr, false)
   if sm == '?' or (sm == ";" and osm == "?") then return end
   if (osm == '?' or oem == '?') and osm ~= oem then return end
+  if osm ~= '?' then xtxt = string.sub(txt, 2, string.len(txt)-1) end
+  if chr == '.' then
+    if osm == '?' or oem == '?' then
+      osm, oem = '', ''
+    end
+    sm, em = osm, oem 
+  end
   
-   -- one two ("and" [then some] stuff) b
-   -- one two ("and" [or some] cars) 
+   -- one two ("and" [or some] [cars] [or some]) 
+   -- one two ("and" [or some] [cars]) 
   local mstr = [[s/\%]] .. col .. 'c' .. osm .. [[\([^]] .. osm ..[[]*\)]] .. oem .. '/' .. sm .. [[\1]] .. em .. '/'
   if osm == '?' then
     mstr = [[s/\%]] .. col .. 'c' .. [[\(.\{]] .. txtLen .. [[}\)]]  .. '/' .. sm .. [[\1]]  .. em .. '/' 
   end
+  if patternType == 't' then
+    local t1 = string.gsub(xtxt, "%[", [===[\[]===])
+    t1 = string.gsub(t1, "%]", [===[\]]===])
+    mstr = [[s/]] .. osm .. [[\(]] .. t1.. [[\)]] .. oem  .. '/' .. sm .. [[\1]]  .. em .. '/gIc' 
+  end
   vim.cmd('mess clear')
-  print('mstr', mstr, 'txt=', txt, 'lineText=', tv["lineText"])
+  print("WHAT!")
+  print('mstr', mstr, 'txt=', txt, 'osm=', osm, 'lineText=', tv["lineText"])
   vim.api.nvim_input(':' .. mstr)
 end
 
-function _G.getYakPattern()
-  local pattern = getInput()
-  applySingle(pattern)
+function _G.getYakPatternTxt()
+    patternChange('.', 't')
+end
+
+function _G.getYakPattern(patternIn)
+  local pattern = patternIn
+  if not pattern then
+    pattern = getInput()
+  end
+  local chr1 = string.sub(pattern, 1, 1)
+  if chr1 == 'p' or chr1 == 't' then
+    patternChange(string.sub(pattern, 2), chr1)
+  else
+    oneTxtChange(pattern)
+  end
 end
 
 function _G.yakInsert()
