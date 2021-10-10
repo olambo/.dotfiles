@@ -1,10 +1,13 @@
 "----------------------------------------------------------------------------------------------
-" Yak visual region expand and contract. Only works on one line, though it
-" will perform a final expand to a paragraph before ignoring more expansion
-" requests.
+" Yak visual region expand and contract. Works up to first expand to multiple lines.
+" Also Yak surround - add or remove surrounding Quotes, Parenthesis.
+" Also Yak regex. Set up a regex search/replace in a simple manner.
 
-nnoremap <leader>k <Cmd>lua _G.getYakPattern()<cr>
 nnoremap <right> <Cmd>lua _G.yakInit()<Cr>
+nnoremap <expr> g/ ':s/'.expand('<cword>').'//g<Left><Left>'
+
+xnoremap g/ <Cmd>lua _G.getYakPatternTxt()<cr>
+xnoremap <leader>e <Cmd>lua _G.getYakPattern()<cr>
 
 xnoremap <right> <Cmd>lua _G.yakExpand()<Cr>
 xnoremap <left> <Cmd>lua _G.yakContract()<Cr>
@@ -13,8 +16,6 @@ xnoremap - <Cmd>lua _G.yakContract1Chr()<Cr>
 xnoremap ii <Cmd>lua _G.yakInsert()<cr>
 xnoremap aa <Cmd>lua _G.yakAppend()<cr>
 
-xnoremap <expr> g/ ':s/'.expand('<cword>').'//g<Left><Left>'
-xnoremap g/ <Cmd>lua _G.getYakPatternTxt()<cr>
 " 'one tow'
 
 lua << EOF
@@ -37,7 +38,7 @@ function _G.yakInit()
     local modeInfo = vim.api.nvim_get_mode()
     local mode = modeInfo.mode
     if mode == 'v' then yakExpand()
-    else print("Not in correct mode:", mode)
+    else print("yakInit: Not in correct mode:", mode)
     end
 end
 
@@ -197,10 +198,17 @@ local function getInput()
   return pattern
 end
 
+local function squareBracketOpen()  
+    return [===[\[]===]
+end
+local function squareBracketClose ()
+    return [===[\]]===]
+end
+
 local function getOp(chr, isSearchTerm)
   if chr == '[' or chr == ']' then
     if isSearchTerm then
-      return [===[\[]===], [===[\]]===]
+      return squareBracketOpen(), squareBracketClose()
     else 
       return '[', ']'
     end
@@ -235,9 +243,9 @@ local function oneTxtChange(chr)
   if (osm == '?' or oem == '?') and osm ~= oem then return end
   if osm ~= '?' then xtxt = string.sub(txt, 2, string.len(txt)-1) end
   
-  vim.cmd('mess clear')
   local command = 'c' .. sm .. xtxt .. em
-  print('mstr', mstr, 'txt=', txt, 'xtxt=', xtxt, 'sm=', sm, 'command=', command)
+  --vim.cmd('mess clear')
+  --print('oneTxtChange: mstr', mstr, 'txt=', txt, 'xtxt=', xtxt, 'sm=', sm, 'command=', command)
   vim.api.nvim_input(command)
   vim.api.nvim_input('<c-[>')
 end
@@ -261,34 +269,34 @@ function patternChange(chr, patternType)
     sm, em = osm, oem 
   end
   
-   -- one two ("and" [or some] [cars] [or some]) 
-   -- one two ("and" [or some] [cars]) 
-  local mstr = [[s/\%]] .. col .. 'c' .. osm .. [[\([^]] .. osm ..[[]*\)]] .. oem .. '/' .. sm .. [[\1]] .. em .. '/'
-  if osm == '?' then
-    mstr = [[s/\%]] .. col .. 'c' .. [[\(.\{]] .. txtLen .. [[}\)]]  .. '/' .. sm .. [[\1]]  .. em .. '/' 
-  end
+  local mstr
   if patternType == 't' then
-    local t1 = string.gsub(xtxt, "%[", [===[\[]===])
-    t1 = string.gsub(t1, "%]", [===[\]]===])
-    mstr = [[s/]] .. osm .. [[\(]] .. t1.. [[\)]] .. oem  .. '/' .. sm .. [[\1]]  .. em .. '/gIc' 
+    xtxt = string.gsub(xtxt, "%[", squareBracketOpen())
+    xtxt = string.gsub(xtxt, "%]", squareBracketClose())
+    mstr = [[s/]] .. osm .. [[\(]] .. xtxt.. [[\)]] .. oem  .. '/' .. sm .. [[\1]]  .. em .. '/gIc' 
+  elseif osm == '?' then
+    mstr = [[s/\%]] .. col .. 'c' .. [[\(.\{]] .. txtLen .. [[}\)]]  .. '/' .. sm .. [[\1]]  .. em .. '/' 
+  else 
+    mstr = [[s/\%]] .. col .. 'c' .. osm .. [[\([^]] .. osm ..[[]*\)]] .. oem .. '/' .. sm .. [[\1]] .. em .. '/'
   end
-  vim.cmd('mess clear')
-  print("WHAT!")
-  print('mstr', mstr, 'txt=', txt, 'osm=', osm, 'lineText=', tv["lineText"])
+  --vim.cmd('mess clear')
+  --print('PatternChange: mstr', mstr, 'txt=', txt, 'osm=', osm, 'lineText=', tv["lineText"])
   vim.api.nvim_input(':' .. mstr)
 end
 
 function _G.getYakPatternTxt()
-    patternChange('.', 't')
+  patternChange('.', 't')
+  vim.api.nvim_input('<left><left><left><left>')
 end
 
-function _G.getYakPattern(patternIn)
-  local pattern = patternIn
-  if not pattern then
-    pattern = getInput()
-  end
+function _G.getYakPattern()
+  local modeInfo = vim.api.nvim_get_mode()
+  local mode = modeInfo.mode
+  local pattern = getInput()
   local chr1 = string.sub(pattern, 1, 1)
-  if chr1 == 'p' or chr1 == 't' then
+  if mode ~= 'v' and chr1 ~= 't' then 
+    patternChange(pattern, chr1) -- todo: logic here
+  elseif chr1 == 'p' or chr1 == 't' then
     patternChange(string.sub(pattern, 2), chr1)
   else
     oneTxtChange(pattern)
