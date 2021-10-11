@@ -2,6 +2,15 @@ nmap s <Plug>Sneak_s
 nmap S <Plug>Sneak_S
 let g:sneak#use_ic_scs = 1
 
+" experimental - am I pressing key-u accidentally
+nnoremap u <nop>
+nnoremap <c-x><c-u> u
+
+" paste from register 0
+nnoremap <c-x><c-p> "0p
+inoremap <c-x><c-p> <c-r><c-o>0
+cnoremap <c-x><c-p> <c-r><c-o>0
+
 nnoremap <F5> :UndotreeToggle<CR>
 nmap <f7> :lua require('dark_notify').toggle()<cr>
 nnoremap <f8> :source $MYVIMRC<CR>
