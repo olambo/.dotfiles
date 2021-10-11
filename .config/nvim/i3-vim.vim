@@ -1,3 +1,9 @@
+set dir=~/.config/vim-data/swapfiles
+set backup
+set backupdir=~/.config/vim-data/backupfiles
+set undofile
+set undodir=~/.config/vim-data/undofiles
+
 nmap s <Plug>Sneak_s
 nmap S <Plug>Sneak_S
 let g:sneak#use_ic_scs = 1
@@ -11,6 +17,7 @@ nnoremap <c-x><c-p> "0p
 inoremap <c-x><c-p> <c-r><c-o>0
 cnoremap <c-x><c-p> <c-r><c-o>0
 
+let g:undotree_SplitWidth = 50
 nnoremap <F5> :UndotreeToggle<CR>
 nmap <f7> :lua require('dark_notify').toggle()<cr>
 nnoremap <f8> :source $MYVIMRC<CR>
@@ -117,7 +124,6 @@ endif
 " copy to system clipboard. <hyp-y> mapped to <c-x><c-y> via karabiner elements
 if $TERM_PROGRAM == "Apple_Terminal"
   vnoremap <c-x><c-y> "+y
-  let g:enable_spelunker_vim = 1
   let g:PaperColor_Theme_Options = {
    \   'theme': {
    \     'default': {
