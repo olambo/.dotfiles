@@ -1,3 +1,5 @@
+source  ~/.config/nvim/i4-experimental.vim
+
 set dir=~/.config/vim-data/swapfiles
 set backup
 set backupdir=~/.config/vim-data/backupfiles
@@ -8,17 +10,27 @@ nmap s <Plug>Sneak_s
 nmap S <Plug>Sneak_S
 let g:sneak#use_ic_scs = 1
 
-" experimental - am I pressing key-u accidentally
+" experimental - am I pressing keys accidentally
+nnoremap <left> s
+nnoremap <c-x>. .
 nnoremap u <nop>
 nnoremap <c-x><c-u> u
-
-" paste from register 0
-nnoremap <c-x><c-p> "0p
-inoremap <c-x><c-p> <c-r><c-o>0
-cnoremap <c-x><c-p> <c-r><c-o>0
+nnoremap <c-x><c-i> i
+nnoremap <c-x><c-o> o
+" paste from register 
+nnoremap <c-x><c-p> ""p
+inoremap <c-x><c-p> <c-r><c-o>"
+cnoremap <c-x><c-p> <c-r><c-o>"
+" use hyp-c cmd-/ to comment
+nmap <c-x><c-_> gcc
+xmap <c-x><c-_> gc
+nmap <C-_> gcc
+xmap <C-_> gc
+" delete char under cursor
+nnoremap <c-w> x
 
 let g:undotree_SplitWidth = 50
-nnoremap <F5> :UndotreeToggle<CR>
+nnoremap <f5> :UndotreeToggle<CR>
 nmap <f7> :lua require('dark_notify').toggle()<cr>
 nnoremap <f8> :source $MYVIMRC<CR>
 
@@ -62,10 +74,6 @@ nnoremap gj <c-i>
 set belloff=all
 set mouse=nv " this is not going to allow command-c. can use option-mouse or turn off
 set incsearch
-
-" use cmd-/ to comment (mapped from cmd-_ from karabiner elements)
-nmap <C-_> gcc
-xmap <C-_> gc
 
 " insert mode drop down list selection.
 inoremap <down> <c-n>
@@ -128,8 +136,8 @@ if $TERM_PROGRAM == "Apple_Terminal"
    \   'theme': {
    \     'default': {
    \       'override' : {
-   \         'color00' : ['#ffffff', '231'],
-   \         'linenumber_bg' : ['#ffffff', '231'],
+   \         'color00' : ['#FBFBFB', '231'],
+   \         'linenumber_bg' : ['#FBFBFB', '231'],
    \       }
    \     },
    \     'default.dark': {

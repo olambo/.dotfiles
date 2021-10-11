@@ -16,8 +16,6 @@ xnoremap - <Cmd>lua _G.yakContract1Chr()<Cr>
 xnoremap ii <Cmd>lua _G.yakInsert()<cr>
 xnoremap aa <Cmd>lua _G.yakAppend()<cr>
 
-" 'one tow'
-
 lua << EOF
 local function existsIn(val, tab)
     for index, value in ipairs(tab) do
