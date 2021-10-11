@@ -631,7 +631,7 @@
                         ]
                     },
                     {
-                        "description": "6)  <hyp-y> to <c-x><c-y>, <cmd-c> to <c-x><c-y><cmd-c> - yank to system clipboard",
+                        "description": "6)  <hyp-y>, <cmd-c> yank to reg 0 and system clipboard, <hyp-p> paste from reg 0, <hyp-u> undo (experimental)",
                         "manipulators": [
                             {
                                 "conditions": [
@@ -665,6 +665,84 @@
                                     },
                                     {
                                         "key_code": "y",
+                                        "modifiers": [
+                                            "control"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "io.alacritty",
+                                            "com.apple.Terminal",
+                                            "com.googlecode.iterm2",
+                                            "com.microsoft.VSCode"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "p",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "shift",
+                                            "command",
+                                            "control",
+                                            "option"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "x",
+                                        "modifiers": [
+                                            "control"
+                                        ]
+                                    },
+                                    {
+                                        "key_code": "p",
+                                        "modifiers": [
+                                            "control"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "io.alacritty",
+                                            "com.apple.Terminal",
+                                            "com.googlecode.iterm2",
+                                            "com.microsoft.VSCode"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "u",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "shift",
+                                            "command",
+                                            "control",
+                                            "option"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "x",
+                                        "modifiers": [
+                                            "control"
+                                        ]
+                                    },
+                                    {
+                                        "key_code": "u",
                                         "modifiers": [
                                             "control"
                                         ]
