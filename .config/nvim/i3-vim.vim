@@ -1,4 +1,3 @@
-source  ~/.config/nvim/i4-experimental.vim
 
 set dir=~/.config/vim-data/swapfiles
 set backup
@@ -22,8 +21,8 @@ nnoremap <c-x><c-p> ""p
 inoremap <c-x><c-p> <c-r><c-o>"
 cnoremap <c-x><c-p> <c-r><c-o>"
 " use hyp-c cmd-/ to comment
-nmap <c-x><c-_> gcc
-xmap <c-x><c-_> gc
+nmap <c-x><c-m> gcc
+xmap <c-x><c-m> gc
 nmap <C-_> gcc
 xmap <C-_> gc
 " delete char under cursor
@@ -101,8 +100,11 @@ autocmd BufWritePre,FileWritePre * silent! call mkdir(expand('<afile>:p:h'), 'p'
 " correctly set markdown for vim-commentary
 autocmd FileType markdown setlocal commentstring=#\ %s
 
+source  ~/.config/nvim/i4-experimental.vim
+source ~/.config/nvim/i3-yak.vim
 if has('nvim')
 :lua <<EOF
+  require('i3-yak')
   require'nvim-treesitter.configs'.setup {
     ensure_installed = "maintained",    -- one of "all", "maintained" (parsers with maintainers), or a list of languages
     ignore_install = { },               -- List of parsers to ignore installing
