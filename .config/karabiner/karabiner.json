@@ -703,7 +703,7 @@
                                     }
                                 ],
                                 "from": {
-                                    "key_code": "c",
+                                    "key_code": "m",
                                     "modifiers": {
                                         "mandatory": [
                                             "shift",
@@ -721,7 +721,7 @@
                                         ]
                                     },
                                     {
-                                        "key_code": "hyphen",
+                                        "key_code": "m",
                                         "modifiers": [
                                             "control"
                                         ]
