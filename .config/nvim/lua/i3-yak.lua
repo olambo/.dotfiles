@@ -1,3 +1,10 @@
+yakStack = {}
+yakLine = 1
+yakLine = 1
+yakInd = 0
+yakOnKeyword = false
+yakWord = ''
+
 local function existsIn(val, tab)
     for index, value in ipairs(tab) do
         if value == val then
@@ -6,13 +13,6 @@ local function existsIn(val, tab)
     end
     return false
 end
-
-yakStack = {}
-yakLine = 1
-yakLine = 1
-yakInd = 0
-yakOnKeyword = false
-yakWord = ''
 
 local function isKeyword()
     yakWord = vim.fn.expand("<cword>")
@@ -222,7 +222,7 @@ local function getOp(chr, isSearchTerm)
   return '?', '?'
 end
 
--- todo: why wont esc, escape from visual mode here
+-- todo: why wont esc, escape from visual mode 
 local function strToNormal()
   local modeInfo = vim.api.nvim_get_mode()
   local mode = modeInfo.mode
@@ -231,7 +231,7 @@ local function strToNormal()
   elseif mode == 'CTRL-V' then
       return 'VV'
   else 
-      return [[\<esc>]]
+      return ''
   end
 end
 
@@ -242,13 +242,11 @@ function _G.change(chr)
 
   local command = 'c'
   if yakOnKeyword and yakWord == txt  then
-    vim.cmd('normal! ' .. strToNormal() )
-    command = "<c-x><c-q>iw" --todo: why is vim.cmd taking me out of the mode
+    command = strToNormal() .. "ciw"
   end
-  -- vim.cmd('normal! ' .. command)
-  vim.api.nvim_input(command)
-  vim.cmd('mess clear')
-  print("command", command)
+  vim.api.nvim_feedkeys(command, 'n', false)
+  -- vim.cmd('mess clear')
+  -- print("command", command)
 end
 
 local function oneTxtChange(chr)
@@ -264,13 +262,13 @@ local function oneTxtChange(chr)
   if (osm == '?' or oem == '?') and osm ~= oem then return end
   if osm ~= '?' then xtxt = string.sub(txt, 2, string.len(txt)-1) end
 
-  local command = 'normal! c' .. sm .. xtxt .. em 
-  if yakOnKeyword and yakWord == xtxt and sm .. em ~= '' then
-    command = "normal! " .. strToNormal() .. "ciw" .. sm .. xtxt .. em
+  local command = 'c' .. sm .. xtxt .. em 
+  if yakOnKeyword and yakWord == xtxt and sm .. em == '' then
+    command = strToNormal() .. "ciw" .. sm .. xtxt .. em
   end
-  vim.cmd(command)
-  -- vim.cmd('mess clear')
-  -- print("command", command)
+  vim.api.nvim_feedkeys(command, 'n', false)
+  vim.cmd('mess clear')
+  print("command", command)
 end
 
 function patternChange(chr, patternType)
