@@ -263,7 +263,7 @@ local function oneTxtChange(chr)
   if osm ~= '?' then xtxt = string.sub(txt, 2, string.len(txt)-1) end
 
   local command = 'c' .. sm .. xtxt .. em 
-  if yakOnKeyword and yakWord == xtxt and sm .. em == '' then
+  if yakOnKeyword and yakWord == xtxt and osm .. oem == '??' then
     command = strToNormal() .. "ciw" .. sm .. xtxt .. em
   end
   vim.api.nvim_feedkeys(command, 'n', false)

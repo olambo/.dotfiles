@@ -10,11 +10,11 @@ let mapleader="\<space>"
 xnoremap <home> ^
 xnoremap <end> $
 " visual mode <-> visual line mode
-xnoremap <expr> v mode() ==# "v" ? "V" : "v"
+xnoremap <expr> v mode() ==# "V" ? "v" : "V"
 " visual mode <-> visual block mode
-xnoremap <expr> <leader><leader> mode() ==# "v" ? "\<c-v>" : "v"
+xnoremap <expr> <leader>j mode() ==# "\<c-v>" ? "V" : "\<c-v>"
 " visual block mode
-noremap <leader>j <c-v>j
+nnoremap <leader>j <c-v>j
 
 " start of line
 nnoremap <home> ^

@@ -17,6 +17,5 @@ xnoremap - <Cmd>lua _G.yakContract1Chr()<Cr>
 xnoremap ii <Cmd>lua _G.yakInsert()<cr>
 xnoremap aa <Cmd>lua _G.yakAppend()<cr>
 
-nnoremap <c-x><c-q> c
 xnoremap c <Cmd>lua _G.change()<cr>
 
