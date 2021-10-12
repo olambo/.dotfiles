@@ -20,7 +20,7 @@ nnoremap <c-x><c-o> o
 nnoremap <c-x><c-p> ""p
 inoremap <c-x><c-p> <c-r><c-o>"
 cnoremap <c-x><c-p> <c-r><c-o>"
-" use hyp-c cmd-/ to comment
+" use hyp-m cmd-/ to comment
 nmap <c-x><c-m> gcc
 xmap <c-x><c-m> gc
 nmap <C-_> gcc

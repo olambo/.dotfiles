@@ -10,8 +10,8 @@ nnoremap <silent> gR          <cmd>lua vim.lsp.buf.rename()<CR>
 nnoremap <silent> gh          <cmd>lua vim.lsp.buf.hover()<CR>
 nnoremap <silent> g<cr>       <cmd>lua vim.lsp.buf.code_action()<CR>
 
-nnoremap <silent> gE          <cmd>lua vim.lsp.diagnostic.goto_prev { wrap = false }<CR>
-nnoremap <silent> ge          <cmd>lua vim.lsp.diagnostic.goto_next { wrap = false }<CR>
+nnoremap <silent> gX          <cmd>lua vim.lsp.diagnostic.goto_prev { wrap = false }<CR>
+nnoremap <silent> gx          <cmd>lua vim.lsp.diagnostic.goto_next { wrap = false }<CR>
 
 nnoremap <silent> g=          <cmd>lua vim.lsp.buf.formatting()<CR>
 nnoremap <silent> gs          <cmd>lua vim.lsp.buf.document_symbol()<CR>

@@ -6,32 +6,32 @@ yakOnKeyword = false
 yakWord = ''
 
 local function existsIn(val, tab)
-    for index, value in ipairs(tab) do
-        if value == val then
-            return true
-        end
+  for index, value in ipairs(tab) do
+    if value == val then
+      return true
     end
-    return false
+  end
+  return false
 end
 
 local function isKeyword()
-    yakWord = vim.fn.expand("<cword>")
-    yakInd = vim.fn.strridx(vim.fn.getline('.'), vim.fn.expand("<cword>"), vim.fn.col('.') - 1)
-    yakOnKeyword = (yakInd >= 0 and (yakInd + vim.fn.strlen(vim.fn.expand("<cword>"))) >= (vim.fn.col('.') - 1))
+  yakWord = vim.fn.expand("<cword>")
+  yakInd = vim.fn.strridx(vim.fn.getline('.'), vim.fn.expand("<cword>"), vim.fn.col('.') - 1)
+  yakOnKeyword = (yakInd >= 0 and (yakInd + vim.fn.strlen(vim.fn.expand("<cword>"))) >= (vim.fn.col('.') - 1))
 end
 
 function _G.yakInit()
-    yakStack = {}
-    isKeyword()
-    -- just in case it's called from visual mode to reinitialize
-    vim.cmd('normal <c-v>')
-    vim.cmd('normal v')
-    local modeInfo = vim.api.nvim_get_mode()
-    local mode = modeInfo.mode
-    if mode == 'v' then yakExpand()
-    else print("yakInit: Not in correct mode:", mode)
-    end
-    --print('yakWord', yakWord, 'yakInd:', yakInd, "yakOnKeyword:", yakOnKeyword)
+  yakStack = {}
+  isKeyword()
+  -- just in case it's called from visual mode to reinitialize
+  vim.cmd('normal <c-v>')
+  vim.cmd('normal v')
+  local modeInfo = vim.api.nvim_get_mode()
+  local mode = modeInfo.mode
+  if mode == 'v' then yakExpand()
+  else print("yakInit: Not in correct mode:", mode)
+  end
+  --print('yakWord', yakWord, 'yakInd:', yakInd, "yakOnKeyword:", yakOnKeyword)
 end
 
 function yakIsMoved(tv)
@@ -52,19 +52,19 @@ function yakMoved(tv, who)
 end
 
 function yakWonkyQuotes(chr, tv) 
-   -- todo: is vim's wonky selection of a inner quote, a bug or feature
-   vim.cmd('normal i' .. chr)
-   local tv1, isMoved = yakIsMoved(tv)
-   if not isMoved then return end
-   local stext1 = tv1["stext"]
-   local c1, c2 = string.sub(stext1, 1, 1), string.sub(stext1, string.len(stext1))
-   local isInner = not (c1 == chr and c2 == chr)
-   if isInner then 
-     vim.cmd('normal o')
-     vim.cmd('normal h')
-     vim.cmd('normal o')
-     vim.cmd('normal l')
-   end
+  -- todo: is vim's wonky selection of a inner quote, a bug or feature
+  vim.cmd('normal i' .. chr)
+  local tv1, isMoved = yakIsMoved(tv)
+  if not isMoved then return end
+  local stext1 = tv1["stext"]
+  local c1, c2 = string.sub(stext1, 1, 1), string.sub(stext1, string.len(stext1))
+  local isInner = not (c1 == chr and c2 == chr)
+  if isInner then 
+    vim.cmd('normal o')
+    vim.cmd('normal h')
+    vim.cmd('normal o')
+    vim.cmd('normal l')
+  end
 end
 
 function _G.yakExpand()
@@ -82,27 +82,27 @@ function _G.yakExpand()
     table.insert(yakStack, yak) 
     vim.cmd('normal iw')
     if (yakMoved(tv)) then
-        return
+      return
     end
   end
   local txt = tv['lineText']
   local col = tv['scol'] - 1
   for i = col, 1, -1 do 
-     local chr = string.sub(txt, i, i)
-     if (existsIn(chr, t)) then 
-         if (existsIn(chr, quotes)) then 
-           yakWonkyQuotes(chr, tv)
-         else
-           vim.cmd('normal a' .. chr)
-         end
-         if yakMoved(tv, 'textobject') then break end
-     end
-     if (i == 1) then
-        vim.cmd('normal $o^')
-        if yakMoved(tv, 'short line') then break end
-        vim.cmd('normal $o0', 'line')
-        if yakMoved(tv, 'whole line') then return end
-     end
+    local chr = string.sub(txt, i, i)
+    if (existsIn(chr, t)) then 
+      if (existsIn(chr, quotes)) then 
+        yakWonkyQuotes(chr, tv)
+      else
+        vim.cmd('normal a' .. chr)
+      end
+      if yakMoved(tv, 'textobject') then break end
+    end
+    if (i == 1) then
+      vim.cmd('normal $o^')
+      if yakMoved(tv, 'short line') then break end
+      vim.cmd('normal $o0', 'line')
+      if yakMoved(tv, 'whole line') then return end
+    end
   end
   if (col <= 1) then vim.cmd('normal ip') end
 end
@@ -134,8 +134,8 @@ function _G.yakContract()
   local ecol = yak['ecol']
   local tv = getVisualSelection()
   if (tv['sline'] ~= tv['eline']) then 
-      vim.cmd('normal VV')
-      vim.cmd('normal v')
+    vim.cmd('normal VV')
+    vim.cmd('normal v')
   end
   local ccol = tv['ccol']
   if (ccol > scol) then vim.cmd('normal o') end
@@ -158,13 +158,13 @@ function _G.getVisualSelection(setCur)
   local sline, scol = vline, vcol
   local eline, ecol = cline, ccol
   if ccol <= vcol or cline < vline  then
-      sline, scol = cline, ccol
-      eline, ecol = vline, vcol
+    sline, scol = cline, ccol
+    eline, ecol = vline, vcol
   end
   if (setCur == 'start' and ccol > vcol) then
-      vim.api.nvim_input('o') 
+    vim.api.nvim_input('o') 
   elseif (setCur == 'end' and ccol < vcol) then 
-      vim.api.nvim_input('o') 
+    vim.api.nvim_input('o') 
   end
 
   local lines = vim.api.nvim_buf_get_lines(0, sline - 1, eline, 0)
@@ -227,11 +227,11 @@ local function strToNormal()
   local modeInfo = vim.api.nvim_get_mode()
   local mode = modeInfo.mode
   if mode == 'v' or mode == 'V' then 
-      return mode
+    return mode
   elseif mode == 'CTRL-V' then
-      return 'VV'
+    return 'VV'
   else 
-      return ''
+    return ''
   end
 end
 
@@ -267,6 +267,7 @@ local function oneTxtChange(chr)
     command = strToNormal() .. "ciw" .. sm .. xtxt .. em
   end
   vim.api.nvim_feedkeys(command, 'n', false)
+  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<esc>',true,false,true),'n',false)
   vim.cmd('mess clear')
   print("command", command)
 end
@@ -330,6 +331,6 @@ function _G.yakInsert()
 end
 
 function _G.yakAppend()
-    _G.getVisualSelection('end')
+  _G.getVisualSelection('end')
   vim.api.nvim_input('<c-[>a')
 end

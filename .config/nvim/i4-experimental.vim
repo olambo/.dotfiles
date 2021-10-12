@@ -12,8 +12,12 @@
 "endfunction
 "nnoremap <expr> q Suppress('d')
 
+" makes more sense for b to go back to previous word in visual mode 
+xnoremap b ge
+xnoremap B gE
+
 nnoremap dd <nop>
-nnoremap dw <nop>
+" nnoremap dw <nop>
 nnoremap dt <nop>
 nnoremap df <nop>
 nnoremap di" <nop>
@@ -49,15 +53,15 @@ nnoremap p <nop>
 nnoremap . <nop>
  
 nnoremap cc <nop>
-nnoremap cw <nop>
+" nnoremap cw <nop>
 nnoremap ct <nop>
 nnoremap cf <nop>
 nnoremap ci" <nop>
 nnoremap ca" <nop>
 nnoremap ci' <nop>
 nnoremap ca' <nop>
-nnoremap ciw <nop>
-nnoremap caw <nop>
+" nnoremap ciw <nop>
+" nnoremap caw <nop>
 nnoremap cs <nop>
 nnoremap cas <nop>
 nnoremap cip <nop>

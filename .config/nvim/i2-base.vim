@@ -10,11 +10,13 @@ let mapleader="\<space>"
 xnoremap <home> ^
 xnoremap <end> $
 " visual mode <-> visual line mode
-xnoremap <expr> v mode() ==# "V" ? "v" : "V"
+xnoremap <expr> v mode() ==# "v" ? "V" : "v"
 " visual mode <-> visual block mode
 xnoremap <expr> <leader>j mode() ==# "\<c-v>" ? "V" : "\<c-v>"
-" visual block mode
-nnoremap <leader>j <c-v>j
+xnoremap <expr> j mode() ==# "v" ? "\<c-v>j" : "j"
+
+" select line mode via number
+nnoremap <expr> <leader>v '<esc>vV' . (v:count1) . 'jk'
 
 " start of line
 nnoremap <home> ^
@@ -42,8 +44,8 @@ set ignorecase
 set smartcase
 set splitbelow splitright
 set backspace=2
-set tabstop=4
-set shiftwidth=4
+set tabstop=2
+set shiftwidth=2
 set iskeyword+=-,#
 set ruler
 set expandtab
