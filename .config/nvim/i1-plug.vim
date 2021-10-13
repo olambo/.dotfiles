@@ -15,22 +15,24 @@ if !exists('g:vscode')
 	Plug 'junegunn/fzf.vim'
 
     if has('nvim')
-        Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-        Plug 'Mofiqul/vscode.nvim'
-        Plug 'cormacrelf/dark-notify'
+      Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+      Plug 'Mofiqul/vscode.nvim'
+      Plug 'cormacrelf/dark-notify'
+      Plug 'kyazdani42/nvim-web-devicons' " Recommended (for coloured icons)
+      Plug 'akinsho/bufferline.nvim'
     endif
     " Macos Terminal only supports 256 colors - for now use
     Plug 'NLKNguyen/papercolor-theme'
 
     if exists('g:useMetals')
-        Plug 'scalameta/nvim-metals'
-        Plug 'nvim-lua/plenary.nvim'
+      Plug 'scalameta/nvim-metals'
+      Plug 'nvim-lua/plenary.nvim'
 
-        Plug 'hrsh7th/cmp-nvim-lsp'
-        Plug 'hrsh7th/cmp-buffer'
-        Plug 'hrsh7th/nvim-cmp'
-        Plug 'saadparwaiz1/cmp_luasnip'
-        Plug 'L3MON4D3/LuaSnip'
+      Plug 'hrsh7th/cmp-nvim-lsp'
+      Plug 'hrsh7th/cmp-buffer'
+      Plug 'hrsh7th/nvim-cmp'
+      Plug 'saadparwaiz1/cmp_luasnip'
+      Plug 'L3MON4D3/LuaSnip'
     endif
 endif
 

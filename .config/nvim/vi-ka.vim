@@ -6,8 +6,8 @@
 nnoremap <right> <Cmd>lua _G.vikaInit()<Cr>
 nnoremap <expr> g/ ':s/'.expand('<cword>').'//g<Left><Left>'
 
-xnoremap g/ <Cmd>lua _G.getVikaPatternTxt()<cr>
-xnoremap <leader>e <Cmd>lua _G.getVikaPattern()<cr>
+xnoremap g/ <Cmd>lua _G.vikaPatternTxt()<cr>
+xnoremap <leader>e <Cmd>lua _G.vikaPattern()<cr>
 
 xnoremap <right> <Cmd>lua _G.vikaExpand()<Cr>
 xnoremap <left> <Cmd>lua _G.vikaContract()<Cr>
@@ -17,10 +17,7 @@ xnoremap - <Cmd>lua _G.vikaContract1Chr()<Cr>
 xnoremap ii <Cmd>lua _G.vikaInsert()<cr>
 xnoremap aa <Cmd>lua _G.vikaAppend()<cr>
 
-xnoremap c <Cmd>lua _G.change()<cr>
+xnoremap c <Cmd>lua _G.vikaChange()<cr>
 xnoremap d <nop>
 xnoremap <bs> d
 xnoremap x <nop>
-
-" select the line(s) for deletion or change
-nnoremap <expr> <bs> '<esc>vV' . (v:count1) . 'jk'

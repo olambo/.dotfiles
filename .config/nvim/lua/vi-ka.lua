@@ -1,6 +1,5 @@
 vikaStack = {}
 vikaLine = 1
-vikaLine = 1
 vikaInd = 0
 vikaOnKeyword = false
 vikaWord = ''
@@ -34,12 +33,12 @@ function _G.vikaInit()
   --print('vikaWord', vikaWord, 'vikaInd:', vikaInd, "vikaOnKeyword:", vikaOnKeyword)
 end
 
-function vikaIsMoved(tv)
+local function vikaIsMoved(tv)
   local tv1 = getVisualSelection()
   return tv1, tv['scol'] ~= tv1['scol'] or tv['ecol'] ~= tv1['ecol']
 end
 
-function vikaMoved(tv, who)
+local function vikaMoved(tv, who)
   local tv1, isMoved = vikaIsMoved(tv)
   if not isMoved then return false end
   vikaLine = tv1['sline']
@@ -51,7 +50,7 @@ function vikaMoved(tv, who)
   return true
 end
 
-function vikaWonkyQuotes(chr, tv) 
+local function vikaWonkyQuotes(chr, tv) 
   -- todo: is vim's wonky selection of a inner quote, a bug or feature
   vim.cmd('normal i' .. chr)
   local tv1, isMoved = vikaIsMoved(tv)
@@ -185,7 +184,7 @@ end
 local function getInput()
   local curline = vim.fn.getline('.')
   vim.fn.inputsave()
-  local pattern = vim.fn.input('Vika;')
+  local pattern = vim.fn.input('vika;')
   vim.fn.inputrestore()
   return pattern
 end
@@ -235,7 +234,7 @@ local function strToNormal()
   end
 end
 
-function _G.change(chr)
+function _G.vikaChange(chr)
   local tv = getVisualSelection()
   local txt, col = tv["stext"], tv["scol"]
   if not txt or txt == '' then return end
@@ -272,7 +271,7 @@ local function oneTxtChange(chr)
   print("command", command)
 end
 
-function patternChange(chr, patternType)
+local function patternChange(chr, patternType)
   local tv = getVisualSelection()
   local txt, col = tv["stext"], tv["scol"]
   if not txt or txt == '' then return end
@@ -306,12 +305,12 @@ function patternChange(chr, patternType)
   vim.api.nvim_input(':' .. mstr)
 end
 
-function _G.getVikaPatternTxt()
+function _G.vikaPatternTxt()
   patternChange('.', 't')
   vim.api.nvim_input('<left><left><left><left>')
 end
 
-function _G.getVikaPattern()
+function _G.vikaPattern()
   local modeInfo = vim.api.nvim_get_mode()
   local mode = modeInfo.mode
   local pattern = getInput()

@@ -8,7 +8,7 @@ let mapleader="\<space>"
 
 " start of line
 nnoremap <home> ^
-" visual mode (Don't want to. Do want the spaces at the end of the line)
+" visual mode. Don't select the return chr at the end of line
 xnoremap <home> ^
 xnoremap <end> $h
 
@@ -16,13 +16,21 @@ xnoremap <end> $h
 xnoremap <expr> v mode() ==# "v" ? "V" : "v"
 " visual mode <-> visual block mode
 xnoremap <expr> <leader>j mode() ==# "\<c-v>" ? "V" : "\<c-v>"
+" take the mode from visual selection - they can get it back by pressing v
 xnoremap <expr> j mode() ==# "v" ? "\<c-v>j" : "j"
 
-" select line mode via number
-nnoremap <expr> <leader>v '<esc>vV' . (v:count1) . 'jk'
-nnoremap V v$h
+" select visual line(s)
+nnoremap <expr> <leader>v v:count < 2 ? "<esc>vV" : "<esc>vV" . (v:count-1) . "j"
+" highlight the line(s) for deletion or change
+nnoremap <expr> <bs> v:count < 2 ? "<esc>vV" : "<esc>vV" . (v:count-1) . "j"
 
-" insert mode no movement"
+" visual to end of line.
+nnoremap V v$h
+xnoremap V $h
+" yank until end of line
+nnoremap Y y$
+
+" insert mode no vertical movement"
 inoremap <up> <nop>
 inoremap <down> <nop>
 inoremap <pageup> <nop>
@@ -34,8 +42,6 @@ nnoremap <down> 5j
 xnoremap <up> 5k
 xnoremap <down> 5j
 
-" yank until end of line (ie. work like C, D)
-nnoremap Y y$
 " keep centred
 nnoremap n nzzzv
 nnoremap N Nzzzv

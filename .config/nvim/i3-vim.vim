@@ -1,3 +1,12 @@
+" gutter space for lsp info on left
+set signcolumn=yes
+" increased for lsp code actions
+set updatetime=100
+" highlights yanked text
+augroup highlight_yank
+  autocmd!
+  autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank()
+augroup END
 
 nmap s <Plug>Sneak_s
 nmap S <Plug>Sneak_S
