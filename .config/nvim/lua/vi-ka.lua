@@ -1,9 +1,9 @@
-yakStack = {}
-yakLine = 1
-yakLine = 1
-yakInd = 0
-yakOnKeyword = false
-yakWord = ''
+vikaStack = {}
+vikaLine = 1
+vikaLine = 1
+vikaInd = 0
+vikaOnKeyword = false
+vikaWord = ''
 
 local function existsIn(val, tab)
   for index, value in ipairs(tab) do
@@ -15,46 +15,46 @@ local function existsIn(val, tab)
 end
 
 local function isKeyword()
-  yakWord = vim.fn.expand("<cword>")
-  yakInd = vim.fn.strridx(vim.fn.getline('.'), vim.fn.expand("<cword>"), vim.fn.col('.') - 1)
-  yakOnKeyword = (yakInd >= 0 and (yakInd + vim.fn.strlen(vim.fn.expand("<cword>"))) >= (vim.fn.col('.') - 1))
+  vikaWord = vim.fn.expand("<cword>")
+  vikaInd = vim.fn.strridx(vim.fn.getline('.'), vim.fn.expand("<cword>"), vim.fn.col('.') - 1)
+  vikaOnKeyword = (vikaInd >= 0 and (vikaInd + vim.fn.strlen(vim.fn.expand("<cword>"))) >= (vim.fn.col('.') - 1))
 end
 
-function _G.yakInit()
-  yakStack = {}
+function _G.vikaInit()
+  vikaStack = {}
   isKeyword()
   -- just in case it's called from visual mode to reinitialize
   vim.cmd('normal <c-v>')
   vim.cmd('normal v')
   local modeInfo = vim.api.nvim_get_mode()
   local mode = modeInfo.mode
-  if mode == 'v' then yakExpand()
-  else print("yakInit: Not in correct mode:", mode)
+  if mode == 'v' then vikaExpand()
+  else print("vikaInit: Not in correct mode:", mode)
   end
-  --print('yakWord', yakWord, 'yakInd:', yakInd, "yakOnKeyword:", yakOnKeyword)
+  --print('vikaWord', vikaWord, 'vikaInd:', vikaInd, "vikaOnKeyword:", vikaOnKeyword)
 end
 
-function yakIsMoved(tv)
+function vikaIsMoved(tv)
   local tv1 = getVisualSelection()
   return tv1, tv['scol'] ~= tv1['scol'] or tv['ecol'] ~= tv1['ecol']
 end
 
-function yakMoved(tv, who)
-  local tv1, isMoved = yakIsMoved(tv)
+function vikaMoved(tv, who)
+  local tv1, isMoved = vikaIsMoved(tv)
   if not isMoved then return false end
-  yakLine = tv1['sline']
-  local yak = {}
-  yak["scol"] = tv1['scol']
-  yak["ecol"] = tv1['ecol']
+  vikaLine = tv1['sline']
+  local vika = {}
+  vika["scol"] = tv1['scol']
+  vika["ecol"] = tv1['ecol']
   ccol = tv1['ccol']
-  table.insert(yakStack, yak) 
+  table.insert(vikaStack, vika) 
   return true
 end
 
-function yakWonkyQuotes(chr, tv) 
+function vikaWonkyQuotes(chr, tv) 
   -- todo: is vim's wonky selection of a inner quote, a bug or feature
   vim.cmd('normal i' .. chr)
-  local tv1, isMoved = yakIsMoved(tv)
+  local tv1, isMoved = vikaIsMoved(tv)
   if not isMoved then return end
   local stext1 = tv1["stext"]
   local c1, c2 = string.sub(stext1, 1, 1), string.sub(stext1, string.len(stext1))
@@ -67,7 +67,7 @@ function yakWonkyQuotes(chr, tv)
   end
 end
 
-function _G.yakExpand()
+function _G.vikaExpand()
   local t = {'\'', '"', '(', '[', '{'}
   local quotes = {"'", '"'}
   local tv = getVisualSelection()
@@ -75,13 +75,13 @@ function _G.yakExpand()
   if (tv['sline'] ~= tv['eline']) then return end
 
   if ( tv['scol'] == tv['ecol'] ) then 
-    yakStack = {}
-    local yak = {}
-    yak["scol"] = tv['scol']
-    yak["ecol"] = tv['ecol']
-    table.insert(yakStack, yak) 
+    vikaStack = {}
+    local vika = {}
+    vika["scol"] = tv['scol']
+    vika["ecol"] = tv['ecol']
+    table.insert(vikaStack, vika) 
     vim.cmd('normal iw')
-    if (yakMoved(tv)) then
+    if (vikaMoved(tv)) then
       return
     end
   end
@@ -91,23 +91,23 @@ function _G.yakExpand()
     local chr = string.sub(txt, i, i)
     if (existsIn(chr, t)) then 
       if (existsIn(chr, quotes)) then 
-        yakWonkyQuotes(chr, tv)
+        vikaWonkyQuotes(chr, tv)
       else
         vim.cmd('normal a' .. chr)
       end
-      if yakMoved(tv, 'textobject') then break end
+      if vikaMoved(tv, 'textobject') then break end
     end
     if (i == 1) then
       vim.cmd('normal $o^')
-      if yakMoved(tv, 'short line') then break end
+      if vikaMoved(tv, 'short line') then break end
       vim.cmd('normal $o0', 'line')
-      if yakMoved(tv, 'whole line') then return end
+      if vikaMoved(tv, 'whole line') then return end
     end
   end
   if (col <= 1) then vim.cmd('normal ip') end
 end
 
-function _G.yakExpand1Chr()
+function _G.vikaExpand1Chr()
   local tv = getVisualSelection()
   local ccol, scol = tv["ccol"], tv["scol"] 
   if ccol > scol then
@@ -117,7 +117,7 @@ function _G.yakExpand1Chr()
   end
 end
 
-function _G.yakContract1Chr()
+function _G.vikaContract1Chr()
   local tv = getVisualSelection()
   local ccol, scol = tv["ccol"], tv["scol"] 
   if ccol > scol then
@@ -127,11 +127,11 @@ function _G.yakContract1Chr()
   end
 end
 
-function _G.yakContract()
-  local yak = table.remove(yakStack)
-  if (yak == nil) then return end
-  local scol = yak['scol']
-  local ecol = yak['ecol']
+function _G.vikaContract()
+  local vika = table.remove(vikaStack)
+  if (vika == nil) then return end
+  local scol = vika['scol']
+  local ecol = vika['ecol']
   local tv = getVisualSelection()
   if (tv['sline'] ~= tv['eline']) then 
     vim.cmd('normal VV')
@@ -139,9 +139,9 @@ function _G.yakContract()
   end
   local ccol = tv['ccol']
   if (ccol > scol) then vim.cmd('normal o') end
-  vim.fn.setpos(".", {0, yakLine, scol})
+  vim.fn.setpos(".", {0, vikaLine, scol})
   vim.cmd('normal o')
-  vim.fn.setpos(".", {0, yakLine, ecol})
+  vim.fn.setpos(".", {0, vikaLine, ecol})
   vim.cmd('normal o')
   vim.cmd('normal o')
 end
@@ -185,7 +185,7 @@ end
 local function getInput()
   local curline = vim.fn.getline('.')
   vim.fn.inputsave()
-  local pattern = vim.fn.input('Yak;')
+  local pattern = vim.fn.input('Vika;')
   vim.fn.inputrestore()
   return pattern
 end
@@ -241,7 +241,7 @@ function _G.change(chr)
   if not txt or txt == '' then return end
 
   local command = 'c'
-  if yakOnKeyword and yakWord == txt  then
+  if vikaOnKeyword and vikaWord == txt  then
     command = strToNormal() .. "ciw"
   end
   vim.api.nvim_feedkeys(command, 'n', false)
@@ -263,7 +263,7 @@ local function oneTxtChange(chr)
   if osm ~= '?' then xtxt = string.sub(txt, 2, string.len(txt)-1) end
 
   local command = 'c' .. sm .. xtxt .. em 
-  if yakOnKeyword and yakWord == xtxt and osm .. oem == '??' then
+  if vikaOnKeyword and vikaWord == xtxt and osm .. oem == '??' then
     command = strToNormal() .. "ciw" .. sm .. xtxt .. em
   end
   vim.api.nvim_feedkeys(command, 'n', false)
@@ -306,12 +306,12 @@ function patternChange(chr, patternType)
   vim.api.nvim_input(':' .. mstr)
 end
 
-function _G.getYakPatternTxt()
+function _G.getVikaPatternTxt()
   patternChange('.', 't')
   vim.api.nvim_input('<left><left><left><left>')
 end
 
-function _G.getYakPattern()
+function _G.getVikaPattern()
   local modeInfo = vim.api.nvim_get_mode()
   local mode = modeInfo.mode
   local pattern = getInput()
@@ -325,12 +325,12 @@ function _G.getYakPattern()
   end
 end
 
-function _G.yakInsert()
+function _G.vikaInsert()
   _G.getVisualSelection('start')
   vim.api.nvim_input('<c-[>i')
 end
 
-function _G.yakAppend()
+function _G.vikaAppend()
   _G.getVisualSelection('end')
   vim.api.nvim_input('<c-[>a')
 end

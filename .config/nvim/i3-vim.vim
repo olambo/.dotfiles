@@ -95,7 +95,7 @@ autocmd BufWritePre,FileWritePre * silent! call mkdir(expand('<afile>:p:h'), 'p'
 autocmd FileType markdown setlocal commentstring=#\ %s
 
 source  ~/.config/nvim/i4-experimental.vim
-source ~/.config/nvim/i3-yak.vim
+source ~/.config/nvim/vi-ka.vim
 if has('nvim')
 " nvim and vim appear incompatible here
 set dir=~/.config/nvim-data/swapfiles
@@ -105,7 +105,7 @@ set undofile
 set undodir=~/.config/nvim-data/undofiles
 
 :lua <<EOF
-  require('i3-yak')
+  require('vi-ka')
   require'nvim-treesitter.configs'.setup {
     ensure_installed = "maintained",    -- one of "all", "maintained" (parsers with maintainers), or a list of languages
     ignore_install = { },               -- List of parsers to ignore installing
