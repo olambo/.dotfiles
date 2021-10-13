@@ -17,7 +17,7 @@ xnoremap b ge
 xnoremap B gE
 
 nnoremap dd <nop>
-" nnoremap dw <nop>
+nnoremap dw <nop>
 nnoremap dt <nop>
 nnoremap df <nop>
 nnoremap di" <nop>
@@ -50,18 +50,20 @@ nnoremap u <nop>
 nnoremap i <nop>
 nnoremap o <nop>
 nnoremap p <nop>
+nnoremap gp <nop>
+nnoremap gP <nop>
 nnoremap . <nop>
  
 nnoremap cc <nop>
-" nnoremap cw <nop>
+nnoremap cw <nop>
 nnoremap ct <nop>
 nnoremap cf <nop>
 nnoremap ci" <nop>
 nnoremap ca" <nop>
 nnoremap ci' <nop>
 nnoremap ca' <nop>
-" nnoremap ciw <nop>
-" nnoremap caw <nop>
+nnoremap ciw <nop>
+nnoremap caw <nop>
 nnoremap cs <nop>
 nnoremap cas <nop>
 nnoremap cip <nop>

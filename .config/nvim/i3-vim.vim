@@ -1,10 +1,4 @@
 
-set dir=~/.config/vim-data/swapfiles
-set backup
-set backupdir=~/.config/vim-data/backupfiles
-set undofile
-set undodir=~/.config/vim-data/undofiles
-
 nmap s <Plug>Sneak_s
 nmap S <Plug>Sneak_S
 let g:sneak#use_ic_scs = 1
@@ -103,6 +97,13 @@ autocmd FileType markdown setlocal commentstring=#\ %s
 source  ~/.config/nvim/i4-experimental.vim
 source ~/.config/nvim/i3-yak.vim
 if has('nvim')
+" nvim and vim appear incompatible here
+set dir=~/.config/nvim-data/swapfiles
+set backup
+set backupdir=~/.config/nvim-data/backupfiles
+set undofile
+set undodir=~/.config/nvim-data/undofiles
+
 :lua <<EOF
   require('i3-yak')
   require'nvim-treesitter.configs'.setup {

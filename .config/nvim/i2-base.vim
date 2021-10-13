@@ -6,9 +6,12 @@
 
 let mapleader="\<space>"
 
-" visual mode to start, end of line
+" start of line
+nnoremap <home> ^
+" visual mode (Don't want to. Do want the spaces at the end of the line)
 xnoremap <home> ^
-xnoremap <end> $
+xnoremap <end> $h
+
 " visual mode <-> visual line mode
 xnoremap <expr> v mode() ==# "v" ? "V" : "v"
 " visual mode <-> visual block mode
@@ -17,9 +20,7 @@ xnoremap <expr> j mode() ==# "v" ? "\<c-v>j" : "j"
 
 " select line mode via number
 nnoremap <expr> <leader>v '<esc>vV' . (v:count1) . 'jk'
-
-" start of line
-nnoremap <home> ^
+nnoremap V v$h
 
 " insert mode no movement"
 inoremap <up> <nop>

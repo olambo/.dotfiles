@@ -18,4 +18,9 @@ xnoremap ii <Cmd>lua _G.yakInsert()<cr>
 xnoremap aa <Cmd>lua _G.yakAppend()<cr>
 
 xnoremap c <Cmd>lua _G.change()<cr>
+xnoremap d <nop>
+xnoremap <bs> d
+xnoremap x <nop>
 
+" select the line(s) for deletion or change
+nnoremap <expr> <bs> '<esc>vV' . (v:count1) . 'jk'
