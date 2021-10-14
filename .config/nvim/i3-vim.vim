@@ -2,11 +2,6 @@
 set signcolumn=yes
 " increased for lsp code actions
 set updatetime=100
-" highlights yanked text
-augroup highlight_yank
-  autocmd!
-  autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank()
-augroup END
 
 nmap s <Plug>Sneak_s
 nmap S <Plug>Sneak_S
@@ -17,8 +12,6 @@ nnoremap <left> s
 nnoremap <c-x>. .
 nnoremap u <nop>
 nnoremap <c-x><c-u> u
-" nnoremap <c-x><c-i> i
-" nnoremap <c-x><c-o> o
 " paste from register 
 nnoremap <c-x><c-p> ""p
 inoremap <c-x><c-p> <c-r><c-o>"
