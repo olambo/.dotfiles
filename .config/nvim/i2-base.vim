@@ -28,6 +28,22 @@ xnoremap V $h
 " yank until end of line
 nnoremap Y y$
 
+" s is being used elsewhere, but i want to substitute easily
+nnoremap <left> s
+" move undo to hyp-u
+nnoremap <c-x>. .
+nnoremap u <nop>
+nnoremap <c-x><c-u> u
+" move paste to hyp-p
+nnoremap p <nop>
+
+" normal mode, paste from unnamed register (gets line deletes)
+nnoremap <c-x><c-p> ""p
+" other modes paste from yank register
+inoremap <c-x><c-p> <c-r><c-o>0
+cnoremap <c-x><c-p> <c-r><c-o>0
+vnoremap <c-x><c-p> "0p
+
 " insert mode no vertical movement"
 inoremap <up> <nop>
 inoremap <down> <nop>
