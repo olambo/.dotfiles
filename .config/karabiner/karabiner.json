@@ -610,7 +610,7 @@
                         ]
                     },
                     {
-                        "description": "6)  <hyp-y>, <cmd-c> yank to reg 0 and system clipboard, <hyp-p> paste from reg 0, <hyp-u> undo (experimental)",
+                        "description": "6)  <hyp-y>, system clipboard, <hyp-p> paste from reg 0 (sometimes), <hyp-u> undo",
                         "manipulators": [
                             {
                                 "conditions": [
@@ -874,48 +874,6 @@
                                         "key_code": "c",
                                         "modifiers": [
                                             "control"
-                                        ]
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "bundle_identifiers": [
-                                            "io.alacritty",
-                                            "com.apple.Terminal",
-                                            "com.googlecode.iterm2",
-                                            "com.microsoft.VSCode"
-                                        ],
-                                        "type": "frontmost_application_if"
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "c",
-                                    "modifiers": {
-                                        "mandatory": [
-                                            "command"
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "x",
-                                        "modifiers": [
-                                            "control"
-                                        ]
-                                    },
-                                    {
-                                        "key_code": "y",
-                                        "modifiers": [
-                                            "control"
-                                        ]
-                                    },
-                                    {
-                                        "key_code": "c",
-                                        "modifiers": [
-                                            "command"
                                         ]
                                     }
                                 ],
