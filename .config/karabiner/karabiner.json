@@ -621,6 +621,39 @@
                                             "com.googlecode.iterm2",
                                             "com.microsoft.VSCode"
                                         ],
+                                        "type": "frontmost_application_unless"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "y",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "shift",
+                                            "command",
+                                            "control",
+                                            "option"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "c",
+                                        "modifiers": [
+                                            "command"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "io.alacritty",
+                                            "com.apple.Terminal",
+                                            "com.googlecode.iterm2",
+                                            "com.microsoft.VSCode"
+                                        ],
                                         "type": "frontmost_application_if"
                                     }
                                 ],
