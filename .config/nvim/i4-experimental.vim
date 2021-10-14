@@ -26,7 +26,7 @@ vnoremap x <nop>
 xnoremap b ge
 xnoremap B gE
 
-" yup not having this hurts a little, but lets see how it goes. Instead, can use <bs><bs> or vvd
+" yup not having this hurts a little, but lets see how it goes. Instead you can use vvd
 nnoremap dd <nop>
 
 " I can probaby get away without the following keys, with the vi-ka expand/surround functionality.

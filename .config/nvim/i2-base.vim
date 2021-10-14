@@ -22,11 +22,6 @@ xnoremap <expr> v mode() ==# "v" ? "V" : "v"
 " visual mode <-> visual block mode
 xnoremap <expr> <leader>v mode() ==# "\<c-v>" ? "V" : "\<c-v>"
 
-" highlight the line(s) for deletion or change
-nnoremap <expr> <bs> v:count < 0 ? "<esc>vV" : "<esc>vV" . (v:count-1) . "j"
-" delete in visual mode
-xnoremap <bs> d
-
 " visual to end of line.
 nnoremap V v$h
 xnoremap V $h
