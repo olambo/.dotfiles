@@ -1,6 +1,6 @@
 fun Xmo(isactive, inmode)
   let mode = mode()
-  if (a:inmode == 'i' && a:isactive && mode == 'i')
+  if (a:inmode == 'i' && a:isactive && (mode == 'i' || mode == 'R'))
     return '  I '
   elseif (a:inmode == 'v' && a:isactive && (mode == 'v' || mode == 'V' || mode == "\<C-V>")) 
     return '  V '
