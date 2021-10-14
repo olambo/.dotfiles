@@ -17,7 +17,7 @@ xnoremap b ge
 xnoremap B gE
 
 nnoremap dd <nop>
-nnoremap dw <nop>
+" nnoremap dw <nop>
 nnoremap dt <nop>
 nnoremap df <nop>
 nnoremap di" <nop>
@@ -44,18 +44,18 @@ nnoremap da( <nop>
 nnoremap dib <nop>
 nnoremap dib <nop>
 
-nnoremap x <nop>
-nnoremap r <nop>
+" nnoremap x <nop>
+" nnoremap r <nop>
 nnoremap u <nop>
-nnoremap i <nop>
-nnoremap o <nop>
+" nnoremap i <nop>
+" nnoremap o <nop>
 nnoremap p <nop>
 nnoremap gp <nop>
 nnoremap gP <nop>
 nnoremap . <nop>
  
 nnoremap cc <nop>
-nnoremap cw <nop>
+" nnoremap cw <nop>
 nnoremap ct <nop>
 nnoremap cf <nop>
 nnoremap ci" <nop>

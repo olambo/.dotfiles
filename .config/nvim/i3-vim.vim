@@ -17,8 +17,8 @@ nnoremap <left> s
 nnoremap <c-x>. .
 nnoremap u <nop>
 nnoremap <c-x><c-u> u
-nnoremap <c-x><c-i> i
-nnoremap <c-x><c-o> o
+" nnoremap <c-x><c-i> i
+" nnoremap <c-x><c-o> o
 " paste from register 
 nnoremap <c-x><c-p> ""p
 inoremap <c-x><c-p> <c-r><c-o>"
@@ -29,7 +29,7 @@ xmap <c-x><c-m> gc
 nmap <C-_> gcc
 xmap <C-_> gc
 " delete word
-nnoremap <c-w> dw
+" nnoremap <c-w> dw
 
 let g:undotree_SplitWidth = 50
 nnoremap <f5> :UndotreeToggle<CR>
