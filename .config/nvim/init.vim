@@ -4,6 +4,7 @@ function! SourceIfExists(file)
   if filereadable(expand(a:file))
     exe 'source' a:file
   endif
+
 endfunction
 
 source ~/.config/nvim/i1-plug.vim
@@ -14,8 +15,8 @@ else
 	source ~/.config/nvim/i3-vim.vim
 	source ~/.config/nvim/i4-fzf.vim
 	source ~/.config/nvim/i5-statusline.vim
-    if exists('g:useMetals')
-	    source ~/.config/nvim/i6-lsp.vim
-        call SourceIfExists("./.vscode/metals.vim")
-    endif
+  if exists('g:useMetals')
+	  source ~/.config/nvim/i6-lsp.vim
+    call SourceIfExists("./.vscode/metals.vim")
+  endif
 endif

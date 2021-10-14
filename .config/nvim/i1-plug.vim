@@ -18,8 +18,6 @@ if !exists('g:vscode')
       Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
       Plug 'Mofiqul/vscode.nvim'
       Plug 'cormacrelf/dark-notify'
-      Plug 'kyazdani42/nvim-web-devicons' " Recommended (for coloured icons)
-      Plug 'akinsho/bufferline.nvim'
     endif
     " Macos Terminal only supports 256 colors - for now use
     Plug 'NLKNguyen/papercolor-theme'

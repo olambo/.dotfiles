@@ -28,8 +28,8 @@ nmap <c-x><c-m> gcc
 xmap <c-x><c-m> gc
 nmap <C-_> gcc
 xmap <C-_> gc
-" delete char under cursor
-nnoremap <c-w> x
+" delete word
+nnoremap <c-w> dw
 
 let g:undotree_SplitWidth = 50
 nnoremap <f5> :UndotreeToggle<CR>
@@ -96,8 +96,8 @@ endif
 " put file path into title, remove laststatus - I'd rather have an extra line!
 autocmd BufEnter * let &titlestring = expand("[$USER]") . expand('%:~')
 set title
-set laststatus=0
- 
+set laststatus=2
+  
 " create file in directory vi %foo/bar.md
 autocmd BufWritePre,FileWritePre * silent! call mkdir(expand('<afile>:p:h'), 'p')
 " correctly set markdown for vim-commentary
@@ -114,21 +114,22 @@ set undofile
 set undodir=~/.config/nvim-data/undofiles
 
 :lua <<EOF
-  require('vi-ka')
-  require'nvim-treesitter.configs'.setup {
-    ensure_installed = "maintained",    -- one of "all", "maintained" (parsers with maintainers), or a list of languages
-    ignore_install = { },               -- List of parsers to ignore installing
-    highlight = {
-      enable = true,                    -- false will disable the whole extension
-      disable = { },                    -- list of language that will be disabled
-    },
-  }
+require('vi-ka')
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = "maintained",    -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+  ignore_install = { },               -- List of parsers to ignore installing
+  highlight = {
+    enable = true,                    -- false will disable the whole extension
+    disable = { },                    -- list of language that will be disabled
+  },
+}
 local dn = require('dark_notify')
 dn.run({
   onchange = function(mode)
     if vim.g.vscode_style ~= mode then
       vim.g.vscode_style = mode 
       vim.cmd('colorscheme ' .. vim.g.colorscheme)
+      vim.cmd('source ' .. '~/.config/nvim/i5-statusline.vim')
     end
   end,
 })

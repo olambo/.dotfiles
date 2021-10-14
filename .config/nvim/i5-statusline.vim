@@ -1,10 +1,24 @@
-set statusline=
-set statusline+=%#CursorIM#     " colour
-set statusline+=\%3l\           " line number 
-set statusline+=%R              " readonly flag
-set statusline+=%M              " modified [+] flag
-set statusline+=\ %t\           " filename
-set statusline+=%=              " right align
-set statusline+=\ %Y\           " file type
-set statusline+=\ %-2c\         " column number
-set statusline+=\%3p%%\         " percentage
+fun Xmo(isactive, inmode)
+  let mode = mode()
+  if (a:inmode == 'i' && a:isactive && mode == 'i')
+    return '  I '
+  elseif (a:inmode == 'v' && a:isactive && (mode == 'v' || mode == 'V' || mode == "\<C-V>")) 
+    return '  V '
+  end
+  return ''
+endf
+highlight InsertColor guibg=green guifg=white
+highlight VisualColor guibg=blue guifg=white
+
+fun! SetupStl(nr)
+  return get(extend(w:, { "is_active": (winnr() == a:nr) }), "", "")
+endf
+
+fun! BuildStatusLine(nr)
+  let et = '%-5.3n %t%m%r%h%w %= %Y [LEN=%L]'
+  let sep = '%{"  "}'
+  return '%{SetupStl(' . a:nr . ')}' . '%#InsertColor#' . '%{Xmo(w:["is_active"], "i")}'. '%#VisualColor#' . '%{Xmo(w:["is_active"], "v")}' . '%#CursorIM#' . sep . et
+endf
+
+" winnr() - the number of the active window
+set statusline=%!BuildStatusLine(winnr())
