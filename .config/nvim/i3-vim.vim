@@ -127,6 +127,8 @@ endif
 " copy to system clipboard. <hyp-y> mapped to <c-x><c-y> via karabiner elements
 if $TERM_PROGRAM == "Apple_Terminal"
   vnoremap <c-x><c-y> "+y
+  nnoremap <c-x><c-y><c-x><c-y> V"+y
+   
   let g:PaperColor_Theme_Options = {
    \   'theme': {
    \     'default': {
