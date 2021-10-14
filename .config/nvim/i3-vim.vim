@@ -155,16 +155,23 @@ if $TERM_PROGRAM == "Apple_Terminal"
  let g:colorscheme = "PaperColor"
 else
   let g:enable_spelunker_vim = 0
-  vnoremap <c-x><c-y> :OSCYank<CR>
+  vnoremap <c-x><c-y> :call YankTxt()<CR>
   nnoremap <c-x><c-y><c-x><c-y> :call YankLine()<CR>
   if has('nvim')
     let g:colorscheme = "vscode"
   endif
 endif
 
+function! YankTxt()
+  normal gv
+  execute "normal! y"
+  call OSCYankString(getreg('0'))
+endfunction
+
 function! YankLine()
-   let line = getline(".")
-   call OSCYankString(line) 
+  execute "normal! yy"
+  let line = getline(".")
+  call OSCYankString(line) 
 endfunction
 
 " ----------------------------------------------------------------------------------------------
