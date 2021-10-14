@@ -32,6 +32,7 @@ nnoremap dd <nop>
 " I can probaby get away without the following keys, with the vi-ka expand/surround functionality.
 " For example, ciw and diw become one less keystroke at <hyp-l>c or <hyp-l>d. 
 " Why have the keys if you dont use them. It just makes random things hapening more likely.
+nnoremap dl <nop>
 nnoremap dt <nop>
 nnoremap df <nop>
 nnoremap di" <nop>
@@ -58,6 +59,7 @@ nnoremap da( <nop>
 nnoremap dib <nop>
 nnoremap dib <nop>
 
+nnoremap cl <nop>
 nnoremap cc <nop>
 nnoremap ct <nop>
 nnoremap cf <nop>
