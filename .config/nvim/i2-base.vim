@@ -12,17 +12,20 @@ nnoremap <home> ^
 xnoremap <home> ^
 xnoremap <end> $h
 
+" select visual mode, or if a number is first pressed, visual block mode
+nnoremap <expr> v v:count == 0 ? "<esc>v" : v:count == 1 ? "<esc>vV" : "<esc>vV" . (v:count-1) . "j"
+" visual block mode - select extra line to start with
+nnoremap <leader>v <c-v>j
+
 " visual mode <-> visual line mode
 xnoremap <expr> v mode() ==# "v" ? "V" : "v"
 " visual mode <-> visual block mode
-xnoremap <expr> <leader>j mode() ==# "\<c-v>" ? "V" : "\<c-v>"
-" take the mode from visual selection - they can get it back by pressing v
-xnoremap <expr> j mode() ==# "v" ? "\<c-v>j" : "j"
+xnoremap <expr> <leader>v mode() ==# "\<c-v>" ? "V" : "\<c-v>"
 
-" select visual line(s)
-nnoremap <expr> <leader>v v:count < 2 ? "<esc>vV" : "<esc>vV" . (v:count-1) . "j"
 " highlight the line(s) for deletion or change
-nnoremap <expr> <bs> v:count < 2 ? "<esc>vV" : "<esc>vV" . (v:count-1) . "j"
+nnoremap <expr> <bs> v:count < 0 ? "<esc>vV" : "<esc>vV" . (v:count-1) . "j"
+" delete in visual mode
+xnoremap <bs> d
 
 " visual to end of line.
 nnoremap V v$h

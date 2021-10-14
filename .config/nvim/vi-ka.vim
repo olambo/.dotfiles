@@ -18,6 +18,3 @@ xnoremap ii <Cmd>lua _G.vikaInsert()<cr>
 xnoremap aa <Cmd>lua _G.vikaAppend()<cr>
 
 xnoremap c <Cmd>lua _G.vikaChange()<cr>
-xnoremap d <nop>
-xnoremap <bs> d
-xnoremap x <nop>
