@@ -7,7 +7,7 @@ nnoremap <right> <Cmd>lua _G.vikaInit()<Cr>
 nnoremap <expr> g/ ':s/'.expand('<cword>').'//g<Left><Left>'
 
 xnoremap g/ <Cmd>lua _G.vikaPatternTxt()<cr>
-xnoremap <leader>e <Cmd>lua _G.vikaPattern()<cr>
+xnoremap r <Cmd>lua _G.vikaPattern()<cr>
 
 xnoremap <right> <Cmd>lua _G.vikaExpand()<Cr>
 xnoremap <left> <Cmd>lua _G.vikaContract()<Cr>
