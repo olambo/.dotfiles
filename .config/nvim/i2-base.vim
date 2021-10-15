@@ -70,7 +70,6 @@ set backspace=2
 set tabstop=2
 set shiftwidth=2
 set iskeyword+=-,#
-set ruler
 set expandtab
 set nu
 " gutter space for lsp info on left
