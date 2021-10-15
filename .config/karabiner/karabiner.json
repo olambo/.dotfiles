@@ -610,41 +610,8 @@
                         ]
                     },
                     {
-                        "description": "6)  <hyp-y>, system clipboard, <hyp-p> paste from reg 0 (sometimes), <hyp-u> undo",
+                        "description": "6)  <command-c>, system clipboard for vim, <hyp-p> paste from reg 0 (sometimes), <hyp-u> undo, hyp-x - apple terminal - not vim",
                         "manipulators": [
-                            {
-                                "conditions": [
-                                    {
-                                        "bundle_identifiers": [
-                                            "io.alacritty",
-                                            "com.apple.Terminal",
-                                            "com.googlecode.iterm2",
-                                            "com.microsoft.VSCode"
-                                        ],
-                                        "type": "frontmost_application_unless"
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "y",
-                                    "modifiers": {
-                                        "mandatory": [
-                                            "shift",
-                                            "command",
-                                            "control",
-                                            "option"
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "c",
-                                        "modifiers": [
-                                            "command"
-                                        ]
-                                    }
-                                ],
-                                "type": "basic"
-                            },
                             {
                                 "conditions": [
                                     {
@@ -658,13 +625,10 @@
                                     }
                                 ],
                                 "from": {
-                                    "key_code": "y",
+                                    "key_code": "c",
                                     "modifiers": {
                                         "mandatory": [
-                                            "shift",
-                                            "command",
-                                            "control",
-                                            "option"
+                                            "command"
                                         ]
                                     }
                                 },
@@ -679,6 +643,42 @@
                                         "key_code": "y",
                                         "modifiers": [
                                             "control"
+                                        ]
+                                    },
+                                    {
+                                        "key_code": "c",
+                                        "modifiers": [
+                                            "command"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "com.apple.Terminal"
+                                        ],
+                                        "type": "frontmost_application_unless"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "x",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "shift",
+                                            "command",
+                                            "control",
+                                            "option"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "c",
+                                        "modifiers": [
+                                            "command"
                                         ]
                                     }
                                 ],
