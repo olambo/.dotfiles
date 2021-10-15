@@ -30,13 +30,15 @@ nnoremap Y y$
 
 " s is being used elsewhere, but i want to substitute easily
 nnoremap <left> s
-" move undo to hyp-u
-nnoremap <c-x>. .
+
+" move undo and repeat to hyp-u, hyp-.
+nnoremap . <nop>
 nnoremap u <nop>
+nnoremap <c-x>. .
 nnoremap <c-x><c-u> u
+
 " move paste to hyp-p
 nnoremap p <nop>
-
 " normal mode, paste from unnamed register (gets line deletes)
 nnoremap <c-x><c-p> ""p
 " other modes paste from yank register
@@ -71,12 +73,19 @@ set iskeyword+=-,#
 set ruler
 set expandtab
 set nu
+" gutter space for lsp info on left
+set signcolumn=yes
+" increased for lsp code actions
+" set updatetime=100
 
 "save
 nnoremap <space>s :update<cr>
 
-" toggle highlight search
-nnoremap <leader>h :set hlsearch! hlsearch?<cr>
+" wipeout buffer
+nnoremap <silent> <leader>q :bw<cr>
+
+" very nice but I keep forgeting I have to hit return to keep
+set incsearch
 
 " go to next split
 nnoremap <leader><leader> <c-w><c-w>
@@ -84,5 +93,6 @@ nnoremap <leader><leader> <c-w><c-w>
 " toggle numbers
 noremap <leader>n :set number!<cr>:se norelativenumber<cr>
 
-" wipeout buffer
-nnoremap <silent> <leader>q :bw<cr>
+" toggle highlight search
+nnoremap <leader>h :set hlsearch! hlsearch?<cr>
+

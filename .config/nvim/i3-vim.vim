@@ -1,8 +1,3 @@
-" gutter space for lsp info on left
-set signcolumn=yes
-" increased for lsp code actions
-" set updatetime=100
-
 nmap s <Plug>Sneak_s
 nmap S <Plug>Sneak_S
 let g:sneak#use_ic_scs = 1
@@ -31,7 +26,7 @@ imap <c-x><c-e> <Plug>(PearTreeExpand)
 " noremap g- <nop>
 
 " noremap gd <nop>
-noremap gi <nop>
+" noremap gi <nop>
 
 noremap gr <nop>
 noremap gR <nop>
@@ -57,7 +52,6 @@ nnoremap gj <c-i>
 
 set belloff=all
 set mouse=nv " this is not going to allow command-c. can use option-mouse or turn off
-set incsearch
 
 " insert mode drop down list selection.
 inoremap <down> <c-n>
@@ -87,6 +81,7 @@ autocmd FileType markdown setlocal commentstring=#\ %s
 
 source  ~/.config/nvim/i4-experimental.vim
 source ~/.config/nvim/vi-ka.vim
+
 if has('nvim')
 " nvim and vim appear incompatible here
 set dir=~/.config/nvim-data/swapfiles
@@ -123,6 +118,7 @@ set guicursor=n-v-c:block-nCursor,i-ci-ve:ver25,r-cr:hor20,o:hor50
  au TermOpen * startinsert
 endif
 
+" todo: check if vscode can support some of this
 " ----------------------------------------------------------------------------------------------
 " copy to system clipboard. <hyp-y> mapped to <c-x><c-y> via karabiner elements
 if $TERM_PROGRAM == "Apple_Terminal"

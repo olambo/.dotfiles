@@ -15,7 +15,7 @@ fun! SetupStl(nr)
 endf
 
 fun! BuildStatusLine(nr)
-  let et = '%-5.3n %t%m%r%h%w %= %Y [LEN=%L]'
+  let et = '%-5.3n %t%m%r%h%w %= %Y [%c,LEN=%L]'
   let sep = '%{"  "}'
   return '%{SetupStl(' . a:nr . ')}' . '%#InsertColor#' . '%{Xmo(w:["is_active"], "i")}'. '%#VisualColor#' . '%{Xmo(w:["is_active"], "v")}' . '%#CursorIM#' . sep . et
 endf
