@@ -184,7 +184,7 @@ end
 local function getInput()
   local curline = vim.fn.getline('.')
   vim.fn.inputsave()
-  local pattern = vim.fn.input('vika;')
+  local pattern = vim.fn.input('vi-ka>')
   vim.fn.inputrestore()
   return pattern
 end
