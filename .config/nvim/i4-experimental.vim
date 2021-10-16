@@ -4,35 +4,44 @@
 
 " I seem to use all these keys and feel weird without them. 
 " Key s has been used for sneak and I've added substitue to the hyp-h key.
-" nnoremap x <nop>
 " nnoremap r <nop>
 " nnoremap i <nop>
 " nnoremap o <nop>
 " nnoremap cw <nop>
 " nnoremap dw <nop>
+" nnoremap dl <nop>
+" nnoremap cl <nop>
 
-" I find these keys make editing non deterministic. Things go wrong and you have
-" no idea why. As such I'm moving them off lowercase and onto their hyper key equivalent.
-" Theres an advantage for paste as it can then work the same in different modes.
-nnoremap u <nop>
-nnoremap p <nop>
-nnoremap gp <nop>
-nnoremap gP <nop>
-nnoremap . <nop>
-" simply no point in haveing both d and x in visual mode
-vnoremap x <nop>
+" use this to cut
+" vnoremap x <nop>
 
 " makes more sense for b to go back to previous word in visual mode 
 xnoremap b ge
 xnoremap B gE
 
-" yup not having this hurts a little, but lets see how it goes. Instead you can use vvd
+" These keys may make editing non deterministic. Things go wrong and you have no idea why. 
+" As such I'm moving them off lowercase and onto their hyper key equivalent.
+" Theres an advantage for paste as it can then work from the same keystroke in different modes.
+nnoremap u <nop>
+nnoremap p <nop>
+nnoremap P <nop>
+nnoremap gp <nop>
+nnoremap gP <nop>
+nnoremap . <nop>
+
+" try to use visual mode for more than one line
+" nnoremap <expr> dd v:count == 0 ? "<esc>dd" : "<esc>:echo 'use visual keystroke {count}vd'<cr>"
 nnoremap dd <nop>
+
+" use visual J
+nnoremap J <nop>
+" use visual J to cut
+nnoremap x <nop>
 
 " I can probaby get away without the following keys, with the vi-ka expand/surround functionality.
 " For example, ciw and diw become one less keystroke at <hyp-l>c or <hyp-l>d. 
 " Why have the keys if you dont use them. It just makes random things hapening more likely.
-nnoremap dl <nop>
+nnoremap cc <nop>
 nnoremap dt <nop>
 nnoremap df <nop>
 nnoremap di" <nop>
@@ -59,8 +68,6 @@ nnoremap da( <nop>
 nnoremap dib <nop>
 nnoremap dib <nop>
 
-nnoremap cl <nop>
-nnoremap cc <nop>
 nnoremap ct <nop>
 nnoremap cf <nop>
 nnoremap ci" <nop>

@@ -2,7 +2,7 @@ nmap s <Plug>Sneak_s
 nmap S <Plug>Sneak_S
 let g:sneak#use_ic_scs = 1
 
-" use hyp-m or cmd-/ to comment
+" use hyp-m or cmd-/ to comment 
 nmap <c-x><c-m> gcc
 xmap <c-x><c-m> gc
 nmap <C-_> gcc
@@ -26,7 +26,7 @@ imap <c-x><c-e> <Plug>(PearTreeExpand)
 " noremap g- <nop>
 
 " noremap gd <nop>
-" noremap gi <nop>
+noremap gi <nop>
 
 noremap gr <nop>
 noremap gR <nop>
@@ -58,10 +58,11 @@ inoremap <down> <c-n>
 inoremap <up> <c-p>
 inoremap <expr> <left> pumvisible() ? "\<C-e>" : "\<left>"
 
-" for most enviroments don't want tab spacing. But for Go, go fmt uses tabs
-autocmd BufEnter *.go set noexpandtab
-autocmd BufRead *.go set noexpandtab
-autocmd BufLeave * set expandtab
+" for most enviroments don't want tab spacing. But for Go, go fmt uses tabs.
+" Turn on if using go
+" autocmd BufEnter *.go set noexpandtab
+" autocmd BufRead *.go set noexpandtab
+" autocmd BufLeave * set expandtab
 
 if exists('$TMUX')
     " tmux title to iterm title. todo: working in neovim, not working in vim
@@ -69,8 +70,8 @@ if exists('$TMUX')
     let &t_fs = "\x7"
 endif
 
-" put file path into title, remove laststatus - I'd rather have an extra line!
-autocmd BufEnter * let &titlestring = expand("[$USER]") . expand('%:~')
+" put file path into title
+autocmd BufEnter * let &titlestring = expand('%:t') . '  ' . expand("[$USER]") 
 set title
 set laststatus=2
   
