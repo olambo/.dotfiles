@@ -14,8 +14,8 @@ nmap <f7> :lua require('dark_notify').toggle()<cr>
 nnoremap <f8> :source $MYVIMRC<CR>
 
 " down when number given: j, otherwise gj. (similar with k)
-nnoremap <expr> j v:count ? 'j' : 'gj'
-nnoremap <expr> k v:count ? 'k' : 'gk'
+nnoremap <silent> <expr> j v:count ? 'j' : 'gj'
+nnoremap <silent> <expr> k v:count ? 'k' : 'gk'
 
 " on <cr> dont hide closing bracket. don't need . repeat here
 let g:pear_tree_repeatable_expand = 0
