@@ -114,8 +114,8 @@ EOF
 set guicursor=n-v-c:block-nCursor,i-ci-ve:ver25,r-cr:hor20,o:hor50
   \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
   \,sm:block-blinkwait175-blinkoff150-blinkon175
- " insert mode for terminal
- au TermOpen * startinsert
+  " insert mode for terminal
+  au TermOpen * startinsert
 endif
 
 " todo: check if vscode can support some of this
@@ -139,9 +139,8 @@ if $TERM_PROGRAM == "Apple_Terminal"
    \     }
    \   }
    \ }
- let g:colorscheme = "PaperColor"
+  let g:colorscheme = "PaperColor"
 else
-  let g:enable_spelunker_vim = 0
   " yank into system clipboard without yanking into vim clipboard/reg0
   vnoremap <c-x><c-y> :OSCYank<CR>
   nnoremap <c-x><c-y><c-x><c-y> :call YankLine()<CR>
@@ -173,11 +172,11 @@ noremap <leader>t :call GoCommand("clear; bloop test " . expand(g:bloop))<CR>
 noremap <leader>T :call GoCommand("clear; bloop test " . expand(g:bloop) . " -o " . expand(split(getline('1'))[1]) . "." . expand("<cword>"))<CR>
 
 function! GoCommand(cmd)
-    if &mod == 1 
-        echohl WarningMsg | echo "WARNING, BUFFER NOT WRITTEN!" | echohl None | echo a:cmd
-    else
-        echo "vcommand: " . a:cmd
-    endif
-    call writefile([a:cmd], expand("~/.config/nvim/runcache/vcommand.txt"))
+  if &mod == 1 
+    echohl WarningMsg | echo "WARNING, BUFFER NOT WRITTEN!" | echohl None | echo a:cmd
+  else
+    echo "vcommand: " . a:cmd
+  endif
+  call writefile([a:cmd], expand("~/.config/nvim/runcache/vcommand.txt"))
 endfunction
 
