@@ -28,7 +28,7 @@ fun! ColStr()
 endf
  
 fun! BuildStatusLine(nr)
-  let et = '%-5.3n %t%m%r%h%w %= %Y [↓%L]'
+  let et = '%-5.3n %t%m%r%h%w %= %{&filetype} [↓%L]'
   let sep = '%{"  "}'
   return '%{SetupStl(' . a:nr . ')}' . '%#InsertColor#' . '%{Xmo(w:["is_active"], "i")}'. '%#VisualColor#' . '%{Xmo(w:["is_active"], "v")}' . '%#CursorIM#' . sep . et . '%{ColStr()}'
 endf

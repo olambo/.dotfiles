@@ -22,6 +22,11 @@ let g:pear_tree_repeatable_expand = 0
 " this stops expansion on <CR> but no mapping in karabiner elements. Probably can remove
 imap <c-x><c-e> <Plug>(PearTreeExpand)
 
+" Always show line numbers, but only in current window.
+set number
+:au WinEnter * :setlocal number
+:au WinLeave * :setlocal nonumber
+
 " used in ideavim. Probably remove
 " noremap g- <nop>
 
