@@ -9,11 +9,14 @@
 " nnoremap o <nop>
 " nnoremap cw <nop>
 " nnoremap dw <nop>
-" nnoremap dl <nop>
-" nnoremap cl <nop>
+" nnoremap x <nop>
 
 " use this to cut
 " vnoremap x <nop>
+
+" try to use visual mode for more than one line
+" nnoremap <expr> dd v:count == 0 ? "<esc>dd" : "<esc>:echo 'use visual keystroke {count}vd'<cr>"
+" nnoremap dd <nop>
 
 " makes more sense for b to go back to previous word in visual mode 
 xnoremap b ge
@@ -28,71 +31,66 @@ nnoremap P <nop>
 nnoremap gp <nop>
 nnoremap gP <nop>
 nnoremap . <nop>
-
-" try to use visual mode for more than one line
-" nnoremap <expr> dd v:count == 0 ? "<esc>dd" : "<esc>:echo 'use visual keystroke {count}vd'<cr>"
-nnoremap dd <nop>
-
 " use visual J
 nnoremap J <nop>
-" use visual J to cut
-nnoremap x <nop>
 
 " I can probaby get away without the following keys, with the vi-ka expand/surround functionality.
 " For example, ciw and diw become one less keystroke at <hyp-l>c or <hyp-l>d. 
 " Why have the keys if you dont use them. It just makes random things hapening more likely.
-nnoremap cc <nop>
-nnoremap dt <nop>
-nnoremap df <nop>
-nnoremap di" <nop>
-nnoremap da" <nop>
-nnoremap di' <nop>
-nnoremap da' <nop>
-nnoremap diw <nop>
-nnoremap daw <nop>
-nnoremap ds <nop>
-nnoremap das <nop>
-nnoremap dip <nop>
-nnoremap dap <nop>
-nnoremap di] <nop>
-nnoremap di[ <nop>
-nnoremap da] <nop>
-nnoremap da[ <nop>
-nnoremap di) <nop>
-nnoremap di( <nop>
-nnoremap da) <nop>
-nnoremap da( <nop>
-nnoremap di( <nop>
-nnoremap da) <nop>
-nnoremap da( <nop>
-nnoremap dib <nop>
-nnoremap dib <nop>
+" nnoremap dl <nop>
+" nnoremap cl <nop>
+" nnoremap cc <nop>
+" nnoremap dt <nop>
+" nnoremap df <nop>
+" nnoremap di" <nop>
+" nnoremap da" <nop>
+" nnoremap di' <nop>
+" nnoremap da' <nop>
+" nnoremap diw <nop>
+" nnoremap daw <nop>
+" nnoremap ds <nop>
+" nnoremap das <nop>
+" nnoremap dip <nop>
+" nnoremap dap <nop>
+" nnoremap di] <nop>
+" nnoremap di[ <nop>
+" nnoremap da] <nop>
+" nnoremap da[ <nop>
+" nnoremap di) <nop>
+" nnoremap di( <nop>
+" nnoremap da) <nop>
+" nnoremap da( <nop>
+" nnoremap di( <nop>
+" nnoremap da) <nop>
+" nnoremap da( <nop>
+" nnoremap dib <nop>
+" nnoremap dib <nop>
 
-nnoremap ct <nop>
-nnoremap cf <nop>
-nnoremap ci" <nop>
-nnoremap ca" <nop>
-nnoremap ci' <nop>
-nnoremap ca' <nop>
-nnoremap ciw <nop>
-nnoremap caw <nop>
-nnoremap cs <nop>
-nnoremap cas <nop>
-nnoremap cip <nop>
-nnoremap cap <nop>
-nnoremap ci] <nop>
-nnoremap ci[ <nop>
-nnoremap ca] <nop>
-nnoremap ca[ <nop>
-nnoremap ci) <nop>
-nnoremap ci( <nop>
-nnoremap ca) <nop>
-nnoremap ca( <nop>
-nnoremap ci( <nop>
-nnoremap ca) <nop>
-nnoremap ca( <nop>
-nnoremap cib <nop>
-nnoremap cib <nop>
+" nnoremap ct <nop>
+" nnoremap cf <nop>
+" nnoremap ci" <nop>
+" nnoremap ca" <nop>
+" nnoremap ci' <nop>
+" nnoremap ca' <nop>
+" nnoremap ciw <nop>
+" nnoremap caw <nop>
+" nnoremap cs <nop>
+" nnoremap cas <nop>
+" nnoremap cip <nop>
+" nnoremap cap <nop>
+" nnoremap ci] <nop>
+" nnoremap ci[ <nop>
+" nnoremap ca] <nop>
+" nnoremap ca[ <nop>
+" nnoremap ci) <nop>
+" nnoremap ci( <nop>
+" nnoremap ca) <nop>
+" nnoremap ca( <nop>
+" nnoremap ci( <nop>
+" nnoremap ca) <nop>
+" nnoremap ca( <nop>
+" nnoremap cib <nop>
+" nnoremap cib <nop>
 
 " could use this
 "function! SuppressAllStartingWith(c1)

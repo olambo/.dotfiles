@@ -33,6 +33,7 @@ nnoremap . <nop>
 nnoremap u <nop>
 nnoremap <c-x>. .
 nnoremap <c-x><c-u> u
+inoremap <c-x><c-u> <esc>u
 
 " move paste to hyp-p
 nnoremap p <nop>

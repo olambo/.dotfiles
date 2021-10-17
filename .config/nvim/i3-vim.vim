@@ -185,12 +185,28 @@ function! GoCommand(cmd)
   endif
   call writefile([a:cmd], expand("~/.config/nvim/runcache/vcommand.txt"))
 endfunction
-
 " function! YY(count)
 "   echo a:count
-"   execute "normal \<Plug>Sneak_s"
-"   " exec a:count 
-"   " normal! '0'
-" " normal <leader>;
+"   cal cursor(a:count, 1)
+"   call sneak#wrap('', 2, 0, 2, 1)
 " endfunction
 " nnoremap <leader>l :<c-u>call YY(v:count1)<CR>
+" nnoremap ; :<c-u>call YY(v:count1)<CR>
+
+nnoremap <up> :<c-u>call Lineup()<CR>
+nnoremap <down> :<c-u>call Linedown()<CR>
+xnoremap <up> :<c-u>call Lineup()<CR>
+xnoremap <down> :<c-u>call Linedown()<CR>
+function! Lineup()
+  let lnr = line('.')
+  let units = lnr % 10
+  let kno = units == 0 ? 10 : units
+  exec "normal! " . kno . 'k'
+endf
+function! Linedown()
+  let lnr = line('.')
+  let units = lnr % 10
+  let jno = 10 - units
+  exec "normal! " . jno . 'j'
+endf
+
