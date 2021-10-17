@@ -22,36 +22,12 @@ let g:pear_tree_repeatable_expand = 0
 " this stops expansion on <CR> but no mapping in karabiner elements. Probably can remove
 imap <c-x><c-e> <Plug>(PearTreeExpand)
 
-" Always show line numbers, but only in current window.
+" always show line numbers, but only in current window.
 set number
 :au WinEnter * :setlocal number
 :au WinLeave * :setlocal nonumber
 
-" used in ideavim. Probably remove
-" noremap g- <nop>
-
-" noremap gd <nop>
-noremap gi <nop>
-
-noremap gr <nop>
-noremap gR <nop>
-
-noremap gh <nop>
-noremap gs <nop>
-noremap gS <nop>
-
-noremap ge <nop>
-noremap gE <nop>
-
-noremap gm <nop>
-noremap gM <nop>
-
-noremap gb <nop>
-noremap gB <nop>
-
-noremap gf <nop>
-noremap go <nop>
-
+" jump list
 nnoremap gk <c-o>
 nnoremap gj <c-i>
 
@@ -62,12 +38,6 @@ set mouse=nv " this is not going to allow command-c. can use option-mouse or tur
 inoremap <down> <c-n>
 inoremap <up> <c-p>
 inoremap <expr> <left> pumvisible() ? "\<C-e>" : "\<left>"
-
-" for most enviroments don't want tab spacing. But for Go, go fmt uses tabs.
-" Turn on if using go
-" autocmd BufEnter *.go set noexpandtab
-" autocmd BufRead *.go set noexpandtab
-" autocmd BufLeave * set expandtab
 
 if exists('$TMUX')
     " tmux title to iterm title. todo: working in neovim, not working in vim
@@ -85,7 +55,7 @@ autocmd BufWritePre,FileWritePre * silent! call mkdir(expand('<afile>:p:h'), 'p'
 " correctly set markdown for vim-commentary
 autocmd FileType markdown setlocal commentstring=#\ %s
 
-source  ~/.config/nvim/i4-experimental.vim
+" source  ~/.config/nvim/i4-experimental.vim
 source ~/.config/nvim/vi-ka.vim
 
 if has('nvim')
@@ -185,28 +155,3 @@ function! GoCommand(cmd)
   endif
   call writefile([a:cmd], expand("~/.config/nvim/runcache/vcommand.txt"))
 endfunction
-" function! YY(count)
-"   echo a:count
-"   cal cursor(a:count, 1)
-"   call sneak#wrap('', 2, 0, 2, 1)
-" endfunction
-" nnoremap <leader>l :<c-u>call YY(v:count1)<CR>
-" nnoremap ; :<c-u>call YY(v:count1)<CR>
-
-nnoremap <up> :<c-u>call Lineup()<CR>
-nnoremap <down> :<c-u>call Linedown()<CR>
-xnoremap <up> :<c-u>call Lineup()<CR>
-xnoremap <down> :<c-u>call Linedown()<CR>
-function! Lineup()
-  let lnr = line('.')
-  let units = lnr % 10
-  let kno = units == 0 ? 10 : units
-  exec "normal! " . kno . 'k'
-endf
-function! Linedown()
-  let lnr = line('.')
-  let units = lnr % 10
-  let jno = 10 - units
-  exec "normal! " . jno . 'j'
-endf
-
