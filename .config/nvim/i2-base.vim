@@ -12,6 +12,41 @@ nnoremap <home> ^
 xnoremap <home> ^
 xnoremap <end> $h
 
+" makes more sense for b to go back to previous word in visual mode 
+xnoremap b ge
+xnoremap B gE
+
+" use visual J
+nnoremap J <nop>
+
+" These keys may make editing non deterministic. Things go wrong and you have no idea why. 
+" As such I'm moving them off lowercase and onto their hyper key equivalent.
+" Theres an advantage as they can then work from the same keystroke in different modes.
+nnoremap u <nop>
+" move paste to hyp-p
+nnoremap p <nop>
+nnoremap P <nop>
+nnoremap gp <nop>
+nnoremap gP <nop>
+nnoremap . <nop>
+nnoremap u <nop>
+
+" move undo and repeat to hyp-u, hyp-.
+nnoremap <c-x>. .
+nnoremap <c-x><c-u> u
+inoremap <c-x><c-u> <esc>u
+
+" normal mode, paste from unnamed register (gets line deletes)
+nnoremap <c-x><c-p> ""p
+" paste before, from unnamed register
+nnoremap <leader><c-x><c-p> P
+" other modes paste from yank register
+inoremap <c-x><c-p> <c-r><c-o>0
+cnoremap <c-x><c-p> <c-r><c-o>0
+vnoremap <c-x><c-p> "0p
+" cut - copy to yank register, then delete
+xnoremap x ygvd
+
 " select visual mode, or if a number is first pressed, visual block mode
 nnoremap <expr> v v:count == 0 ? "<esc>v" : v:count == 1 ? "<esc>vV" : "<esc>vV" . (v:count-1) . "j"
 " visual block mode - select extra line to start with
@@ -27,27 +62,6 @@ nnoremap V v$h
 xnoremap V $h
 " yank until end of line
 nnoremap Y y$
-
-" move undo and repeat to hyp-u, hyp-.
-nnoremap . <nop>
-nnoremap u <nop>
-nnoremap <c-x>. .
-nnoremap <c-x><c-u> u
-inoremap <c-x><c-u> <esc>u
-
-" move paste to hyp-p
-nnoremap p <nop>
-nnoremap P <nop>
-" normal mode, paste from unnamed register (gets line deletes)
-nnoremap <c-x><c-p> ""p
-" paste before, from unnamed register
-nnoremap <leader><c-x><c-p> P
-" other modes paste from yank register
-inoremap <c-x><c-p> <c-r><c-o>0
-cnoremap <c-x><c-p> <c-r><c-o>0
-vnoremap <c-x><c-p> "0p
-" cut - copy to yank register, then delete
-xnoremap x ygvd
 
 " insert mode no vertical movement"
 inoremap <up> <nop>
