@@ -1,3 +1,59 @@
+" for most enviroments don't want tab spacing. But for Go, go fmt uses tabs.
+" Turn on if using go
+" autocmd BufEnter *.go set noexpandtab
+" autocmd BufRead *.go set noexpandtab
+" autocmd BufLeave * set expandtab
+"
+" used in ideavim. Probably remove
+" noremap g- <nop>
+
+" noremap gd <nop>
+noremap gi <nop>
+
+noremap gr <nop>
+noremap gR <nop>
+
+noremap gh <nop>
+noremap gs <nop>
+noremap gS <nop>
+
+noremap ge <nop>
+noremap gE <nop>
+
+noremap gm <nop>
+noremap gM <nop>
+
+noremap gb <nop>
+noremap gB <nop>
+
+noremap gf <nop>
+noremap go <nop>
+
+" function! YY(count)
+"   echo a:count
+"   cal cursor(a:count, 1)
+"   call sneak#wrap('', 2, 0, 2, 1)
+" endfunction
+" nnoremap <leader>l :<c-u>call YY(v:count1)<CR>
+" nnoremap ; :<c-u>call YY(v:count1)<CR>
+
+nnoremap <up> :<c-u>call Lineup()<CR>
+nnoremap <down> :<c-u>call Linedown()<CR>
+xnoremap <up> :<c-u>call Lineup()<CR>
+xnoremap <down> :<c-u>call Linedown()<CR>
+function! Lineup()
+  let lnr = line('.')
+  let units = lnr % 10
+  let kno = units == 0 ? 10 : units
+  exec "normal! " . kno . 'k'
+endf
+function! Linedown()
+  let lnr = line('.')
+  let units = lnr % 10
+  let jno = 10 - units
+  exec "normal! " . jno . 'j'
+endf
+
 " ok. The theory is that my right hand often comes back and rests on the wrong
 " keys. Then I end up with a complete buffer mess. I tried taking all lowercase keys that might
 " modify the buffer away. I've had to put some of them back
@@ -24,7 +80,7 @@ xnoremap B gE
 
 " These keys may make editing non deterministic. Things go wrong and you have no idea why. 
 " As such I'm moving them off lowercase and onto their hyper key equivalent.
-" Theres an advantage for paste as it can then work from the same keystroke in different modes.
+" Theres an advantage as it can then work from the same keystroke in different modes.
 nnoremap u <nop>
 nnoremap p <nop>
 nnoremap P <nop>
