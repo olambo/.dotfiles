@@ -1,5 +1,5 @@
-nmap s <Plug>Sneak_s
-nmap S <Plug>Sneak_S
+nmap <leader>; <Plug>Sneak_s
+nmap <leader>, <Plug>Sneak_S
 let g:sneak#use_ic_scs = 1
 
 " use hyp-m or cmd-/ to comment 
@@ -186,3 +186,11 @@ function! GoCommand(cmd)
   call writefile([a:cmd], expand("~/.config/nvim/runcache/vcommand.txt"))
 endfunction
 
+" function! YY(count)
+"   echo a:count
+"   execute "normal \<Plug>Sneak_s"
+"   " exec a:count 
+"   " normal! '0'
+" " normal <leader>;
+" endfunction
+" nnoremap <leader>l :<c-u>call YY(v:count1)<CR>
