@@ -2,7 +2,7 @@
 let g:fzf_preview_window = []
 
 " list functions to run. Ensure functions are defined below
-noremap <leader>; :call fzf#run({'source': 'cat ~/.config/nvim/bin/lkeyFunctions', 'sink': funcref("ZRunner"), 'window': { 'width': 0.6, 'height': 0.7 } })<cr> 
+noremap g<leader> :call fzf#run({'source': 'cat ~/.config/nvim/bin/lkeyFunctions', 'sink': funcref("ZRunner"), 'window': { 'width': 0.6, 'height': 0.7 } })<cr> 
 " list buffers, mapped from <hyp-f> via karabiner elements
 nnoremap <silent> <c-x><c-f> :Buffers<CR>
 " find files of wanted types 

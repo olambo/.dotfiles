@@ -55,10 +55,10 @@ inoremap <pageup> <nop>
 inoremap <pagedown> <nop>
 
 " move down and up a bit more than normal
-nnoremap <up> 5k
-nnoremap <down> 5j
-xnoremap <up> 5k
-xnoremap <down> 5j
+nnoremap <up> 10k
+nnoremap <down> 10j
+xnoremap <up> 10k
+xnoremap <down> 10j
 
 " keep centred
 nnoremap n nzzzv
