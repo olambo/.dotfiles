@@ -1,7 +1,3 @@
-map <leader>; <Plug>Sneak_s
-nmap <leader>, <Plug>Sneak_S
-let g:sneak#use_ic_scs = 1
-
 " select visual mode, or if a number is first pressed, visual block mode
 nnoremap <expr> v v:count == 0 ? "<esc>v" : v:count == 1 ? "<esc>vV" : "<esc>vV" . (v:count-1) . "j"
 " visual block mode - select extra line to start with
@@ -28,21 +24,24 @@ nnoremap <c-x><c-p> "0p
 " cut - copy to yank register, then delete - no hyper key for this
 xnoremap <c-x>x ygvd
 
+" using vi-ke for sneak 
+let g:sneak#use_ic_scs = 1
 " down, up for 1 line or go to the line indicated by the last number, or last two numbers given
-nnoremap 0 <cmd>lua _G.vikeZero()<CR>
+nnoremap 0 <cmd>lua _G.vike0()<CR>
 nnoremap k <cmd>lua _G.vikeK()<CR>
 nnoremap j <cmd>lua _G.vikeJ()<CR>
 nnoremap <up> <cmd>lua _G.vikeUp()<CR>
 nnoremap <down> <cmd>lua _G.vikeDown()<CR>
-nnoremap ; <cmd>lua _G.vikeSneak()<CR>
+nnoremap ; <cmd>lua _G.vike0Sneak()<CR>
+nnoremap , <cmd>lua _G.vike0SneakBack()<CR>
 
-vnoremap 0 <cmd>lua _G.vikeZero()<CR>
-vnoremap k <cmd>lua _G.vikeK()<CR>
-vnoremap j <cmd>lua _G.vikeJ()<CR>
-vnoremap <up> <cmd>lua _G.vikeUp()<CR>
-vnoremap <down> <cmd>lua _G.vikeDown()<CR>
-vnoremap ; <cmd>lua _G.vikeSneak()<CR>
-
+xnoremap 0 <cmd>lua _G.vike0()<CR>
+xnoremap k <cmd>lua _G.vikeK()<CR>
+xnoremap j <cmd>lua _G.vikeJ()<CR>
+xnoremap <up> <cmd>lua _G.vikeUp()<CR>
+xnoremap <down> <cmd>lua _G.vikeDown()<CR>
+xnoremap ; <cmd>lua _G.vike0Sneak()<CR>
+xnoremap , <cmd>lua _G.vike0SneakBack()<CR>
 
 " on <cr> dont hide closing bracket. don't need . repeat here
 let g:pear_tree_repeatable_expand = 0
