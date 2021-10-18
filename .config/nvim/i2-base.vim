@@ -16,9 +16,6 @@ xnoremap <end> $h
 xnoremap b ge
 xnoremap B gE
 
-" use visual J
-nnoremap J <nop>
-
 nnoremap <leader>v <c-v>j
 
 " can't set in intellij

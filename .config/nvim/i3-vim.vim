@@ -2,6 +2,7 @@ let g:undotree_SplitWidth = 50
 nnoremap <f5> :UndotreeToggle<CR>
 nmap <f7> :lua require('dark_notify').toggle()<cr>
 nnoremap <f8> :source $MYVIMRC<CR>
+nnoremap <f8> :source ~/.config/nvim/init.vim<CR>
 
 " insert mode drop down list selection.
 inoremap <down> <c-n>
