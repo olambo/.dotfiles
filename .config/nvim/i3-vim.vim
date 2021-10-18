@@ -1,38 +1,7 @@
-nmap <leader>; <Plug>Sneak_s
-nmap <leader>, <Plug>Sneak_S
-let g:sneak#use_ic_scs = 1
-
-" use hyp-m or cmd-/ to comment 
-nmap <c-x><c-m> gcc
-xmap <c-x><c-m> gc
-nmap <C-_> gcc
-xmap <C-_> gc
-
 let g:undotree_SplitWidth = 50
 nnoremap <f5> :UndotreeToggle<CR>
 nmap <f7> :lua require('dark_notify').toggle()<cr>
 nnoremap <f8> :source $MYVIMRC<CR>
-
-" down when number given: j, otherwise gj. (similar with k)
-nnoremap <silent> <expr> j v:count ? 'j' : 'gj'
-nnoremap <silent> <expr> k v:count ? 'k' : 'gk'
-
-" on <cr> dont hide closing bracket. don't need . repeat here
-let g:pear_tree_repeatable_expand = 0
-" this stops expansion on <CR> but no mapping in karabiner elements. Probably can remove
-imap <c-x><c-e> <Plug>(PearTreeExpand)
-
-" always show line numbers, but only in current window.
-set number
-:au WinEnter * :setlocal number
-:au WinLeave * :setlocal nonumber
-
-" jump list
-nnoremap gk <c-o>
-nnoremap gj <c-i>
-
-set belloff=all
-set mouse=nv " this is not going to allow command-c. can use option-mouse or turn off
 
 " insert mode drop down list selection.
 inoremap <down> <c-n>
@@ -55,9 +24,6 @@ autocmd BufWritePre,FileWritePre * silent! call mkdir(expand('<afile>:p:h'), 'p'
 " correctly set markdown for vim-commentary
 autocmd FileType markdown setlocal commentstring=#\ %s
 
-" source  ~/.config/nvim/i4-experimental.vim
-source ~/.config/nvim/vi-ka.vim
-
 if has('nvim')
 " nvim and vim appear incompatible here
 set dir=~/.config/nvim-data/swapfiles
@@ -67,15 +33,6 @@ set undofile
 set undodir=~/.config/nvim-data/undofiles
 
 :lua <<EOF
-require('vi-ka')
-require'nvim-treesitter.configs'.setup {
-  ensure_installed = "maintained",    -- one of "all", "maintained" (parsers with maintainers), or a list of languages
-  ignore_install = { },               -- List of parsers to ignore installing
-  highlight = {
-    enable = true,                    -- false will disable the whole extension
-    disable = { },                    -- list of language that will be disabled
-  },
-}
 local dn = require('dark_notify')
 dn.run({
   onchange = function(mode)
@@ -97,10 +54,7 @@ endif
 " todo: check if vscode can support some of this
 " ----------------------------------------------------------------------------------------------
 " copy to system clipboard. <hyp-y> mapped to <c-x><c-y> via karabiner elements
-if $TERM_PROGRAM == "Apple_Terminal"
-  vnoremap <c-x><c-y> "+y
-  nnoremap <c-x><c-y><c-x><c-y> V"+y
-   
+if $TERM_PROGRAM == "Apple_Terminal" || !has('nvim')
   let g:PaperColor_Theme_Options = {
    \   'theme': {
    \     'default': {
@@ -116,6 +70,13 @@ if $TERM_PROGRAM == "Apple_Terminal"
    \   }
    \ }
   let g:colorscheme = "PaperColor"
+  if !has('nvim')
+    colorscheme PaperColor
+  endif
+endif
+if $TERM_PROGRAM == "Apple_Terminal"
+  vnoremap <c-x><c-y> "+y
+  nnoremap <c-x><c-y><c-x><c-y> V"+y
 else
   " yank into system clipboard without yanking into vim clipboard/reg0
   vnoremap <c-x><c-y> :OSCYank<CR>
@@ -132,10 +93,6 @@ endfunction
 
 " ----------------------------------------------------------------------------------------------
 set showcmd
-" set up replace on current word
-nnoremap <expr> g/ ':%s/'.expand('<cword>').'//gIc<Left><Left><Left><Left>'
-
-let mapleader="\<space>"
 
 if !exists("g:bloop")
   let g:bloop="root"

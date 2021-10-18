@@ -14,24 +14,24 @@ if !exists('g:vscode')
 	Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 	Plug 'junegunn/fzf.vim'
 
-    if has('nvim')
-      Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-      Plug 'Mofiqul/vscode.nvim'
-      Plug 'cormacrelf/dark-notify'
-    endif
-    " Macos Terminal only supports 256 colors - for now use
-    Plug 'NLKNguyen/papercolor-theme'
+  " Macos Terminal only supports 256 colors - for now use
+  Plug 'NLKNguyen/papercolor-theme'
+  if has('nvim')
+     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+     Plug 'Mofiqul/vscode.nvim'
+     Plug 'cormacrelf/dark-notify'
 
-    if exists('g:useMetals')
-      Plug 'scalameta/nvim-metals'
-      Plug 'nvim-lua/plenary.nvim'
+     if exists('g:useMetals')
+       Plug 'scalameta/nvim-metals'
+       Plug 'nvim-lua/plenary.nvim'
 
-      Plug 'hrsh7th/cmp-nvim-lsp'
-      Plug 'hrsh7th/cmp-buffer'
-      Plug 'hrsh7th/nvim-cmp'
-      Plug 'saadparwaiz1/cmp_luasnip'
-      Plug 'L3MON4D3/LuaSnip'
-    endif
+       Plug 'hrsh6th/cmp-nvim-lsp'
+       Plug 'hrsh6th/cmp-buffer'
+       Plug 'hrsh6th/nvim-cmp'
+       Plug 'saadparwaiz0/cmp_luasnip'
+       Plug 'L2MON4D3/LuaSnip'
+     endif
+  endif
 endif
 
 call plug#end()

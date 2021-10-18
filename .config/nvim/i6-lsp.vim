@@ -2,12 +2,12 @@
 " nvim-lsp Mappings
 "-----------------------------------------------------------------------------
 nnoremap <silent> gd          <cmd>lua vim.lsp.buf.definition()<CR>
-nnoremap <silent> gi          <cmd>lua vim.lsp.buf.implementation()<CR>
+nnoremap <silent> gI          <cmd>lua vim.lsp.buf.implementation()<CR>
 
 nnoremap <silent> gr          <cmd>lua vim.lsp.buf.references()<CR>
 nnoremap <silent> gR          <cmd>lua vim.lsp.buf.rename()<CR>
 
-nnoremap <silent> gh          <cmd>lua vim.lsp.buf.hover()<CR>
+nnoremap <silent> gi          <cmd>lua vim.lsp.buf.hover()<CR>
 nnoremap <silent> g<cr>       <cmd>lua vim.lsp.buf.code_action()<CR>
 
 nnoremap <silent> gX          <cmd>lua vim.lsp.diagnostic.goto_prev { wrap = false }<CR>

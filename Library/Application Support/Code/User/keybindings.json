@@ -65,10 +65,22 @@
         "key": "shift+alt+l",
         "command": "editor.action.changeAll",
         "when": "editorTextFocus"
-    },
+    }, 
     {
         "key": "alt+l",
         "command": "editor.action.addSelectionToNextFindMatch",
         "when": "editorFocus"
-    }
-]
+    },
+   {
+        "key": "ctrl-x ctrl-u",
+        "command":"undo",
+        "when": "editorTextFocus && neovim.ctrlKeysNormal",
+        "args": "\""
+    }, 
+    {
+        "key": "ctrl-x ctrl-p",
+        "command":"vscode-neovim.paste-register",
+        "when": "editorTextFocus && neovim.ctrlKeysNormal",
+        "args": "+\""
+    } 
+]   
