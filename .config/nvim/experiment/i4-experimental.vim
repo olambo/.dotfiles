@@ -1,3 +1,28 @@
+" this has to be included in vscode for control sequences to be accepted
+    "{
+    "    "key": "ctrl-x ctrl-u",
+    "    "command":"vscode-neovim.send",
+    "    "when": "editorTextFocus && neovim.ctrlKeysNormal  && neovim.mode != 'insert'",
+    "    "args": "<c-x><c-u>"
+    "}, 
+    "{
+    "    "key": "ctrl-x ctrl-u",
+    "    "command":"undo",
+    "    "when": "editorTextFocus && neovim.ctrlKeysNormal && neovim.mode == 'insert'",
+    "}, 
+    "{
+    "    "key": "ctrl-x ctrl-p",
+    "    "command":"vscode-neovim.send",
+    "    "when": "editorTextFocus && neovim.ctrlKeysNormal",
+    "    "args": "<c-x><c-p>"
+    "},
+    "{
+    "    "key": "ctrl+x .",
+    "    "command": "vscode-neovim.send",
+    "    "when": "editorTextFocus && neovim.ctrlKeysNormal && neovim.init && neovim.mode != 'insert'",
+    "    "args": "<c-x>."
+    "}
+" 
 " for most enviroments don't want tab spacing. But for Go, go fmt uses tabs.
 " Turn on if using go
 " autocmd BufEnter *.go set noexpandtab

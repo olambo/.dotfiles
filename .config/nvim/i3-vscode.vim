@@ -1,3 +1,4 @@
+" nnoremap <M-A-C-S-'> w
 " noremap gf <Cmd>call VSCodeNotify('workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup')<CR>
 " noremap gd <Cmd>call VSCodeNotify('editor.action.goToDefinition')<CR>
 noremap - <Cmd>call VSCodeNotify('workbench.view.explorer')<CR>
@@ -21,5 +22,3 @@ noremap g<cr> <Cmd>call VSCodeNotify('editor.action.quickFix')<CR>
 noremap g= <Cmd>call VSCodeNotify('editor.action.formatDocument')<CR>
 noremap <space>s <Cmd>call VSCodeNotify('workbench.action.files.save')<CR>
 
-nnoremap <c-x><c-p> <Cmd>call VSCodeNotify('vscode-neovim.paste-register','"')<CR>
-noremap <s-c-u> <Cmd>call VSCodeNotify('undo')<CR>

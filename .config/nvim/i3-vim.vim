@@ -25,30 +25,38 @@ autocmd BufWritePre,FileWritePre * silent! call mkdir(expand('<afile>:p:h'), 'p'
 autocmd FileType markdown setlocal commentstring=#\ %s
 
 if has('nvim')
-" nvim and vim appear incompatible here
-set dir=~/.config/nvim-data/swapfiles
-set backup
-set backupdir=~/.config/nvim-data/backupfiles
-set undofile
-set undodir=~/.config/nvim-data/undofiles
+  " nvim and vim appear incompatible here
+  set dir=~/.config/nvim-data/swapfiles
+  set backup
+  set backupdir=~/.config/nvim-data/backupfiles
+  set undofile
+  set undodir=~/.config/nvim-data/undofiles
+  set guicursor=n-v-c:block-nCursor,i-ci-ve:ver25,r-cr:hor20,o:hor50
+    \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
+    \,sm:block-blinkwait175-blinkoff150-blinkon175
+    " insert mode for terminal
+    au TermOpen * startinsert
 
 :lua <<EOF
-local dn = require('dark_notify')
-dn.run({
-  onchange = function(mode)
-    if vim.g.vscode_style ~= mode then
-      vim.g.vscode_style = mode 
-      vim.cmd('colorscheme ' .. vim.g.colorscheme)
-      vim.cmd('source ' .. '~/.config/nvim/i5-statusline.vim')
-    end
-  end,
-})
+  require'nvim-treesitter.configs'.setup {
+    ensure_installed = "maintained",    -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+    ignore_install = { },               -- List of parsers to ignore installing
+    highlight = {
+      enable = true,                    -- false will disable the whole extension
+      disable = { },                    -- list of language that will be disabled
+    },
+  }
+  local dn = require('dark_notify')
+  dn.run({
+    onchange = function(mode)
+      if vim.g.vscode_style ~= mode then
+        vim.g.vscode_style = mode 
+        vim.cmd('colorscheme ' .. vim.g.colorscheme)
+        vim.cmd('source ' .. '~/.config/nvim/i5-statusline.vim')
+      end
+    end,
+  })
 EOF
-set guicursor=n-v-c:block-nCursor,i-ci-ve:ver25,r-cr:hor20,o:hor50
-  \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
-  \,sm:block-blinkwait175-blinkoff150-blinkon175
-  " insert mode for terminal
-  au TermOpen * startinsert
 endif
 
 " todo: check if vscode can support some of this

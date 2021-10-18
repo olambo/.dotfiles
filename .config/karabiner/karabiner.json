@@ -76,7 +76,8 @@
                                             "io.alacritty",
                                             "com.apple.Terminal",
                                             "com.googlecode.iterm2",
-                                            "com.microsoft.VSCode"
+                                            "com.microsoft.VSCode",
+                                            "com.jetbrains.intellij"
                                         ],
                                         "type": "frontmost_application_if"
                                     }
@@ -691,6 +692,7 @@
                                             "io.alacritty",
                                             "com.apple.Terminal",
                                             "com.googlecode.iterm2",
+                                            "com.jetbrains.intellij",
                                             "com.microsoft.VSCode"
                                         ],
                                         "type": "frontmost_application_if"
@@ -748,13 +750,7 @@
                                 },
                                 "to": [
                                     {
-                                        "key_code": "x",
-                                        "modifiers": [
-                                            "control"
-                                        ]
-                                    },
-                                    {
-                                        "key_code": "m",
+                                        "key_code": "hyphen",
                                         "modifiers": [
                                             "control"
                                         ]
@@ -847,6 +843,7 @@
                                             "io.alacritty",
                                             "com.apple.Terminal",
                                             "com.googlecode.iterm2",
+                                            "com.jetbrains.intellij",
                                             "com.microsoft.VSCode"
                                         ],
                                         "type": "frontmost_application_if"

@@ -2,11 +2,31 @@ map <leader>; <Plug>Sneak_s
 nmap <leader>, <Plug>Sneak_S
 let g:sneak#use_ic_scs = 1
 
+" select visual mode, or if a number is first pressed, visual block mode
+nnoremap <expr> v v:count == 0 ? "<esc>v" : v:count == 1 ? "<esc>vV" : "<esc>vV" . (v:count-1) . "j"
+" visual block mode - select extra line to start with
+nnoremap <leader>v <c-v>j
+
+" visual mode <-> visual line mode
+xnoremap <expr> v mode() ==# "v" ? "V" : "v"
+" visual mode <-> visual block mode
+xnoremap <expr> <leader>v mode() ==# "\<c-v>" ? "V" : "\<c-v>"
+
 " use hyp-m or cmd-/ to comment 
-nmap <c-x><c-m> gcc
-xmap <c-x><c-m> gc
 nmap <C-_> gcc
 xmap <C-_> gc
+
+" insert undo
+inoremap <c-x><c-u> <esc>u
+
+" paste from yank register
+inoremap <c-x><c-p> <c-r><c-o>0
+cnoremap <c-x><c-p> <c-r><c-o>0
+xnoremap <c-x><c-p> "0p
+nnoremap <c-x><c-p> "0p
+
+" cut - copy to yank register, then delete - no hyper key for this
+xnoremap <c-x>x ygvd
 
 " down when number given: j, otherwise gj. (similar with k)
 nnoremap <silent> <expr> j v:count ? 'j' : 'gj'
@@ -33,23 +53,15 @@ set mouse=nv " this is not going to allow command-c. can use option-mouse or tur
 noremap <expr> g/ ':%s/'.expand('<cword>').'//gIc<Left><Left><Left><Left>'
 
 if has('nvim')
-source ~/.config/nvim/vi-ka.vim
-" nvim and vim appear incompatible here
-set dir=~/.config/nvim-data/swapfiles
-set backup
-set backupdir=~/.config/nvim-data/backupfiles
-set undofile
-set undodir=~/.config/nvim-data/undofiles
+  " nvim and vim appear incompatible here
+  set dir=~/.config/nvim-data/swapfiles
+  set backup
+  set backupdir=~/.config/nvim-data/backupfiles
+  set undofile
+  set undodir=~/.config/nvim-data/undofiles
 
+  source ~/.config/nvim/vi-ka.vim
 :lua <<EOF
-require('vi-ka')
-require'nvim-treesitter.configs'.setup {
-  ensure_installed = "maintained",    -- one of "all", "maintained" (parsers with maintainers), or a list of languages
-  ignore_install = { },               -- List of parsers to ignore installing
-  highlight = {
-    enable = true,                    -- false will disable the whole extension
-    disable = { },                    -- list of language that will be disabled
-  },
-}
+  require('vi-ka')
 EOF
 endif
