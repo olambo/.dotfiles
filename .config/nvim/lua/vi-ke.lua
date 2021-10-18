@@ -2,7 +2,7 @@ vikeZeroOn = false
 
 local function vikeDir(lnr, cnt, dir) 
   if cnt >= 100 then
-    print('v:count too big ' .. count .. ' set to 0')
+    print('v:count too big ' .. cnt .. ' set to 0')
     cnt = 0
   end
 
