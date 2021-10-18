@@ -24,25 +24,6 @@ nnoremap <c-x><c-p> "0p
 " cut - copy to yank register, then delete - no hyper key for this
 xnoremap <c-x>x ygvd
 
-" using vi-ke for sneak 
-let g:sneak#use_ic_scs = 1
-" down, up for 1 line or go to the line indicated by the last number, or last two numbers given
-nnoremap 0 <cmd>lua _G.vike0()<CR>
-nnoremap k <cmd>lua _G.vikeK()<CR>
-nnoremap j <cmd>lua _G.vikeJ()<CR>
-nnoremap <up> <cmd>lua _G.vikeUp()<CR>
-nnoremap <down> <cmd>lua _G.vikeDown()<CR>
-nnoremap ; <cmd>lua _G.vike0Sneak()<CR>
-nnoremap , <cmd>lua _G.vike0SneakBack()<CR>
-
-xnoremap 0 <cmd>lua _G.vike0()<CR>
-xnoremap k <cmd>lua _G.vikeK()<CR>
-xnoremap j <cmd>lua _G.vikeJ()<CR>
-xnoremap <up> <cmd>lua _G.vikeUp()<CR>
-xnoremap <down> <cmd>lua _G.vikeDown()<CR>
-xnoremap ; <cmd>lua _G.vike0Sneak()<CR>
-xnoremap , <cmd>lua _G.vike0SneakBack()<CR>
-
 " on <cr> dont hide closing bracket. don't need . repeat here
 let g:pear_tree_repeatable_expand = 0
 " this stops expansion on <CR> but no mapping in karabiner elements. Probably can remove
@@ -71,6 +52,7 @@ if has('nvim')
   set undofile
   set undodir=~/.config/nvim-data/undofiles
 
+  source ~/.config/nvim/vi-ke.vim
   source ~/.config/nvim/vi-ka.vim
 :lua <<EOF
   require('vi-ka')
