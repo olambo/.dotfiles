@@ -11,7 +11,7 @@ local function vikeDir(lnr, cnt, dir, zeroCnt)
   end
 
   local unit = 10
-  if cnt >= 10 or zeroCnt > 1 or (cnt ~= 0 and zeroCnt > 1) then
+  if cnt >= 10 or zeroCnt > 1 or (cnt ~= 0 and zeroCnt > 0) then
     unit = 100
   end
   local roundedToUnit = math.floor(lnr/unit)*unit
@@ -28,7 +28,7 @@ local function vikeDir(lnr, cnt, dir, zeroCnt)
   if l < 1 then
     l = 1
   end
-  -- print("wantL unit roundedToUnit L nL:", cnt, unit, roundedToUnit, x, l)
+  print("wantL unit roundedToUnit L nL:", cnt, unit, roundedToUnit, x, l, 'zeroCnt', zeroCnt)
   return l
 end
 
