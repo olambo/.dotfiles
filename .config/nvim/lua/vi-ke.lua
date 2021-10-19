@@ -2,10 +2,10 @@
 -- Type a single digit followed by a movement key to move to the row ending with that digit.
 -- Type two digits followed by a movement key to move to the row ending with the two digits.
 
-vike0Cnt = 0
+local vike0Cnt = 0
 
 local function vikeDir(lnr, cnt, dir, zeroCnt) 
-  if cnt >= 100 then
+  if cnt >= 100 or cnt < 0 then
     print('v:count too big ' .. cnt .. ' set to 0')
     cnt = 0
   end
