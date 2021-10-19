@@ -24,7 +24,7 @@ nmap <leader>, <Plug>Sneak_S
 let g:sneak#use_ic_scs = 1
 
 nnoremap ; <cmd>lua _G.vike0Sneak()<CR>
-nnoremap , <cmd>lua _G.vike0SneakBack()<CR>
+nnoremap , <cmd>lua _G.vike0SneakLeftUp()<CR>
 xnoremap ; <cmd>lua _G.vike0Sneak()<CR>
-xnoremap , <cmd>lua _G.vike0SneakBack()<CR>
+xnoremap , <cmd>lua _G.vike0SneakLeftUp()<CR>
 
