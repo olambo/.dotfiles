@@ -3,6 +3,7 @@
 -- Type two digits followed by a movement key to move to the row ending with the two digits.
 
 local vike0Cnt = 0
+local jkByOne = true
 
 local function vikeDir(lnr, cnt, dir, zeroCnt) 
   if cnt >= 100 or cnt < 0 then
@@ -29,7 +30,7 @@ local function vikeDir(lnr, cnt, dir, zeroCnt)
     l = 1
   end
   print("wantL unit roundedToUnit L nL:", cnt, unit, roundedToUnit, x, l, 'zeroCnt', zeroCnt)
-  return l
+  return l, unit
 end
 
 function _G.vike0()
@@ -42,6 +43,7 @@ function _G.vike0Sneak()
   local col = vim.fn.col('.')
   if col == 1 then
     -- https://github.com/neovim/neovim/blob/b535575acdb037c35a9b688bc2d8adc2f3dece8d/src/nvim/keymap.h#L225
+    jkByOne = true
     vike0Cnt = 0
     vim.fn.feedkeys(string.format('%c%c%cSneak_s', 0x80, 253, 83))
   else 
@@ -52,6 +54,7 @@ end
 function _G.vike0SneakUp()
   local col = vim.fn.col('.')
   if col == 1 then
+    jkByOne = true
     vike0Cnt = 0
     vim.fn.feedkeys(string.format('%c%c%cSneak_S', 0x80, 253, 83))
   else 
@@ -67,10 +70,36 @@ function _G.vikeDown()
   vikeUpOrDown(1)
 end
 
+function _G.vikeV()
+  local cnt = vim.api.nvim_eval('v:count')
+  local modeInfo = vim.api.nvim_get_mode()
+  local mode = modeInfo.mode
+  print('cnt:', cnt)
+  if cnt == 0 then
+    if mode == 'v' then 
+      vim.api.nvim_feedkeys('V', 'n', false)
+    else 
+      vim.api.nvim_feedkeys('v', 'n', false)
+    end
+  else
+    if mode ~= 'V' then 
+      vim.api.nvim_feedkeys('V', 'n', false)
+    end
+    vikeUpOrDown(1)
+  end
+  jkByOne = true
+end
+
+function _G.vikeL()
+  jkByOne = true
+  vim.api.nvim_feedkeys('l', 'n', false)
+end
+
 function _G.vikeK()
   local cnt = vim.api.nvim_eval('v:count')
   local col = vim.fn.col('.')
-  if cnt == 0 and (col > 1 or vike0Cnt == 0) then
+  if cnt == 0 and (col > 1 or (vike0Cnt == 0 and jkByOne)) then
+    jkByOne = true
     vim.api.nvim_feedkeys('gk', 'n', false)
   else
     vikeUpOrDown(-1)
@@ -80,7 +109,8 @@ end
 function _G.vikeJ()
   local cnt = vim.api.nvim_eval('v:count')
   local col = vim.fn.col('.')
-  if cnt == 0 and (col > 1 or vike0Cnt == 0) then
+  if cnt == 0 and (col > 1 or (vike0Cnt == 0 and jkByOne)) then
+    jkByOne = true
     vim.api.nvim_feedkeys('gj', 'n', false)
   else
     vikeUpOrDown(1)
@@ -89,13 +119,18 @@ end
 
 function vikeUpOrDown(dir)
   local cnt = vim.api.nvim_eval('v:count')
+  print('cnt:', cnt)
   local col = vim.fn.col('.')
   local curln = vim.fn.line('.')
-  local ln
+  local ln, unit
   if cnt == 0 and (col > 1 or vike0Cnt == 0) then
     ln = curln + (10 * dir)
+    if ln < 1 then 
+      ln = 1
+    end
   else 
-    ln = vikeDir(curln, cnt, dir, vike0Cnt)
+    ln, unit = vikeDir(curln, cnt, dir, vike0Cnt)
+    jkByOne = true -- unit ~= 10
   end
   vike0Cnt = 0
   vim.api.nvim_feedkeys('0' .. ln .. 'G', 'n', false)

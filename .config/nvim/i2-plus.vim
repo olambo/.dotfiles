@@ -1,13 +1,3 @@
-" select visual mode, or if a number is first pressed, visual block mode
-nnoremap <expr> v v:count == 0 ? "<esc>v" : v:count == 1 ? "<esc>vV" : "<esc>vV" . (v:count-1) . "j"
-" visual block mode - select extra line to start with
-nnoremap <leader>v <c-v>j
-
-" visual mode <-> visual line mode
-xnoremap <expr> v mode() ==# "v" ? "V" : "v"
-" visual mode <-> visual block mode
-xnoremap <expr> <leader>v mode() ==# "\<c-v>" ? "V" : "\<c-v>"
-
 " use hyp-m or cmd-/ to comment 
 nmap <C-_> gcc
 xmap <C-_> gc

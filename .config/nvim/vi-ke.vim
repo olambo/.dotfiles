@@ -14,12 +14,17 @@ xnoremap j <cmd>lua _G.vikeJ()<CR>
 xnoremap <up> <cmd>lua _G.vikeUp()<CR>
 xnoremap <down> <cmd>lua _G.vikeDown()<CR>
 
+" turn off jump mode
+nnoremap l <cmd>lua _G.vikeL()<CR>
+xnoremap l <cmd>lua _G.vikeL()<CR>
+
 " Using vi-ke for vim-sneak. It's optional!
 " It needs to be added to your dependencies - https://github.com/justinmk/vim-sneak
 " Give Sneak a mapping so it doesn't steal the 's' and 'S' keys. Typing the
 " digit 0 will prime Sneak, so the next ; or , will activate it.
 map <leader>; <Plug>Sneak_s
 nmap <leader>, <Plug>Sneak_S
+
 " Case insensitive
 let g:sneak#use_ic_scs = 1
 
@@ -27,4 +32,21 @@ nnoremap ; <cmd>lua _G.vike0Sneak()<CR>
 nnoremap , <cmd>lua _G.vike0SneakUp()<CR>
 xnoremap ; <cmd>lua _G.vike0Sneak()<CR>
 xnoremap , <cmd>lua _G.vike0SneakUp()<CR>
+
+
+" Typing v will go into visual mode. 
+" {partLinenr}v will go into visual Line mode and move to the line inidicated by partialLine
+nnoremap v <cmd>lua _G.vikeV()<CR>
+" Typing vv from normal mode will select a line - like cc, dd, yy
+" visual mode <-> visual line mode (toggle)
+xnoremap v <cmd>lua _G.vikeV()<CR>
+
+" visual mode <-> visual block mode (toggle)
+xnoremap <expr> <leader>v mode() ==# "\<c-v>" ? "V" : "\<c-v>"
+" visual block mode - select extra line to start with (block mode doesnt make sense with just one line)
+nnoremap <leader>v <c-v>j
+
+" Visual to end of line - like C, D, Y
+nnoremap V v$h
+xnoremap V $h
 
