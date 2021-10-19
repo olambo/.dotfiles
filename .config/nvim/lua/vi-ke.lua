@@ -49,7 +49,7 @@ function _G.vike0Sneak()
   end
 end
 
-function _G.vike0SneakLeftUp()
+function _G.vike0SneakUp()
   local col = vim.fn.col('.')
   if col == 1 then
     vike0Cnt = 0
