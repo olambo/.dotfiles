@@ -36,9 +36,9 @@ xnoremap <leader>v <cmd>lua _G.vikeVB()<CR>
 nnoremap V v$h
 xnoremap V $h
 
- -- Optional! j and k keys. If a partialLineNo is supplied, go to the line. Otherwise works like original j and k.
- -- It will make it difficult to go back to use standard vim or someting like IntelliJ ideavim (without new plugin).
- -- nnoremap j <cmd>lua _G.vikeJ()<CR>
- -- nnoremap k <cmd>lua _G.vikeK()<CR>
- -- xnoremap j <cmd>lua _G.vikeJ()<CR>
- -- xnoremap k <cmd>lua _G.vikeK()<CR>
+" Optional! j and k keys. If a partialLineNo is supplied, go to the line. Otherwise works like original j and k.
+" It will make it difficult to go back to use standard vim or someting like IntelliJ ideavim (without new plugin).
+" nnoremap j <cmd>lua _G.vikeJ()<CR>
+" nnoremap k <cmd>lua _G.vikeK()<CR>
+" xnoremap j <cmd>lua _G.vikeJ()<CR>
+" xnoremap k <cmd>lua _G.vikeK()<CR>
