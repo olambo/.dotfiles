@@ -14,10 +14,6 @@ xnoremap j <cmd>lua _G.vikeJ()<CR>
 xnoremap <up> <cmd>lua _G.vikeUp()<CR>
 xnoremap <down> <cmd>lua _G.vikeDown()<CR>
 
-" turn off jump mode - if it's enabled at all - experimental
-nnoremap l <cmd>lua _G.vikeL()<CR>
-xnoremap l <cmd>lua _G.vikeL()<CR>
-
 " Using vi-ke for vim-sneak. It's optional!
 " It needs to be added to your dependencies - https://github.com/justinmk/vim-sneak
 " Give Sneak a mapping so it doesn't steal the 's' and 'S' keys. Typing the
@@ -35,7 +31,7 @@ xnoremap , <cmd>lua _G.vike0SneakUp()<CR>
 
 " Typing v will go into visual mode. 
 " {linenr}v will go into visual line mode and move to the line inidicated by 'partial' linenr
-" visual mode <-> visual line mode (toggle). Typing vv from normal mode will select a line - like cc, dd, yy
+" visual mode <-> visual line mode (toggle). Typing vv from normal mode will select a line - like cc, dd
 nnoremap v <cmd>lua _G.vikeV()<CR>
 xnoremap v <cmd>lua _G.vikeV()<CR>
 
@@ -44,6 +40,6 @@ nnoremap <leader>v <cmd>lua _G.vikeVB()<CR>
 xnoremap <leader>v <cmd>lua _G.vikeVB()<CR>
 
 " Visual to end of line - like C, D, Y
-nnoremap V $h
+nnoremap V v$h
 xnoremap V $h
 

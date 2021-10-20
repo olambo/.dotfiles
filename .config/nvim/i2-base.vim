@@ -22,9 +22,6 @@ nnoremap <leader>v <c-v>j
 nnoremap <c-x><c-u> <nop>
 noremap <c-x><c-p> <nop>
 
-" visual to end of line.
-nnoremap V v$h
-xnoremap V $h
 " yank until end of line
 nnoremap Y y$
 

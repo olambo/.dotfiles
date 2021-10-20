@@ -3,7 +3,6 @@
 -- Type two digits followed by a movement key to move to the row ending with the two digits.
 
 local vike0Cnt = 0
-local jkByOne = true
 
 local function vikeDir(lnr, cnt, dir, zeroCnt) 
   if cnt >= 100 or cnt < 0 then
@@ -43,7 +42,6 @@ function _G.vike0Sneak()
   local col = vim.fn.col('.')
   if col == 1 then
     -- https://github.com/neovim/neovim/blob/b535575acdb037c35a9b688bc2d8adc2f3dece8d/src/nvim/keymap.h#L225
-    jkByOne = true
     vike0Cnt = 0
     vim.fn.feedkeys(string.format('%c%c%cSneak_s', 0x80, 253, 83))
   else 
@@ -54,7 +52,6 @@ end
 function _G.vike0SneakUp()
   local col = vim.fn.col('.')
   if col == 1 then
-    jkByOne = true
     vike0Cnt = 0
     vim.fn.feedkeys(string.format('%c%c%cSneak_S', 0x80, 253, 83))
   else 
@@ -70,17 +67,11 @@ function _G.vikeDown()
   vikeUpOrDown(1)
 end
 
--- only for jkByOne, which may be removed
-function _G.vikeL()
-  jkByOne = true
-  vim.api.nvim_feedkeys('l', 'n', false)
-end
-
+-- only for 
 function _G.vikeK()
   local cnt = vim.api.nvim_eval('v:count')
   local col = vim.fn.col('.')
-  if cnt == 0 and (col > 1 or (vike0Cnt == 0 and jkByOne)) then
-    jkByOne = true
+  if cnt == 0 and (col > 1 or vike0Cnt == 0) then
     vim.api.nvim_feedkeys('gk', 'n', false)
   else
     vikeUpOrDown(-1)
@@ -90,8 +81,7 @@ end
 function _G.vikeJ()
   local cnt = vim.api.nvim_eval('v:count')
   local col = vim.fn.col('.')
-  if cnt == 0 and (col > 1 or (vike0Cnt == 0 and jkByOne)) then
-    jkByOne = true
+  if cnt == 0 and (col > 1 or vike0Cnt == 0) then
     vim.api.nvim_feedkeys('gj', 'n', false)
   else
     vikeUpOrDown(1)
@@ -110,7 +100,6 @@ function vikeUpOrDown(dir, isBlockMode)
     end
   else 
     ln, unit = vikeDir(curln, cnt, dir, vike0Cnt)
-    jkByOne = true -- unit ~= 10
   end
   vike0Cnt = 0
   local col1Cmd = '0'
@@ -139,7 +128,6 @@ function _G.vikeV()
     end
     vikeUpOrDown(1)
   end
-  jkByOne = true
 end
 
 function _G.vikeVB()
@@ -156,6 +144,5 @@ function _G.vikeVB()
     -- select an extra line to start
     vim.api.nvim_feedkeys('j','n',false)
   end
-  jkByOne = true
 end
 
