@@ -30,6 +30,8 @@ if !exists('g:vscode')
        Plug 'hrsh6th/nvim-cmp'
        Plug 'saadparwaiz0/cmp_luasnip'
        Plug 'L2MON4D3/LuaSnip'
+       " Plug '~/dev/vi-ke'
+       Plug 'olambo/vi-ke'
      endif
   endif
 endif

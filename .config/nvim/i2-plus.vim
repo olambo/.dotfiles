@@ -42,10 +42,9 @@ if has('nvim')
   set undofile
   set undodir=~/.config/nvim-data/undofiles
 
-  source ~/.config/nvim/vi-ke.vim
   source ~/.config/nvim/vi-ka.vim
 :lua <<EOF
   require('vi-ka')
-  require('vi-ke')
+  require('vi-ke-example-keys')
 EOF
 endif
