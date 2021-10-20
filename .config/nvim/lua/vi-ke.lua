@@ -29,7 +29,7 @@ local function vikeDir(lnr, cnt, dir, zeroCnt)
   if l < 1 then
     l = 1
   end
-  print("wantL unit roundedToUnit L nL:", cnt, unit, roundedToUnit, x, l, 'zeroCnt', zeroCnt)
+  -- print("wantL unit roundedToUnit L nL:", cnt, unit, roundedToUnit, x, l, 'zeroCnt', zeroCnt)
   return l, unit
 end
 
@@ -70,26 +70,7 @@ function _G.vikeDown()
   vikeUpOrDown(1)
 end
 
-function _G.vikeV()
-  local cnt = vim.api.nvim_eval('v:count')
-  local modeInfo = vim.api.nvim_get_mode()
-  local mode = modeInfo.mode
-  print('cnt:', cnt)
-  if cnt == 0 then
-    if mode == 'v' then 
-      vim.api.nvim_feedkeys('V', 'n', false)
-    else 
-      vim.api.nvim_feedkeys('v', 'n', false)
-    end
-  else
-    if mode ~= 'V' then 
-      vim.api.nvim_feedkeys('V', 'n', false)
-    end
-    vikeUpOrDown(1)
-  end
-  jkByOne = true
-end
-
+-- only for jkByOne, which may be removed
 function _G.vikeL()
   jkByOne = true
   vim.api.nvim_feedkeys('l', 'n', false)
@@ -117,9 +98,8 @@ function _G.vikeJ()
   end
 end
 
-function vikeUpOrDown(dir)
+function vikeUpOrDown(dir, isBlockMode)
   local cnt = vim.api.nvim_eval('v:count')
-  print('cnt:', cnt)
   local col = vim.fn.col('.')
   local curln = vim.fn.line('.')
   local ln, unit
@@ -133,5 +113,49 @@ function vikeUpOrDown(dir)
     jkByOne = true -- unit ~= 10
   end
   vike0Cnt = 0
-  vim.api.nvim_feedkeys('0' .. ln .. 'G', 'n', false)
+  local col1Cmd = '0'
+  local modeInfo = vim.api.nvim_get_mode()
+  local mode = modeInfo.mode
+  local cv = vim.api.nvim_replace_termcodes('<c-v>',true,false,true)
+  if mode == cv or isBlockMode then
+    col1Cmd = ''
+  end
+  vim.api.nvim_feedkeys(col1Cmd .. ln .. 'G', 'n', false)
 end
+
+function _G.vikeV()
+  local cnt = vim.api.nvim_eval('v:count')
+  local modeInfo = vim.api.nvim_get_mode()
+  local mode = modeInfo.mode
+  if cnt == 0 then
+    if mode == 'v' then 
+      vim.api.nvim_feedkeys('V', 'n', false)
+    else 
+      vim.api.nvim_feedkeys('v', 'n', false)
+    end
+  else
+    if mode ~= 'V' then 
+      vim.api.nvim_feedkeys('V', 'n', false)
+    end
+    vikeUpOrDown(1)
+  end
+  jkByOne = true
+end
+
+function _G.vikeVB()
+  local cnt = vim.api.nvim_eval('v:count')
+  local modeInfo = vim.api.nvim_get_mode()
+  local mode = modeInfo.mode
+  local cv = vim.api.nvim_replace_termcodes('<c-v>',true,false,true)
+  if mode ~= cv then
+    vim.api.nvim_feedkeys(cv,'n',false)
+  end
+  if cnt > 0 then
+    vikeUpOrDown(1, true)
+  elseif mode == 'n' then
+    -- select an extra line to start
+    vim.api.nvim_feedkeys('j','n',false)
+  end
+  jkByOne = true
+end
+

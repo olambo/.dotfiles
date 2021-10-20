@@ -14,7 +14,7 @@ xnoremap j <cmd>lua _G.vikeJ()<CR>
 xnoremap <up> <cmd>lua _G.vikeUp()<CR>
 xnoremap <down> <cmd>lua _G.vikeDown()<CR>
 
-" turn off jump mode
+" turn off jump mode - if it's enabled at all - experimental
 nnoremap l <cmd>lua _G.vikeL()<CR>
 xnoremap l <cmd>lua _G.vikeL()<CR>
 
@@ -33,20 +33,17 @@ nnoremap , <cmd>lua _G.vike0SneakUp()<CR>
 xnoremap ; <cmd>lua _G.vike0Sneak()<CR>
 xnoremap , <cmd>lua _G.vike0SneakUp()<CR>
 
-
 " Typing v will go into visual mode. 
-" {partLinenr}v will go into visual Line mode and move to the line inidicated by partialLine
+" {linenr}v will go into visual line mode and move to the line inidicated by 'partial' linenr
+" visual mode <-> visual line mode (toggle). Typing vv from normal mode will select a line - like cc, dd, yy
 nnoremap v <cmd>lua _G.vikeV()<CR>
-" Typing vv from normal mode will select a line - like cc, dd, yy
-" visual mode <-> visual line mode (toggle)
 xnoremap v <cmd>lua _G.vikeV()<CR>
 
-" visual mode <-> visual block mode (toggle)
-xnoremap <expr> <leader>v mode() ==# "\<c-v>" ? "V" : "\<c-v>"
-" visual block mode - select extra line to start with (block mode doesnt make sense with just one line)
-nnoremap <leader>v <c-v>j
+" {linenr} visual block mode.
+nnoremap <leader>v <cmd>lua _G.vikeVB()<CR>
+xnoremap <leader>v <cmd>lua _G.vikeVB()<CR>
 
 " Visual to end of line - like C, D, Y
-nnoremap V v$h
+nnoremap V $h
 xnoremap V $h
 
