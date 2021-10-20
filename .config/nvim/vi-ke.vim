@@ -12,15 +12,9 @@ xnoremap <up> <cmd>lua _G.vikeUp()<CR>
 nnoremap 0 <cmd>lua _G.vike0()<CR>
 xnoremap 0 <cmd>lua _G.vike0()<CR>
 
-" Optional! j and k keys. If a partialLineNo is supplied, go to the line. Otherwise works like original j and k.
-nnoremap j <cmd>lua _G.vikeJ()<CR>
-nnoremap k <cmd>lua _G.vikeK()<CR>
-xnoremap j <cmd>lua _G.vikeJ()<CR>
-xnoremap k <cmd>lua _G.vikeK()<CR>
-
 " Optional! vi-ke for vim-sneak. Sneak needs to be added to your dependencies - https://github.com/justinmk/vim-sneak
 " Using the above keys will prime Sneak, so the next ; or , will activate it.
-nnoremap ; <cmd>lua _G.vike0Sneak()<CRk
+nnoremap ; <cmd>lua _G.vike0Sneak()<CR>
 nnoremap , <cmd>lua _G.vike0SneakUp()<CR>
 xnoremap ; <cmd>lua _G.vike0Sneak()<CR>
 xnoremap , <cmd>lua _G.vike0SneakUp()<CR>
@@ -31,13 +25,20 @@ nmap <leader>, <Plug>Sneak_S
 let g:sneak#use_ic_scs = 1
 
 " Optional! Typing v will go into visual mode. Typing vv from normal mode will activate line mode - mirroring cc, dd
-" {partialLineNo}v will activate visual line mode and move to the line inidicated.
+" {partialLineNo}v from normal mode will activate visual line mode and move to the line inidicated.
 " visual mode <-> visual line mode (toggle). 
 nnoremap v <cmd>lua _G.vikeV()<CR>
 xnoremap v <cmd>lua _G.vikeV()<CR>
 " {partialLineNo} visual block mode. I don't use <c-v>, but map it if you do.
-nnoremap <leader>v <cmd>lua _G.vikVB()<CR>
+nnoremap <leader>v <cmd>lua _G.vikeVB()<CR>
 xnoremap <leader>v <cmd>lua _G.vikeVB()<CR>
 " Visual to end of line - mirroring C, D
 nnoremap V v$h
 xnoremap V $h
+
+ -- Optional! j and k keys. If a partialLineNo is supplied, go to the line. Otherwise works like original j and k.
+ -- It will make it difficult to go back to use standard vim or someting like IntelliJ ideavim (without new plugin).
+ -- nnoremap j <cmd>lua _G.vikeJ()<CR>
+ -- nnoremap k <cmd>lua _G.vikeK()<CR>
+ -- xnoremap j <cmd>lua _G.vikeJ()<CR>
+ -- xnoremap k <cmd>lua _G.vikeK()<CR>

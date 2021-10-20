@@ -67,7 +67,6 @@ function _G.vikeDown()
   vikeUpOrDown(1)
 end
 
--- only for 
 function _G.vikeK()
   local cnt = vim.api.nvim_eval('v:count')
   local col = vim.fn.col('.')
@@ -106,6 +105,9 @@ function vikeUpOrDown(dir, isBlockMode)
   local modeInfo = vim.api.nvim_get_mode()
   local mode = modeInfo.mode
   local cv = vim.api.nvim_replace_termcodes('<c-v>',true,false,true)
+  if mode == 'v' then 
+    vim.api.nvim_feedkeys('V', 'n', false)
+  end
   if mode == cv or isBlockMode then
     col1Cmd = ''
   end
@@ -116,16 +118,14 @@ function _G.vikeV()
   local cnt = vim.api.nvim_eval('v:count')
   local modeInfo = vim.api.nvim_get_mode()
   local mode = modeInfo.mode
-  if cnt == 0 then
+  if cnt == 0 or mode ~= 'n' then
     if mode == 'v' then 
       vim.api.nvim_feedkeys('V', 'n', false)
     else 
       vim.api.nvim_feedkeys('v', 'n', false)
     end
   else
-    if mode ~= 'V' then 
-      vim.api.nvim_feedkeys('V', 'n', false)
-    end
+    vim.api.nvim_feedkeys('V', 'n', false)
     vikeUpOrDown(1)
   end
 end
@@ -138,7 +138,7 @@ function _G.vikeVB()
   if mode ~= cv then
     vim.api.nvim_feedkeys(cv,'n',false)
   end
-  if cnt > 0 then
+  if cnt > 0 and mode == 'n' then
     vikeUpOrDown(1, true)
   elseif mode == 'n' then
     -- select an extra line to start
