@@ -51,6 +51,7 @@ set shiftwidth=2
 set iskeyword+=-,#
 set expandtab
 set nu
+set textwidth=0
 " gutter space for lsp info on left
 set signcolumn=yes
 " increased for lsp code actions
