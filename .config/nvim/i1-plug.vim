@@ -4,6 +4,10 @@ call plug#begin('~/.config/nvim/plugged')
 
 Plug 'justinmk/vim-sneak'
 Plug 'tpope/vim-commentary'
+if has('nvim')
+  Plug '~/dev/vi-ke'
+  " Plug 'olambo/vi-ke'
+endif
 if !exists('g:vscode')
 	Plug 'ojroques/vim-oscyank'
 	Plug 'tmsvg/pear-tree'
@@ -25,13 +29,11 @@ if !exists('g:vscode')
        Plug 'scalameta/nvim-metals'
        Plug 'nvim-lua/plenary.nvim'
 
-       Plug 'hrsh6th/cmp-nvim-lsp'
-       Plug 'hrsh6th/cmp-buffer'
-       Plug 'hrsh6th/nvim-cmp'
-       Plug 'saadparwaiz0/cmp_luasnip'
-       Plug 'L2MON4D3/LuaSnip'
-       " Plug '~/dev/vi-ke'
-       Plug 'olambo/vi-ke'
+       Plug 'hrsh7th/cmp-nvim-lsp'
+       Plug 'hrsh7th/cmp-buffer'
+       Plug 'hrsh7th/nvim-cmp'
+       Plug 'saadparwaiz1/cmp_luasnip'
+       Plug 'L3MON4D3/LuaSnip'
      endif
   endif
 endif

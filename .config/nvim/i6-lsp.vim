@@ -24,7 +24,7 @@ inoremap <expr> <Up> pumvisible() ? "\<c-p>" : "\<cmd>lua require'luasnip'.jump(
 " nvim-metals setup
 "-----------------------------------------------------------------------------
 :lua << EOF
-metals_config = require'metals'.bare_config
+metals_config = require'metals'.bare_config()
 metals_config.init_options.statusBarProvider = "on"
 metals_config.settings = {
    showImplicitArguments = true,

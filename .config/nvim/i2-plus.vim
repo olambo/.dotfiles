@@ -2,6 +2,10 @@
 nmap <C-_> gcc
 xmap <C-_> gc
 
+" down when number given: j, otherwise gj. (similar with k)
+nnoremap <silent> <expr> j v:count ? 'j' : 'gj'
+nnoremap <silent> <expr> k v:count ? 'k' : 'gk'
+
 " insert undo
 inoremap <c-x><c-u> <esc>u
 
