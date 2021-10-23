@@ -37,6 +37,30 @@ set mouse=nv " this is not going to allow command-c. can use option-mouse or tur
 
 " set up replace on current word
 noremap <expr> g/ ':%s/'.expand('<cword>').'//gIc<Left><Left><Left><Left>'
+let g:sneak#label = 1
+autocmd ColorScheme * hi Sneak guifg=green guibg=LightMagenta ctermfg=black ctermbg=LightMagenta
+autocmd ColorScheme * hi SneakScope guifg=white guibg=grey ctermfg=white ctermbg=grey
+
+sign define kehl numhl=Kelight
+
+function! HighlightLineno()
+  let ln = line('.')
+  if exists("b:hiLn") && b:hiLn == ln
+    return
+  endif
+  sign unplace 2 group=*
+  let a = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, -10]
+  for l in a
+    let lnx = l + ln
+    if ln > 0
+      exec 'sign place 2 name=kehl line=' . lnx
+    endif
+  endfor
+  highlight Kelight ctermfg=brown guifg=orange
+  let b:hiLn = ln
+endfunction
+
+autocmd! CursorMoved * :call HighlightLineno()
 
 if has('nvim')
   " nvim and vim appear incompatible here
@@ -52,3 +76,7 @@ if has('nvim')
   require('vi-ke-example-keys')
 EOF
 endif
+" allow sneak to have the s key
+" map <leader>; <Plug>Sneak_s
+" map <leader>, <Plug>Sneak_S
+unmap <f99>

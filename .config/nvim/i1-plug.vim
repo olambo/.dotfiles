@@ -7,6 +7,8 @@ Plug 'tpope/vim-commentary'
 if has('nvim')
   Plug '~/dev/vi-ke'
   " Plug 'olambo/vi-ke'
+  " Plug 'ggandor/lightspeed.nvim'
+
 endif
 if !exists('g:vscode')
 	Plug 'ojroques/vim-oscyank'
