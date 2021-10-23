@@ -41,26 +41,30 @@ let g:sneak#label = 1
 autocmd ColorScheme * hi Sneak guifg=green guibg=LightMagenta ctermfg=black ctermbg=LightMagenta
 autocmd ColorScheme * hi SneakScope guifg=white guibg=grey ctermfg=white ctermbg=grey
 
-sign define kehl numhl=Kelight
+sign define kehl numhl=ViKeHL
 
-function! HighlightLineno()
+autocmd ColorScheme * highlight ViKeHL ctermfg=brown guifg=orange
+function! HighlightLineno(ckLn)
   let ln = line('.')
-  if exists("b:hiLn") && b:hiLn == ln
+  if a:ckLn && (exists("b:hiLn") && b:hiLn == ln)
     return
   endif
   sign unplace 2 group=*
-  let a = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, -10]
+  let a = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
   for l in a
     let lnx = l + ln
     if ln > 0
       exec 'sign place 2 name=kehl line=' . lnx
     endif
   endfor
-  highlight Kelight ctermfg=brown guifg=orange
   let b:hiLn = ln
 endfunction
 
-autocmd! CursorMoved * :call HighlightLineno()
+augroup enable
+au!
+autocmd CursorMoved * :call HighlightLineno(1)
+autocmd InsertEnter,InsertLeave,BufEnter * :call HighlightLineno(0)
+augroup END
 
 if has('nvim')
   " nvim and vim appear incompatible here
