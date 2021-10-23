@@ -41,31 +41,6 @@ let g:sneak#label = 1
 autocmd ColorScheme * hi Sneak guifg=green guibg=LightMagenta ctermfg=black ctermbg=LightMagenta
 autocmd ColorScheme * hi SneakScope guifg=white guibg=grey ctermfg=white ctermbg=grey
 
-sign define kehl numhl=ViKeHL
-
-autocmd ColorScheme * highlight ViKeHL ctermfg=brown guifg=orange
-function! HighlightLineno(ckLn)
-  let ln = line('.')
-  if a:ckLn && (exists("b:hiLn") && b:hiLn == ln)
-    return
-  endif
-  sign unplace 2 group=*
-  let a = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-  for l in a
-    let lnx = l + ln
-    if ln > 0
-      exec 'sign place 2 name=kehl line=' . lnx
-    endif
-  endfor
-  let b:hiLn = ln
-endfunction
-
-augroup enable
-au!
-autocmd CursorMoved * :call HighlightLineno(1)
-autocmd InsertEnter,InsertLeave,BufEnter * :call HighlightLineno(0)
-augroup END
-
 if has('nvim')
   " nvim and vim appear incompatible here
   set dir=~/.config/nvim-data/swapfiles
@@ -77,10 +52,15 @@ if has('nvim')
   source ~/.config/nvim/vi-ka.vim
 :lua <<EOF
   require('vi-ka')
-  require('vi-ke-example-keys')
+  vim.api.nvim_command('autocmd ColorScheme * highlight ViKeHL ctermfg=brown guifg=orange')
+  require('vi-ke').keLight()
+  require('vi-ke-jk')
+  require('vi-ke-sneak')
+  require('vi-ke-visual')
+  require('vi-ke-updown')
+  vim.g['sneak#use_ic_scs'] = 1
 EOF
 endif
-" allow sneak to have the s key
-" map <leader>; <Plug>Sneak_s
-" map <leader>, <Plug>Sneak_S
-unmap <f99>
+" sneak maping
+map s <Plug>Sneak_s
+map S <Plug>Sneak_S
