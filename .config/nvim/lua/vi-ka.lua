@@ -17,6 +17,7 @@ local function isKeyword()
   vikaWord = vim.fn.expand("<cword>")
   vikaInd = vim.fn.strridx(vim.fn.getline('.'), vim.fn.expand("<cword>"), vim.fn.col('.') - 1)
   vikaOnKeyword = (vikaInd >= 0 and (vikaInd + vim.fn.strlen(vim.fn.expand("<cword>"))) >= (vim.fn.col('.') - 1))
+
 end
 
 function _G.vikaInit()
@@ -30,7 +31,6 @@ function _G.vikaInit()
   if mode == 'v' then vikaExpand()
   else print("vikaInit: Not in correct mode:", mode)
   end
-  --print('vikaWord', vikaWord, 'vikaInd:', vikaInd, "vikaOnKeyword:", vikaOnKeyword)
 end
 
 local function vikaIsMoved(tv)
@@ -50,25 +50,30 @@ local function vikaMoved(tv, who)
   return true
 end
 
-local function vikaWonkyQuotes(chr, tv) 
-  -- todo: is vim's wonky selection of a inner quote, a bug or feature
-  vim.cmd('normal i' .. chr)
-  local tv1, isMoved = vikaIsMoved(tv)
-  if not isMoved then return end
-  local stext1 = tv1["stext"]
-  local c1, c2 = string.sub(stext1, 1, 1), string.sub(stext1, string.len(stext1))
-  local isInner = not (c1 == chr and c2 == chr)
-  if isInner then 
-    vim.cmd('normal o')
-    vim.cmd('normal h')
-    vim.cmd('normal o')
-    vim.cmd('normal l')
+local function vikaQuotes(chrcol, txt, chr, tv) 
+  -- is this an escaped quote
+  if chrcol > 1 and string.sub(txt, chrcol-1, chrcol-1) == '\\' then return 0 end
+  -- have we already got instances of this type of quote
+  local stext = tv['stext']
+  local _, quotecnt = string.gsub(stext, chr, "")
+  local _, quoteminus = string.gsub(stext, '\\' .. chr, "")
+  if quotecnt-quoteminus > 1 then return 0 end
+  local ecol = tv['ecol']
+
+  local achr, bchr, toright = '', string.sub(txt, ecol, ecol), 0
+  for i = ecol+1, string.len(txt), 1 do 
+    achr, bchr = bchr, string.sub(txt, i, i)
+    if bchr == chr and achr ~= '\\' then 
+      toright = i - ecol
+      break
+    end
   end
+  return toright
 end
 
 function _G.vikaExpand()
-  local t = {'\'', '"', '(', '[', '{'}
-  local quotes = {"'", '"'}
+  local t = {'\'', '"', '`', '(', '[', '{'}
+  local quotes = {"'", '"', '`'}
   local tv = getVisualSelection()
 
   if (tv['sline'] ~= tv['eline']) then return end
@@ -79,9 +84,12 @@ function _G.vikaExpand()
     vika["scol"] = tv['scol']
     vika["ecol"] = tv['ecol']
     table.insert(vikaStack, vika) 
-    vim.cmd('normal iw')
-    if (vikaMoved(tv)) then
-      return
+
+    local chr = vim.fn.matchstr(vim.fn.getline('.'), '\\%' .. vim.fn.col('.') .. 'c.') -- =~# '\\k'
+    local kwRegex = vim.regex([[\k]])
+    if kwRegex:match_str(chr) then
+      vim.cmd('normal iw')
+      if (vikaMoved(tv)) then return end
     end
   end
   local txt = tv['lineText']
@@ -90,9 +98,17 @@ function _G.vikaExpand()
     local chr = string.sub(txt, i, i)
     if (existsIn(chr, t)) then 
       if (existsIn(chr, quotes)) then 
-        vikaWonkyQuotes(chr, tv)
+        -- 2i<quote> fails after word is selected, if quotes are unmatched
+        local toright = vikaQuotes(i, txt, chr, tv)
+        if toright > 0 then 
+          local toleft = col + 1 - i
+          vim.cmd('normal! o')
+          vim.cmd('normal! ' .. toleft .. 'h')
+          vim.cmd('normal! o')
+          vim.cmd('normal! ' .. toright .. 'l')
+        end
       else
-        vim.cmd('normal a' .. chr)
+        vim.cmd('normal! a' .. chr)
       end
       if vikaMoved(tv, 'textobject') then break end
     end
@@ -167,6 +183,7 @@ function _G.getVisualSelection(setCur)
   end
 
   local lines = vim.api.nvim_buf_get_lines(0, sline - 1, eline, 0)
+  --todo: what if this is nil
   local startText = string.sub(lines[1], scol, ecol)
   -- if #lines > 1 then endText = string.sub(lines[#lines], 1, ecol) end
 
@@ -213,6 +230,8 @@ local function getOp(chr, isSearchTerm)
     return '"', '"'
   elseif chr == "'" then
     return "'", "'"
+  elseif chr == "`" then
+    return "`", "`"
   elseif chr == ';' then --todo: and isSearchTerm then
     return '', ''
   elseif chr == '.' then --todo: and isSearchTerm then

@@ -61,6 +61,5 @@ if has('nvim')
   vim.g['sneak#use_ic_scs'] = 1
 EOF
 endif
-" sneak maping
-map s <Plug>Sneak_s
-map S <Plug>Sneak_S
+nnoremap s <nop>
+xnoremap s <nop>

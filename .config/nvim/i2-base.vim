@@ -52,10 +52,13 @@ set iskeyword+=-,#
 set expandtab
 set nu
 set textwidth=0
+" keep cursor towards center
+set scrolloff=10
 " gutter space for lsp info on left
 set signcolumn=yes
 " increased for lsp code actions
 " set updatetime=100
+
 
 "save
 nnoremap <space>s :update<cr>
