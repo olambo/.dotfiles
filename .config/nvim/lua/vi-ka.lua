@@ -1,9 +1,64 @@
-vikaStack = {}
-vikaLine = 1
-vikaInd = 0
-vikaOnKeyword = false
-vikaWord = ''
+local vikaStack = {}
+local vikaLine = 1
+local vikaInd = 0
+local vikaOnKeyword = false
+local vikaWord = ''
 local esc = vim.api.nvim_replace_termcodes('<esc>',true,false,true)
+
+local function getNowNormalizedSelection(cursor)
+  local cline, ccol = cursor[1], cursor[2] + 1
+  local vline, vcol = vim.fn.line('v'), vim.fn.col('v')
+
+  local sline, scol = vline, vcol
+  local eline, ecol = cline, ccol
+
+  local lines = vim.api.nvim_buf_get_lines(0, sline - 1, eline, 0)
+  local line1 = lines[1]
+  local startText = nil
+  if line1 then
+    startText = string.sub(lines[1], scol, ecol)
+  end
+
+  local tv = {}
+  tv["ccol"] = ccol
+  tv["sline"] = sline
+  tv["eline"] = eline
+  tv["scol"] = scol
+  tv["ecol"] = ecol
+  tv["stext"] = startText
+  tv["lineText"] = line1
+  return tv
+end
+
+local function normalizedVisualSel(setCur)
+  local modeInfo = vim.api.nvim_get_mode()
+  local mode = modeInfo.mode
+
+  local cursor = vim.api.nvim_win_get_cursor(0)
+  local cline, ccol = cursor[1], cursor[2] + 1
+  local vline, vcol = vim.fn.line('v'), vim.fn.col('v')
+  -- if necessary, fix the orientation so cursor is at end
+  if mode == 'v' or mode == 'V' then
+    if ccol <= vcol or cline < vline then vim.cmd('normal! o') end
+  else 
+    -- visual block
+    if cline < vline and ccol <= vcol then vim.cmd('normal! o') 
+    elseif cline < vline and ccol > vcol then vim.cmd('normal! Oo') 
+    elseif ccol < vcol then vim.cmd('normal! O') 
+    end
+  end
+  return getNowNormalizedSelection(vim.api.nvim_win_get_cursor(0))
+end
+
+local function vikaInsert()
+  normalizedVisualSel()
+  vim.api.nvim_input('o' .. esc .. 'i')
+end
+
+local function vikaAppend()
+  normalizedVisualSel()
+  vim.api.nvim_input(esc .. 'a')
+end
 
 local function existsIn(val, tab)
   for index, value in ipairs(tab) do
@@ -18,20 +73,10 @@ local function isKeyword()
   vikaWord = vim.fn.expand("<cword>")
   vikaInd = vim.fn.strridx(vim.fn.getline('.'), vim.fn.expand("<cword>"), vim.fn.col('.') - 1)
   vikaOnKeyword = (vikaInd >= 0 and (vikaInd + vim.fn.strlen(vim.fn.expand("<cword>"))) >= (vim.fn.col('.') - 1))
-
-end
-
-function _G.vikaInit()
-  vikaStack = {}
-  isKeyword()
-  vim.cmd('normal! ' .. esc .. 'v')
-  local modeInfo = vim.api.nvim_get_mode()
-  local mode = modeInfo.mode
-  vikaExpand()
 end
 
 local function vikaIsMoved(tv)
-  local tv1 = getVisualSelection()
+  local tv1 = normalizedVisualSel()
   return tv1, tv['scol'] ~= tv1['scol'] or tv['ecol'] ~= tv1['ecol']
 end
 
@@ -68,10 +113,10 @@ local function vikaQuotes(chrcol, txt, chr, tv)
   return toright
 end
 
-function _G.vikaExpand()
+local function vikaExpand()
   local t = {'\'', '"', '`', '(', '[', '{'}
   local quotes = {"'", '"', '`'}
-  local tv = getVisualSelection()
+  local tv = normalizedVisualSel()
 
   if (tv['sline'] ~= tv['eline']) then return end
 
@@ -108,31 +153,31 @@ function _G.vikaExpand()
       if vikaMoved(tv, 'textobject') then return end
     end
     if (i == 1) then
-      vim.cmd('normal! $o^')
+      vim.cmd('normal! $ho^')
       if vikaMoved(tv, 'short line') then return end
     end
   end
   vim.cmd('normal! ip') 
 end
 
-function _G.vikaExpand1Chr()
-  local tv = getVisualSelection()
+local function vikaExpand1Chr()
+  local tv = normalizedVisualSel()
   local ccol, scol = tv["ccol"], tv["scol"] 
   vim.cmd('normal! ohol')
 end
 
-function _G.vikaContract1Chr()
-  local tv = getVisualSelection()
+local function vikaContract1Chr()
+  local tv = normalizedVisualSel()
   local ccol, scol = tv["ccol"], tv["scol"] 
   vim.cmd('normal! oloh')
 end
 
-function _G.vikaContract()
+local function vikaContract()
   local vika = table.remove(vikaStack)
   if (vika == nil) then return end
   local scol = vika['scol']
   local ecol = vika['ecol']
-  local tv = getVisualSelection()
+  local tv = normalizedVisualSel()
   if (tv['sline'] ~= tv['eline']) then 
     vim.cmd('normal! ' .. esc .. 'v')
   end
@@ -141,52 +186,6 @@ function _G.vikaContract()
   vim.fn.setpos(".", {0, vikaLine, scol})
   vim.cmd('normal! o')
   vim.fn.setpos(".", {0, vikaLine, ecol})
-end
-
-local function getNormalizedVisualSelection(cursor)
-  local cline, ccol = cursor[1], cursor[2] + 1
-  local vline, vcol = vim.fn.line('v'), vim.fn.col('v')
-
-  local sline, scol = vline, vcol
-  local eline, ecol = cline, ccol
-
-  local lines = vim.api.nvim_buf_get_lines(0, sline - 1, eline, 0)
-  local line1 = lines[1]
-  local startText = nil
-  if line1 then
-    startText = string.sub(lines[1], scol, ecol)
-  end
-
-  local tv = {}
-  tv["ccol"] = ccol
-  tv["sline"] = sline
-  tv["eline"] = eline
-  tv["scol"] = scol
-  tv["ecol"] = ecol
-  tv["stext"] = startText
-  tv["lineText"] = line1
-  return tv
-end
-
-function _G.getVisualSelection(setCur)
-  local modeInfo = vim.api.nvim_get_mode()
-  local mode = modeInfo.mode
-
-  local cursor = vim.api.nvim_win_get_cursor(0)
-  -- todo: does this have to be global to get the cursor info
-  local cline, ccol = cursor[1], cursor[2] + 1
-  local vline, vcol = vim.fn.line('v'), vim.fn.col('v')
-  -- if necessary, fix the orientation so cursor is at end
-  if mode == 'v' or mode == 'V' then
-    if ccol <= vcol or cline < vline then vim.cmd('normal! o') end
-  else 
-    -- visual block
-    if cline < vline and ccol <= vcol then vim.cmd('normal! o') 
-    elseif cline < vline and ccol > vcol then vim.cmd('normal! Oo') 
-    elseif ccol < vcol then vim.cmd('normal! O') 
-    end
-  end
-  return getNormalizedVisualSelection(vim.api.nvim_win_get_cursor(0))
 end
 
 local function getInput()
@@ -233,8 +232,8 @@ local function getOp(chr, isSearchTerm)
   return '?', '?'
 end
 
-function _G.vikaChange(chr)
-  local tv = getVisualSelection()
+local function vikaChange(chr)
+  local tv = normalizedVisualSel()
   local txt, col = tv["stext"], tv["scol"]
   if not txt or txt == '' then return end
 
@@ -248,7 +247,7 @@ function _G.vikaChange(chr)
 end
 
 local function oneTxtChange(chr)
-  local tv = getVisualSelection()
+  local tv = normalizedVisualSel()
   local txt, col = tv["stext"], tv["scol"]
   if not txt or txt == '' then return end
   local txtLen = string.len(txt)
@@ -272,7 +271,7 @@ local function oneTxtChange(chr)
 end
 
 local function patternChange(chr, patternType)
-  local tv = getVisualSelection()
+  local tv = normalizedVisualSel()
   local txt, col = tv["stext"], tv["scol"]
   if not txt or txt == '' then return end
   local txtLen = string.len(txt)
@@ -305,12 +304,12 @@ local function patternChange(chr, patternType)
   vim.api.nvim_input(':' .. mstr)
 end
 
-function _G.vikaPatternTxt()
+local function vikaPatternTxt()
   patternChange('.', 't')
   vim.api.nvim_input('<left><left><left><left>')
 end
 
-function _G.vikaPattern()
+local function vikaPattern()
   local modeInfo = vim.api.nvim_get_mode()
   local mode = modeInfo.mode
   local pattern = getInput()
@@ -324,12 +323,29 @@ function _G.vikaPattern()
   end
 end
 
--- function _G.vikaInsert()
---   _G.getVisualSelection('start')
---   vim.api.nvim_input('<c-[>i')
--- end
+local function vikaInit()
+  vikaStack = {}
+  isKeyword()
+  vim.cmd('normal! ' .. esc .. 'v')
+  local modeInfo = vim.api.nvim_get_mode()
+  local mode = modeInfo.mode
+  vikaExpand()
+end
 
--- function _G.vikaAppend()
---   _G.getVisualSelection('end')
---   vim.api.nvim_input('<c-[>a')
--- end
+local function status()
+  print("Status is ok")
+end
+
+return {
+  vikaInit = vikaInit,
+  vikaExpand = vikaExpand,
+  vikaContract = vikaContract,
+  vikaExpand1Chr = vikaExpand1Chr,
+  vikaContract1Chr = vikaContract1Chr,
+  vikaPattern = vikaPattern,
+  vikaChange = vikaChange,
+  vikaInsert = vikaInsert,
+  vikaAppend = vikaAppend,
+  status = status,
+}
+
