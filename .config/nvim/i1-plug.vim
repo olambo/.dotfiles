@@ -5,9 +5,13 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'justinmk/vim-sneak'
 Plug 'tpope/vim-commentary'
 if has('nvim')
-" Plug '~/dev/vi-ke'
-Plug 'olambo/vi-ke'
+Plug '~/dev/vi-ke'
+" Plug 'olambo/vi-ke'
+"
+" Plug '~/dev/vi-viz'
+Plug 'olambo/vi-viz'
 " Plug 'ggandor/lightspeed.nvim'
+Plug 'tpope/vim-surround'
 
 endif
 if !exists('g:vscode')

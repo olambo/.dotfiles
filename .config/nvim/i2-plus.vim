@@ -49,9 +49,10 @@ if has('nvim')
   set undofile
   set undodir=~/.config/nvim-data/undofiles
 
-  source ~/.config/nvim/vi-ka.vim
+  " source ~/.config/nvim/vi-ka.vim
 :lua <<EOF
-  require('vi-ka')
+  -- require('vi-viz')
+  require('vi-viz-key')
   vim.api.nvim_command('autocmd ColorScheme * highlight ViKeHL ctermfg=brown guifg=orange')
   require('vi-ke').keLight()
   require('vi-ke-jk')
