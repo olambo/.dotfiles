@@ -1,14 +1,19 @@
+fun XViKeTurbo()
+   return v:lua.ViKeTurbo()
+   " return 0
+endf
+
 fun Xmo(isactive, inmode)
   let mode = mode()
   if (a:inmode == 'i' && a:isactive && (mode == 'i' || mode == 'R'))
     let turbo_ignore = v:lua.ViKeTurbo("off")
     return '  I '
   elseif (a:inmode == 'v' && a:isactive && (mode == 'v' || mode == 'V' || mode == "\<C-V>")) 
-    if (v:lua.ViKeTurbo())
+    if (XViKeTurbo())
       return '  TV ' 
     end
     return '  V '
-  elseif (a:inmode == 't' && a:isactive && (mode == 'n' && v:lua.ViKeTurbo() ))
+  elseif (a:inmode == 't' && a:isactive && (mode == 'n' && XViKeTurbo() ))
     return '  T '
   end
   return ''

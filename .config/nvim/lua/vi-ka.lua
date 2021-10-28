@@ -118,21 +118,13 @@ end
 function _G.vikaExpand1Chr()
   local tv = getVisualSelection()
   local ccol, scol = tv["ccol"], tv["scol"] 
-  if ccol > scol then
-    vim.cmd('normal! ohol')
-  else
-    vim.cmd('normal! hol')
-  end
+  vim.cmd('normal! ohol')
 end
 
 function _G.vikaContract1Chr()
   local tv = getVisualSelection()
   local ccol, scol = tv["ccol"], tv["scol"] 
-  if ccol > scol then
-    vim.cmd('normal! oloh')
-  else
-    vim.cmd('normal! loh')
-  end
+  vim.cmd('normal! oloh')
 end
 
 function _G.vikaContract()
@@ -145,32 +137,18 @@ function _G.vikaContract()
     vim.cmd('normal! ' .. esc .. 'v')
   end
   local ccol = tv['ccol']
-  if (ccol > scol) then vim.cmd('normal! o') end
+  vim.cmd('normal! o') 
   vim.fn.setpos(".", {0, vikaLine, scol})
   vim.cmd('normal! o')
   vim.fn.setpos(".", {0, vikaLine, ecol})
 end
 
-function _G.getVisualSelection(setCur)
-  local modeInfo = vim.api.nvim_get_mode()
-  local mode = modeInfo.mode
-
-  local cursor = vim.api.nvim_win_get_cursor(0)
-  -- todo: does this have to be global to get the cursor info
+local function getNormalizedVisualSelection(cursor)
   local cline, ccol = cursor[1], cursor[2] + 1
   local vline, vcol = vim.fn.line('v'), vim.fn.col('v')
 
   local sline, scol = vline, vcol
   local eline, ecol = cline, ccol
-  if ccol <= vcol or cline < vline  then
-    sline, scol = cline, ccol
-    eline, ecol = vline, vcol
-  end
-  if (setCur == 'start' and ccol > vcol) then
-    vim.api.nvim_input('o') 
-  elseif (setCur == 'end' and ccol < vcol) then 
-    vim.api.nvim_input('o') 
-  end
 
   local lines = vim.api.nvim_buf_get_lines(0, sline - 1, eline, 0)
   local line1 = lines[1]
@@ -188,6 +166,27 @@ function _G.getVisualSelection(setCur)
   tv["stext"] = startText
   tv["lineText"] = line1
   return tv
+end
+
+function _G.getVisualSelection(setCur)
+  local modeInfo = vim.api.nvim_get_mode()
+  local mode = modeInfo.mode
+
+  local cursor = vim.api.nvim_win_get_cursor(0)
+  -- todo: does this have to be global to get the cursor info
+  local cline, ccol = cursor[1], cursor[2] + 1
+  local vline, vcol = vim.fn.line('v'), vim.fn.col('v')
+  -- if necessary, fix the orientation so cursor is at end
+  if mode == 'v' or mode == 'V' then
+    if ccol <= vcol or cline < vline then vim.cmd('normal! o') end
+  else 
+    -- visual block
+    if cline < vline and ccol <= vcol then vim.cmd('normal! o') 
+    elseif cline < vline and ccol > vcol then vim.cmd('normal! Oo') 
+    elseif ccol < vcol then vim.cmd('normal! O') 
+    end
+  end
+  return getNormalizedVisualSelection(vim.api.nvim_win_get_cursor(0))
 end
 
 local function getInput()
