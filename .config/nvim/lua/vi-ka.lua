@@ -3,6 +3,7 @@ vikaLine = 1
 vikaInd = 0
 vikaOnKeyword = false
 vikaWord = ''
+local esc = vim.api.nvim_replace_termcodes('<esc>',true,false,true)
 
 local function existsIn(val, tab)
   for index, value in ipairs(tab) do
@@ -23,14 +24,10 @@ end
 function _G.vikaInit()
   vikaStack = {}
   isKeyword()
-  -- just in case it's called from visual mode to reinitialize
-  vim.cmd('normal <c-v>')
-  vim.cmd('normal v')
+  vim.cmd('normal! ' .. esc .. 'v')
   local modeInfo = vim.api.nvim_get_mode()
   local mode = modeInfo.mode
-  if mode == 'v' then vikaExpand()
-  else print("vikaInit: Not in correct mode:", mode)
-  end
+  vikaExpand()
 end
 
 local function vikaIsMoved(tv)
@@ -85,10 +82,10 @@ function _G.vikaExpand()
     vika["ecol"] = tv['ecol']
     table.insert(vikaStack, vika) 
 
-    local chr = vim.fn.matchstr(vim.fn.getline('.'), '\\%' .. vim.fn.col('.') .. 'c.') -- =~# '\\k'
+    local chr = vim.fn.matchstr(vim.fn.getline('.'), '\\%' .. vim.fn.col('.') .. 'c.') 
     local kwRegex = vim.regex([[\k]])
     if kwRegex:match_str(chr) then
-      vim.cmd('normal iw')
+      vim.cmd('normal! iw')
       if (vikaMoved(tv)) then return end
     end
   end
@@ -98,37 +95,33 @@ function _G.vikaExpand()
     local chr = string.sub(txt, i, i)
     if (existsIn(chr, t)) then 
       if (existsIn(chr, quotes)) then 
-        -- 2i<quote> fails after word is selected, if quotes are unmatched
+        -- 2i<quote> fails after word is selected, when quotes are unmatched
         local toright = vikaQuotes(i, txt, chr, tv)
         if toright > 0 then 
           local toleft = col + 1 - i
-          vim.cmd('normal! o')
-          vim.cmd('normal! ' .. toleft .. 'h')
-          vim.cmd('normal! o')
-          vim.cmd('normal! ' .. toright .. 'l')
+          vim.cmd('normal! o' .. toleft .. 'h')
+          vim.cmd('normal! o' .. toright .. 'l')
         end
       else
         vim.cmd('normal! a' .. chr)
       end
-      if vikaMoved(tv, 'textobject') then break end
+      if vikaMoved(tv, 'textobject') then return end
     end
     if (i == 1) then
-      vim.cmd('normal $o^')
-      if vikaMoved(tv, 'short line') then break end
-      vim.cmd('normal $o0', 'line')
-      if vikaMoved(tv, 'whole line') then return end
+      vim.cmd('normal! $o^')
+      if vikaMoved(tv, 'short line') then return end
     end
   end
-  if (col <= 1) then vim.cmd('normal ip') end
+  vim.cmd('normal! ip') 
 end
 
 function _G.vikaExpand1Chr()
   local tv = getVisualSelection()
   local ccol, scol = tv["ccol"], tv["scol"] 
   if ccol > scol then
-    vim.cmd('normal ohol')
+    vim.cmd('normal! ohol')
   else
-    vim.cmd('normal hol')
+    vim.cmd('normal! hol')
   end
 end
 
@@ -136,9 +129,9 @@ function _G.vikaContract1Chr()
   local tv = getVisualSelection()
   local ccol, scol = tv["ccol"], tv["scol"] 
   if ccol > scol then
-    vim.cmd('normal oloh')
+    vim.cmd('normal! oloh')
   else
-    vim.cmd('normal loh')
+    vim.cmd('normal! loh')
   end
 end
 
@@ -149,16 +142,13 @@ function _G.vikaContract()
   local ecol = vika['ecol']
   local tv = getVisualSelection()
   if (tv['sline'] ~= tv['eline']) then 
-    vim.cmd('normal VV')
-    vim.cmd('normal v')
+    vim.cmd('normal! ' .. esc .. 'v')
   end
   local ccol = tv['ccol']
-  if (ccol > scol) then vim.cmd('normal o') end
+  if (ccol > scol) then vim.cmd('normal! o') end
   vim.fn.setpos(".", {0, vikaLine, scol})
-  vim.cmd('normal o')
+  vim.cmd('normal! o')
   vim.fn.setpos(".", {0, vikaLine, ecol})
-  vim.cmd('normal o')
-  vim.cmd('normal o')
 end
 
 function _G.getVisualSelection(setCur)
@@ -183,9 +173,11 @@ function _G.getVisualSelection(setCur)
   end
 
   local lines = vim.api.nvim_buf_get_lines(0, sline - 1, eline, 0)
-  --todo: what if this is nil
-  local startText = string.sub(lines[1], scol, ecol)
-  -- if #lines > 1 then endText = string.sub(lines[#lines], 1, ecol) end
+  local line1 = lines[1]
+  local startText = nil
+  if line1 then
+    startText = string.sub(lines[1], scol, ecol)
+  end
 
   local tv = {}
   tv["ccol"] = ccol
@@ -194,7 +186,7 @@ function _G.getVisualSelection(setCur)
   tv["scol"] = scol
   tv["ecol"] = ecol
   tv["stext"] = startText
-  tv["lineText"] = lines[1]
+  tv["lineText"] = line1
   return tv
 end
 
@@ -234,23 +226,12 @@ local function getOp(chr, isSearchTerm)
     return "`", "`"
   elseif chr == ';' then --todo: and isSearchTerm then
     return '', ''
+  elseif chr == '' and not isSearchTerm then 
+    return '', ''
   elseif chr == '.' then --todo: and isSearchTerm then
     return '.', '.'
   end
   return '?', '?'
-end
-
--- todo: why wont esc, escape from visual mode 
-local function strToNormal()
-  local modeInfo = vim.api.nvim_get_mode()
-  local mode = modeInfo.mode
-  if mode == 'v' or mode == 'V' then 
-    return mode
-  elseif mode == 'CTRL-V' then
-    return 'VV'
-  else 
-    return ''
-  end
 end
 
 function _G.vikaChange(chr)
@@ -260,11 +241,11 @@ function _G.vikaChange(chr)
 
   local command = 'c'
   if vikaOnKeyword and vikaWord == txt  then
-    command = strToNormal() .. "ciw"
+    command = esc .. "ciw"
   end
   vim.api.nvim_feedkeys(command, 'n', false)
   -- vim.cmd('mess clear')
-  -- print("command", command)
+  -- print("vikachange command", command)
 end
 
 local function oneTxtChange(chr)
@@ -277,17 +258,18 @@ local function oneTxtChange(chr)
   local sm, em = getOp(chr, false)
 
   if sm == '?' or (sm == ";" and osm == "?") then return end
+  if sm == '?' or (sm == "" and osm == "?") then return end
   if (osm == '?' or oem == '?') and osm ~= oem then return end
   if osm ~= '?' then xtxt = string.sub(txt, 2, string.len(txt)-1) end
 
   local command = 'c' .. sm .. xtxt .. em 
   if vikaOnKeyword and vikaWord == xtxt and osm .. oem == '??' then
-    command = strToNormal() .. "ciw" .. sm .. xtxt .. em
+    command = esc .. "ciw" .. sm .. xtxt .. em
   end
   vim.api.nvim_feedkeys(command, 'n', false)
-  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<esc>',true,false,true),'n',false)
-  vim.cmd('mess clear')
-  print("command", command)
+  vim.api.nvim_feedkeys(esc,'n',false)
+  -- vim.cmd('mess clear')
+  -- print("oneTxtChange command", command)
 end
 
 local function patternChange(chr, patternType)
@@ -319,8 +301,8 @@ local function patternChange(chr, patternType)
   else 
     mstr = [[s/\%]] .. col .. 'c' .. osm .. [[\([^]] .. osm ..[[]*\)]] .. oem .. '/' .. sm .. [[\1]] .. em .. '/'
   end
-  --vim.cmd('mess clear')
-  --print('PatternChange: mstr', mstr, 'txt=', txt, 'osm=', osm, 'lineText=', tv["lineText"])
+  -- vim.cmd('mess clear')
+  -- print('PatternChange: mstr', mstr, 'txt=', txt, 'osm=', osm, 'lineText=', tv["lineText"])
   vim.api.nvim_input(':' .. mstr)
 end
 
@@ -343,12 +325,12 @@ function _G.vikaPattern()
   end
 end
 
-function _G.vikaInsert()
-  _G.getVisualSelection('start')
-  vim.api.nvim_input('<c-[>i')
-end
+-- function _G.vikaInsert()
+--   _G.getVisualSelection('start')
+--   vim.api.nvim_input('<c-[>i')
+-- end
 
-function _G.vikaAppend()
-  _G.getVisualSelection('end')
-  vim.api.nvim_input('<c-[>a')
-end
+-- function _G.vikaAppend()
+--   _G.getVisualSelection('end')
+--   vim.api.nvim_input('<c-[>a')
+-- end
