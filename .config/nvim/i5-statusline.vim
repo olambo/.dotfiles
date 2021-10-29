@@ -13,7 +13,8 @@ fun Xmo(isactive, inmode)
     return '  I '
   elseif (a:inmode == 'v' && a:isactive && (mode == 'v' || mode == 'V' || mode == "\<C-V>")) 
     if (XViKeTurbo(''))
-      return '  TV ' 
+      " return '  TV ' 
+      return '  VT ' 
     end
     return '  V '
   elseif (a:inmode == 't' && a:isactive && (mode == 'n' && XViKeTurbo('') ))
