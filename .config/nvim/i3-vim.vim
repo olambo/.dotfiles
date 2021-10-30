@@ -1,3 +1,7 @@
+" use hyp-m or cmd-/ to comment 
+nmap <C-_> gcc
+xmap <C-_> gc
+
 let g:undotree_SplitWidth = 50
 nnoremap <f5> :UndotreeToggle<CR>
 nmap <f7> :lua require('dark_notify').toggle()<cr>

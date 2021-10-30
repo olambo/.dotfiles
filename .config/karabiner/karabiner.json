@@ -731,8 +731,7 @@
                                         "bundle_identifiers": [
                                             "io.alacritty",
                                             "com.apple.Terminal",
-                                            "com.googlecode.iterm2",
-                                            "com.microsoft.VSCode"
+                                            "com.googlecode.iterm2"
                                         ],
                                         "type": "frontmost_application_if"
                                     }
@@ -753,6 +752,36 @@
                                         "key_code": "hyphen",
                                         "modifiers": [
                                             "control"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "com.microsoft.VSCode"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "m",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "shift",
+                                            "command",
+                                            "control",
+                                            "option"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "slash",
+                                        "modifiers": [
+                                            "command"
                                         ]
                                     }
                                 ],
@@ -990,7 +1019,7 @@
                         ]
                     },
                     {
-                        "description": "9)  <command-slash> to <ctrl-_> - commenting",
+                        "description": "9)  <command-slash> to <ctrl-hypen> - commenting",
                         "manipulators": [
                             {
                                 "conditions": [
