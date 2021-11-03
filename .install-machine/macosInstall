@@ -63,6 +63,8 @@ brew install --cask visual-studio-code
 brew install --cask intellij-idea
 brew install cormacrelf/tap/dark-notify
 
+dot remote set-url origin git@github.com:olambo/.dotfiles.git
+
 echo "brew install is done!"
 # stuff to do
 # Dropbox - login
