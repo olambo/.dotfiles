@@ -18,7 +18,6 @@ xnoremap B gE
 
 nnoremap <leader>v <c-v>j
 
-" can't set in intellij
 nnoremap <c-x><c-u> <nop>
 noremap <c-x><c-p> <nop>
 
