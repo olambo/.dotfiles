@@ -68,8 +68,9 @@ endif
 " ----------------------------------------------------------------------------------------------
 " copy to system clipboard. <hyp-y> mapped to <c-x><c-y> via karabiner elements
 if $TERM_PROGRAM == "Apple_Terminal"
-  let g:colorscheme = "PaperColor"
-  if !has('nvim')
+  if has('nvim')
+    let g:colorscheme = "PaperColor"
+  else
     colorscheme PaperColor
   endif
   vnoremap <c-x><c-y> "+y
