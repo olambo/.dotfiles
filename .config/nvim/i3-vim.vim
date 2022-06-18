@@ -67,27 +67,11 @@ endif
 " todo: check if vscode can support some of this
 " ----------------------------------------------------------------------------------------------
 " copy to system clipboard. <hyp-y> mapped to <c-x><c-y> via karabiner elements
-if $TERM_PROGRAM == "Apple_Terminal" || !has('nvim')
-  let g:PaperColor_Theme_Options = {
-   \   'theme': {
-   \     'default': {
-   \       'override' : {
-   \         'color00' : ['#FBFBFB', '231'],
-   \         'linenumber_bg' : ['#FBFBFB', '231'],
-   \       }
-   \     },
-   \     'default.dark': {
-   \       'override' : {
-   \       }
-   \     }
-   \   }
-   \ }
+if $TERM_PROGRAM == "Apple_Terminal"
   let g:colorscheme = "PaperColor"
   if !has('nvim')
     colorscheme PaperColor
   endif
-endif
-if $TERM_PROGRAM == "Apple_Terminal"
   vnoremap <c-x><c-y> "+y
   nnoremap <c-x><c-y><c-x><c-y> V"+y
 else
@@ -106,22 +90,3 @@ endfunction
 
 " ----------------------------------------------------------------------------------------------
 set showcmd
-
-if !exists("g:bloop")
-  let g:bloop="root"
-endif
-"go run using vcommand
-noremap go :call GoCommand("clear; bloop run " . expand(g:bloop))<CR>
-"go test using vcommand
-noremap <leader>t :call GoCommand("clear; bloop test " . expand(g:bloop))<CR>
-"go individual test using vcommand
-noremap <leader>T :call GoCommand("clear; bloop test " . expand(g:bloop) . " -o " . expand(split(getline('1'))[1]) . "." . expand("<cword>"))<CR>
-
-function! GoCommand(cmd)
-  if &mod == 1 
-    echohl WarningMsg | echo "WARNING, BUFFER NOT WRITTEN!" | echohl None | echo a:cmd
-  else
-    echo "vcommand: " . a:cmd
-  endif
-  call writefile([a:cmd], expand("~/.config/nvim/runcache/vcommand.txt"))
-endfunction

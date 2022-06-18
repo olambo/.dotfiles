@@ -6,8 +6,6 @@ Plug 'tpope/vim-commentary'
 if has('nvim')
 " Plug '~/dev/vi-ke'
 Plug 'olambo/vi-ke'
-"
-Plug 'olambo/vi-viz'
 
 endif
 if !exists('g:vscode')
