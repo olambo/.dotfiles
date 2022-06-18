@@ -1,3 +1,7 @@
+" can't set in intellij
+nnoremap <c-x><c-u> <nop>
+noremap <c-x><c-p> <nop>
+
 set visualbell
 set noerrorbells
 set multiple-cursors

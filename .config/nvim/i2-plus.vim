@@ -33,9 +33,6 @@ set mouse=nv " this is not going to allow command-c. can use option-mouse or tur
 
 " set up replace on current word
 noremap <expr> g/ ':%s/'.expand('<cword>').'//gIc<Left><Left><Left><Left>'
-let g:sneak#label = 1
-autocmd ColorScheme * hi Sneak guifg=green guibg=LightMagenta ctermfg=black ctermbg=LightMagenta
-autocmd ColorScheme * hi SneakScope guifg=white guibg=grey ctermfg=white ctermbg=grey
 
 if has('nvim')
   " nvim and vim appear incompatible here
@@ -45,18 +42,8 @@ if has('nvim')
   set undofile
   set undodir=~/.config/nvim-data/undofiles
 
-  " source ~/.config/nvim/vi-ka.vim
 :lua <<EOF
-  -- require('vi-viz')
-  require('vi-viz-key')
-  vim.api.nvim_command('autocmd ColorScheme * highlight ViKeHL ctermfg=brown guifg=orange')
-  require('vi-ke').keLight()
-  -- require('vi-ke-jk')
-  require('vi-ke-sneak')
-  require('vi-ke-visual')
-  require('vi-ke-updown')
-  vim.g['sneak#use_ic_scs'] = 1
+   vim.api.nvim_command('autocmd ColorScheme * highlight ViKeHL ctermfg=brown guifg=orange')
+   require('vi-ke').keLight()
 EOF
 endif
-nnoremap s <nop>
-xnoremap s <nop>

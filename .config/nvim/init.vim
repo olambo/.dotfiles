@@ -17,9 +17,4 @@ else
   source ~/.config/nvim/i2-plus.vim
 	source ~/.config/nvim/i3-vim.vim
 	source ~/.config/nvim/i4-fzf.vim
-	" source ~/.config/nvim/i5-statusline.vim
-  "if exists('g:useMetals')
-	"  source ~/.config/nvim/i6-lsp.vim
-  "  call SourceIfExists("./.vscode/metals.vim")
-  "endif
 endif

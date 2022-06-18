@@ -21,14 +21,14 @@
   "debug.console.lineHeight" : 13,
   "editor.minimap.enabled" : false,
   "files.watcherExclude" : {
-    "**\/.metals" : true,
-    "**\/.git\/subtree-cache\/**" : true,
-    "**\/.bloop" : true,
-    "**\/.venv\/**" : true,
-    "**\/.direnv\/**" : true,
-    "**\/.git\/objects\/**" : true,
-    "**\/node_modules\/**" : true,
-    "**\/.ammonite" : true
+    "**/.metals": true,
+    "**/.git/subtree-cache/**": true,
+    "**/.bloop": true,
+    "**/.venv/**": true,
+    "**/.direnv/**": true,
+    "**/.git/objects/**": true,
+    "**/node_modules/**": true,
+    "**/.ammonite": true
   },
   "vscode-neovim.highlightGroups.highlights" : {
     "Substitute" : "vim",
