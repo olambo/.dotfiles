@@ -24,6 +24,7 @@ noremap gi :action GotoImplementation<CR>
 noremap gr :action ShowUsages<CR>
 noremap gR :action Refactorings.QuickListPopupAction<CR>
 
+noremap gt :action Scala.TypeInfo<CR>:action ExpressionTypeInfo<CR>
 noremap gh :action Scala.TypeInfo<CR>:action ExpressionTypeInfo<CR>
 noremap gS :action GotoSuperMethod<CR>
 

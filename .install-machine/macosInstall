@@ -13,7 +13,6 @@ tmux
 vim
 neovim
 maven
-scala
 httpie
 fzf
 ripgrep
@@ -23,8 +22,17 @@ entr
 )
 brew install ${term_apps[@]}
 
-brew tap AdoptOpenJDK/openjdk
-brew cask install adoptopenjdk8
+softwareupdate --install-rosetta
+curl -fLo cs https://git.io/coursier-cli-"$(uname | tr LD ld)"
+chmod +x cs
+./cs install cs
+./cs setup
+rm cs
+Open new terminal window
+
+#scala
+#brew tap AdoptOpenJDK/openjdk
+#brew cask install adoptopenjdk8
 
 # macos cask apps
 cask_apps=(
@@ -32,18 +40,13 @@ karabiner-elements
 hammerspoon
 keyboard-maestro
 alfred
-dropbox
 enpass
 betterzip
 nordvpn
-transmission
 vlc
-spectacle
-vimr
-dbeaver-community
-postman
+iterm2
 )
-brew cask install --appdir="/Applications" ${cask_apps[@]}
+brew install --appdir="/Applications" ${cask_apps[@]}
 
 # This adds the install directory to Alfred’s search path so you can find installed applications with Alfred.
 # brew cask alfred link
@@ -51,13 +54,18 @@ brew cask install --appdir="/Applications" ${cask_apps[@]}
 # Remove brew cruft
 brew cleanup
 
-git clone https://github.com/k-takata/minpac.git ~/.config/nvim/pack/minpac/opt/minpac
 git clone https://github.com/softmoth/zsh-vim-mode ~/.config/zsh-vim-mode
-curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+
+curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
-echo "brew install is done!"
+brew install --cask visual-studio-code
+brew install --cask intellij-idea
+brew install cormacrelf/tap/dark-notify
 
+dot remote set-url origin git@github.com:olambo/.dotfiles.git
+
+echo "brew install is done!"
 # stuff to do
 # Dropbox - login
 # Enpass - icloud sync login
