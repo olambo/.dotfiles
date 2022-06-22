@@ -1,16 +1,18 @@
 let mapleader="\<space>"
 
-nnoremap e <nop>
 nnoremap s <nop>
-nnoremap v <nop>
+vnoremap s v
+noremap v <nop>
+nnoremap e <nop>
 nnoremap ep p
 nnoremap p :
-" normal and visual
+" text objects
+nnoremap di di| nnoremap da da| nnoremap ci ci| nnoremap ca ca| nnoremap si vi| nnoremap sa va| nnoremap vi <nop>| nnoremap va <nop>
+" normal and visual"
 noremap eo o
 noremap a i
 noremap ea a
 noremap ee e
-noremap i b
 noremap o w
 noremap eh ^
 noremap el $
@@ -21,22 +23,19 @@ noremap m 10j| noremap , 10k
 noremap ss V| noremap S v$h
 " visual normal mode mappings
 nnoremap gs gv
-nnoremap sl v
 nnoremap sw viw
-nnoremap sj V9j
-nnoremap sk vi"
-nnoremap s; vi'
-nnoremap si vi)
-nnoremap sak va"
-nnoremap s. v$h
-nnoremap sn v^  
+nnoremap sm v<c-v>j| noremap sh v
+nnoremap su vi'
+nnoremap sj vi"
+nnoremap sk vi)
+nnoremap S v$h
 " visual only mode mapping
-vnoremap sh <c-v>
-vnoremap sn v
+vnoremap sm <c-v>
 vnoremap s. $h
 nnoremap saw vaw
 nnoremap siw viw
 
+noremap i b
 nnoremap gm G
 
 " insert mode no vertical movement"
