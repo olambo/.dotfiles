@@ -1,5 +1,5 @@
 # Fig pre block. Keep at the top of this file.
-. "$HOME/.fig/shell/zshrc.pre.zsh"
+[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && . "$HOME/.fig/shell/zshrc.pre.zsh"
 # User configuration sourced by interactive shells
 
 eval "$(lua /usr/local/Cellar/z.lua/1.8.15/share/z.lua/z.lua --init zsh)"
@@ -75,4 +75,4 @@ alias vcd='cd `cat ~/.config/nvim/runcache/viDirFZF`'
 export PATH=$PATH:$HOME/Library/Application\ Support/Coursier/bin
 
 # Fig post block. Keep at the bottom of this file.
-. "$HOME/.fig/shell/zshrc.post.zsh"
+[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && . "$HOME/.fig/shell/zshrc.post.zsh"
