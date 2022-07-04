@@ -1,48 +1,21 @@
 let mapleader="\<space>"
 
-nnoremap s <nop>
-vnoremap s v
-noremap v <nop>
-nnoremap e <nop>
-nnoremap ep p
-nnoremap p :
-" text objects
-nnoremap di di| nnoremap da da| nnoremap ci ci| nnoremap ca ca| nnoremap si vi| nnoremap sa va| nnoremap vi <nop>| nnoremap va <nop>
-" normal and visual"
-noremap eo o
-noremap a i
-noremap ea a
-noremap ee e
-noremap o w
-noremap eh ^
-noremap el $
+" left hand
+noremap q u| noremap w d| noremap e y| noremap r p| noremap t <c-r>
+vnoremap a $h| nnoremap s i| vnoremap s <nop>| nnoremap d <nop>| vnoremap d v| noremap D v$h
+noremap z .| noremap c <nop>| noremap v c| noremap V C
 
-noremap m 10j| noremap , 10k
+" right hand
+noremap u n| noremap U N| noremap i b| nnoremap o w| vnoremap o e| noremap p <nop>
 
-" visual normal and visual mode mappings
-noremap ss V| noremap S v$h
-" visual normal mode mappings
-nnoremap gs gv
-nnoremap sw viw
-nnoremap sm v<c-v>j| noremap sh v
-nnoremap su vi'
-nnoremap sj vi"
-nnoremap sk vi)
-nnoremap S v$h
-" visual only mode mapping
-vnoremap sm <c-v>
-vnoremap s. $h
-nnoremap saw vaw
-nnoremap siw viw
-
-noremap i b
-nnoremap gm G
+" Explore Visual select mode left
+nnoremap da va| nnoremap ds vi| noremap dd V
+" Visual mode right
+nnoremap du vi"| nnoremap do viw| vnoremap fo $h
+nnoremap dl v| nnoremap dj v<c-v>j| vnoremap dj <c-v>
 
 " insert mode no vertical movement"
-inoremap <up> <nop>
-inoremap <down> <nop>
-inoremap <pageup> <nop>
-inoremap <pagedown> <nop>
+inoremap <up> <nop>| inoremap <down> <nop>| inoremap <pageup> <nop>| inoremap <pagedown> <nop>
 
 " various bats and bits
 set ignorecase
