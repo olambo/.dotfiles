@@ -18,16 +18,18 @@
                     {
                         "description": "ctrl tab toggles Mona KB q",
                         "manipulators": [
-                          { "conditions": [ { "name": "layer1", "type": "variable_if", "value": 3 } ], "from": { "key_code": "j", "modifiers": { "optional": [ "any" ] } },
-                                "to": [ { "set_variable": { "name": "layer1", "value": 2 }}, { "key_code": "period" } ], "type": "basic" },
+                          { "conditions": [ { "name": "layer1", "type": "variable_if", "value": 3 } ], "from": { "key_code": "h", "modifiers": { "optional": [ "any" ] } },
+                                                                                   "to": [ { "set_variable": { "name": "layer1", "value": 2 }}, { "key_code": "slash" } ], "type": "basic" },
+                          { "conditions": [ { "name": "layer1", "type": "variable_if", "value": 3 } ], "from": { "key_code": "j" },
+                                                                                   "to": [ { "set_variable": { "name": "layer1", "value": 2 }}, { "key_code": "quote", "modifiers": [ "shift" ]  } ], "type": "basic" },
                           { "conditions": [ { "name": "layer1", "type": "variable_if", "value": 3 } ], "from": { "key_code": "k", "modifiers": { "optional": [ "any" ] } },
-                                "to": [ { "set_variable": { "name": "layer1", "value": 2 }}, { "key_code": "comma" } ], "type": "basic" },
+                                                                                   "to": [ { "set_variable": { "name": "layer1", "value": 2 }}, { "key_code": "comma" } ], "type": "basic" },
                           { "conditions": [ { "name": "layer1", "type": "variable_if", "value": 3 } ], "from": { "key_code": "l", "modifiers": { "optional": [ "any" ] } },
-                                "to": [ { "set_variable": { "name": "layer1", "value": 2 }}, { "key_code": "slash" } ], "type": "basic" },
-                          { "conditions": [ { "name": "layer1", "type": "variable_if", "value": 3 } ], "from": { "key_code": "p" },
-                                "to": [ { "set_variable": { "name": "layer1", "value": 2 }}, { "key_code": "semicolon", "modifiers": [ "shift" ]  } ], "type": "basic" },
-                          { "conditions": [ { "name": "layer1", "type": "variable_if", "value": 3 } ], "from": { "key_code": "semicolon", "modifiers": { "optional": [ "any" ] } },
-                                "to": [ { "set_variable": { "name": "layer1", "value": 2 }}, { "key_code": "semicolon" } ], "type": "basic" }
+                                                                                   "to": [ { "set_variable": { "name": "layer1", "value": 2 }}, { "key_code": "period" } ], "type": "basic" },
+                          { "conditions": [ { "name": "layer1", "type": "variable_if", "value": 3 } ], "from": { "key_code": "n", "modifiers": { "optional": [ "any" ] } },
+                                                                                   "to": [ { "set_variable": { "name": "layer1", "value": 2 }}, { "key_code": "return_or_enter" } ], "type": "basic" },
+                          { "conditions": [ { "name": "layer1", "type": "variable_if", "value": 3 } ], "from": { "any": "key_code" },
+                                "to": [ { "set_variable": { "name": "layer1", "value": 2 } } ], "type": "basic" }
                         ]
                     },
                     {
