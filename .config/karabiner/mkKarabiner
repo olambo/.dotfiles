@@ -1,0 +1,13 @@
+#!/bin/sh
+cat karabiner_editme.json \
+| sed 's/"\/"/"slash"/' \
+| sed 's/"\."/"period"/'\
+| sed 's/"key_code":","/"key_code":"comma"/'\
+| sed 's/";"/"semicolon"/'\
+| sed 's/"-"/"hyphen"/'\
+| sed 's/"="/"equal_sign"/'\
+| sed 's/"R"/"return_or_enter"/' \
+| sed 's/" "/"spacebar"/g' \
+| sed 's/"S"/"left_shift"/g' \
+| sed 's/"\["/"open_bracket"/g' \
+> karabiner.json
