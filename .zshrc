@@ -39,7 +39,7 @@ setopt HIST_IGNORE_SPACE
 setopt APPEND_HISTORY
 setopt EXTENDED_HISTORY
 
-export PATH=~/.config/nvim/bin:~/go/bin:/usr/local/opt/python/libexec/bin:/usr/local/bin:$PATH:/opt/homebrew/bin
+export PATH=~/.config/nvim/bin:~/go/bin:/usr/local/opt/python/libexec/bin:/usr/local/bin:$PATH:/opt/homebrew/bin:/Users/red/Library/Python/3.9/bin/
 
 if [[ $(uname 2> /dev/null) == "Linux" ]] ; then
     alias ls='ls --color=auto'
@@ -61,7 +61,8 @@ export FZF_DEFAULT_OPTS=" --extended --color hl:202,hl+:202"
 
 alias dot='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias rvi='fvim() { nvim ${@:-.} };fvim'
-alias vi='fvim() { nvim --cmd "let g:useMetals=1" ${@:-.} };fvim'
+alias vi='fvim() { nvim --cmd "let g:yug=1" ${@:-.} };fvim'
+alias vvi='fvim() { nvim ${@:-.} };fvim'
 # ln -s ~/Library/Mobile\ Documents/*byword/Documents ~/.byworddoc
 alias doc='cd ~/.byworddoc; vi ~/.byworddoc'
 alias con='vi +":cd ~/.config/nvim" ~/.config/nvim'
