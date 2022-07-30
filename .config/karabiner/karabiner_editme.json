@@ -94,7 +94,7 @@
       { "conditions": [ {"name":"kp1","type":"variable_if","value":1} ], "from": {"key_code":"l","modifiers":{"optional":["any"]}}, "to": [ {"key_code":"3"}, {"set_variable":{"name":"dot","value":0}} ], "type":"basic" },
       { "conditions": [ {"name":"kp1","type":"variable_if","value":1} ], "from": {"key_code":";","modifiers":{"optional":["any"]}}, "to": [ {"key_code":"0"}, {"set_variable":{"name":"dot","value":0}} ], "type":"basic" },
 
-      { "conditions": [ {"name":"kp1","type":"variable_if","value":1} ], "from": {"key_code":"c","modifiers":{"optional":["any"]}}, "to": [ {"key_code":"j"}, {"set_variable":{"name":"kp1","value":0}} ], "type":"basic" },
+      { "conditions": [ {"name":"kp1","type":"variable_if","value":1} ], "from": {"key_code":"c","modifiers":{"optional":["any"]}}, "to": [ {"key_code":"s"}, {"set_variable":{"name":"kp1","value":0}} ], "type":"basic" },
       { "conditions": [ {"name":"kp1","type":"variable_if","value":1} ], "from": {"key_code":"v","modifiers":{"optional":["any"]}}, "to": [ {"key_code":"g","modifiers":["shift"]}, {"set_variable":{"name":"kp1","value":0}} ], "type":"basic" },
       { "conditions": [ {"name":"kp1","type":"variable_if","value":1} ], "from": {"key_code":"n","modifiers":{"optional":["any"]}}, "to": [ {"key_code":"="}, {"set_variable":{"name":"dot","value":0}} ], "type":"basic" },
       { "conditions": [ {"name":"kp1","type":"variable_if","value":1} ], "from": {"key_code":"m","modifiers":{"optional":["any"]}}, "to": [ {"key_code":"4"}, {"set_variable":{"name":"dot","value":0}} ], "type":"basic" },
