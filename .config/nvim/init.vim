@@ -8,7 +8,7 @@ endfunction
 
 source ~/.config/nvim/i1-plug.vim
 if exists('g:yuz')
-  source ~/.config/nvim/i2-base-yug.vim
+  source ~/.config/nvim/i2-base-yuz.vim
 else
   source ~/.config/nvim/i2-base.vim
 endif
