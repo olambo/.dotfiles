@@ -41,7 +41,8 @@ noremap gb :action ToggleLineBreakpoint<CR>
 noremap gB :action ViewBreakpoints<CR>
 
 noremap gf :action FileStructurePopup<CR>
-noremap go :action ChooseRunConfiguration<CR>
+noremap gO :action ChooseRunConfiguration<CR>
+noremap go :action ContextRun<CR>
 
 noremap <A-j> :action EditorCloneCaretBelow<CR>
 noremap <A-k> :action EditorCloneCaretAbove<CR>

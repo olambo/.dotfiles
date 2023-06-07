@@ -1,21 +1,4 @@
-let mapleader="\<space>"
-
-" left hand
-noremap q u| noremap w d| noremap e y| noremap r p| noremap t <c-r>
-vnoremap a $h| nnoremap s i| vnoremap s <nop>| nnoremap d <nop>| vnoremap d v| noremap D v$h
-noremap z .| noremap c <nop>| noremap v c| noremap V C
-
-" right hand
-noremap u n| noremap U N| noremap i b| nnoremap o w| vnoremap o e| noremap p <nop>
-
-" Explore Visual select mode left
-nnoremap da va| nnoremap ds vi| noremap dd V
-" Visual mode right
-nnoremap du vi"| nnoremap do viw| vnoremap fo $h
-nnoremap dl v| nnoremap dj v<c-v>j| vnoremap dj <c-v>
-
-" insert mode no vertical movement"
-inoremap <up> <nop>| inoremap <down> <nop>| inoremap <pageup> <nop>| inoremap <pagedown> <nop>
+ let mapleader="\<space>"
 
 " various bats and bits
 set ignorecase
@@ -44,3 +27,14 @@ nnoremap <leader><leader> <c-w><c-w>
 noremap <leader>n :set number!<cr>:se norelativenumber<cr>
 " toggle highlight search
 nnoremap <leader>h :set hlsearch! hlsearch?<cr>
+
+nnoremap 2v Vj
+nnoremap 3v V2j
+nnoremap 4v V3j
+nnoremap 5v V4j
+nnoremap 6v V5j
+nnoremap 7v V6j
+nnoremap 8v V7j
+nnoremap 9v V8j
+" vv from normal mode goes into visual mode
+vnoremap v V

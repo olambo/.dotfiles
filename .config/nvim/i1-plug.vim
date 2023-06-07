@@ -4,8 +4,6 @@ call plug#begin('~/.config/nvim/plugged')
 
 Plug 'tpope/vim-commentary'
 if has('nvim')
-" Plug '~/dev/vi-ke'
-Plug 'olambo/vi-ke'
 
 endif
 if !exists('g:vscode')

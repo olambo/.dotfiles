@@ -55,7 +55,12 @@ if has('nvim')
   dn.run({
     onchange = function(mode)
       if vim.g.vscode_style ~= mode then
-        vim.g.vscode_style = mode 
+
+        -- force it dark for now
+        --vim.g.vscode_style = mode 
+        vim.g.vscode_style = 'dark' 
+        vim.o.background = 'dark'
+
         vim.cmd('colorscheme ' .. vim.g.colorscheme)
         vim.cmd('source ' .. '~/.config/nvim/i5-statusline.vim')
       end
@@ -77,7 +82,7 @@ if $TERM_PROGRAM == "Apple_Terminal"
   nnoremap <c-x><c-y><c-x><c-y> V"+y
 else
   " yank into system clipboard without yanking into vim clipboard/reg0
-  vnoremap <c-x><c-y> :OSCYank<CR>
+  vnoremap <c-x><c-y> :OSCYankVisual<CR>
   nnoremap <c-x><c-y><c-x><c-y> :call YankLine()<CR>
   if has('nvim')
     let g:colorscheme = "vscode"
@@ -86,7 +91,7 @@ endif
 
 function! YankLine()
   let line = getline(".")
-  call OSCYankString(line) 
+  call OSCYank(line) 
 endfunction
 
 " ----------------------------------------------------------------------------------------------

@@ -44,6 +44,31 @@ if has('nvim')
 
 :lua <<EOF
    vim.api.nvim_command('autocmd ColorScheme * highlight ViKeHL ctermfg=brown guifg=orange')
-   require('vi-ke').keLight()
+   --require('vi-ke').keLight()
+
+  function keLightLines(ckLn)
+    local ln = vim.fn.line('.')
+    if ckLn and hiLn == ln then
+      return
+    end
+    vim.api.nvim_command('sign unplace 2 group=*')
+    local a = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
+    for i = 1,1 do
+      vim.api.nvim_command('sign place 2 name=ViKeHL line=' .. ln + a[i])
+    end
+    hiLn = ln
+  end
+
+  function keLight()
+    vim.api.nvim_command('sign define ViKeHL numhl=ViKeHL')
+    
+    vim.api.nvim_command('augroup ViKeHL_grp')
+    vim.api.nvim_command('au!')
+    vim.api.nvim_command("autocmd CursorMoved * lua keLightLines(true)")
+    vim.api.nvim_command("autocmd InsertEnter,InsertLeave,BufEnter * lua keLightLines(false)")
+    vim.api.nvim_command('augroup END')
+  end
+
+  keLight()
 EOF
 endif
