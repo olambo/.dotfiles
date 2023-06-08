@@ -3,6 +3,14 @@
 Karabiner is good for mapping the capslock as it's working at a os level.
 Keyboard Maestro could also map most of these keys, but it's one more dependency.
 
+### karabiner_editme.json
+Karabiner Elements insists on "sometimes" formatting the karabiner.json file and will make it hard to read.
+To address this, the karabiner_editme.json file is formated in a way that is compressed and easy to read. Run mkKarabiner to create the karabiner.json file.
+The karabiner.json file will be overwritten when you run mkKarabiner so don't edit it directly.
+
+
+Note: You could use Goku, if your happy with adding a new dependency and learning another tool and syntax [here](https://github.com/yqrashawn/GokuRakuJoudo)
+
 ### Karabiner mappings
 
 ```
