@@ -8,7 +8,7 @@ function applicationWatcher(appName, eventType, appObject)
             prvapp = appName
             curapp = capp
         end
-        print("prvapp " .. prvapp .. " curapp " .. curapp)
+        -- print("prvapp " .. prvapp .. " curapp " .. curapp)
     end
 end
 appWatcher = hs.application.watcher.new(applicationWatcher)
@@ -153,13 +153,13 @@ local chooserDict = {
 
 local function chooserApp(appChar)
     local app = chooserDict[appChar]
-    print('appChar:'..appChar)
+    -- print('appChar:'..appChar)
     if (appChar == ';') then app = prvapp end
     if (app == nil) then return end
     if app == "iTerm2" then app = "iTerm" end
     if app == "IntelliJ IDEA" then app = "IntelliJ IDEA CE" end
     if app == "PyCharm" then app = "PyCharm CE" end
-    print ('chooserApp:'..app..'.')
+    -- print ('chooserApp:'..app..'.')
     hs.application.launchOrFocus(app)
 end
 
