@@ -8,8 +8,7 @@ function applicationWatcher(appName, eventType, appObject)
             prvapp = appName
             curapp = capp
         end
-        -- print("prvapp " .. prvapp)
-        -- print("curapp " .. curapp)
+        print("prvapp " .. prvapp .. " curapp " .. curapp)
     end
 end
 appWatcher = hs.application.watcher.new(applicationWatcher)
@@ -140,9 +139,11 @@ hs.hotkey.bind({"alt", "ctrl", "cmd"}, "down", function() winSize(0, 20) end, ni
 local chooser
 
 local chooserDict = {
+    [";"] = ";",
     ["d"] = "Dash",
     ["u"] = "iTerm2",
-    ["i"] = "Intellij IDEA 2022.2 EAP",
+    ["p"] = "PyCharm",
+    ["i"] = "IntelliJ IDEA",
     ["v"] = "Visual Studio Code",
     ["s"] = "Safari",
     ["m"] = "Mail",
@@ -152,9 +153,13 @@ local chooserDict = {
 
 local function chooserApp(appChar)
     local app = chooserDict[appChar]
+    print('appChar:'..appChar)
     if (appChar == ';') then app = prvapp end
     if (app == nil) then return end
     if app == "iTerm2" then app = "iTerm" end
+    if app == "IntelliJ IDEA" then app = "IntelliJ IDEA CE" end
+    if app == "PyCharm" then app = "PyCharm CE" end
+    print ('chooserApp:'..app..'.')
     hs.application.launchOrFocus(app)
 end
 
@@ -168,8 +173,9 @@ chooser = hs.chooser.new(chooserChoice)
 
 chooser:choices({
   { ["text"] = ";",          ["command"] = ';'},
-  { ["text"] = "Dash", ["command"] = 'd'},
+  { ["text"] = "Dash",       ["command"] = 'd'},
   { ["text"] = "Unix-iterm", ["command"] = 'u'},
+  { ["text"] = "Pycharm",    ["command"] = 'p'},
   { ["text"] = "Intellij",   ["command"] = 'i'},
   { ["text"] = "Vscode",     ["command"] = 'v'},
   { ["text"] = "Safari",     ["command"] = 's'},
