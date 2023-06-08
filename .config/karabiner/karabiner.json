@@ -53,31 +53,25 @@
                         ]
                     },
                     {
-                        "description": "3)  <hyp> r, t to corresponding control keys in vim. TODO: 't' isnt working properly",
+                        "description": "3)  <hyp> r, t to corresponding control keys in vim",
                         "manipulators": [
                             {
-                                "conditions": [ { "bundle_identifiers": [ "io.alacritty", "com.apple.Terminal", "com.googlecode.iterm2", "com.jetbrains", "com.microsoft.VSCode" ], "type": "frontmost_application_if" } ],
+                                "conditions": [ { "bundle_identifiers": [ "com.apple.Terminal", "com.googlecode.iterm2", "com.jetbrains", "com.microsoft.VSCode" ], "type": "frontmost_application_if" } ],
                                 "from": { "key_code": "r", "modifiers": { "mandatory": [ "shift", "command", "control", "option" ] } },
                                 "to": [ { "key_code": "r", "modifiers": [ "control" ] } ], "type": "basic"
                             },
                             {
-                                "conditions": [ { "bundle_identifiers": [ "io.alacritty", "com.apple.Terminal", "com.googlecode.iterm2", "com.microsoft.VSCode" ], "type": "frontmost_application_if" } ],
+                                "conditions": [ { "bundle_identifiers": [ "com.apple.Terminal", "com.googlecode.iterm2", "com.jetbrains", "com.microsoft.VSCode" ], "type": "frontmost_application_if" } ],
                                 "from": { "key_code": "t", "modifiers": { "mandatory": [ "shift", "command", "control", "option" ] } },
                                 "to": [ { "key_code": "t", "modifiers": [ "control" ] } ], "type": "basic"
-                            },
-                            {
-                                "conditions": [ { "bundle_identifiers": [ "com.jetbrains" ], "type": "frontmost_application_if" } ],
-                                "from": { "key_code": "t", "modifiers": { "mandatory": [ "shift", "command", "control", "option" ] } },
-                                "to": [ { "key_code": "return_or_enter", "modifiers": [ "option" ] }, { "key_code": "t" }, { "key_code": "a" } ],
-                                "type": "basic"
                             }
                         ]
                     },
                     {
-                        "description": "4)  <command-c>, system clipboard for vim, <hyp-p> paste from reg 0 (sometimes), <hyp-u> undo, hyp-x - apple terminal - not vim",
+                        "description": "4)  <command-c>, system clipboard for vim, <hyp-p> paste from reg 0 (sometimes), hyp-o to c-o, hyp-i to c-i",
                         "manipulators": [
                             {
-                                "conditions": [ { "bundle_identifiers": [ "io.alacritty", "com.apple.Terminal", "com.googlecode.iterm2", "com.microsoft.VSCode" ], "type": "frontmost_application_if" } ],
+                                "conditions": [ { "bundle_identifiers": [ "com.apple.Terminal", "com.googlecode.iterm2", "com.microsoft.VSCode" ], "type": "frontmost_application_if" } ],
                                 "from": { "key_code": "c", "modifiers": { "mandatory": [ "command" ] } },
                                 "to": [ { "key_code": "x", "modifiers": [ "control" ] }, { "key_code": "y", "modifiers": [ "control" ] }, { "key_code": "c", "modifiers": [ "command" ] } ],
                                 "type": "basic"
@@ -88,44 +82,24 @@
                                 "to": [ { "key_code": "c", "modifiers": [ "command" ] } ], "type": "basic"
                             },
                             {
-                                "conditions": [ { "bundle_identifiers": [ "io.alacritty", "com.apple.Terminal", "com.googlecode.iterm2", "com.jetbrains", "com.microsoft.VSCode" ], "type": "frontmost_application_if" } ],
+                                "conditions": [ { "bundle_identifiers": [ "com.apple.Terminal", "com.googlecode.iterm2", "com.jetbrains", "com.microsoft.VSCode" ], "type": "frontmost_application_if" } ],
                                 "from": { "key_code": "p", "modifiers": { "mandatory": [ "shift", "command", "control", "option" ] } },
                                 "to": [ { "key_code": "x", "modifiers": [ "control" ] }, { "key_code": "p", "modifiers": [ "control" ] } ], "type": "basic"
                             },
                             {
-                                "conditions": [ { "bundle_identifiers": [ "io.alacritty", "com.apple.Terminal", "com.googlecode.iterm2" ], "type": "frontmost_application_if" } ],
-                                "from": { "key_code": "m", "modifiers": { "mandatory": [ "shift", "command", "control", "option" ] } },
-                                "to": [ { "key_code": "hyphen", "modifiers": [ "control" ] } ], "type": "basic"
-                            },
-                            {
-                                "conditions": [ { "bundle_identifiers": [ "com.microsoft.VSCode" ], "type": "frontmost_application_if" } ],
-                                "from": { "key_code": "m", "modifiers": { "mandatory": [ "shift", "command", "control", "option" ] } },
-                                "to": [ { "key_code": "slash", "modifiers": [ "command" ] } ], "type": "basic"
-                            },
-                            {
-                                "conditions": [ { "bundle_identifiers": [ "io.alacritty", "com.apple.Terminal", "com.googlecode.iterm2", "com.microsoft.VSCode" ], "type": "frontmost_application_if" } ],
+                                "conditions": [ { "bundle_identifiers": [ "com.apple.Terminal", "com.googlecode.iterm2", "com.microsoft.VSCode" ], "type": "frontmost_application_if" } ],
                                 "from": { "key_code": "o", "modifiers": { "mandatory": [ "shift", "command", "control", "option" ] } },
                                 "to": [ { "key_code": "x", "modifiers": [ "control" ] }, { "key_code": "o", "modifiers": [ "control" ] } ], "type": "basic"
                             },
                             {
-                                "conditions": [ { "bundle_identifiers": [ "io.alacritty", "com.apple.Terminal", "com.googlecode.iterm2", "com.microsoft.VSCode" ], "type": "frontmost_application_if" } ],
+                                "conditions": [ { "bundle_identifiers": [ "com.apple.Terminal", "com.googlecode.iterm2", "com.microsoft.VSCode" ], "type": "frontmost_application_if" } ],
                                 "from": { "key_code": "i", "modifiers": { "mandatory": [ "shift", "command", "control", "option" ] } },
                                 "to": [ { "key_code": "x", "modifiers": [ "control" ] }, { "key_code": "i", "modifiers": [ "control" ] } ], "type": "basic"
                             },
                             {
-                                "conditions": [ { "bundle_identifiers": [ "io.alacritty", "com.apple.Terminal", "com.googlecode.iterm2", "com.jetbrains", "com.microsoft.VSCode" ], "type": "frontmost_application_if" } ],
-                                "from": { "key_code": "u", "modifiers": { "mandatory": [ "shift", "command", "control", "option" ] } },
-                                "to": [ { "key_code": "x", "modifiers": [ "control" ] }, { "key_code": "u", "modifiers": [ "control" ] } ], "type": "basic"
-                            },
-                            {
-                                "conditions": [ { "bundle_identifiers": [ "io.alacritty", "com.apple.Terminal", "com.googlecode.iterm2", "com.microsoft.VSCode" ], "type": "frontmost_application_if" } ],
+                                "conditions": [ { "bundle_identifiers": [ "com.apple.Terminal", "com.googlecode", "com.microsoft.VSCode" ], "type": "frontmost_application_if" } ],
                                 "from": { "key_code": "c", "modifiers": { "mandatory": [ "shift", "command", "control", "option" ] } },
                                 "to": [ { "key_code": "c", "modifiers": [ "control" ] } ], "type": "basic"
-                            },
-                            {
-                                "conditions": [ { "bundle_identifiers": [ "com.apple.Terminal" ], "type": "frontmost_application_if" } ],
-                                "from": { "key_code": "x", "modifiers": { "mandatory": [ "command" ] } },
-                                "to": [ { "key_code": "c", "modifiers": [ "command" ] } ], "type": "basic"
                             }
                         ]
                     },
@@ -146,7 +120,7 @@
                         "description": "6)  <command-slash> to <ctrl-hypen> - commenting",
                         "manipulators": [
                             {
-                                "conditions": [ { "bundle_identifiers": [ "io.alacritty", "com.apple.Terminal", "com.googlecode.iterm2" ], "type": "frontmost_application_if" } ],
+                                "conditions": [ { "bundle_identifiers": [ "com.apple.Terminal", "com.googlecode.iterm2" ], "type": "frontmost_application_if" } ],
                                 "from": { "key_code": "slash", "modifiers": { "mandatory": [ "command" ] } },
                                 "to": [ { "key_code": "hyphen", "modifiers": [ "control" ] } ], "type": "basic"
                             }
@@ -193,31 +167,16 @@
                         ]
                     },
                     {
-                        "description": "9)  <hyp-f> - iterm, <hyp-u> uppercase word in insert mode",
-                        "manipulators": [
-                            {
-                                "conditions": [ { "bundle_identifiers": [ "io.alacritty", "com.apple.Terminal", "com.googlecode.iterm2" ], "type": "frontmost_application_if" } ],
-                                "from": { "key_code": "f", "modifiers": { "mandatory": [ "shift", "command", "control", "option" ] } },
-                                "to": [ { "key_code": "x", "modifiers": [ "control" ] }, { "key_code": "f", "modifiers": [ "control" ] } ], "type": "basic"
-                            },
-                            {
-                                "conditions": [ { "bundle_identifiers": [ "io.alacritty", "com.apple.Terminal", "com.googlecode.iterm2" ], "type": "frontmost_application_if" } ],
-                                "from": { "key_code": "u", "modifiers": { "mandatory": [ "shift", "command", "control", "option" ] } },
-                                "to": [ { "key_code": "x", "modifiers": [ "control" ] }, { "key_code": "u", "modifiers": [ "control" ] } ], "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                     "description": "10)  <hyp-del> to delete word, <hyp-9> to startOfLine, <hyp-0> to endOfLine",
+                     "description": "9)  <hyp-del> to delete word, <hyp-9> to startOfLine, <hyp-0> to endOfLine",
                      "manipulators": [
                          {
-                             "conditions": [ { "bundle_identifiers": [ "io.alacritty", "com.apple.Terminal", "com.googlecode.iterm2" ], "type": "frontmost_application_if" } ],
+                             "conditions": [ { "bundle_identifiers": [ "com.apple.Terminal", "com.googlecode.iterm2" ], "type": "frontmost_application_if" } ],
                              "description": "term delete",
                              "from": { "key_code": "delete_or_backspace", "modifiers": { "mandatory": [ "shift", "command", "control", "option" ] } },
                              "to": [ { "key_code": "w", "modifiers": [ "control" ] } ], "type": "basic"
                          },
                          {
-                             "conditions": [ { "bundle_identifiers": [ "io.alacritty", "com.apple.Terminal", "com.googlecode.iterm2" ], "type": "frontmost_application_unless" } ],
+                             "conditions": [ { "bundle_identifiers": [ "com.apple.Terminal", "com.googlecode.iterm2" ], "type": "frontmost_application_unless" } ],
                              "description": "non term delete",
                              "from": { "key_code": "delete_or_backspace", "modifiers": { "mandatory": [ "shift", "command", "control", "option" ] } },
                              "to": [ { "key_code": "delete_or_backspace", "modifiers": [ "option" ] } ],

@@ -52,5 +52,6 @@
   "vscode-neovim.textDecorationsAtTop": true,
   "terminal.integrated.env.osx": {
     "FIG_NEW_SESSION": "1"
-  }
+  },
+  "workbench.colorTheme": "Default Light Modern"
 }

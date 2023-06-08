@@ -16,7 +16,6 @@ nnoremap S :action KJumpAction.Char1<cr>
 
 noremap - :action SelectInProjectView<CR>
 noremap g<cr> :action ShowIntentionActions<CR>
-" noremap g- :action ActivateProjectToolWindow<CR>
 
 noremap gd :action GotoDeclaration<CR>
 noremap gi :action GotoImplementation<CR>
