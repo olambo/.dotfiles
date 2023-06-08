@@ -38,14 +38,14 @@ using Karabiner-Elements for low level key remapping. For instance, capslock key
 Some of the keys, remaped are listed below.
 
 ```
-<hyp> h j k l -> left, down, up, right (all apps)
-<hyp> g b     -> pagedown, pageup (all apps)
-<hyp> [ ]     -> next or previous tab (all apps)
-<hyp> ( )     -> begining or end of line (all apps)
-<hyp> return  -> expand/contract pane (iTerm2, vscode, intellij) 
-<hyp> ;       -> pop list to select common applications via hotkey
-<hyp> n       -> next pane (iTerm2, vscode, intellij) 
-<cmd> c       -> copy to system clipboard from remote machine (iTerm2 Vim)
+<hyp> h j k l  -> left, down, up, right (all apps)
+<hyp> g b      -> pagedown, pageup (all apps)
+<hyp> [ ]      -> next or previous tab (all apps)
+<hyp> ( )      -> begining or end of line (all apps)
+<hyp> return   -> expand/contract pane (iTerm2, vscode, intellij) 
+<hyp> spacebar -> pop list to select common applications via hotkey
+<hyp> n        -> next pane (iTerm2, vscode, intellij) 
+<cmd> c        -> copy to system clipboard from remote machine (iTerm2 Vim)
 ```
 Vim can't directly map <kbd>hyp</kbd> keys. So where needed, have Karabiner-Elements first map a <kbd>hyp</kbd> key to key(s) that Vim can recognize.
 
