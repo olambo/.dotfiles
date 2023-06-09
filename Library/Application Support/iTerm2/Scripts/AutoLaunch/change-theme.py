@@ -1,10 +1,13 @@
+
+# Need to enable Python for iterm2
+# Have to set appearance/General/Theme to Regular otherwise this won't work
 import asyncio
 import iterm2
 
 async def changeTheme(connection,parts):
     theme_dark  = "PhoenixColorDark"
     theme_light = "PhoenixColorLight"
-    print(parts)
+    # print("parts", parts)
     
     if "dark" in parts:
         preset = await iterm2.ColorPreset.async_get(connection, theme_dark)

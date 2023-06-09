@@ -1,6 +1,5 @@
 {
-  "editor.fontSize" : 13,
-  "window.autoDetectColorScheme" : true,
+  "editor.fontSize": 13,
   "vscode-neovim.neovimExecutablePaths.darwin" : "\/usr\/local\/bin\/nvim",
   "editor.accessibilitySupport" : "off",
   "workbench.editor.showTabs" : false,
@@ -52,5 +51,9 @@
   "vscode-neovim.textDecorationsAtTop": true,
   "terminal.integrated.env.osx": {
     "FIG_NEW_SESSION": "1"
-  }
+  },
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.black-formatter"
+  },
+  "python.formatting.provider": "none"
 }

@@ -1,3 +1,6 @@
+" Open Apple menu | System Preferences | Keyboard | Shortcuts | Services
+" command shift a - Disable Search man Page Index in Terminal
+"
 " can't set in intellij
 nnoremap <c-x><c-u> <nop>
 noremap <c-x><c-p> <nop>
@@ -14,7 +17,8 @@ nnoremap <right> :action MethodDown<CR>
 nnoremap s :action KJumpAction.Char1<cr>
 nnoremap S :action KJumpAction.Char1<cr>
 
-noremap - :action SelectInProjectView<CR>
+noremap - :action RecentFiles<CR>
+noremap g- :action SelectInProjectView<CR>
 noremap g<cr> :action ShowIntentionActions<CR>
 
 noremap gd :action GotoDeclaration<CR>
@@ -24,7 +28,7 @@ noremap gr :action ShowUsages<CR>
 noremap gR :action Refactorings.QuickListPopupAction<CR>
 
 noremap gt :action Scala.TypeInfo<CR>:action ExpressionTypeInfo<CR>
-noremap gh :action Scala.TypeInfo<CR>:action ExpressionTypeInfo<CR>
+noremap gh :action QuickJavaDoc<CR>
 noremap gS :action GotoSuperMethod<CR>
 
 noremap g; :action JumpToLastChange<CR>

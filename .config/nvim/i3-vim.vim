@@ -56,10 +56,8 @@ if has('nvim')
     onchange = function(mode)
       if vim.g.vscode_style ~= mode then
 
-        -- force it dark for now
-        --vim.g.vscode_style = mode 
-        vim.g.vscode_style = 'dark' 
-        vim.o.background = 'dark'
+        vim.g.vscode_style = mode 
+        vim.o.background = mode
 
         vim.cmd('colorscheme ' .. vim.g.colorscheme)
         vim.cmd('source ' .. '~/.config/nvim/i5-statusline.vim')

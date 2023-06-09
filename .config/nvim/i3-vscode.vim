@@ -6,6 +6,7 @@ noremap gf <Cmd>call VSCodeNotify('workbench.action.showAllEditorsByMostRecently
 
 noremap gI <Cmd>call VSCodeNotify('editor.action.goToImplementation')<CR>
 noremap gh <Cmd>call VSCodeNotify('editor.action.showHover')<CR>
+noremap gt <Cmd>call VSCodeNotify('editor.action.showHover')<CR>
 
 noremap gr <Cmd>call VSCodeNotify('editor.action.goToReferences')<CR>
 noremap gR <Cmd>call VSCodeNotify('editor.action.rename')<CR>
@@ -21,4 +22,6 @@ noremap g<cr> <Cmd>call VSCodeNotify('editor.action.quickFix')<CR>
 
 noremap g= <Cmd>call VSCodeNotify('editor.action.formatDocument')<CR>
 noremap <space>s <Cmd>call VSCodeNotify('workbench.action.files.save')<CR>
+
+noremap gm <Cmd>call VSCodeNotify('workbench.action.terminal.openNativeConsole')<CR>
 
