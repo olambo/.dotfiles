@@ -14,23 +14,12 @@ end
 appWatcher = hs.application.watcher.new(applicationWatcher)
 appWatcher:start()
 
--- in iTerm2, open a low height split pane below the current one, Run vcommand-start and move back to previous pane
-hs.hotkey.bind({}, 'f6', function()
-    local function doKeyStroke(modifiers, character)
-        local event = require("hs.eventtap").event
-        event.newKeyEvent(modifiers, string.lower(character), true):post()
-        event.newKeyEvent(modifiers, string.lower(character), false):post()
-    end
-    if hs.application.frontmostApplication():name() ~= "iTerm2" then return end
-    -- doesnt appear to work remotely without an eventtap
-    hs.eventtap.keyStroke({'cmd','shift'}, 'd')
-    for i = 1,10,1 do
-        doKeyStroke({'cmd','ctrl'}, 'down')
-    end
-    hs.eventtap.keyStrokes('vcommand-start\n')
-    -- previous pane
-    doKeyStroke({'cmd'}, '[')
-end)
+local function doKeyStroke(modifiers, character)
+  --print('CHR:' .. character)
+     local event = require("hs.eventtap").event
+     event.newKeyEvent(modifiers, string.lower(character), true):post()
+     event.newKeyEvent(modifiers, string.lower(character), false):post()
+end
 
 -- position windows. If the width is already set, use an alternative.
 local function winToPos(posLR, wx, hx, wxIfAlready) 
@@ -194,6 +183,97 @@ local function queryChangedCallback(query)
   end
 end
 
+
 chooser:queryChangedCallback(queryChangedCallback)
 
-hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, "space", function() chooser:show() end)
+local function keyCodem(key, modifiers)
+  modifiers = modifiers or {}
+
+  return function()
+    hs.eventtap.event.newKeyEvent(modifiers, string.lower(key), true):post()
+    hs.eventtap.event.newKeyEvent(modifiers, string.lower(key), false):post()
+  end
+end
+
+local function keyCode(key, modifiers)
+  modifiers = modifiers or {}
+
+  return function()
+    hs.eventtap.event.newKeyEvent(modifiers, string.lower(key), true):post()
+    hs.eventtap.event.newKeyEvent(modifiers, string.lower(key), false):post()
+  end
+end
+
+local function appor(l1, l2, r1, r2)
+   capp = hs.application.frontmostApplication():name()
+   if capp == 'iTerm2' or capp == 'Code' then
+     doKeyStroke(l1, l2) 
+   else
+     doKeyStroke(r1, r2) 
+   end
+end
+
+hs.hotkey.bind({"ctrl"}, "space", function() chooser:show() end)
+hs.hotkey.bind({"ctrl"}, "j", function() doKeyStroke({}, 'pagedown') end)
+hs.hotkey.bind({"ctrl"}, "k", function() doKeyStroke({}, 'pageup') end)
+hs.hotkey.bind({"ctrl"}, "9", function() appor({}, 'home', {'ctrl'}, 'a') end)
+hs.hotkey.bind({"ctrl"}, "0", function() appor({}, 'end', {'ctrl'}, 'e') end)
+hs.hotkey.bind({"ctrl"}, "return", function() 
+  doKeyStroke({'⌘'}, 'b') 
+  end)
+
+hs.hotkey.bind({'ctrl'}, 'p', keyCode('up'), nil, keyCode('up'))
+hs.hotkey.bind({'ctrl'}, 'n', keyCode('down'), nil, keyCode('down'))
+
+copyfromiterm = hs.hotkey.new('⌘', 'c', function()
+  doKeyStroke({'ctrl'}, 'x') 
+  doKeyStroke({'ctrl'}, 'y') 
+  doKeyStroke({'⌘'}, 'c') 
+  end)
+
+hs.window.filter.new('iTerm2')
+  :subscribe(hs.window.filter.windowFocused,function() copyfromiterm:enable() end)
+  :subscribe(hs.window.filter.windowUnfocused,function() copyfromiterm:disable() end)
+
+
+send_escape = false
+last_mods = {}
+
+control_key_handler = function()
+  send_escape = false
+end
+
+control_key_timer = hs.timer.delayed.new(0.15, control_key_handler)
+
+control_handler = function(evt)
+  local new_mods = evt:getFlags()
+  if last_mods["ctrl"] == new_mods["ctrl"] then
+    return false
+  end
+  if not last_mods["ctrl"] then
+    last_mods = new_mods
+    send_escape = true
+    control_key_timer:start()
+  else
+    last_mods = new_mods
+    control_key_timer:stop()
+    if send_escape then
+      return true, {
+        hs.eventtap.event.newKeyEvent({}, 'escape', true),
+        hs.eventtap.event.newKeyEvent({}, 'escape', false),
+      }
+    end
+  end
+  return false
+end
+
+control_tap = hs.eventtap.new({hs.eventtap.event.types.flagsChanged}, control_handler)
+control_tap:start()
+
+other_handler = function(evt)
+  send_escape = false
+  return false
+end
+
+other_tap = hs.eventtap.new({hs.eventtap.event.types.keyDown}, other_handler)
+other_tap:start()
