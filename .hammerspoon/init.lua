@@ -197,7 +197,7 @@ end
 local function iTerm2VsKeyCode(l1, l2, r1, r2)
   return function()
    capp = hs.application.frontmostApplication():name()
-   if capp == 'iTerm2' or capp == 'Code' then
+   if capp == 'iTerm2' or capp == 'Code' or capp == 'Zed' then
      keyStroke(l1, l2)
    else
      keyStroke(r1, r2)
@@ -211,6 +211,15 @@ hs.hotkey.bind({'ctrl'}, 'l', keyCode('right'), nil, keyCode('right'))
 hs.hotkey.bind({'ctrl'}, 'p', keyCode('up'), nil, keyCode('up'))
 hs.hotkey.bind({'ctrl'}, 'n', keyCode('down'), nil, keyCode('down'))
 hs.hotkey.bind({'ctrl'}, 'space', function() chooser:show() end)
+hs.hotkey.bind({'ctrl'}, 'y', function() 
+  capp = hs.application.frontmostApplication():name()
+  if capp == 'iTerm2' then
+    keyStroke({'ctrl'}, 'x') 
+    keyStroke({'ctrl'}, 'a') 
+  else
+    keyStroke({'⌘'}, 'c') 
+  end
+  end)
 hs.hotkey.bind({'ctrl'}, 'return', function() 
   keyStroke({'⌘'}, 'b') 
   end)
