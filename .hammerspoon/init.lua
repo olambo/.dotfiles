@@ -89,32 +89,31 @@ local function winSize(x, y)
 end
 
 -- move left
-hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, "Left", function() winLeft() end)
+hs.hotkey.bind({"alt", "ctrl", "cmd"}, "Left", function() winLeft() end)
 
 -- move right
-hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, "right", function() winRight() end)
+hs.hotkey.bind({"alt", "ctrl", "cmd"}, "right", function() winRight() end)
 
 -- position mid
-hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, "up", function() winToPos("mid", .5, 1, .7) end)
+hs.hotkey.bind({"alt", "ctrl", "cmd"}, "up", function() winToPos("mid", .5, 1, .7) end)
 
 -- position to lower right
-hs.hotkey.bind({"shift", "alt", "ctrl", "cmd"}, "down", function() winToPos("right", .5, .5, .3) end)
+hs.hotkey.bind({"alt", "ctrl", "cmd"}, "down", function() winToPos("right", .5, .5, .3) end)
 
--- not hyperkey keys
 -- maximize window
-hs.hotkey.bind({"alt", "ctrl", "cmd"}, "Return", function() winToPos("left", 1, 1, .8) end)
+hs.hotkey.bind({"alt", "ctrl"}, "Return", function() winToPos("left", 1, 1, .8) end)
 
 -- smaller width
-hs.hotkey.bind({"alt", "ctrl", "cmd"}, "left", function() winSize(-20, 0) end, nil, function() winSize(-20, 0) end)
+hs.hotkey.bind({"alt", "ctrl"}, "left", function() winSize(-20, 0) end, nil, function() winSize(-20, 0) end)
 
 -- larger width
-hs.hotkey.bind({"alt", "ctrl", "cmd"}, "right", function() winSize(20, 0) end, nil, function() winSize(20, 0) end)
+hs.hotkey.bind({"alt", "ctrl"}, "right", function() winSize(20, 0) end, nil, function() winSize(20, 0) end)
 
 -- smaller height
-hs.hotkey.bind({"alt", "ctrl", "cmd"}, "up", function() winSize(0, -20) end, nil, function() winSize(0, -20) end)
+hs.hotkey.bind({"alt", "ctrl"}, "up", function() winSize(0, -20) end, nil, function() winSize(0, -20) end)
 
 -- larger height
-hs.hotkey.bind({"alt", "ctrl", "cmd"}, "down", function() winSize(0, 20) end, nil, function() winSize(0, 20) end)
+hs.hotkey.bind({"alt", "ctrl"}, "down", function() winSize(0, 20) end, nil, function() winSize(0, 20) end)
 
 -- 
 -- https://stackoverflow.com/questions/56751409/paste-text-from-hs-chooser-in-hammerspoon
@@ -206,18 +205,15 @@ local function iTerm2VsKeyCode(l1, l2, r1, r2)
  end
 end
 
-hs.hotkey.bind({'ctrl'}, 'space', function() chooser:show() end)
 hs.hotkey.bind({'ctrl'}, '9', iTerm2VsKeyCode({}, 'home', {'ctrl'}, 'a'))
 hs.hotkey.bind({'ctrl'}, '0', iTerm2VsKeyCode({}, 'end', {'ctrl'}, 'e'))
 hs.hotkey.bind({'ctrl'}, 'l', keyCode('right'), nil, keyCode('right'))
 hs.hotkey.bind({'ctrl'}, 'p', keyCode('up'), nil, keyCode('up'))
 hs.hotkey.bind({'ctrl'}, 'n', keyCode('down'), nil, keyCode('down'))
+hs.hotkey.bind({'ctrl'}, 'space', function() chooser:show() end)
 hs.hotkey.bind({'ctrl'}, 'return', function() 
   keyStroke({'⌘'}, 'b') 
   end)
-
-hs.hotkey.bind({'ctrl'}, 'p', keyCode('up'), nil, keyCode('up'))
-hs.hotkey.bind({'ctrl'}, 'n', keyCode('down'), nil, keyCode('down'))
 
 send_escape = false
 last_mods = {}
