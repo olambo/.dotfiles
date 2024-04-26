@@ -14,13 +14,6 @@ end
 appWatcher = hs.application.watcher.new(applicationWatcher)
 appWatcher:start()
 
-local function doKeyStroke(modifiers, character)
-  --print('CHR:' .. character)
-     local event = require("hs.eventtap").event
-     event.newKeyEvent(modifiers, string.lower(character), true):post()
-     event.newKeyEvent(modifiers, string.lower(character), false):post()
-end
-
 -- position windows. If the width is already set, use an alternative.
 local function winToPos(posLR, wx, hx, wxIfAlready) 
     local win = hs.window.focusedWindow()
@@ -186,55 +179,45 @@ end
 
 chooser:queryChangedCallback(queryChangedCallback)
 
-local function keyCodem(key, modifiers)
-  modifiers = modifiers or {}
+local function keyStroke(modifiers, key)
+    hs.eventtap.event.newKeyEvent(modifiers, string.lower(key), true):post()
+    hs.eventtap.event.newKeyEvent(modifiers, string.lower(key), false):post()
+end
 
+local function keyCodem(modifiers, key)
   return function()
     hs.eventtap.event.newKeyEvent(modifiers, string.lower(key), true):post()
     hs.eventtap.event.newKeyEvent(modifiers, string.lower(key), false):post()
   end
 end
 
-local function keyCode(key, modifiers)
-  modifiers = modifiers or {}
-
-  return function()
-    hs.eventtap.event.newKeyEvent(modifiers, string.lower(key), true):post()
-    hs.eventtap.event.newKeyEvent(modifiers, string.lower(key), false):post()
-  end
+local function keyCode(key)
+  return keyCodem({}, key)
 end
 
-local function appor(l1, l2, r1, r2)
+local function iTerm2VsKeyCode(l1, l2, r1, r2)
+  return function()
    capp = hs.application.frontmostApplication():name()
    if capp == 'iTerm2' or capp == 'Code' then
-     doKeyStroke(l1, l2) 
+     keyStroke(l1, l2)
    else
-     doKeyStroke(r1, r2) 
+     keyStroke(r1, r2)
    end
+ end
 end
 
-hs.hotkey.bind({"ctrl"}, "space", function() chooser:show() end)
-hs.hotkey.bind({"ctrl"}, "j", function() doKeyStroke({}, 'pagedown') end)
-hs.hotkey.bind({"ctrl"}, "k", function() doKeyStroke({}, 'pageup') end)
-hs.hotkey.bind({"ctrl"}, "9", function() appor({}, 'home', {'ctrl'}, 'a') end)
-hs.hotkey.bind({"ctrl"}, "0", function() appor({}, 'end', {'ctrl'}, 'e') end)
-hs.hotkey.bind({"ctrl"}, "return", function() 
-  doKeyStroke({'⌘'}, 'b') 
+hs.hotkey.bind({'ctrl'}, 'space', function() chooser:show() end)
+hs.hotkey.bind({'ctrl'}, '9', iTerm2VsKeyCode({}, 'home', {'ctrl'}, 'a'))
+hs.hotkey.bind({'ctrl'}, '0', iTerm2VsKeyCode({}, 'end', {'ctrl'}, 'e'))
+hs.hotkey.bind({'ctrl'}, 'l', keyCode('right'), nil, keyCode('right'))
+hs.hotkey.bind({'ctrl'}, 'p', keyCode('up'), nil, keyCode('up'))
+hs.hotkey.bind({'ctrl'}, 'n', keyCode('down'), nil, keyCode('down'))
+hs.hotkey.bind({'ctrl'}, 'return', function() 
+  keyStroke({'⌘'}, 'b') 
   end)
 
 hs.hotkey.bind({'ctrl'}, 'p', keyCode('up'), nil, keyCode('up'))
 hs.hotkey.bind({'ctrl'}, 'n', keyCode('down'), nil, keyCode('down'))
-
-copyfromiterm = hs.hotkey.new('⌘', 'c', function()
-  doKeyStroke({'ctrl'}, 'x') 
-  doKeyStroke({'ctrl'}, 'y') 
-  doKeyStroke({'⌘'}, 'c') 
-  end)
-
-hs.window.filter.new('iTerm2')
-  :subscribe(hs.window.filter.windowFocused,function() copyfromiterm:enable() end)
-  :subscribe(hs.window.filter.windowUnfocused,function() copyfromiterm:disable() end)
-
 
 send_escape = false
 last_mods = {}
