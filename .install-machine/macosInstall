@@ -1,55 +1,65 @@
 #! /bin/bash
--- set iterm to load preferences from custom location
 
 xcode-select --install
 
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+# Add path for home-brew
+
+# stuff java/scala/etc. probably wont be doing this again
+# term_apps=(
+# maven
+# tmux
+# node
+# )
 
 # terminal apps
 term_apps=(
 wget
 git
-tmux
 vim
 neovim
-maven
 httpie
 fzf
 ripgrep
-node
 trash
 entr
+rye
 )
 brew install ${term_apps[@]}
 
-softwareupdate --install-rosetta
-curl -fLo cs https://git.io/coursier-cli-"$(uname | tr LD ld)"
-chmod +x cs
-./cs install cs
-./cs setup
-rm cs
+git clone --separate-git-dir=$HOME/.dotfiles https://github.com/olambo/.dotfiles.git tmpdotfiles
+rsync --recursive --verbose --exclude '.git' tmpdotfiles/ $HOME/
+rm -r tmpdotfiles
+
+# softwareupdate --install-rosetta
+#   
+# curl -fLo cs https://git.io/coursier-cli-"$(uname | tr LD ld)"
+# chmod +x cs
+# ./cs install cs
+# ./cs setup
+# rm cs
 Open new terminal window
 
 #scala
 #brew tap AdoptOpenJDK/openjdk
 #brew cask install adoptopenjdk8
 
+cask_apps=(
+keyboard-maestro
+nordvpn
+enpass
+)
 # macos cask apps
 cask_apps=(
 karabiner-elements
 hammerspoon
-keyboard-maestro
 alfred
-enpass
 betterzip
-nordvpn
 vlc
 iterm2
+visual-studio-code
 )
 brew install --appdir="/Applications" ${cask_apps[@]}
-
-# This adds the install directory to Alfred’s search path so you can find installed applications with Alfred.
-# brew cask alfred link
 
 # Remove brew cruft
 brew cleanup
@@ -59,32 +69,20 @@ git clone https://github.com/softmoth/zsh-vim-mode ~/.config/zsh-vim-mode
 curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
-brew install --cask visual-studio-code
-brew install --cask intellij-idea-ce
+# brew install --cask intellij-idea-ce
 brew install cormacrelf/tap/dark-notify
 
 dot remote set-url origin git@github.com:olambo/.dotfiles.git
 
-echo "brew install is done!"
-# Install Jetbrains Mono - https://www.jetbrains.com/lp/mono/#how-to-install
-#
-# follow the instructions at https://github.com/olambo/.dotfiles
-#
+# set up colors for iterm2
 # iterm2/Profiles/colors - install PhonixColorDark(Light)
 # iterm2/General/preferences/ - Load preferences from /Users/owl/.config/iterm
 #
 # stuff to do
-# Dropbox - login
 # Enpass - icloud sync login
 # Alfred - key shortcut
 # karabiner-elements - start, add permissions
-# Keyboard Maestro - start and sync
-# Vim - PlugInstall, CocInstall coc-metals
+# Vim - PlugInstall
 # Email - add account
 
-# on some machines you may want
-# Tunnelblic - login and add key
-# brew cask install vmware-fusion
-
-# Old versions
-# keyboard-maestro 8 (in ZBackup)
+echo "install is done!"
