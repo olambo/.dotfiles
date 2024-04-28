@@ -1,6 +1,10 @@
 " Open Apple menu | System Preferences | Keyboard | Shortcuts | Services
 " command shift a - Disable Search man Page Index in Terminal
 "
+" turn off various accented forms of the character 
+" in terminal type the following line
+"      defaults write -g ApplePressAndHoldEnabled -bool false
+"
 " can't set in intellij
 nnoremap <c-x><c-u> <nop>
 noremap <c-x><c-p> <nop>
@@ -9,13 +13,9 @@ set visualbell
 set noerrorbells
 set multiple-cursors
 set commentary
-set sneak
 
 nnoremap <left> :action MethodUp<CR>
 nnoremap <right> :action MethodDown<CR>
-
-nnoremap s :action KJumpAction.Char1<cr>
-nnoremap S :action KJumpAction.Char1<cr>
 
 noremap - :action RecentFiles<CR>
 noremap g- :action SelectInProjectView<CR>
@@ -43,7 +43,6 @@ noremap gE :action GotoPreviousError<CR>
 noremap gb :action ToggleLineBreakpoint<CR>
 noremap gB :action ViewBreakpoints<CR>
 
-noremap gf :action FileStructurePopup<CR>
 noremap gO :action ChooseRunConfiguration<CR>
 noremap go :action ContextRun<CR>
 
@@ -58,10 +57,9 @@ map <C-A-l> <Plug>NextOccurrence
 
 map <S-A-l> <Plug>SkipOccurrence
 map <A-h> <Plug>RemoveOccurrence
-
 " not editor buffer related
-noremap <leader>t :action JumpToLastWindow<CR>
-noremap <leader>w :action RestoreDefaultLayout<CR>
+" noremap <leader>t :action JumpToLastWindow<CR>
+" noremap <leader>w :action RestoreDefaultLayout<CR>
 
-noremap <leader>f :action FindInPath<CR>
-
+noremap gF :action FileStructurePopup<CR>
+noremap gf :action FindInPath<CR>

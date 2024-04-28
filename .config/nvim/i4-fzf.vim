@@ -6,9 +6,9 @@ noremap g<leader> :call fzf#run({'source': 'cat ~/.config/nvim/bin/lkeyFunctions
 " list buffers, mapped from <hyp-f> via karabiner elements
 nnoremap <silent> <c-x><c-f> :Buffers<CR>
 " find files of wanted types 
-nnoremap <silent> gf :call ZSFiles()<cr>
+nnoremap <silent> gF :call ZSFiles()<cr>
 " find IN files 
-nnoremap <silent> <Leader>f :RG<CR>
+nnoremap <silent> gf :RG<CR>
 
 function! ZSFiles()
   let rg= "rg --type-add 'sc:*.worksheet.sc' -t sc -t md -t scala --glob='!target/' --glob='!Library/' --files " . fnameescape(getcwd())

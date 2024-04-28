@@ -76,12 +76,11 @@ if $TERM_PROGRAM == "Apple_Terminal"
   else
     colorscheme PaperColor
   endif
-  vnoremap <c-x><c-y> "+y
-  nnoremap <c-x><c-y><c-x><c-y> V"+y
+  vnoremap <c-y> "+y
 else
   " yank into system clipboard without yanking into vim clipboard/reg0
-  vnoremap <c-x><c-y> :OSCYankVisual<CR>
-  nnoremap <c-x><c-y><c-x><c-y> :call YankLine()<CR>
+  vnoremap <c-y> :OSCYankVisual<CR>
+  nnoremap <c-y> :call YankLine()<CR>
   if has('nvim')
     let g:colorscheme = "vscode"
   endif

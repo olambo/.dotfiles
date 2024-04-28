@@ -197,7 +197,7 @@ end
 local function iTerm2VsKeyCode(l1, l2, r1, r2)
   return function()
    capp = hs.application.frontmostApplication():name()
-   if capp == 'iTerm2' or capp == 'Code' or capp == 'Zed' then
+   if capp == 'iTerm2' or capp == 'Code' or capp == 'Zed' or capp == 'PyCharm' then
      keyStroke(l1, l2)
    else
      keyStroke(r1, r2)
@@ -205,24 +205,26 @@ local function iTerm2VsKeyCode(l1, l2, r1, r2)
  end
 end
 
+local function expandContract()
+  return function()
+   capp = hs.application.frontmostApplication():name()
+   if capp == 'PyCharm' then
+     keyStroke({'shift', '⌘'}, 'f12')
+   elseif capp == 'iTerm2' then
+     keyStroke({'shift', '⌘'}, 'return') 
+   else
+     keyStroke({'⌘'}, 'b') 
+   end
+ end
+end
+
 hs.hotkey.bind({'ctrl'}, '9', iTerm2VsKeyCode({}, 'home', {'ctrl'}, 'a'))
 hs.hotkey.bind({'ctrl'}, '0', iTerm2VsKeyCode({}, 'end', {'ctrl'}, 'e'))
-hs.hotkey.bind({'ctrl'}, 'l', keyCode('right'), nil, keyCode('right'))
+hs.hotkey.bind({'ctrl'}, 'j', keyCode('down'), nil, keyCode('down'))
 hs.hotkey.bind({'ctrl'}, 'p', keyCode('up'), nil, keyCode('up'))
-hs.hotkey.bind({'ctrl'}, 'n', keyCode('down'), nil, keyCode('down'))
+hs.hotkey.bind({'ctrl'}, 'l', keyCode('right'), nil, keyCode('right'))
+hs.hotkey.bind({'ctrl'}, 'return', expandContract())
 hs.hotkey.bind({'ctrl'}, 'space', function() chooser:show() end)
-hs.hotkey.bind({'ctrl'}, 'y', function() 
-  capp = hs.application.frontmostApplication():name()
-  if capp == 'iTerm2' then
-    keyStroke({'ctrl'}, 'x') 
-    keyStroke({'ctrl'}, 'a') 
-  else
-    keyStroke({'⌘'}, 'c') 
-  end
-  end)
-hs.hotkey.bind({'ctrl'}, 'return', function() 
-  keyStroke({'⌘'}, 'b') 
-  end)
 
 send_escape = false
 last_mods = {}

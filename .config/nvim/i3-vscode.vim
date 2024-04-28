@@ -9,7 +9,7 @@ noremap gh <Cmd>call VSCodeNotify('editor.action.showHover')<CR>
 noremap gt <Cmd>call VSCodeNotify('editor.action.showHover')<CR>
 
 noremap gr <Cmd>call VSCodeNotify('editor.action.goToReferences')<CR>
-noremap gR <Cmd>call VSCodeNotify('editor.action.rename')<CR>
+noremap cd <Cmd>call VSCodeNotify('editor.action.rename')<CR>
 
 noremap gk <Cmd>call VSCodeNotify('workbench.action.navigateBack')<CR>
 noremap gj <Cmd>call VSCodeNotify('workbench.action.navigateForward')<CR>
@@ -21,7 +21,11 @@ noremap go <Cmd>call VSCodeNotify('workbench.action.debug.start')<CR>
 noremap g<cr> <Cmd>call VSCodeNotify('editor.action.quickFix')<CR>
 
 noremap g= <Cmd>call VSCodeNotify('editor.action.formatDocument')<CR>
-noremap <space>s <Cmd>call VSCodeNotify('workbench.action.files.save')<CR>
 
 noremap gm <Cmd>call VSCodeNotify('workbench.action.terminal.openNativeConsole')<CR>
 
+nnoremap <leader><leader> <Cmd>call VSCodeNotify('workbench.action.focusNextGroup')<CR>
+nnoremap <leader>v <Cmd>call VSCodeNotify('workbench.action.splitEditorRight')<CR>
+nnoremap <leader>s <Cmd>call VSCodeNotify('workbench.action.splitEditorDown')<CR>
+nnoremap <leader>q <Cmd>call VSCodeNotify('workbench.action.closeActiveEditor')<CR>
+nnoremap <leader>f <Cmd>call VSCodeNotify('workbench.action.closeActiveEditor')<CR>
