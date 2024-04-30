@@ -30,11 +30,7 @@ rm -r tmpdotfiles
 ```
 ## Apps used to modify keyboard mappings
 
-### [Karabiner-Elements](https://pqrs.org/osx/karabiner/)
-Deprecated and removed - causing memory leaks.
-Much of its functionality was replicated using Hammerspoon
-
-### macos
+### Macos
 Change capslock to be control key
 
 ### [Hammerspoon](https://www.hammerspoon.org)
@@ -43,7 +39,7 @@ Change capslock to be control key
 Some of the keys, remaped are listed below.
 
 ```
-<control> j l p -> down, right, up (all apps)
+<control> j l p    -> down, right, up (all apps)
 <control> ( )      -> begining or end of line (all apps)
 <control> y        -> copy to system clipboard from remote machine (iTerm2 Vim)
 <control> return   -> expand/contract pane (iTerm2, vscode, intellij) 
