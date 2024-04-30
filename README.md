@@ -31,25 +31,22 @@ rm -r tmpdotfiles
 ## Apps used to modify keyboard mappings
 
 ### [Karabiner-Elements](https://pqrs.org/osx/karabiner/)
-using Karabiner-Elements for low level key remapping. For instance, capslock key
-- <kbd>esc</kbd> when pressed and immediately released
-- <kbd>hyp</kbd> key (<kbd>shift</kbd>+<kbd>ctrl</kbd>+<kbd>option</kbd>+<kbd>command</kbd>) + normal key
+Deprecated and removed - causing memory leaks.
+Much of its functionality was replicated using Hammerspoon
+
+### macos
+Change capslock to be control key
+
+### [Hammerspoon](https://www.hammerspoon.org)
+- <kbd>esc</kbd> when control pressed and immediately released
 
 Some of the keys, remaped are listed below.
 
 ```
-<hyp> h j k l  -> left, down, up, right (all apps)
-<hyp> g b      -> pagedown, pageup (all apps)
-<hyp> [ ]      -> next or previous tab (all apps)
-<hyp> ( )      -> begining or end of line (all apps)
-<hyp> return   -> expand/contract pane (iTerm2, vscode, intellij) 
-<hyp> spacebar -> pop list to select common applications via hotkey
-<hyp> n        -> next pane (iTerm2, vscode, intellij) 
-<cmd> c        -> copy to system clipboard from remote machine (iTerm2 Vim)
+<control> j l p -> down, right, up (all apps)
+<control> ( )      -> begining or end of line (all apps)
+<control> y        -> copy to system clipboard from remote machine (iTerm2 Vim)
+<control> return   -> expand/contract pane (iTerm2, vscode, intellij) 
+<control> spacebar -> pop list to select common applications via hotkey (all apps)
 ```
-Vim can't directly map <kbd>hyp</kbd> keys. So where needed, have Karabiner-Elements first map a <kbd>hyp</kbd> key to key(s) that Vim can recognize.
-
-### [Hammerspoon](https://www.hammerspoon.org)
-Using hammerspoon to set some <kbd>hyp</kbd> keys to open various applications and position windows
-
 
