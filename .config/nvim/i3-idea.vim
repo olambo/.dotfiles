@@ -6,8 +6,10 @@
 "      defaults write -g ApplePressAndHoldEnabled -bool false
 "
 " can't set in intellij
-nnoremap <c-x><c-u> <nop>
-noremap <c-x><c-p> <nop>
+" nnoremap <c-x><c-u> <nop>
+" noremap <c-x><c-p> <nop>
+
+sethandler a:vim
 
 set visualbell
 set noerrorbells

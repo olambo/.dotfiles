@@ -1,6 +1,9 @@
+" allow confim quit
+nnoremap <leader>f :conf q<cr>
+
 " use hyp-m or cmd-/ to comment 
-nmap <C-_> gcc
-xmap <C-_> gc
+" nmap <C-_> gcc
+" xmap <C-_> gc
 
 let g:undotree_SplitWidth = 50
 nnoremap <f5> :UndotreeToggle<CR>

@@ -116,6 +116,12 @@ hs.hotkey.bind({"alt", "ctrl"}, "up", function() winSize(0, -20) end, nil, funct
 hs.hotkey.bind({"alt", "ctrl"}, "down", function() winSize(0, 20) end, nil, function() winSize(0, 20) end)
 
 -- 
+
+local function keyStroke(modifiers, key)
+    hs.eventtap.event.newKeyEvent(modifiers, string.lower(key), true):post()
+    hs.eventtap.event.newKeyEvent(modifiers, string.lower(key), false):post()
+end
+
 -- https://stackoverflow.com/questions/56751409/paste-text-from-hs-chooser-in-hammerspoon
 local chooser
 
@@ -127,6 +133,8 @@ local chooserDict = {
     ["i"] = "IntelliJ IDEA",
     ["v"] = "Visual Studio Code",
     ["s"] = "Safari",
+    ["l"] = "Safari",
+    ["b"] = "Safari",
     ["m"] = "Mail",
     ["f"] = "Finder",
     ["n"] = "iTermN",
@@ -134,14 +142,15 @@ local chooserDict = {
 
 local function chooserApp(appChar)
     local app = chooserDict[appChar]
-    -- print('appChar:'..appChar)
+    -- print (appChar, 'chooserApp:'..app..'.')
     if (appChar == ';') then app = prvapp end
     if (app == nil) then return end
     if app == "iTerm2" then app = "iTerm" end
     if app == "IntelliJ IDEA" then app = "IntelliJ IDEA CE" end
     if app == "PyCharm" then app = "PyCharm CE" end
-    -- print ('chooserApp:'..app..'.')
-    hs.application.launchOrFocus(app)
+    if (appChar ~= 'b') then hs.application.launchOrFocus(app) end
+    if appChar == 'b' then keyStroke({'shift', 'ctrl', '⌥', '⌘'}, 'b') end
+    if appChar == 'l' then keyStroke({'⌥', '⌘'}, 'f') end
 end
 
 local function chooserChoice(localchoice)
@@ -160,6 +169,8 @@ chooser:choices({
   { ["text"] = "Intellij",   ["command"] = 'i'},
   { ["text"] = "Vscode",     ["command"] = 'v'},
   { ["text"] = "Safari",     ["command"] = 's'},
+  { ["text"] = "Lookup-safari",    ["command"] = 'l'},
+  { ["text"] = "Brave",      ["command"] = 'b'},
   { ["text"] = "Mail",       ["command"] = 'm'},
   { ["text"] = "Finder",     ["command"] = 'f'},
   { ["text"] = "Notes-term", ["command"] = 'n'},
@@ -174,14 +185,7 @@ local function queryChangedCallback(query)
      chooserApp(query)
   end
 end
-
-
 chooser:queryChangedCallback(queryChangedCallback)
-
-local function keyStroke(modifiers, key)
-    hs.eventtap.event.newKeyEvent(modifiers, string.lower(key), true):post()
-    hs.eventtap.event.newKeyEvent(modifiers, string.lower(key), false):post()
-end
 
 local function keyCodem(modifiers, key)
   return function()
@@ -221,8 +225,10 @@ end
 hs.hotkey.bind({'ctrl'}, '9', iTerm2VsKeyCode({}, 'home', {'ctrl'}, 'a'))
 hs.hotkey.bind({'ctrl'}, '0', iTerm2VsKeyCode({}, 'end', {'ctrl'}, 'e'))
 hs.hotkey.bind({'ctrl'}, 'j', keyCode('down'), nil, keyCode('down'))
-hs.hotkey.bind({'ctrl'}, 'p', keyCode('up'), nil, keyCode('up'))
+hs.hotkey.bind({'ctrl'}, 'k', keyCode('up'), nil, keyCode('up'))
 hs.hotkey.bind({'ctrl'}, 'l', keyCode('right'), nil, keyCode('right'))
+hs.hotkey.bind({'ctrl'}, 'm', keyCodem({'shift', 'command'}, ']'), nil, keyCodem({'shift', 'command'}, ']'))
+hs.hotkey.bind({'shift', 'ctrl'}, 'm', keyCodem({'shift', 'command'}, '['), nil, keyCodem({'shift', 'command'}, '['))
 hs.hotkey.bind({'ctrl'}, 'return', expandContract())
 hs.hotkey.bind({'ctrl'}, 'space', function() chooser:show() end)
 

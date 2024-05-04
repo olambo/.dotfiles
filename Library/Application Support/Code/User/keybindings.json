@@ -1,11 +1,6 @@
 // Place your key bindings in this file to override the defaults
 [
     {
-        "command": "vscode-neovim.escape",
-        "key": "Escape",
-        "when": "editorTextFocus && neovim.init"
-    },
-    {
         "key": "cmd+enter",
         "command": "workbench.action.togglePanel",
         "when": "!terminalFocus"
@@ -21,65 +16,21 @@
         "when": "editorHasCodeActionsProvider && editorTextFocus && !editorReadonly"
     },
     {
-        "key": "shift+ctrl+alt+cmd+enter",
-        "command": "workbench.action.toggleSidebarVisibility"
-    },
-    {
-        "key": "shift+ctrl+alt+cmd+a",
+        "key": "ctrl+a",
         "command": "workbench.action.showCommands"
-    },
-    {
-        "key": "shift+ctrl+alt+cmd+f",
-        "command": "workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup"
-    },
-    {
-        "key": "ctrl+x ctrl+x",
-        "command": "type",
-        "args": { "text": "'" },
-        "when": "editorTextFocus"
     },
     {
         "key": "cmd+o",
         "command": "workbench.action.quickOpen"
     },
     {
-        "key": "shift shift",
-        "command": "workbench.action.quickOpen"
+        "key": "down",
+        "command": "workbench.action.focusActiveEditorGroup",
+        "when": "terminalFocus && neovim.mode != 'insert'"
     },
     {
-        "key": "alt+h",
-        "command": "cursorUndo",
-        "when": "editorTextFocus"
-    },
-    {
-        "key": "alt+j",
-        "command": "editor.action.insertCursorBelow",
-        "when": "editorTextFocus"
-    },
-    {
-        "key": "alt+k",
-        "command": "editor.action.insertCursorAbove",
-        "when": "editorTextFocus"
-    },
-    {
-        "key": "shift+alt+l",
-        "command": "editor.action.changeAll",
-        "when": "editorTextFocus"
-    }, 
-    {
-        "key": "alt+l",
-        "command": "editor.action.addSelectionToNextFindMatch",
-        "when": "editorFocus"
-    },
-        {
-        "key": "ctrl-x ctrl-u",
-        "command":"undo",
-        "when": "editorTextFocus && neovim.ctrlKeysNormal && neovim.mode == 'insert'",
-    }, 
-    {
-       "key": "ctrl-x ctrl-p",
-        "command":"vscode-neovim.send",
-        "when": "editorTextFocus && neovim.ctrlKeysNormal",
-        "args": "<c-x><c-p>"
-    } 
+        "key": "down",
+        "command": "mojo.execFileInTerminal",
+        "when": "!terminalFocus && neovim.mode != 'insert'"
+    }
 ]  
