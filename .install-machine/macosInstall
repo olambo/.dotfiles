@@ -44,14 +44,15 @@ Open new terminal window
 #brew tap AdoptOpenJDK/openjdk
 #brew cask install adoptopenjdk8
 
+#deprecated. enpass installed from appstore
 cask_apps=(
+karabiner-elements
 keyboard-maestro
 nordvpn
 enpass
 )
 # macos cask apps
 cask_apps=(
-karabiner-elements
 hammerspoon
 alfred
 betterzip
