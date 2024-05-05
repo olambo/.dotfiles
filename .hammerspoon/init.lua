@@ -5,11 +5,11 @@ function applicationWatcher(appName, eventType, appObject)
     -- appName is no good. Want bundleID
     if (eventType == hs.application.watcher.deactivated) then
         capp = hs.application.frontmostApplication():bundleID()
-        if capp ~= 'loginwindow' and appName ~= 'loginwindow' then
+        if capp ~= 'com.apple.loginwindow' and appName ~= 'loginwindow' then
             if (cap ~= curapp) then prvapp = curapp end
             curapp = capp
         end
-        print("prvapp:" .. prvapp .. " curapp:" .. curapp)
+        -- print("prvapp:" .. prvapp .. " curapp:" .. curapp)
     end
 end
 appWatcher = hs.application.watcher.new(applicationWatcher)
@@ -119,29 +119,19 @@ hs.hotkey.bind({"alt", "ctrl"}, "down", function() winSize(0, 20) end, nil, func
 -- 
 
 local function keyStroke(modifiers, key)
-    hs.eventtap.event.newKeyEvent(modifiers, string.lower(key), true):post()
-    hs.eventtap.event.newKeyEvent(modifiers, string.lower(key), false):post()
+    hs.eventtap.keyStroke(modifiers, key, 0)
 end
 
 local function keyCodem(modifiers, key)
-  return function()
-    hs.eventtap.event.newKeyEvent(modifiers, string.lower(key), true):post()
-    hs.eventtap.event.newKeyEvent(modifiers, string.lower(key), false):post()
-  end
-end
-
--- weird. works for chooser but not vim pop downs
-local function keyCodex(key)
-  return function()
-    hs.eventtap.event.newKeyEvent({}, true):post()
-    hs.eventtap.event.newKeyEvent(string.lower(key), true):post()
-    hs.eventtap.event.newKeyEvent(string.lower(key), false):post()
-    hs.eventtap.event.newKeyEvent({}, false):post()
-  end
+  return function() hs.eventtap.keyStroke(modifiers, key, 0) end
 end
 
 local function keyCode(key)
-  return keyCodem({}, key)
+  -- use newKeyEvent to get down and up working in chooser
+  return function()
+    hs.eventtap.event.newKeyEvent(key, true):post()
+    hs.eventtap.event.newKeyEvent(key, false):post()
+  end
 end
 
 -- https://stackoverflow.com/questions/56751409/paste-text-from-hs-chooser-in-hammerspoon
@@ -154,7 +144,7 @@ local chooserDict = {
     ["s"] = "com.apple.Safari",
     ["l"] = "com.apple.Safari",
     ["b"] = "com.apple.Safari",
-    ["m"] = "com.apple.mai",
+    ["m"] = "com.apple.mail",
     ["f"] = "om.apple.finder",
     ["n"] = "com.apple.Notes",
     [" "] = " ",
@@ -163,7 +153,7 @@ local chooserDict = {
 local function chooserApp(appChar)
     local app = chooserDict[appChar]
     if (appChar == ' ') then app = prvapp end
-    print ('switch to ' .. appChar ..':'.. app)
+    -- print ('switch to ' .. appChar ..':'.. app)
     if (app == nil) then return end
     if (appChar ~= 'b') then hs.application.launchOrFocusByBundleID(app) end
     if appChar == 'b' then keyStroke({'shift', 'ctrl', '⌥', '⌘'}, 'b') end
@@ -205,7 +195,7 @@ chooser:queryChangedCallback(queryChangedCallback)
 local function iTerm2VsKeyCode(l1, l2, r1, r2)
   return function()
    capp = hs.application.frontmostApplication():bundleID()
-   if capp == 'iTerm2' or capp == 'Code' or capp == 'Zed' or capp == 'PyCharm' then
+   if capp == 'com.googlecode.iterm2' or capp == 'com.microsoft.VSCode' or capp == 'dev.zed.Zed' or capp == 'com.jetbrains.pycharm.ce' then
      keyStroke(l1, l2)
    else
      keyStroke(r1, r2)
