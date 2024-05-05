@@ -1,14 +1,15 @@
 hs.ipc.cliInstall()
-curapp = hs.application.frontmostApplication():name()
-prvapp = hs.application.frontmostApplication():name()
+curapp = hs.application.frontmostApplication():bundleID()
+prvapp = hs.application.frontmostApplication():bundleID()
 function applicationWatcher(appName, eventType, appObject)
+    -- appName is no good. Want bundleID
     if (eventType == hs.application.watcher.deactivated) then
-        capp = hs.application.frontmostApplication():name()
+        capp = hs.application.frontmostApplication():bundleID()
         if capp ~= 'loginwindow' and appName ~= 'loginwindow' then
-            prvapp = appName
+            if (cap ~= curapp) then prvapp = curapp end
             curapp = capp
         end
-        -- print("prvapp " .. prvapp .. " curapp " .. curapp)
+        print("prvapp:" .. prvapp .. " curapp:" .. curapp)
     end
 end
 appWatcher = hs.application.watcher.new(applicationWatcher)
@@ -122,33 +123,49 @@ local function keyStroke(modifiers, key)
     hs.eventtap.event.newKeyEvent(modifiers, string.lower(key), false):post()
 end
 
+local function keyCodem(modifiers, key)
+  return function()
+    hs.eventtap.event.newKeyEvent(modifiers, string.lower(key), true):post()
+    hs.eventtap.event.newKeyEvent(modifiers, string.lower(key), false):post()
+  end
+end
+
+-- weird. works for chooser but not vim pop downs
+local function keyCodex(key)
+  return function()
+    hs.eventtap.event.newKeyEvent({}, true):post()
+    hs.eventtap.event.newKeyEvent(string.lower(key), true):post()
+    hs.eventtap.event.newKeyEvent(string.lower(key), false):post()
+    hs.eventtap.event.newKeyEvent({}, false):post()
+  end
+end
+
+local function keyCode(key)
+  return keyCodem({}, key)
+end
+
 -- https://stackoverflow.com/questions/56751409/paste-text-from-hs-chooser-in-hammerspoon
 local chooser
 
 local chooserDict = {
-    [";"] = ";",
-    ["d"] = "Dash",
-    ["u"] = "iTerm2",
-    ["p"] = "PyCharm",
-    ["i"] = "IntelliJ IDEA",
-    ["v"] = "Visual Studio Code",
-    ["s"] = "Safari",
-    ["l"] = "Safari",
-    ["b"] = "Safari",
-    ["m"] = "Mail",
-    ["f"] = "Finder",
-    ["n"] = "iTermN",
+    ["u"] = "com.googlecode.iterm2",
+    ["p"] = "com.jetbrains.pycharm.ce",
+    ["v"] = "com.microsoft.VSCode",
+    ["s"] = "com.apple.Safari",
+    ["l"] = "com.apple.Safari",
+    ["b"] = "com.apple.Safari",
+    ["m"] = "com.apple.mai",
+    ["f"] = "om.apple.finder",
+    ["n"] = "com.apple.Notes",
+    [" "] = " ",
 }
 
 local function chooserApp(appChar)
     local app = chooserDict[appChar]
-    -- print (appChar, 'chooserApp:'..app..'.')
-    if (appChar == ';') then app = prvapp end
+    if (appChar == ' ') then app = prvapp end
+    print ('switch to ' .. appChar ..':'.. app)
     if (app == nil) then return end
-    if app == "iTerm2" then app = "iTerm" end
-    if app == "IntelliJ IDEA" then app = "IntelliJ IDEA CE" end
-    if app == "PyCharm" then app = "PyCharm CE" end
-    if (appChar ~= 'b') then hs.application.launchOrFocus(app) end
+    if (appChar ~= 'b') then hs.application.launchOrFocusByBundleID(app) end
     if appChar == 'b' then keyStroke({'shift', 'ctrl', '⌥', '⌘'}, 'b') end
     if appChar == 'l' then keyStroke({'⌥', '⌘'}, 'f') end
 end
@@ -162,11 +179,8 @@ end
 chooser = hs.chooser.new(chooserChoice)
 
 chooser:choices({
-  { ["text"] = ";",          ["command"] = ';'},
-  { ["text"] = "Dash",       ["command"] = 'd'},
   { ["text"] = "Unix-iterm", ["command"] = 'u'},
   { ["text"] = "Pycharm",    ["command"] = 'p'},
-  { ["text"] = "Intellij",   ["command"] = 'i'},
   { ["text"] = "Vscode",     ["command"] = 'v'},
   { ["text"] = "Safari",     ["command"] = 's'},
   { ["text"] = "Lookup-safari",    ["command"] = 'l'},
@@ -174,6 +188,7 @@ chooser:choices({
   { ["text"] = "Mail",       ["command"] = 'm'},
   { ["text"] = "Finder",     ["command"] = 'f'},
   { ["text"] = "Notes-term", ["command"] = 'n'},
+  { ["text"] = "<space> previous app",          ["command"] = ' '},
 })
 
 local function queryChangedCallback(query)
@@ -187,20 +202,9 @@ local function queryChangedCallback(query)
 end
 chooser:queryChangedCallback(queryChangedCallback)
 
-local function keyCodem(modifiers, key)
-  return function()
-    hs.eventtap.event.newKeyEvent(modifiers, string.lower(key), true):post()
-    hs.eventtap.event.newKeyEvent(modifiers, string.lower(key), false):post()
-  end
-end
-
-local function keyCode(key)
-  return keyCodem({}, key)
-end
-
 local function iTerm2VsKeyCode(l1, l2, r1, r2)
   return function()
-   capp = hs.application.frontmostApplication():name()
+   capp = hs.application.frontmostApplication():bundleID()
    if capp == 'iTerm2' or capp == 'Code' or capp == 'Zed' or capp == 'PyCharm' then
      keyStroke(l1, l2)
    else
@@ -211,7 +215,7 @@ end
 
 local function expandContract()
   return function()
-   capp = hs.application.frontmostApplication():name()
+   capp = hs.application.frontmostApplication():bundleID()
    if capp == 'PyCharm' then
      keyStroke({'shift', '⌘'}, 'f12')
    elseif capp == 'iTerm2' then
