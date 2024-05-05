@@ -1,10 +1,13 @@
+-- watch the frontmost application for switching. there is a switcher - perhaps better to use that
+--
 hs.ipc.cliInstall()
+-- why can't these be local variables. Is it because they are no captured by any object thats staying around
 curapp = hs.application.frontmostApplication():bundleID()
 prvapp = hs.application.frontmostApplication():bundleID()
-function applicationWatcher(appName, eventType, appObject)
+local function applicationWatcher(appName, eventType, appObject)
     -- appName is no good. Want bundleID
     if (eventType == hs.application.watcher.deactivated) then
-        capp = hs.application.frontmostApplication():bundleID()
+        local capp = hs.application.frontmostApplication():bundleID()
         if capp ~= 'com.apple.loginwindow' and appName ~= 'loginwindow' then
             if (cap ~= curapp) then prvapp = curapp end
             curapp = capp
@@ -15,6 +18,8 @@ end
 appWatcher = hs.application.watcher.new(applicationWatcher)
 appWatcher:start()
 
+-- key events
+--
 local function keyStroke(modifiers, key)
     hs.eventtap.keyStroke(modifiers, key, 0)
 end
@@ -24,14 +29,15 @@ local function keyCodem(modifiers, key)
 end
 
 local function keyCode(key)
-  -- use newKeyEvent to get down and up working in chooser
+  -- use newKeyEvent to get down and up working in chooser. note I'm not adding empty modifiers for the first event
   return function()
     hs.eventtap.event.newKeyEvent(key, true):post()
-    hs.eventtap.event.newKeyEvent(key, false):post()
+    hs.eventtap.event.newKeyEvent({}, key, false):post()
   end
 end
 
--- https://stackoverflow.com/questions/56751409/paste-text-from-hs-chooser-in-hammerspoon
+-- chooser stuff
+--
 local chooser
 
 local chooserDict = {
@@ -102,7 +108,7 @@ end
 
 local function expandContract()
   return function()
-   capp = hs.application.frontmostApplication():bundleID()
+   local capp = hs.application.frontmostApplication():bundleID()
    if capp == 'PyCharm' then
      keyStroke({'shift', '⌘'}, 'f12')
    elseif capp == 'iTerm2' then
