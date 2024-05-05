@@ -1,3 +1,9 @@
+-- its a bit of a pain to reaload via the hammerspoon console. Uncomment this when adding new stuff
+-- hs.hotkey.bind({"cmd", "alt", "ctrl"}, "R", function()
+--   hs.reload()
+-- end)
+-- hs.alert.show("Config loaded")
+
 -- watch the frontmost application for switching. there is a switcher - perhaps better to use that
 --
 hs.ipc.cliInstall()
