@@ -25,5 +25,4 @@ noremap g= <Cmd>call VSCodeNotify('editor.action.formatDocument')<CR>
 nnoremap <leader><leader> <Cmd>call VSCodeNotify('workbench.action.focusNextGroup')<CR>
 nnoremap <leader>v <Cmd>call VSCodeNotify('workbench.action.splitEditorRight')<CR>
 nnoremap <leader>s <Cmd>call VSCodeNotify('workbench.action.splitEditorDown')<CR>
-nnoremap <leader>q <Cmd>call VSCodeNotify('workbench.action.closeActiveEditor')<CR>
 nnoremap <leader>f <Cmd>call VSCodeNotify('workbench.action.closeActiveEditor')<CR>
