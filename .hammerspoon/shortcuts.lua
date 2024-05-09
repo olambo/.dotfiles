@@ -1,28 +1,29 @@
 -- its a bit of a pain to reaload via the hammerspoon console. Uncomment this when adding new stuff
--- hs.hotkey.bind({"cmd", "alt", "ctrl"}, "R", function()
---   hs.reload()
--- end)
--- hs.alert.show("Config loaded")
+hs.hotkey.bind({"cmd", "alt", "ctrl"}, "R", function()
+  hs.reload()
+end)
+hs.alert.show("Config loaded")
 
 -- watch the frontmost application for switching. there is a switcher - perhaps better to use that
 --
-hs.ipc.cliInstall()
--- why can't these be local variables. Is it because they are no captured by any object thats staying around
-curapp = hs.application.frontmostApplication():bundleID()
-prvapp = hs.application.frontmostApplication():bundleID()
-local function applicationWatcher(appName, eventType, appObject)
-    -- appName is no good. Want bundleID
-    if (eventType == hs.application.watcher.deactivated) then
-        local capp = hs.application.frontmostApplication():bundleID()
-        if capp ~= 'com.apple.loginwindow' and appName ~= 'loginwindow' then
-            if (cap ~= curapp) then prvapp = curapp end
-            curapp = capp
-        end
-        -- print("prvapp:" .. prvapp .. " curapp:" .. curapp)
-    end
-end
-appWatcher = hs.application.watcher.new(applicationWatcher)
-appWatcher:start()
+-- hs.ipc.cliInstall()
+-- -- why can't these be local variables. Is it because they are then not captured by any object that's staying around
+-- curapp = hs.application.frontmostApplication():bundleID()
+-- prvapp = hs.application.frontmostApplication():bundleID()
+-- local function applicationWatcher(appName, eventType, appObject)
+--     -- appName is no good. Want bundleID
+--     if (eventType == hs.application.watcher.deactivated) then
+--         local capp = hs.application.frontmostApplication()
+--         if capp ~= nil then capp = capp:bundleID() end
+--         if capp ~= nil and capp ~= 'com.apple.loginwindow' and appName ~= 'loginwindow' then
+--             if (cap ~= curapp) then prvapp = curapp end
+--             curapp = capp
+--         end
+--         -- print("prvapp:" .. prvapp .. " curapp:" .. curapp)
+--     end
+-- end
+-- appWatcher = hs.application.watcher.new(applicationWatcher)
+-- appWatcher:start()
 
 -- key events
 --
@@ -56,12 +57,12 @@ local chooserDict = {
     ["m"] = "com.apple.mail",
     ["f"] = "com.apple.finder",
     ["n"] = "com.apple.Notes",
-    [" "] = " ",
+    -- [" "] = " ",
 }
 
 local function chooserApp(appChar)
     local app = chooserDict[appChar]
-    if (appChar == ' ') then app = prvapp end
+    -- if (appChar == ' ') then app = prvapp end
     -- print ('switch to ' .. appChar ..':'.. app)
     if (app == nil) then return end
     if (appChar ~= 'b') then hs.application.launchOrFocusByBundleID(app) end
@@ -87,7 +88,7 @@ chooser:choices({
   { ["text"] = "Mail",       ["command"] = 'm'},
   { ["text"] = "Finder",     ["command"] = 'f'},
   { ["text"] = "Notes-term", ["command"] = 'n'},
-  { ["text"] = "<space> previous app",          ["command"] = ' '},
+  -- { ["text"] = "<space> previous app",          ["command"] = ' '},
 })
 
 local function queryChangedCallback(query)
@@ -127,6 +128,7 @@ end
 
 hs.hotkey.bind({'ctrl'}, '9', iTerm2VsKeyCode({}, 'home', {'ctrl'}, 'a'))
 hs.hotkey.bind({'ctrl'}, '0', iTerm2VsKeyCode({}, 'end', {'ctrl'}, 'e'))
+hs.hotkey.bind({'ctrl'}, ';', keyCodem({'command'}, 'tab'))
 hs.hotkey.bind({'ctrl'}, 'j', keyCode('down'), nil, keyCode('down'))
 hs.hotkey.bind({'ctrl'}, 'k', keyCode('up'), nil, keyCode('up'))
 hs.hotkey.bind({'ctrl'}, 'l', keyCode('right'), nil, keyCode('right'))
