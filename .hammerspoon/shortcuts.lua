@@ -4,27 +4,6 @@ hs.hotkey.bind({"cmd", "alt", "ctrl"}, "R", function()
 end)
 hs.alert.show("Config loaded")
 
--- watch the frontmost application for switching. there is a switcher - perhaps better to use that
---
--- hs.ipc.cliInstall()
--- -- why can't these be local variables. Is it because they are then not captured by any object that's staying around
--- curapp = hs.application.frontmostApplication():bundleID()
--- prvapp = hs.application.frontmostApplication():bundleID()
--- local function applicationWatcher(appName, eventType, appObject)
---     -- appName is no good. Want bundleID
---     if (eventType == hs.application.watcher.deactivated) then
---         local capp = hs.application.frontmostApplication()
---         if capp ~= nil then capp = capp:bundleID() end
---         if capp ~= nil and capp ~= 'com.apple.loginwindow' and appName ~= 'loginwindow' then
---             if (cap ~= curapp) then prvapp = curapp end
---             curapp = capp
---         end
---         -- print("prvapp:" .. prvapp .. " curapp:" .. curapp)
---     end
--- end
--- appWatcher = hs.application.watcher.new(applicationWatcher)
--- appWatcher:start()
-
 -- key events
 --
 local function keyStroke(modifiers, key)
@@ -57,12 +36,10 @@ local chooserDict = {
     ["m"] = "com.apple.mail",
     ["f"] = "com.apple.finder",
     ["n"] = "com.apple.Notes",
-    -- [" "] = " ",
 }
 
 local function chooserApp(appChar)
     local app = chooserDict[appChar]
-    -- if (appChar == ' ') then app = prvapp end
     -- print ('switch to ' .. appChar ..':'.. app)
     if (app == nil) then return end
     if (appChar ~= 'b') then hs.application.launchOrFocusByBundleID(app) end
@@ -88,7 +65,6 @@ chooser:choices({
   { ["text"] = "Mail",       ["command"] = 'm'},
   { ["text"] = "Finder",     ["command"] = 'f'},
   { ["text"] = "Notes-term", ["command"] = 'n'},
-  -- { ["text"] = "<space> previous app",          ["command"] = ' '},
 })
 
 local function queryChangedCallback(query)
