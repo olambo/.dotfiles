@@ -29,12 +29,10 @@ nnoremap <leader><leader> <C-w><C-w>
 nnoremap <leader>v <C-w>v
 nnoremap <leader>s <C-w>s
 nnoremap <leader>f :q<cr>
-nnoremap <leader>q <C-w>c
 
 " paste from yank register
 xnoremap gp "0p
 nnoremap gp "0p
-
 " like rest of macos
 inoremap <C-d> <Del>
 " tiresome to type colon
@@ -42,6 +40,7 @@ nnoremap <cr> :
 " hard to type slash
 nnoremap s /
 vnoremap s /
+" go to the begining of characters on line. 0 will go to the start
 nnoremap <home> ^
 
 " vv from normal mode goes into visual line mode
