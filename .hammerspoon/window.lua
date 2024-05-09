@@ -79,10 +79,10 @@ hs.hotkey.bind({"alt", "ctrl", "cmd"}, "Left", function() winLeft() end)
 hs.hotkey.bind({"alt", "ctrl", "cmd"}, "right", function() winRight() end)
 
 -- position mid
-hs.hotkey.bind({"alt", "ctrl", "cmd"}, "up", function() winToPos("mid", .5, 1, .7) end)
+hs.hotkey.bind({"alt", "ctrl", "cmd"}, "up", function() winToPos("mid", .65, 1, .75) end)
 
 -- position to lower right
-hs.hotkey.bind({"alt", "ctrl", "cmd"}, "down", function() winToPos("right", .5, .5, .3) end)
+hs.hotkey.bind({"alt", "ctrl", "cmd"}, "down", function() winToPos("right", .7, .7, .5) end)
 
 -- maximize window
 hs.hotkey.bind({"alt", "ctrl"}, "Return", function() winToPos("left", 1, 1, .8) end)
