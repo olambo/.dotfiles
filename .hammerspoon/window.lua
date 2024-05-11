@@ -21,6 +21,7 @@ local function winToPos(posLR, wx, hx, wxIfAlready)
     end
     if posLR == "left" and f.w ~= max.w then
         f.x = 10
+        f.x = 0
     end
     if posLR == "mid"  then
         f.x = math.floor((max.w - f.w) / 2)
@@ -40,6 +41,7 @@ local function winRight()
 
     if f.x >= ex * 4 then
         f.x = 10
+        f.x = 0
     else
         f.x = f.x + ex
     end
@@ -59,6 +61,7 @@ local function winLeft()
     end
     if f.x < 10 then
         f.x = 10
+        f.x = 0
     end
     win:setFrame(f, 0)
 end
@@ -78,14 +81,14 @@ hs.hotkey.bind({"alt", "ctrl", "cmd"}, "Left", function() winLeft() end)
 -- move right
 hs.hotkey.bind({"alt", "ctrl", "cmd"}, "right", function() winRight() end)
 
--- position mid
-hs.hotkey.bind({"alt", "ctrl", "cmd"}, "up", function() winToPos("mid", .65, 1, .75) end)
+-- position half
+hs.hotkey.bind({"alt", "ctrl", "cmd"}, "up", function() winToPos("left", .5, 1, .75) end)
 
 -- position to lower right
-hs.hotkey.bind({"alt", "ctrl", "cmd"}, "down", function() winToPos("right", .7, .7, .5) end)
+hs.hotkey.bind({"alt", "ctrl", "cmd"}, "down", function() winToPos("right", .7, .5, .5) end)
 
 -- maximize window
-hs.hotkey.bind({"alt", "ctrl"}, "Return", function() winToPos("left", 1, 1, .8) end)
+hs.hotkey.bind({"alt", "ctrl", "cmd"}, "Return", function() winToPos("left", 1, 1, .9) end)
 
 -- smaller width
 hs.hotkey.bind({"alt", "ctrl"}, "left", function() winSize(-20, 0) end, nil, function() winSize(-20, 0) end)
