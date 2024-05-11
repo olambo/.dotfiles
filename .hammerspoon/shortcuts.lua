@@ -1,8 +1,8 @@
 -- its a bit of a pain to reaload via the hammerspoon console. Uncomment this when adding new stuff
-hs.hotkey.bind({"cmd", "alt", "ctrl"}, "R", function()
-  hs.reload()
-end)
-hs.alert.show("Config loaded")
+-- hs.hotkey.bind({"cmd", "alt", "ctrl"}, "R", function()
+--   hs.reload()
+-- end)
+hs.alert.show("Hammerspoon config loaded")
 
 -- key events
 --
@@ -26,7 +26,7 @@ end
 --
 local chooser
 
-local chooserDict = {
+chooserAppDict = {
     ["u"] = "com.googlecode.iterm2",
     ["p"] = "com.jetbrains.pycharm.ce",
     ["v"] = "com.microsoft.VSCode",
@@ -39,7 +39,7 @@ local chooserDict = {
 }
 
 local function chooserApp(appChar)
-    local app = chooserDict[appChar]
+    local app = chooserAppDict[appChar]
     -- print ('switch to ' .. appChar ..':'.. app)
     if (app == nil) then return end
     if (appChar ~= 'b') then hs.application.launchOrFocusByBundleID(app) end
@@ -47,6 +47,7 @@ local function chooserApp(appChar)
     if appChar == 'l' then keyStroke({'⌥', '⌘'}, 'f') end
 end
 
+-- a row has been selected. Process the command. The chooser will be auto closed
 local function chooserChoice(localchoice)
   if not localchoice then chooser:selectedRow(1); return end
   chooser:selectedRow(1)
@@ -67,14 +68,13 @@ chooser:choices({
   { ["text"] = "Notes-term", ["command"] = 'n'},
 })
 
-local function queryChangedCallback(query)
-  if query ~= '' then
-     -- print("query " .. query)
-     chooser:query('')
-     chooser:selectedRow(1)
-     chooser:cancel()
-     chooserApp(query)
-  end
+-- query will be the character that was typed. Want to close the chooser and process the single queryChar
+local function queryChangedCallback(queryChar)
+  if queryChar == '' then return end
+  chooser:query('')
+  chooser:selectedRow(1)
+  chooser:cancel()
+  chooserApp(queryChar)
 end
 chooser:queryChangedCallback(queryChangedCallback)
 
@@ -104,10 +104,10 @@ end
 
 hs.hotkey.bind({'ctrl'}, '9', iTerm2VsKeyCode({}, 'home', {'ctrl'}, 'a'))
 hs.hotkey.bind({'ctrl'}, '0', iTerm2VsKeyCode({}, 'end', {'ctrl'}, 'e'))
-hs.hotkey.bind({'ctrl'}, ';', keyCodem({'command'}, 'tab'))
 hs.hotkey.bind({'ctrl'}, 'j', keyCode('down'), nil, keyCode('down'))
 hs.hotkey.bind({'ctrl'}, 'k', keyCode('up'), nil, keyCode('up'))
 hs.hotkey.bind({'ctrl'}, 'l', keyCode('right'), nil, keyCode('right'))
+hs.hotkey.bind({'ctrl'}, ';', keyCodem({'command'}, 'tab'))
 hs.hotkey.bind({'ctrl'}, 'm', keyCodem({'shift', 'command'}, ']'), nil, keyCodem({'shift', 'command'}, ']'))
 hs.hotkey.bind({'shift', 'ctrl'}, 'm', keyCodem({'shift', 'command'}, '['), nil, keyCodem({'shift', 'command'}, '['))
 hs.hotkey.bind({'ctrl'}, 'return', expandContract())
