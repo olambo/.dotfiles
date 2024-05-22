@@ -23,7 +23,7 @@ function obj:init()
   -- If `control` is held for this long, don't send `escape`
   local CANCEL_DELAY_SECONDS = 0.350
   self.controlKeyTimer = hs.timer.delayed.new(CANCEL_DELAY_SECONDS, function()
-    -- self.sendEscape = false
+    self.sendEscape = false
   end)
 
   -- Create an eventtap to run each time the modifier keys change (i.e., each
