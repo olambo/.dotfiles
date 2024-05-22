@@ -19,26 +19,19 @@ obj.license = "MIT - https://opensource.org/licenses/MIT"
 function obj:init()
   self.sendEscape = false
   self.ctrlDownWithModifiers = false
-
-  -- If `control` is held for this long, don't send `escape`
-  local CANCEL_DELAY_SECONDS = 0.350
-  self.controlKeyTimer = hs.timer.delayed.new(CANCEL_DELAY_SECONDS, function()
-    self.sendEscape = false
-  end)
+  self.printInf = false
 
   -- Create an eventtap to run each time the modifier keys change (i.e., each
   -- time a key like control, shift, option, or command is pressed or released)
   self.controlTap = hs.eventtap.new({ hs.eventtap.event.types.flagsChanged }, function(event)
     local modifiers = event:getFlags()
 
-    -- only deal with control down key
+    -- only deal with control modifier
     if modifiers["shift"] or modifiers["fn"] or modifiers["alt"] or modifiers["cmd"] then
-      if self.sendEscape then
-        self.sendEscape = false
-        self.controlKeyTimer:stop()
-      end
+      self.sendEscape = false
       if modifiers["ctrl"] then
         self.ctrlDownWithModifiers = true
+        if modifiers["fn"] then self.printInf = not self.printInf end
       end
       return false
     end
@@ -48,26 +41,23 @@ function obj:init()
     if modifiers["ctrl"] then 
       if not self.ctrlDownWithModifiers then
         self.sendEscape = true
-        self.controlKeyTimer:start()
       end
     else
       if self.sendEscape then
-        hs.eventtap.event.newKeyEvent("escape", true):post()
-        hs.eventtap.event.newKeyEvent("escape", false):post()
-        self.sendEscape = false
-        self.controlKeyTimer:stop()
+        if self.printInf then  print('ctrl up ESC') end
+        hs.eventtap.keyStroke({}, "escape", 0)
       end
+      self.sendEscape = false
       self.ctrlDownWithModifiers = false
     end
     return false
   end)
 
   -- Create an eventtap to run each time a normal key (i.e., a non-modifier key)
-  -- enters the down state. We only want to send `escape` if `control` is
-  -- pressed and released in isolation. If `control` is pressed in combination
-  -- with any other key, we don't want to send `escape`.
+  -- enters the down state. We only want to send `escape` if `control` is pressed and released in isolation. 
   self.keyDownEventTap = hs.eventtap.new({ hs.eventtap.event.types.keyDown }, function(event)
     self.sendEscape = false
+    self.ctrlDownWithModifiers = false
     return false
   end)
 end
@@ -76,6 +66,8 @@ end
 --- Method
 --- Start sending `escape` when `control` is pressed and released in isolation
 function obj:start()
+  self.sendEscape = false
+  self.ctrlDownWithModifiers = false
   self.controlTap:start()
   self.keyDownEventTap:start()
 end
@@ -89,9 +81,8 @@ function obj:stop()
   self.keyDownEventTap:stop()
 
   -- Reset state
-  self.controlKeyTimer:stop()
   self.sendEscape = false
-  self.lastModifiers = {}
+  self.ctrlDownWithModifiers = false
 end
 
 return obj
