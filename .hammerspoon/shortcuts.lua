@@ -31,8 +31,9 @@ chooserAppDict = {
     ["p"] = "com.jetbrains.pycharm.ce",
     ["v"] = "com.microsoft.VSCode",
     ["s"] = "com.apple.Safari",
-    ["l"] = "com.apple.Safari",
-    ["b"] = "com.apple.Safari",
+    -- ["l"] = "com.apple.Safari",
+    -- ["b"] = "com.apple.Safari",
+    ["g"] = "com.apple.Safari",
     ["m"] = "com.apple.mail",
     ["f"] = "com.apple.finder",
     ["n"] = "com.apple.Notes",
@@ -42,9 +43,10 @@ local function chooserApp(appChar)
     local app = chooserAppDict[appChar]
     -- print ('switch to ' .. appChar ..':'.. app)
     if (app == nil) then return end
-    if (appChar ~= 'b') then hs.application.launchOrFocusByBundleID(app) end
-    if appChar == 'b' then keyStroke({'shift', 'ctrl', '⌥', '⌘'}, 'b') end
-    if appChar == 'l' then keyStroke({'⌥', '⌘'}, 'f') end
+    if (appChar ~= 'b' and appChar ~= 'g') then hs.application.launchOrFocusByBundleID(app) end
+    if appChar == 'g' then keyStroke({'shift', 'ctrl', '⌥', '⌘'}, 'g') end
+    -- if appChar == 'b' then keyStroke({'shift', 'ctrl', '⌥', '⌘'}, 'b') end
+    -- if appChar == 'l' then keyStroke({'⌥', '⌘'}, 'f') end
 end
 
 -- a row has been selected. Process the command. The chooser will be auto closed
@@ -55,14 +57,18 @@ local function chooserChoice(localchoice)
 end
 
 chooser = hs.chooser.new(chooserChoice)
+chooser:rows(8)
+chooser:width(30)
 
+-- deprecate Lookup-safari and Brave
 chooser:choices({
   { ["text"] = "Unix-iterm", ["command"] = 'u'},
   { ["text"] = "Pycharm",    ["command"] = 'p'},
   { ["text"] = "Vscode",     ["command"] = 'v'},
   { ["text"] = "Safari",     ["command"] = 's'},
-  { ["text"] = "Lookup-safari",    ["command"] = 'l'},
-  { ["text"] = "Brave",      ["command"] = 'b'},
+  -- { ["text"] = "Lookup-safari",    ["command"] = 'l'},
+  -- { ["text"] = "Brave",      ["command"] = 'b'},
+  { ["text"] = "Google-australia",      ["command"] = 'g'},
   { ["text"] = "Mail",       ["command"] = 'm'},
   { ["text"] = "Finder",     ["command"] = 'f'},
   { ["text"] = "Notes-term", ["command"] = 'n'},
