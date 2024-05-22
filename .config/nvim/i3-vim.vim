@@ -1,9 +1,5 @@
-" allow confim quit
+" use confim quit
 nnoremap <leader>f :conf q<cr>
-
-" use hyp-m or cmd-/ to comment 
-" nmap <C-_> gcc
-" xmap <C-_> gc
 
 let g:undotree_SplitWidth = 50
 nnoremap <f5> :UndotreeToggle<CR>
@@ -14,7 +10,7 @@ nnoremap <f8> :source ~/.config/nvim/init.vim<CR>
 " insert mode drop down list selection.
 inoremap <down> <c-n>
 inoremap <up> <c-p>
-inoremap <expr> <left> pumvisible() ? "\<C-e>" : "\<left>"
+inoremap <expr> <c-h> pumvisible() ? "\<C-e>" : "\<c-h>"
 
 if exists('$TMUX')
     " tmux title to iterm title. todo: working in neovim, not working in vim
