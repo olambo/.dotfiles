@@ -1,10 +1,10 @@
 -- https://github.com/Hammerspoon/hammerspoon/blob/0.9.54/SPOONS.md#how-do-i-install-a-spoon
 --- === ControlEscape ===
 ---
---- Make the `control` key more useful: If the `control` key is tapped, treat it
---- as the `escape` key. If the `control` key is held down and used in
---- combination with another key, then provide the normal `control` key
---- behavior.
+--- Make the `control` key more useful: 
+--- If the `control` key is tapped, treat it as the `escape` key. 
+--- If the `control` key is held down and used in combination with another key, then provide the normal `control` key behavior.
+-- based off https://github.com/jasonrudolph/ControlEscape.spoon
 
 local obj = {}
 obj.__index = obj
@@ -12,46 +12,52 @@ obj.__index = obj
 -- Metadata
 obj.name = "ControlEscape"
 obj.version = "0.1"
-obj.author = "Jason Rudolph <jason@jasonrudolph.com>"
-obj.homepage = "https://github.com/jasonrudolph/ControlEscape.spoon"
+obj.author = "olambo"
+obj.homepage = "https://github.com/olambo/.dotfiles/tree/main/.hammerspoon/Spoons/ControlEscape.spoon"
 obj.license = "MIT - https://opensource.org/licenses/MIT"
 
 function obj:init()
   self.sendEscape = false
-  self.lastModifiers = {}
+  self.ctrlDownWithModifiers = false
 
   -- If `control` is held for this long, don't send `escape`
-  local CANCEL_DELAY_SECONDS = 0.150
+  local CANCEL_DELAY_SECONDS = 0.350
   self.controlKeyTimer = hs.timer.delayed.new(CANCEL_DELAY_SECONDS, function()
-    self.sendEscape = false
+    -- self.sendEscape = false
   end)
 
   -- Create an eventtap to run each time the modifier keys change (i.e., each
   -- time a key like control, shift, option, or command is pressed or released)
   self.controlTap = hs.eventtap.new({ hs.eventtap.event.types.flagsChanged }, function(event)
-    local newModifiers = event:getFlags()
+    local modifiers = event:getFlags()
 
-    -- If this change to the modifier keys does not invole a *change* to the
-    -- up/down state of the `control` key (i.e., it was up before and it's
-    -- still up, or it was down before and it's still down), then don't take
-    -- any action.
-    if self.lastModifiers["ctrl"] == newModifiers["ctrl"] then
+    -- only deal with control down key
+    if modifiers["shift"] or modifiers["fn"] or modifiers["alt"] or modifiers["cmd"] then
+      if self.sendEscape then
+        self.sendEscape = false
+        self.controlKeyTimer:stop()
+      end
+      if modifiers["ctrl"] then
+        self.ctrlDownWithModifiers = true
+      end
       return false
     end
-
-    -- If the `control` key has changed to the down state, then start the
-    -- timer. If the `control` key changes to the up state before the timer
-    -- expires, then send `escape`.
-    if not self.lastModifiers["ctrl"] then
-      self.lastModifiers = newModifiers
-      self.sendEscape = true
-      self.controlKeyTimer:start()
+    
+    -- If the `control` key is held down then start the timer (other modifiers are not held down). 
+    -- If the `control` key changes to the up state before the timer expires, then send `escape`.
+    if modifiers["ctrl"] then 
+      if not self.ctrlDownWithModifiers then
+        self.sendEscape = true
+        self.controlKeyTimer:start()
+      end
     else
       if self.sendEscape then
-        hs.eventtap.keyStroke({}, "escape", 1)
+        hs.eventtap.event.newKeyEvent("escape", true):post()
+        hs.eventtap.event.newKeyEvent("escape", false):post()
+        self.sendEscape = false
+        self.controlKeyTimer:stop()
       end
-      self.lastModifiers = newModifiers
-      self.controlKeyTimer:stop()
+      self.ctrlDownWithModifiers = false
     end
     return false
   end)
