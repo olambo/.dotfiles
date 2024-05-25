@@ -55,6 +55,12 @@ nnoremap 6v V5j
 nnoremap 7v V6j
 nnoremap 8v V7j
 nnoremap 9v V8j
+nnoremap 10v V9j
+nnoremap 11v V10j
+nnoremap 12v V11j
+nnoremap 13v V12j
+nnoremap 14v V13j
+nnoremap 15v V14j
 
 " don't need select mode
 vnoremap gh <nop>
