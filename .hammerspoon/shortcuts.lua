@@ -27,26 +27,23 @@ end
 local chooser
 
 chooserAppDict = {
-    ["u"] = "com.googlecode.iterm2",
-    ["p"] = "com.jetbrains.pycharm.ce",
-    ["v"] = "com.microsoft.VSCode",
-    ["s"] = "com.apple.Safari",
-    -- ["l"] = "com.apple.Safari",
-    -- ["b"] = "com.apple.Safari",
+    ["b"] = "com.apple.iBooksX",
+    ["f"] = "com.apple.finder",
     ["g"] = "com.apple.Safari",
     ["m"] = "com.apple.mail",
-    ["f"] = "com.apple.finder",
     ["n"] = "com.apple.Notes",
+    ["p"] = "com.jetbrains.pycharm.ce",
+    ["s"] = "com.apple.Safari",
+    ["u"] = "com.googlecode.iterm2",
+    ["v"] = "com.microsoft.VSCode",
 }
 
 local function chooserApp(appChar)
     local app = chooserAppDict[appChar]
     -- print ('switch to ' .. appChar ..':'.. app)
     if (app == nil) then return end
-    if (appChar ~= 'b' and appChar ~= 'g') then hs.application.launchOrFocusByBundleID(app) end
+    if (appChar ~= 'g') then hs.application.launchOrFocusByBundleID(app) end
     if appChar == 'g' then keyStroke({'shift', 'ctrl', '⌥', '⌘'}, 'g') end
-    -- if appChar == 'b' then keyStroke({'shift', 'ctrl', '⌥', '⌘'}, 'b') end
-    -- if appChar == 'l' then keyStroke({'⌥', '⌘'}, 'f') end
 end
 
 -- a row has been selected. Process the command. The chooser will be auto closed
@@ -62,16 +59,15 @@ chooser:width(30)
 
 -- deprecate Lookup-safari and Brave
 chooser:choices({
-  { ["text"] = "Unix-iterm", ["command"] = 'u'},
-  { ["text"] = "Pycharm",    ["command"] = 'p'},
-  { ["text"] = "Vscode",     ["command"] = 'v'},
-  { ["text"] = "Safari",     ["command"] = 's'},
-  -- { ["text"] = "Lookup-safari",    ["command"] = 'l'},
-  -- { ["text"] = "Brave",      ["command"] = 'b'},
-  { ["text"] = "Google-australia",      ["command"] = 'g'},
-  { ["text"] = "Mail",       ["command"] = 'm'},
+  { ["text"] = "Books",      ["command"] = 'b'},
   { ["text"] = "Finder",     ["command"] = 'f'},
-  { ["text"] = "Notes-term", ["command"] = 'n'},
+  { ["text"] = "Google",     ["command"] = 'g'},
+  { ["text"] = "Mail",       ["command"] = 'm'},
+  { ["text"] = "Notes",      ["command"] = 'n'},
+  { ["text"] = "Pycharm",    ["command"] = 'p'},
+  { ["text"] = "Safari",     ["command"] = 's'},
+  { ["text"] = "Unix-iterm", ["command"] = 'u'},
+  { ["text"] = "Vscode",     ["command"] = 'v'},
 })
 
 -- query will be the character that was typed. Want to close the chooser and process the single queryChar
