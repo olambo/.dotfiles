@@ -1,9 +1,18 @@
 -- position windows. If the width is already set, use an alternative.
-local function winToPos(posLR, wx, hx, wxIfAlready) 
+local function winToPos(posWanted, wx, hx, wxIfAlready) 
     local win = hs.window.focusedWindow()
     local f = win:frame()
     local max = win:screen():frame()
     local widthx = math.floor(max.w * wx)
+    local posLR = posWanted
+
+    if posLR == 'leftright' then
+      if f.x == 0 then
+        posLR = 'left'
+      else
+        posLR = 'right'
+      end
+    end
 
     if posLR == "mid" and math.floor((max.w - f.w) / 2) ~= f.x then
     elseif widthx == f.w then
@@ -66,6 +75,25 @@ local function winLeft()
     win:setFrame(f, 0)
 end
 
+local function winDown() 
+    local win = hs.window.focusedWindow()
+    local max = win:screen():frame()
+    local f = win:frame()
+    local ywant = max.h / 2
+
+    if f.h > ywant then
+      f.h = ywant
+    else
+      if f.y < 100 then
+        f.y = max.h - f.h + max.y
+      else
+        f.y = 0
+      end
+    end
+
+    win:setFrame(f, 0)
+end
+
 -- size the window
 local function winSize(x, y) 
     local win = hs.window.focusedWindow()
@@ -82,13 +110,13 @@ hs.hotkey.bind({"alt", "ctrl", "cmd"}, "Left", function() winLeft() end)
 hs.hotkey.bind({"alt", "ctrl", "cmd"}, "right", function() winRight() end)
 
 -- position half
-hs.hotkey.bind({"alt", "ctrl", "cmd"}, "up", function() winToPos("left", .5, 1, .75) end)
+hs.hotkey.bind({"alt", "ctrl", "cmd"}, "up", function() winToPos("leftright", .5, 1, .9) end)
 
--- position to lower right
-hs.hotkey.bind({"alt", "ctrl", "cmd"}, "down", function() winToPos("right", .7, .5, .5) end)
+-- position half height
+hs.hotkey.bind({"alt", "ctrl", "cmd"}, "down", function() winDown() end)
 
 -- maximize window
-hs.hotkey.bind({"alt", "ctrl", "cmd"}, "Return", function() winToPos("left", 1, 1, .9) end)
+hs.hotkey.bind({"alt", "ctrl", "cmd"}, "Return", function() winToPos("left", 1, 1, .75) end)
 
 -- smaller width
 hs.hotkey.bind({"alt", "ctrl"}, "left", function() winSize(-20, 0) end, nil, function() winSize(-20, 0) end)
