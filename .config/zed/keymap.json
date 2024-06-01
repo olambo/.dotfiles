@@ -1,0 +1,35 @@
+[
+  {
+    "context": "Editor && vim_mode == normal && !VimWaiting && !menu",
+    "bindings": {
+      // put key-bindings here if you want them to work only in normal mode
+      // "down": ["workspace::SendKeystrokes", "4 j"]
+      // "up": ["workspace::SendKeystrokes", "4 k"]
+      "-": ["workspace::SendKeystrokes", "shift-cmd-e"],
+      "s": ["workspace::SendKeystrokes", "/"],
+      "enter": ["workspace::SendKeystrokes", ":"],
+      "1 v": ["workspace::SendKeystrokes", "shift-v"],
+      "2 v": ["workspace::SendKeystrokes", "shift-v j"],
+      "3 v": ["workspace::SendKeystrokes", "shift-v j j"],
+      "4 v": ["workspace::SendKeystrokes", "shift-v 3 j"],
+      "5 v": ["workspace::SendKeystrokes", "shift-v 4 j"],
+      "6 v": ["workspace::SendKeystrokes", "shift-v 5 j"],
+      "7 v": ["workspace::SendKeystrokes", "shift-v 6 j"],
+      "8 v": ["workspace::SendKeystrokes", "shift-v 7 j"],
+      "9 v": ["workspace::SendKeystrokes", "shift-v 8 j"],
+      "10 v": ["workspace::SendKeystrokes", "shift-v 9 j"],
+      "11 v": ["workspace::SendKeystrokes", "shift-v 10 j"],
+      "12 v": ["workspace::SendKeystrokes", "shift-v 11 j"],
+      "13 v": ["workspace::SendKeystrokes", "shift-v 12 j"],
+      "14 v": ["workspace::SendKeystrokes", "shift-v 13 j"],
+      "15 v": ["workspace::SendKeystrokes", "shift-v 14 j"]
+    }
+  },
+  {
+    "context": "Editor && vim_mode == visual && !VimWaiting && !menu",
+    "bindings": {
+      // visual, visual line & visual block modes
+      "v": ["workspace::SendKeystrokes", "shift-v"]
+    }
+  }
+]
