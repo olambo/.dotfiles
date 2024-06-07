@@ -10,7 +10,8 @@ nnoremap <f8> :source ~/.config/nvim/init.vim<CR>
 " insert mode drop down list selection.
 inoremap <down> <c-n>
 inoremap <up> <c-p>
-inoremap <expr> <c-h> pumvisible() ? "\<C-e>" : "\<c-h>"
+inoremap <s-left> <c-h>
+inoremap <expr> <s-left> pumvisible() ? "\<C-e>" : "\<c-h>"
 
 if exists('$TMUX')
     " tmux title to iterm title. todo: working in neovim, not working in vim
