@@ -54,21 +54,8 @@ local function chooserChoice(localchoice)
 end
 
 chooser = hs.chooser.new(chooserChoice)
-chooser:rows(8)
-chooser:width(30)
-
--- deprecate Lookup-safari and Brave
-chooser:choices({
-  { ["text"] = "Books",      ["command"] = 'b'},
-  { ["text"] = "Finder",     ["command"] = 'f'},
-  { ["text"] = "Google",     ["command"] = 'g'},
-  { ["text"] = "Mail",       ["command"] = 'm'},
-  { ["text"] = "Notes",      ["command"] = 'n'},
-  { ["text"] = "Pycharm",    ["command"] = 'p'},
-  { ["text"] = "Safari",     ["command"] = 's'},
-  { ["text"] = "Unix-iterm", ["command"] = 'u'},
-  { ["text"] = "Vscode",     ["command"] = 'v'},
-})
+chooser:rows(1)
+chooser:width(20)
 
 -- query will be the character that was typed. Want to close the chooser and process the single queryChar
 local function queryChangedCallback(queryChar)
@@ -104,13 +91,41 @@ local function expandContract()
  end
 end
 
+local function doChoose(typ)
+  return function()
+    if typ == 1 and chooser:rows() ~= 2 then
+      chooser:rows(2)
+      chooser:choices({
+        { ["text"] = "F3 for list",      ["command"] = 'b'},
+      })
+    elseif typ ~= 1 and chooser:rows() == 2 then
+       chooser:rows(9)
+       chooser:choices({
+         { ["text"] = "Books",      ["command"] = 'b'},
+         { ["text"] = "Finder",     ["command"] = 'f'},
+         { ["text"] = "Google",     ["command"] = 'g'},
+         { ["text"] = "Mail",       ["command"] = 'm'},
+         { ["text"] = "Notes",      ["command"] = 'n'},
+         { ["text"] = "Pycharm",    ["command"] = 'p'},
+         { ["text"] = "Safari",     ["command"] = 's'},
+         { ["text"] = "Unix-iterm", ["command"] = 'u'},
+         { ["text"] = "Vscode",     ["command"] = 'v'},
+       })
+    end
+    chooser:show({0,0})
+ end
+end
+
 hs.hotkey.bind({'ctrl'}, '9', iTerm2VsKeyCode({}, 'home', {'ctrl'}, 'a'))
 hs.hotkey.bind({'ctrl'}, '0', iTerm2VsKeyCode({}, 'end', {'ctrl'}, 'e'))
 hs.hotkey.bind({'ctrl'}, 'j', keyCode('down'), nil, keyCode('down'))
 hs.hotkey.bind({'ctrl'}, 'k', keyCode('up'), nil, keyCode('up'))
 hs.hotkey.bind({'ctrl'}, 'l', keyCode('right'), nil, keyCode('right'))
 hs.hotkey.bind({'ctrl'}, ';', keyCodem({'command'}, 'tab'))
+hs.hotkey.bind({'ctrl'}, 'h', keyCodem({'shift'}, 'left'), nil, keyCodem({'shift'}, 'left'))
+hs.hotkey.bind({'ctrl'}, 'a', keyCodem({'shift', '⌥'}, 'left'), nil, keyCodem({'shift', '⌥'}, 'left'))
 hs.hotkey.bind({'ctrl'}, 'm', keyCodem({'shift', 'command'}, ']'), nil, keyCodem({'shift', 'command'}, ']'))
 hs.hotkey.bind({'shift', 'ctrl'}, 'm', keyCodem({'shift', 'command'}, '['), nil, keyCodem({'shift', 'command'}, '['))
 hs.hotkey.bind({'ctrl'}, 'return', expandContract())
-hs.hotkey.bind({'ctrl'}, 'space', function() chooser:show() end)
+hs.hotkey.bind({'ctrl'}, 'space', doChoose(1))
+hs.hotkey.bind({}, 'f3', doChoose(2))
