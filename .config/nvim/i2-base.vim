@@ -25,7 +25,7 @@ nnoremap <leader>n :set number!<cr>:se norelativenumber<cr>
 nnoremap <leader>h :set hlsearch! hlsearch?<cr>
 
 " split management
-nnoremap <leader><leader> <C-w><C-w>
+nnoremap <cr> <C-w><C-w>
 nnoremap <leader>v <C-w>v
 nnoremap <leader>s <C-w>s
 nnoremap <leader>f :q<cr>
@@ -36,7 +36,7 @@ nnoremap gp "0p
 " like rest of macos
 inoremap <C-d> <Del>
 " tiresome to type colon
-nnoremap <cr> :
+nnoremap <leader><leader> :
 " hard to type slash
 nnoremap s /
 vnoremap s /
