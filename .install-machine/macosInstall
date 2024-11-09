@@ -1,57 +1,24 @@
-#! /bin/bash
+mac install
+# ==============================
 
+# Xcode command line and homebrew
 xcode-select --install
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
-# Add path for home-brew
-
-# stuff java/scala/etc. probably wont be doing this again
-# term_apps=(
-# maven
-# tmux
-# node
-# )
-
-# terminal apps
+# macOS terminal apps
 term_apps=(
 wget
 git
-vim
 neovim
 httpie
 fzf
 ripgrep
 trash
-entr
-rye
+uv
 )
-brew install ${term_apps[@]}
+brew install ${term_apps[@]} 
 
-git clone --separate-git-dir=$HOME/.dotfiles https://github.com/olambo/.dotfiles.git tmpdotfiles
-rsync --recursive --verbose --exclude '.git' tmpdotfiles/ $HOME/
-rm -r tmpdotfiles
-
-# softwareupdate --install-rosetta
-#   
-# curl -fLo cs https://git.io/coursier-cli-"$(uname | tr LD ld)"
-# chmod +x cs
-# ./cs install cs
-# ./cs setup
-# rm cs
-Open new terminal window
-
-#scala
-#brew tap AdoptOpenJDK/openjdk
-#brew cask install adoptopenjdk8
-
-#deprecated. enpass installed from appstore
-cask_apps=(
-karabiner-elements
-keyboard-maestro
-nordvpn
-enpass
-)
-# macos cask apps
+# macOS cask apps
 cask_apps=(
 hammerspoon
 alfred
@@ -61,6 +28,7 @@ iterm2
 visual-studio-code
 )
 brew install --appdir="/Applications" ${cask_apps[@]}
+brew install cormacrelf/tap/dark-notify
 
 # Remove brew cruft
 brew cleanup
@@ -70,20 +38,26 @@ git clone https://github.com/softmoth/zsh-vim-mode ~/.config/zsh-vim-mode
 curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
-# brew install --cask intellij-idea-ce
-brew install cormacrelf/tap/dark-notify
-
+# Follow new machine clone instructions at https://github.com/olambo/.dotfiles
 dot remote set-url origin git@github.com:olambo/.dotfiles.git
 
-# set up colors for iterm2
-# iterm2/Profiles/colors - install PhonixColorDark(Light)
-# iterm2/General/preferences/ - Load preferences from /Users/owl/.config/iterm
-#
-# stuff to do
+# Set keyboard caps lock to control
+# Set Finder settings you want
+
+# open Neovim and run :PlugInstall
+
+# Various installs to do
 # Enpass - icloud sync login
 # Alfred - key shortcut
-# karabiner-elements - start, add permissions
-# Vim - PlugInstall
+# Neovim - PlugInstall
 # Email - add account
 
-echo "install is done!"
+# Set up colors for iterm2
+# iterm2/General/preferences/ - Load preferences from /Users/machinename/.config/iterm
+# Set up colors for iterm2. Create new profile Phoenix and set as default
+# iterm2/Profiles/colors - install PhonixColorDark(Light) and (dark)
+# install JetBrains Mono and choose it for Phoenix at 14pt
+# vscode install python and nevoid. Set path for neovim
+# vscode set movement via: defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
+
+# ==============================
