@@ -51,19 +51,19 @@ if has('nvim')
       disable = { },                    -- list of language that will be disabled
     },
   }
-  local dn = require('dark_notify')
-  dn.run({
-    onchange = function(mode)
-      if vim.g.vscode_style ~= mode then
+  --local dn = require('dark_notify')
+  --dn.run({
+  --  onchange = function(mode)
+  --    if vim.g.vscode_style ~= mode then
 
-        vim.g.vscode_style = mode 
-        vim.o.background = mode
+  --      vim.g.vscode_style = mode 
+  --      vim.o.background = mode
 
-        vim.cmd('colorscheme ' .. vim.g.colorscheme)
-        vim.cmd('source ' .. '~/.config/nvim/i5-statusline.vim')
-      end
-    end,
-  })
+  --      vim.cmd('colorscheme ' .. vim.g.colorscheme)
+  --      vim.cmd('source ' .. '~/.config/nvim/i5-statusline.vim')
+  --    end
+  --  end,
+  --})
 EOF
 endif
 

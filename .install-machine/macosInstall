@@ -24,11 +24,13 @@ hammerspoon
 alfred
 betterzip
 vlc
-iterm2
+warp
 visual-studio-code
 )
 brew install --appdir="/Applications" ${cask_apps[@]}
-brew install cormacrelf/tap/dark-notify
+
+# deprecate
+# brew install cormacrelf/tap/dark-notify
 
 # Remove brew cruft
 brew cleanup
@@ -52,11 +54,7 @@ dot remote set-url origin git@github.com:olambo/.dotfiles.git
 # Neovim - PlugInstall
 # Email - add account
 
-# Set up colors for iterm2
-# iterm2/General/preferences/ - Load preferences from /Users/machinename/.config/iterm
-# Set up colors for iterm2. Create new profile Phoenix and set as default
-# iterm2/Profiles/colors - install PhonixColorDark(Light) and (dark)
-# install JetBrains Mono and choose it for Phoenix at 14pt
+# install JetBrains Mono and choose it for Warp at 14pt
 # vscode install python and nevoid. Set path for neovim
 # vscode set movement via: defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
 

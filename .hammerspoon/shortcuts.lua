@@ -34,7 +34,7 @@ chooserAppDict = {
     ["n"] = "com.apple.Notes",
     ["p"] = "com.jetbrains.pycharm.ce",
     ["s"] = "com.apple.Safari",
-    ["u"] = "com.googlecode.iterm2",
+    ["u"] = "dev.warp.Warp-Stable",
     ["v"] = "com.microsoft.VSCode",
 }
 
@@ -70,7 +70,7 @@ chooser:queryChangedCallback(queryChangedCallback)
 local function iTerm2VsKeyCode(l1, l2, r1, r2)
   return function()
    capp = hs.application.frontmostApplication():bundleID()
-   if capp == 'com.googlecode.iterm2' or capp == 'com.microsoft.VSCode' or capp == 'dev.zed.Zed' or capp == 'com.jetbrains.pycharm.ce' then
+   if capp == 'com.googlecode.iterm2' or capp == 'com.microsoft.VSCode' or capp == 'dev.zed.Zed' or capp == 'com.jetbrains.pycharm.ce' or 'dev.warp.Warp-Stable' then
      keyStroke(l1, l2)
    else
      keyStroke(r1, r2)
@@ -81,6 +81,7 @@ end
 local function expandContract()
   return function()
    local capp = hs.application.frontmostApplication():bundleID()
+   --  print ('app  '  ..':'.. capp)
    if capp == 'PyCharm' then
      keyStroke({'shift', '⌘'}, 'f12')
    elseif capp == 'iTerm2' then
@@ -108,7 +109,7 @@ local function doChoose(typ)
          { ["text"] = "Notes",      ["command"] = 'n'},
          { ["text"] = "Pycharm",    ["command"] = 'p'},
          { ["text"] = "Safari",     ["command"] = 's'},
-         { ["text"] = "Unix-iterm", ["command"] = 'u'},
+         { ["text"] = "Unix-term",  ["command"] = 'u'},
          { ["text"] = "Vscode",     ["command"] = 'v'},
        })
     end
