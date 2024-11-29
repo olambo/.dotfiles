@@ -22,11 +22,11 @@ brew install ${term_apps[@]}
 cask_apps=(
 hammerspoon
 alfred
-betterzip
 vlc
 warp
 visual-studio-code
 obsidian
+keyboardCleanTool
 )
 brew install --appdir="/Applications" ${cask_apps[@]}
 
