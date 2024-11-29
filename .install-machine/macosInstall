@@ -26,6 +26,7 @@ betterzip
 vlc
 warp
 visual-studio-code
+obsidian
 )
 brew install --appdir="/Applications" ${cask_apps[@]}
 
