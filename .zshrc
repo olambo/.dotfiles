@@ -75,7 +75,5 @@ alias v=~/.config/nvim/bin/viFZF
 alias vcd='cd `cat ~/.config/nvim/runcache/viDirFZF`'
 alias python=python3
 
-export PATH=$PATH:$HOME/Library/Application\ Support/Coursier/bin
+alias dot='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
-# Fig post block. Keep at the bottom of this file.
-[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && . "$HOME/.fig/shell/zshrc.post.zsh"
