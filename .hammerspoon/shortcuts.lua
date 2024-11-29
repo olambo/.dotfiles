@@ -67,7 +67,7 @@ local function queryChangedCallback(queryChar)
 end
 chooser:queryChangedCallback(queryChangedCallback)
 
-local function iTerm2VsKeyCode(l1, l2, r1, r2)
+local function vimLikeKeyCode(l1, l2, r1, r2)
   return function()
    capp = hs.application.frontmostApplication():bundleID()
    if capp == 'com.googlecode.iterm2' or capp == 'com.microsoft.VSCode' or capp == 'dev.zed.Zed' or capp == 'com.jetbrains.pycharm.ce' or 'dev.warp.Warp-Stable' then
@@ -81,11 +81,12 @@ end
 local function expandContract()
   return function()
    local capp = hs.application.frontmostApplication():bundleID()
-   --  print ('app  '  ..':'.. capp)
+   -- print ('app  '  ..':'.. capp)
    if capp == 'PyCharm' then
      keyStroke({'shift', '⌘'}, 'f12')
-   elseif capp == 'iTerm2' then
-     keyStroke({'shift', '⌘'}, 'return') 
+   --elseif capp == 'iTerm2' or capp == 'dev.warp.Warp-Stable' then
+     -- this wont work, binding return to return, hammerspoon doesnt support this easily
+     -- keyStroke({'shift', '⌘'}, 'return') 
    else
      keyStroke({'⌘'}, 'b') 
    end
@@ -117,13 +118,13 @@ local function doChoose(typ)
  end
 end
 
-hs.hotkey.bind({'ctrl'}, '9', iTerm2VsKeyCode({}, 'home', {'ctrl'}, 'a'))
-hs.hotkey.bind({'ctrl'}, '0', iTerm2VsKeyCode({}, 'end', {'ctrl'}, 'e'))
+hs.hotkey.bind({'ctrl'}, '9', vimLikeKeyCode({}, 'home', {'ctrl'}, 'a'))
+hs.hotkey.bind({'ctrl'}, '0', vimLikeKeyCode({}, 'end', {'ctrl'}, 'e'))
 hs.hotkey.bind({'ctrl'}, 'j', keyCode('down'), nil, keyCode('down'))
 hs.hotkey.bind({'ctrl'}, 'k', keyCode('up'), nil, keyCode('up'))
 hs.hotkey.bind({'ctrl'}, ';', keyCodem({'command'}, 'tab'))
 hs.hotkey.bind({'ctrl'}, 'h', keyCodem({'shift'}, 'left'), nil, keyCodem({'shift'}, 'left'))
-hs.hotkey.bind({'ctrl'}, 'l', keyCodem({'shift'}, 'right'), nil, keyCodem({'shift'}, 'right'))
+hs.hotkey.bind({'ctrl'}, 'l', keyCode('right'), nil, keyCode('right'))
 hs.hotkey.bind({'ctrl'}, 'a', keyCodem({'shift', '⌥'}, 'left'), nil, keyCodem({'shift', '⌥'}, 'left'))
 hs.hotkey.bind({'ctrl'}, 'm', keyCodem({'shift', 'command'}, ']'), nil, keyCodem({'shift', 'command'}, ']'))
 hs.hotkey.bind({'shift', 'ctrl'}, 'm', keyCodem({'shift', 'command'}, '['), nil, keyCodem({'shift', 'command'}, '['))
