@@ -110,13 +110,13 @@ hs.hotkey.bind({"alt", "ctrl", "cmd"}, "Left", function() winLeft() end)
 hs.hotkey.bind({"alt", "ctrl", "cmd"}, "right", function() winRight() end)
 
 -- position half
-hs.hotkey.bind({"alt", "ctrl", "cmd"}, "up", function() winToPos("leftright", .5, 1, .9) end)
+hs.hotkey.bind({"alt", "ctrl", "cmd"}, "up", function() winToPos("leftright", .5, 1, .75) end)
 
 -- position half height
 hs.hotkey.bind({"alt", "ctrl", "cmd"}, "down", function() winDown() end)
 
 -- maximize window
-hs.hotkey.bind({"alt", "ctrl", "cmd"}, "Return", function() winToPos("left", 1, 1, .75) end)
+hs.hotkey.bind({"alt", "ctrl", "cmd"}, "Return", function() winToPos("left", 1, 1, .95) end)
 
 -- smaller width
 hs.hotkey.bind({"alt", "ctrl"}, "left", function() winSize(-20, 0) end, nil, function() winSize(-20, 0) end)
