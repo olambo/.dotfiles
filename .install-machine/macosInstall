@@ -54,6 +54,7 @@ dot remote set-url origin git@github.com:olambo/.dotfiles.git
 # Alfred - key shortcut
 # Neovim - PlugInstall
 # Email - add account
+# Pandan - in menu
 
 # install JetBrains Mono and choose it for Warp at 14pt
 # vscode install python and nevoid. Set path for neovim
