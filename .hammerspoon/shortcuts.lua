@@ -70,7 +70,7 @@ chooser:queryChangedCallback(queryChangedCallback)
 local function vimLikeKeyCode(l1, l2, r1, r2)
   return function()
    capp = hs.application.frontmostApplication():bundleID()
-   if capp == 'com.googlecode.iterm2' or capp == 'com.microsoft.VSCode' or capp == 'dev.zed.Zed' or capp == 'com.jetbrains.pycharm.ce' or 'dev.warp.Warp-Stable' then
+   if capp == 'com.googlecode.iterm2' or capp == 'com.microsoft.VSCode' or capp == 'dev.zed.Zed' or capp == 'com.jetbrains.pycharm.ce' or capp == 'dev.warp.Warp-Stable' then
      keyStroke(l1, l2)
    else
      keyStroke(r1, r2)
@@ -85,7 +85,7 @@ local function expandContract()
    if capp == 'PyCharm' then
      keyStroke({'shift', '⌘'}, 'f12')
    --elseif capp == 'iTerm2' or capp == 'dev.warp.Warp-Stable' then
-     -- this wont work, binding return to return, hammerspoon doesnt support this easily
+     -- this wont work, binding return to return with modifiers, hammerspoon doesnt support this easily
      -- keyStroke({'shift', '⌘'}, 'return') 
    else
      keyStroke({'⌘'}, 'b') 
