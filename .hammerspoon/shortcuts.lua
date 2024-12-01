@@ -85,7 +85,7 @@ local function expandContract()
    if capp == 'PyCharm' then
      keyStroke({'shift', '⌘'}, 'f12')
    --elseif capp == 'iTerm2' or capp == 'dev.warp.Warp-Stable' then
-     -- this wont work, binding return to return with modifiers, hammerspoon doesnt support this easily
+     -- this wont work, binding return with modifier to return with different modifiers, hammerspoon doesnt support this easily
      -- keyStroke({'shift', '⌘'}, 'return') 
    else
      keyStroke({'⌘'}, 'b') 
@@ -125,7 +125,6 @@ hs.hotkey.bind({'ctrl'}, 'k', keyCode('up'), nil, keyCode('up'))
 hs.hotkey.bind({'ctrl'}, ';', keyCodem({'command'}, 'tab'))
 hs.hotkey.bind({'ctrl'}, 'h', keyCodem({'shift'}, 'left'), nil, keyCodem({'shift'}, 'left'))
 hs.hotkey.bind({'ctrl'}, 'l', keyCode('right'), nil, keyCode('right'))
-hs.hotkey.bind({'ctrl'}, 'a', keyCodem({'shift', '⌥'}, 'left'), nil, keyCodem({'shift', '⌥'}, 'left'))
 hs.hotkey.bind({'ctrl'}, 'm', keyCodem({'shift', 'command'}, ']'), nil, keyCodem({'shift', 'command'}, ']'))
 hs.hotkey.bind({'shift', 'ctrl'}, 'm', keyCodem({'shift', 'command'}, '['), nil, keyCodem({'shift', 'command'}, '['))
 hs.hotkey.bind({'ctrl'}, 'return', expandContract())
