@@ -15,6 +15,7 @@ fzf
 ripgrep
 trash
 uv
+ruff
 )
 brew install ${term_apps[@]} 
 
@@ -57,7 +58,8 @@ dot remote set-url origin git@github.com:olambo/.dotfiles.git
 # Pandan - in menu
 
 # install JetBrains Mono and choose it for Warp at 14pt
-# vscode install python and nevoid. Set path for neovim
+# vscode install python python debugger and neovim. Check path for neovim 
+# vscode install ruff and even better TOML
 # vscode set movement via: defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
 
 # ==============================
