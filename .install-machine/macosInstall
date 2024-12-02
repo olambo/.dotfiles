@@ -16,6 +16,7 @@ ripgrep
 trash
 uv
 ruff
+tree
 )
 brew install ${term_apps[@]} 
 
