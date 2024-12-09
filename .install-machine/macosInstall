@@ -64,3 +64,5 @@ dot remote set-url origin git@github.com:olambo/.dotfiles.git
 # vscode set movement via: defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
 
 # ==============================
+#
+# defaults write com.apple.dock autohide-time-modifier -float 0.1;killall Dock
