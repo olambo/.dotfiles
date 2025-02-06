@@ -82,7 +82,7 @@ local function expandContract()
   return function()
    local capp = hs.application.frontmostApplication():bundleID()
    -- print ('app  '  ..':'.. capp)
-   if capp == 'PyCharm' then
+   if capp == 'com.jetbrains.pycharm.ce' then
      keyStroke({'shift', '⌘'}, 'f12')
    --elseif capp == 'iTerm2' or capp == 'dev.warp.Warp-Stable' then
      -- this wont work, binding return with modifier to return with different modifiers, hammerspoon doesnt support this easily
