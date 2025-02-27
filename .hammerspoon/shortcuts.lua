@@ -32,7 +32,8 @@ chooserAppDict = {
     ["g"] = "com.apple.Safari",
     ["m"] = "com.apple.mail",
     ["n"] = "com.apple.Notes",
-    ["p"] = "com.jetbrains.pycharm.ce",
+    ["p"] = "com.jetbrains.pycharm",
+    ["z"] = "com.jetbrains.pycharm.ce",
     ["s"] = "com.apple.Safari",
     ["u"] = "dev.warp.Warp-Stable",
     ["v"] = "com.microsoft.VSCode",
@@ -70,7 +71,7 @@ chooser:queryChangedCallback(queryChangedCallback)
 local function vimLikeKeyCode(l1, l2, r1, r2)
   return function()
    capp = hs.application.frontmostApplication():bundleID()
-   if capp == 'com.googlecode.iterm2' or capp == 'com.microsoft.VSCode' or capp == 'dev.zed.Zed' or capp == 'com.jetbrains.pycharm.ce' or capp == 'dev.warp.Warp-Stable' then
+   if capp == 'com.googlecode.iterm2' or capp == 'com.microsoft.VSCode' or capp == 'dev.zed.Zed' or capp == 'com.jetbrains.pycharm' or capp == 'com.jetbrains.pycharm.ce' or capp == 'dev.warp.Warp-Stable' then
      keyStroke(l1, l2)
    else
      keyStroke(r1, r2)
@@ -82,7 +83,7 @@ local function expandContract()
   return function()
    local capp = hs.application.frontmostApplication():bundleID()
    -- print ('app  '  ..':'.. capp)
-   if capp == 'com.jetbrains.pycharm.ce' then
+   if capp == 'com.jetbrains.pycharm.ce' or capp == 'com.jetbrains.pycharm' then
      keyStroke({'shift', '⌘'}, 'f12')
    --elseif capp == 'iTerm2' or capp == 'dev.warp.Warp-Stable' then
      -- this wont work, binding return with modifier to return with different modifiers, hammerspoon doesnt support this easily
