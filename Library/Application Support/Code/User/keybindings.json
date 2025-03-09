@@ -1,36 +1,3 @@
 // Place your key bindings in this file to override the defaults
 [
-    {
-        "key": "cmd+enter",
-        "command": "workbench.action.togglePanel",
-        "when": "!terminalFocus"
-    },
-    {
-        "key": "cmd+enter",
-        "command": "workbench.action.toggleMaximizedPanel",
-        "when": "terminalFocus"
-    },
-    {
-        "key": "alt+enter",
-        "command": "editor.action.quickFix",
-        "when": "editorHasCodeActionsProvider && editorTextFocus && !editorReadonly"
-    },
-    {
-        "key": "ctrl+a",
-        "command": "workbench.action.showCommands"
-    },
-    {
-        "key": "cmd+o",
-        "command": "workbench.action.quickOpen"
-    },
-    {
-        "key": "down",
-        "command": "workbench.action.focusActiveEditorGroup",
-        "when": "terminalFocus && neovim.mode != 'insert'"
-    },
-    {
-        "key": "down",
-        "command": "mojo.execFileInTerminal",
-        "when": "!terminalFocus && neovim.mode != 'insert'"
-    }
 ]  
