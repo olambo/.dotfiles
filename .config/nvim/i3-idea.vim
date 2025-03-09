@@ -16,28 +16,29 @@ set noerrorbells
 set multiple-cursors
 set commentary
 
-nnoremap <left> :action MethodUp<CR>
-nnoremap <right> :action MethodDown<CR>
+"nnoremap <left> :action MethodUp<CR>
+"nnoremap <right> :action MethodDown<CR>
 
 noremap - :action RecentFiles<CR>
 noremap g- :action SelectInProjectView<CR>
 noremap g<cr> :action ShowIntentionActions<CR>
+noremap g= :action ReformatCode<CR>
 
 noremap gd :action GotoDeclaration<CR>
 noremap gi :action GotoImplementation<CR>
 
 noremap gr :action ShowUsages<CR>
-noremap gR :action Refactorings.QuickListPopupAction<CR>
+noremap gn :action Refactorings.QuickListPopupAction<CR>
 
-noremap gt :action Scala.TypeInfo<CR>:action ExpressionTypeInfo<CR>
+noremap gt :action ExpressionTypeInfo<CR>
 noremap gh :action QuickJavaDoc<CR>
 noremap gS :action GotoSuperMethod<CR>
 
 noremap g; :action JumpToLastChange<CR>
 noremap g, :action JumpToNextChange<CR>
 
-noremap gk :action Back<CR>
-noremap gj :action Forward<CR>
+"noremap gk :action Back<CR>
+"noremap gj :action Forward<CR>
 
 noremap ge :action GotoNextError<CR>
 noremap gE :action GotoPreviousError<CR>
@@ -53,6 +54,8 @@ noremap <A-k> :action EditorCloneCaretAbove<CR>
 
 noremap gm :action ToggleBookmark<CR>
 noremap gM :action ShowBookmarks<CR>
+
+noremap ga :action SearchEverywhere<CR>
 
 map <A-l> <Plug>NextWholeOccurrence
 map <C-A-l> <Plug>NextOccurrence
