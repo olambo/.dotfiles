@@ -10,7 +10,7 @@ set expandtab
 set nu
 set textwidth=0
 " keep cursor towards center
-set scrolloff=10
+set scrolloff=5
 set signcolumn=yes
 
 " leader mappings. 
