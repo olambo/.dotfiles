@@ -1,5 +1,5 @@
 {
-  "editor.fontSize": 13,
+  "editor.fontSize": 15,
   "vscode-neovim.neovimExecutablePaths.darwin" : "/opt/homebrew/bin/nvim",
   "editor.accessibilitySupport" : "off",
   "workbench.editor.showTabs" : "single",
@@ -58,5 +58,9 @@
   "python.formatting.provider": "none",
   "extensions.experimental.affinity": {
     "asvetliakov.vscode-neovim": 1
-  }
+  },
+  "diffEditor.ignoreTrimWhitespace": false,
+  "editor.lineHeight": 1.5,
+  "git.openRepositoryInParentFolders": "never",
+  "terminal.integrated.fontSize": 13
 }
