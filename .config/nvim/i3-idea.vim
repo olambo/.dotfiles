@@ -32,6 +32,8 @@ noremap gn :action Refactorings.QuickListPopupAction<CR>
 
 noremap gt :action ExpressionTypeInfo<CR>
 noremap gh :action QuickJavaDoc<CR>
+
+nnoremap gs :action FileStructurePopup<CR>
 noremap gS :action GotoSuperMethod<CR>
 
 noremap g; :action JumpToLastChange<CR>
@@ -66,5 +68,5 @@ map <A-h> <Plug>RemoveOccurrence
 " noremap <leader>t :action JumpToLastWindow<CR>
 " noremap <leader>w :action RestoreDefaultLayout<CR>
 
-noremap gF :action FileStructurePopup<CR>
-noremap gf :action FindInPath<CR>
+nnoremap gf :action GotoFile<CR>
+nnoremap gF :action FindInPath<CR>
