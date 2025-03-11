@@ -1,3 +1,24 @@
 // Place your key bindings in this file to override the defaults
 [
+    {
+        "command": "runCommands",
+        "key": "Shift+Cmd+f12",
+        "args": {
+          "commands": [
+            "workbench.action.closePanel",
+            "workbench.action.toggleSidebarVisibility"
+          ]
+        },
+        "when": "sideBarVisible"
+    },
+    {
+        "command": "runCommands",
+        "key": "Shift+Cmd+f12",
+        "args": {
+          "commands": [
+            "workbench.action.togglePanel"
+          ]
+        },
+        "when": "!sideBarVisible"
+    }
 ]  

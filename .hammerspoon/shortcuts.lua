@@ -81,16 +81,14 @@ end
 
 local function expandContract()
   return function()
-   local capp = hs.application.frontmostApplication():bundleID()
+   -- local capp = hs.application.frontmostApplication():bundleID()
    -- print ('app  '  ..':'.. capp)
-   if capp == 'com.jetbrains.pycharm.ce' or capp == 'com.jetbrains.pycharm' then
-     keyStroke({'shift', '⌘'}, 'f12')
-   --elseif capp == 'iTerm2' or capp == 'dev.warp.Warp-Stable' then
+   --if capp == 'iTerm2' or capp == 'dev.warp.Warp-Stable' then
      -- this wont work, binding return with modifier to return with different modifiers, hammerspoon doesnt support this easily
      -- keyStroke({'shift', '⌘'}, 'return') 
-   else
-     keyStroke({'⌘'}, 'b') 
-   end
+   --else
+     keyStroke({'shift', '⌘'}, 'f12')
+   --end
  end
 end
 
@@ -124,10 +122,11 @@ hs.hotkey.bind({'ctrl'}, '0', vimLikeKeyCode({}, 'end', {'ctrl'}, 'e'))
 hs.hotkey.bind({'ctrl'}, ';', keyCodem({'command'}, 'tab'))
 hs.hotkey.bind({'ctrl'}, 'm', keyCodem({'shift', 'command'}, ']'), nil, keyCodem({'shift', 'command'}, ']'))
 hs.hotkey.bind({'shift', 'ctrl'}, 'm', keyCodem({'shift', 'command'}, '['), nil, keyCodem({'shift', 'command'}, '['))
-hs.hotkey.bind({'ctrl'}, 'return', expandContract())
+hs.hotkey.bind({'ctrl'}, 'return', keyCodem({'shift', '⌘'}, 'f12'))
 hs.hotkey.bind({'ctrl'}, 'space', doChoose(1))
 hs.hotkey.bind({}, 'f3', doChoose(2))
 
+-- hs.hotkey.bind({'ctrl'}, 'return', expandContract())
 -- The following is done in karabiner elements. Get strange behavior if done in hammerspoon
 -- hs.hotkey.bind({'ctrl'}, 'j', keyCode('down'), nil, keyCode('down'))
 -- hs.hotkey.bind({'ctrl'}, 'k', keyCode('up'), nil, keyCode('up'))

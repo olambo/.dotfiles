@@ -1,8 +1,7 @@
 {
   "editor.fontSize": 15,
   "vscode-neovim.neovimExecutablePaths.darwin" : "/opt/homebrew/bin/nvim",
-  "editor.accessibilitySupport" : "off",
-  "workbench.editor.showTabs" : "single",
+  "editor.accessibilitySupport": "off",
   "editor.fontFamily" : "JetBrains Mono",
   "vim.commandLineModeKeyBindings" : [
 
@@ -63,5 +62,6 @@
   "editor.lineHeight": 1.5,
   "git.openRepositoryInParentFolders": "never",
   "terminal.integrated.fontSize": 14,
-  "editor.lineNumbers": "off"
+  "editor.lineNumbers": "off",
+  "workbench.settings.applyToAllProfiles": []
 }
