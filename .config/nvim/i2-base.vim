@@ -7,10 +7,9 @@ set tabstop=2
 set shiftwidth=2
 set iskeyword+=-,#
 set expandtab
-set nu
 set textwidth=0
 " keep cursor towards center
-set scrolloff=5
+set scrolloff=4
 set signcolumn=yes
 
 " leader mappings. 
@@ -18,6 +17,12 @@ set signcolumn=yes
 let mapleader="\<space>"
 " very nice but I keep forgeting I have to hit return to keep
 set incsearch
+
+" move up and down to blank line
+nnoremap <up> {
+vnoremap <up> {
+nnoremap <down> }
+vnoremap <down> }
 
 " toggle numbers
 nnoremap <leader>n :set number!<cr>:se norelativenumber<cr>

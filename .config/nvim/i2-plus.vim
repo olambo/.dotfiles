@@ -1,8 +1,6 @@
 " down when number given: j, otherwise gj. (similar with k)
 nnoremap <silent> <expr> j v:count ? 'j' : 'gj'
 nnoremap <silent> <expr> k v:count ? 'k' : 'gk'
-
-nnoremap <right> <c-l>
 " insert undo
 " inoremap <c-x><c-u> <esc>u
 
@@ -21,9 +19,9 @@ let g:pear_tree_repeatable_expand = 0
 " imap <c-x><c-e> <Plug>(PearTreeExpand)
 
 " always show line numbers, but only in current window.
-set number
-:au WinEnter * :setlocal number
-:au WinLeave * :setlocal nonumber
+"set number
+":au WinEnter * :setlocal number
+":au WinLeave * :setlocal nonumber
 
 " jump list
 " nnoremap gk <c-o>

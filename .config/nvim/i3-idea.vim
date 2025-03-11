@@ -5,9 +5,6 @@
 " in terminal type the following line
 "      defaults write -g ApplePressAndHoldEnabled -bool false
 "
-" can't set in intellij
-" nnoremap <c-x><c-u> <nop>
-" noremap <c-x><c-p> <nop>
 
 sethandler a:vim
 
@@ -16,48 +13,46 @@ set noerrorbells
 set multiple-cursors
 set commentary
 
-"nnoremap <left> :action MethodUp<CR>
-"nnoremap <right> :action MethodDown<CR>
+nnoremap <s-left> :action MethodUp<CR>
+nnoremap <right> :action MethodDown<CR>
 
-noremap - :action RecentFiles<CR>
-noremap g- :action SelectInProjectView<CR>
-noremap g<cr> :action ShowIntentionActions<CR>
-noremap g= :action ReformatCode<CR>
+nnoremap - :action RecentFiles<CR>
+nnoremap g- :action SelectInProjectView<CR>
+nnoremap g<cr> :action ShowIntentionActions<CR>
+nnoremap g= :action ReformatCode<CR>
 
-noremap gd :action GotoDeclaration<CR>
-noremap gi :action GotoImplementation<CR>
+nnoremap gd :action GotoDeclaration<CR>
+nnoremap gi :action GotoImplementation<CR>
 
-noremap gr :action ShowUsages<CR>
-noremap gn :action Refactorings.QuickListPopupAction<CR>
+nnoremap gr :action Refactorings.QuickListPopupAction<CR>
+nnoremap gR :action ShowUsages<CR>
 
-noremap gt :action ExpressionTypeInfo<CR>
-noremap gh :action QuickJavaDoc<CR>
+nnoremap gt :action ExpressionTypeInfo<CR>
+nnoremap gh :action QuickJavaDoc<CR>
 
 nnoremap gs :action FileStructurePopup<CR>
-noremap gS :action GotoSuperMethod<CR>
+nnoremap gS :action GotoSuperMethod<CR>
 
-noremap g; :action JumpToLastChange<CR>
-noremap g, :action JumpToNextChange<CR>
+nnoremap g; :action JumpToLastChange<CR>
+nnoremap g, :action JumpToNextChange<CR>
 
 "noremap gk :action Back<CR>
 "noremap gj :action Forward<CR>
 
-noremap ge :action GotoNextError<CR>
-noremap gE :action GotoPreviousError<CR>
+nnoremap ge :action GotoNextError<CR>
+nnoremap gE :action GotoPreviousError<CR>
 
-noremap gb :action ToggleLineBreakpoint<CR>
-noremap gB :action ViewBreakpoints<CR>
+nnoremap gb :action ToggleLineBreakpoint<CR>
+nnoremap gB :action ViewBreakpoints<CR>
 
-noremap gO :action ChooseRunConfiguration<CR>
-noremap go :action ContextRun<CR>
+nnoremap gO :action Debug<CR>
+nnoremap go :action ContextRun<CR>
 
-noremap <A-j> :action EditorCloneCaretBelow<CR>
-noremap <A-k> :action EditorCloneCaretAbove<CR>
+nnoremap <A-j> :action EditorCloneCaretBelow<CR>
+nnoremap <A-k> :action EditorCloneCaretAbove<CR>
 
-noremap gm :action ToggleBookmark<CR>
-noremap gM :action ShowBookmarks<CR>
-
-noremap ga :action SearchEverywhere<CR>
+nnoremap gm :action ToggleBookmark<CR>
+nnoremap gM :action ShowBookmarks<CR>
 
 map <A-l> <Plug>NextWholeOccurrence
 map <C-A-l> <Plug>NextOccurrence
@@ -68,5 +63,6 @@ map <A-h> <Plug>RemoveOccurrence
 " noremap <leader>t :action JumpToLastWindow<CR>
 " noremap <leader>w :action RestoreDefaultLayout<CR>
 
+nnoremap ga :action SearchEverywhere<CR>
 nnoremap gf :action GotoFile<CR>
 nnoremap gF :action FindInPath<CR>

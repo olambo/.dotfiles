@@ -22,6 +22,7 @@ brew install ${term_apps[@]}
 
 # macOS cask apps
 cask_apps=(
+karabiner-elements
 hammerspoon
 alfred
 vlc

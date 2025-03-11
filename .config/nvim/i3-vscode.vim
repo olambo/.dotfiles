@@ -11,8 +11,8 @@ noremap gI <Cmd>call VSCodeNotify('editor.action.goToImplementation')<CR>
 nnoremap gh <Cmd>call VSCodeNotify('editor.action.showHover')<CR>
 nnoremap gt <Cmd>call VSCodeNotify('editor.action.showHover')<CR>
 
-nnoremap gr <Cmd>call VSCodeNotify('editor.action.goToReferences')<CR>
-nnoremap gn <Cmd>call VSCodeNotify('editor.action.rename')<CR>
+nnoremap gr <Cmd>call VSCodeNotify('editor.action.rename')<CR>
+nnoremap gR <Cmd>call VSCodeNotify('editor.action.goToReferences')<CR>
 
 "noremap gk <Cmd>call VSCodeNotify('workbench.action.navigateBack')<CR>
 "noremap gj <Cmd>call VSCodeNotify('workbench.action.navigateForward')<CR>

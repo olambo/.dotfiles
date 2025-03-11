@@ -121,13 +121,16 @@ end
 
 hs.hotkey.bind({'ctrl'}, '9', vimLikeKeyCode({}, 'home', {'ctrl'}, 'a'))
 hs.hotkey.bind({'ctrl'}, '0', vimLikeKeyCode({}, 'end', {'ctrl'}, 'e'))
-hs.hotkey.bind({'ctrl'}, 'j', keyCode('down'), nil, keyCode('down'))
-hs.hotkey.bind({'ctrl'}, 'k', keyCode('up'), nil, keyCode('up'))
 hs.hotkey.bind({'ctrl'}, ';', keyCodem({'command'}, 'tab'))
-hs.hotkey.bind({'ctrl'}, 'h', keyCodem({'shift'}, 'left'), nil, keyCodem({'shift'}, 'left'))
-hs.hotkey.bind({'ctrl'}, 'l', keyCode('right'), nil, keyCode('right'))
 hs.hotkey.bind({'ctrl'}, 'm', keyCodem({'shift', 'command'}, ']'), nil, keyCodem({'shift', 'command'}, ']'))
 hs.hotkey.bind({'shift', 'ctrl'}, 'm', keyCodem({'shift', 'command'}, '['), nil, keyCodem({'shift', 'command'}, '['))
 hs.hotkey.bind({'ctrl'}, 'return', expandContract())
 hs.hotkey.bind({'ctrl'}, 'space', doChoose(1))
 hs.hotkey.bind({}, 'f3', doChoose(2))
+
+-- The following is done in karabiner elements. Get strange behavior if done in hammerspoon
+-- hs.hotkey.bind({'ctrl'}, 'j', keyCode('down'), nil, keyCode('down'))
+-- hs.hotkey.bind({'ctrl'}, 'k', keyCode('up'), nil, keyCode('up'))
+-- hs.hotkey.bind({'ctrl'}, 'h', keyCodem({'shift'}, 'left'), nil, keyCodem({'shift'}, 'left'))
+-- hs.hotkey.bind({'ctrl'}, 'l', keyCode('right'), nil, keyCode('right'))
+--
