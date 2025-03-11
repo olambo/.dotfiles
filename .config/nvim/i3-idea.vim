@@ -13,6 +13,7 @@ set noerrorbells
 set multiple-cursors
 set commentary
 
+nnoremap <left> :action MethodUp<CR>
 nnoremap <s-left> :action MethodUp<CR>
 nnoremap <right> :action MethodDown<CR>
 
