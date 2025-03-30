@@ -45,6 +45,8 @@ nnoremap <leader><leader> :
 " hard to type slash
 nnoremap s /
 vnoremap s /
+nnoremap S ?
+vnoremap S ?
 " go to the begining of characters on line. 0 will go to the start
 nnoremap <home> ^
 

@@ -30,6 +30,7 @@ nnoremap gR :action ShowUsages<CR>
 
 nnoremap gt :action ExpressionTypeInfo<CR>
 nnoremap gh :action QuickJavaDoc<CR>
+nnoremap gH :action ShowHoverInfo<CR>
 
 nnoremap gs :action FileStructurePopup<CR>
 nnoremap gS :action GotoSuperMethod<CR>
