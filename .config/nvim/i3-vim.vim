@@ -1,4 +1,5 @@
-" down when number given: j, otherwise gj. (similar with k)
+" Smart line navigation: move by visual lines (gj/gk) for single moves,
+" by logical lines (j/k) when using counts (e.g., 5j)
 nnoremap <silent> <expr> j v:count ? 'j' : 'gj'
 nnoremap <silent> <expr> k v:count ? 'k' : 'gk'
 set belloff=all
