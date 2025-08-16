@@ -29,22 +29,20 @@ local chooser
 chooserAppDict = {
     ["b"] = "com.apple.iBooksX",
     ["f"] = "com.apple.finder",
-    ["g"] = "com.apple.Safari",
+    ["i"] = "com.microsoft.VSCode",
     ["m"] = "com.apple.mail",
     ["n"] = "com.apple.Notes",
-    ["i"] = "com.jetbrains.pycharm",
-    ["z"] = "com.jetbrains.pycharm.ce",
+    ["o"] = "com.jetbrains.pycharm",
     ["s"] = "com.apple.Safari",
     ["u"] = "dev.warp.Warp-Stable",
-    ["v"] = "com.microsoft.VSCode",
+    ["z"] = "com.jetbrains.pycharm.ce",
 }
 
 local function chooserApp(appChar)
     local app = chooserAppDict[appChar]
     -- print ('switch to ' .. appChar ..':'.. app)
     if (app == nil) then return end
-    if (appChar ~= 'g') then hs.application.launchOrFocusByBundleID(app) end
-    if appChar == 'g' then keyStroke({'shift', 'ctrl', '⌥', '⌘'}, 'g') end
+    hs.application.launchOrFocusByBundleID(app) 
 end
 
 -- a row has been selected. Process the command. The chooser will be auto closed
@@ -125,11 +123,3 @@ hs.hotkey.bind({'shift', 'ctrl'}, 'm', keyCodem({'shift', 'command'}, '['), nil,
 hs.hotkey.bind({'ctrl'}, 'return', keyCodem({'shift', '⌘'}, 'f12'))
 hs.hotkey.bind({'ctrl'}, 'space', doChoose(1))
 hs.hotkey.bind({}, 'f3', doChoose(2))
-
--- hs.hotkey.bind({'ctrl'}, 'return', expandContract())
--- The following is done in karabiner elements. Get strange behavior if done in hammerspoon
--- hs.hotkey.bind({'ctrl'}, 'j', keyCode('down'), nil, keyCode('down'))
--- hs.hotkey.bind({'ctrl'}, 'k', keyCode('up'), nil, keyCode('up'))
--- hs.hotkey.bind({'ctrl'}, 'h', keyCodem({'shift'}, 'left'), nil, keyCodem({'shift'}, 'left'))
--- hs.hotkey.bind({'ctrl'}, 'l', keyCode('right'), nil, keyCode('right'))
---
