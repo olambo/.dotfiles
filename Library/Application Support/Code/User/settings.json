@@ -1,4 +1,6 @@
 {
+  "editor.wordWrap": "on",
+  "editor.wrappingIndent": "same",
   "editor.fontSize": 15,
   "vscode-neovim.neovimExecutablePaths.darwin" : "/opt/homebrew/bin/nvim",
   "editor.accessibilitySupport": "off",
@@ -63,5 +65,27 @@
   "git.openRepositoryInParentFolders": "never",
   "terminal.integrated.fontSize": 14,
   "editor.lineNumbers": "off",
-  "workbench.settings.applyToAllProfiles": []
+  "workbench.settings.applyToAllProfiles": [],
+  "chat.instructionsFilesLocations": {
+    ".github/instructions": true,
+    "/var/folders/xt/6s00j8794qj1vznmb2b9q8lc0000gn/T/postman-collections-post-response.instructions.md": true,
+    "/var/folders/xt/6s00j8794qj1vznmb2b9q8lc0000gn/T/postman-collections-pre-request.instructions.md": true,
+    "/var/folders/xt/6s00j8794qj1vznmb2b9q8lc0000gn/T/postman-folder-post-response.instructions.md": true,
+    "/var/folders/xt/6s00j8794qj1vznmb2b9q8lc0000gn/T/postman-folder-pre-request.instructions.md": true,
+    "/var/folders/xt/6s00j8794qj1vznmb2b9q8lc0000gn/T/postman-http-request-post-response.instructions.md": true,
+    "/var/folders/xt/6s00j8794qj1vznmb2b9q8lc0000gn/T/postman-http-request-pre-request.instructions.md": true
+  },
+  "markdown.extension.list.toggle.candidate-markers": [
+    
+    "-",
+    "*",
+    "+",
+    "1.",
+    "1)"
+  ],
+  "vim.handleKeys": {
+  "j": true,
+  "k": true
+  },
+  "markdown.extension.listEditing.enabled": false,
 }
