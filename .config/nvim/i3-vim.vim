@@ -1,10 +1,19 @@
+" down when number given: j, otherwise gj. (similar with k)
+nnoremap <silent> <expr> j v:count ? 'j' : 'gj'
+nnoremap <silent> <expr> k v:count ? 'k' : 'gk'
+set belloff=all
+set mouse=nv " this is not going to allow command-c. can use option-mouse or turn off
+
+" set up replace on current word
+noremap <expr> g/ ':%s/'.expand('<cword>').'//gIc<Left><Left><Left><Left>'
+
 " use confim quit
 nnoremap <leader>f :conf q<cr>
 
+" toggle non modifiable
+nnoremap <leader>k :set invmodifiable<CR>:echo "View mode: " . (&modifiable ? "OFF" : "ON")<CR>
 let g:undotree_SplitWidth = 50
 nnoremap <f5> :UndotreeToggle<CR>
-nmap <f7> :lua require('dark_notify').toggle()<cr>
-nnoremap <f8> :source $MYVIMRC<CR>
 nnoremap <f8> :source ~/.config/nvim/init.vim<CR>
 
 " insert mode drop down list selection.
@@ -41,30 +50,6 @@ if has('nvim')
     \,sm:block-blinkwait175-blinkoff150-blinkon175
     " insert mode for terminal
     au TermOpen * startinsert
-
-:lua <<EOF
-  require'nvim-treesitter.configs'.setup {
-    ensure_installed = "all",           -- one of "all", or a list of languages
-    ignore_install = { },               -- List of parsers to ignore installing
-    highlight = {
-      enable = true,                    -- false will disable the whole extension
-      disable = { },                    -- list of language that will be disabled
-    },
-  }
-  --local dn = require('dark_notify')
-  --dn.run({
-  --  onchange = function(mode)
-  --    if vim.g.vscode_style ~= mode then
-
-  --      vim.g.vscode_style = mode 
-  --      vim.o.background = mode
-
-  --      vim.cmd('colorscheme ' .. vim.g.colorscheme)
-  --      vim.cmd('source ' .. '~/.config/nvim/i5-statusline.vim')
-  --    end
-  --  end,
-  --})
-EOF
 endif
 
 " todo: check if vscode can support some of this
@@ -93,3 +78,5 @@ endfunction
 
 " ----------------------------------------------------------------------------------------------
 set showcmd
+
+autocmd FileType markdown setlocal wrap linebreak nolist

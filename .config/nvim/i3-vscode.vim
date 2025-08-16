@@ -1,6 +1,9 @@
 "nnoremap nnoremap <M-A-C-S-'> w
 " already defined
 " nnoremap gd <Cmd>call VSCodeNotify('editor.action.goToDefinition')<CR>
+" 
+
+autocmd BufLeave,BufEnter * set modifiable
 
 nnoremap gf <Cmd>call VSCodeNotify('workbench.action.quickOpen')<CR>
 

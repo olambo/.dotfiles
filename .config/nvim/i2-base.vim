@@ -29,6 +29,10 @@ nnoremap <leader>n :set number!<cr>:se norelativenumber<cr>
 " toggle highlight search
 nnoremap <leader>h :set hlsearch! hlsearch?<cr>
 
+" dirvish and vscode will throw errors if the buffer is non modifiable when moving buffers
+autocmd BufLeave,BufEnter * set modifiable
+nnoremap <leader>k :set invmodifiable<CR>:echo "View mode: " . (&modifiable ? "OFF" : "ON")<CR>
+
 " split management
 nnoremap <cr> <C-w><C-w>
 nnoremap <leader>v <C-w>v
@@ -62,12 +66,6 @@ nnoremap 6v V5j
 nnoremap 7v V6j
 nnoremap 8v V7j
 nnoremap 9v V8j
-nnoremap 10v V9j
-nnoremap 11v V10j
-nnoremap 12v V11j
-nnoremap 13v V12j
-nnoremap 14v V13j
-nnoremap 15v V14j
 
 " don't need select mode
 vnoremap gh <nop>

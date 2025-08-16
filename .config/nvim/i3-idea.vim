@@ -68,3 +68,4 @@ map <A-h> <Plug>RemoveOccurrence
 nnoremap ga :action SearchEverywhere<CR>
 nnoremap gf :action GotoFile<CR>
 nnoremap gF :action FindInPath<CR>
+
