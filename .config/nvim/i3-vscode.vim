@@ -1,7 +1,13 @@
 "nnoremap nnoremap <M-A-C-S-'> w
 " already defined
 " nnoremap gd <Cmd>call VSCodeNotify('editor.action.goToDefinition')<CR>
-" 
+
+" Navigate wrapped lines: visual lines by default, logical lines with counts
+" Note: Uses nmap (recursive) instead of nnoremap - VSCode Neovim plugin
+" doesn't handle non-recursive mappings properly for gj/gk commands
+nmap <silent> <expr> j v:count ? 'j' : 'gj'
+nmap <silent> <expr> k v:count ? 'k' : 'gk'
+set wrap
 
 autocmd BufLeave,BufEnter * set modifiable
 
@@ -17,9 +23,6 @@ nnoremap gt <Cmd>call VSCodeNotify('editor.action.showHover')<CR>
 nnoremap gr <Cmd>call VSCodeNotify('editor.action.rename')<CR>
 nnoremap gR <Cmd>call VSCodeNotify('editor.action.goToReferences')<CR>
 
-"noremap gk <Cmd>call VSCodeNotify('workbench.action.navigateBack')<CR>
-"noremap gj <Cmd>call VSCodeNotify('workbench.action.navigateForward')<CR>
-
 nnoremap ge <Cmd>call VSCodeNotify('editor.action.marker.nextInFiles')<CR>
 nnoremap gE <Cmd>call VSCodeNotify('editor.action.marker.prevInFiles')<CR>
 
@@ -31,8 +34,6 @@ nnoremap g<cr> <Cmd>call VSCodeNotify('editor.action.quickFix')<CR>
 nnoremap g= <Cmd>call VSCodeNotify('editor.action.formatDocument')<CR>
 
 nnoremap ga <Cmd>call VSCodeNotify('workbench.action.showCommands')<CR>
-
-nnoremap <leader><leader> :
 
 nnoremap <cr> <Cmd>call VSCodeNotify('workbench.action.focusNextGroup')<CR>
 nnoremap <leader>v <Cmd>call VSCodeNotify('workbench.action.splitEditorRight')<CR>
