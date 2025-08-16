@@ -36,10 +36,5 @@ fun! BuildStatusLine(nr)
   
   return setup . insert_mode . visual_mode . separator . info
 endf
-"fun! BuildStatusLine(nr)
-"  let et = '%-5.3n %t%m%r%h%w %= [↓%l/%L] %{&filetype} '
-"  let sep = '%{"  "}'
-"  return '%{SetupStl(' . a:nr . ')}' . '%#InsertColor#' . '%{Xmo(w:["is_active"], "i")}'. '%#VisualColor#' . '%{Xmo(w:["is_active"], "v")}' . '%#CursorIM#' . sep . et . '%{ColStr()}'
-"endf
 
 set statusline=%!BuildStatusLine(winnr())
