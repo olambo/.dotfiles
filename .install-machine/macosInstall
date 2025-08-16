@@ -47,6 +47,9 @@ curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs \
 # Follow new machine clone instructions at https://github.com/olambo/.dotfiles
 dot remote set-url origin git@github.com:olambo/.dotfiles.git
 
+# symlink to vault
+ln -s "/Users/oli/Library/Mobile Documents/iCloud~md~obsidian/Documents/Vaultdoc/" "/Users/oli/ObsidianVault"
+
 # Set keyboard caps lock to control
 # Set Finder settings you want
 
