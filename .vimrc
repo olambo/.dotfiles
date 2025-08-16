@@ -4,5 +4,4 @@ if &compatible
   set nocompatible
 endif
 
-source ~/.config/nvim/init.vim
 set t_Co=256
