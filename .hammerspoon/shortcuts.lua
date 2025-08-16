@@ -32,7 +32,8 @@ chooserAppDict = {
     ["i"] = "com.microsoft.VSCode",
     ["m"] = "com.apple.mail",
     ["n"] = "com.apple.Notes",
-    ["o"] = "com.jetbrains.pycharm",
+    ["o"] = "md.obsidian",
+    ["p"] = "com.jetbrains.pycharm",
     ["s"] = "com.apple.Safari",
     ["u"] = "dev.warp.Warp-Stable",
     ["z"] = "com.jetbrains.pycharm.ce",
@@ -69,7 +70,7 @@ chooser:queryChangedCallback(queryChangedCallback)
 local function vimLikeKeyCode(l1, l2, r1, r2)
   return function()
    capp = hs.application.frontmostApplication():bundleID()
-   if capp == 'com.googlecode.iterm2' or capp == 'com.microsoft.VSCode' or capp == 'dev.zed.Zed' or capp == 'com.jetbrains.pycharm' or capp == 'com.jetbrains.pycharm.ce' or capp == 'dev.warp.Warp-Stable' then
+   if capp == 'com.googlecode.iterm2' or capp == 'com.microsoft.VSCode' or capp == 'dev.zed.Zed' or capp == 'com.jetbrains.pycharm' or capp == 'com.jetbrains.pycharm.ce' or capp == 'dev.warp.Warp-Stable' or capp == 'md.obsidian' then
      keyStroke(l1, l2)
    else
      keyStroke(r1, r2)
@@ -79,15 +80,8 @@ end
 
 local function expandContract()
   return function()
-   -- local capp = hs.application.frontmostApplication():bundleID()
-   -- print ('app  '  ..':'.. capp)
-   --if capp == 'iTerm2' or capp == 'dev.warp.Warp-Stable' then
-     -- this wont work, binding return with modifier to return with different modifiers, hammerspoon doesnt support this easily
-     -- keyStroke({'shift', '⌘'}, 'return') 
-   --else
      keyStroke({'shift', '⌘'}, 'f12')
-   --end
- end
+  end
 end
 
 local function doChoose(typ)
@@ -100,15 +94,16 @@ local function doChoose(typ)
     elseif typ ~= 1 and chooser:rows() <= 3 then
        chooser:rows(9)
        chooser:choices({
-         { ["text"] = "Books",      ["command"] = 'b'},
-         { ["text"] = "Finder",     ["command"] = 'f'},
-         { ["text"] = "Google",     ["command"] = 'g'},
-         { ["text"] = "Mail",       ["command"] = 'm'},
-         { ["text"] = "Notes",      ["command"] = 'n'},
-         { ["text"] = "Ide Pycharm",    ["command"] = 'i'},
-         { ["text"] = "Safari",     ["command"] = 's'},
-         { ["text"] = "Unix-term",  ["command"] = 'u'},
-         { ["text"] = "Vscode",     ["command"] = 'v'},
+         { ["text"] = "Books",        ["command"] = 'b'},
+         { ["text"] = "Finder",       ["command"] = 'f'},
+         { ["text"] = "Google",       ["command"] = 'g'},
+         { ["text"] = "Mail",         ["command"] = 'm'},
+         { ["text"] = "Notes",        ["command"] = 'n'},
+         { ["text"] = "Ide vscode",   ["command"] = 'i'},
+         { ["text"] = "Obsidian",     ["command"] = 'o'},
+         { ["text"] = "Pycharm",      ["command"] = 'p'},
+         { ["text"] = "Safari",       ["command"] = 's'},
+         { ["text"] = "Unix-term",    ["command"] = 'u'},
        })
     end
     chooser:show({0,0})
