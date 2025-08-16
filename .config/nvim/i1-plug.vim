@@ -3,9 +3,6 @@
 call plug#begin('~/.config/nvim/plugged')
 
 Plug 'tpope/vim-commentary'
-if has('nvim')
-
-endif
 if !exists('g:vscode')
 	Plug 'ojroques/vim-oscyank'
 	Plug 'justinmk/vim-dirvish'
