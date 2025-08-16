@@ -51,7 +51,7 @@
                                         "optional": ["any"]
                                     }
                                 },
-                                "to": [{ "key_code": "left_arrow", "modifiers": [ "shift" ] }],
+                                "to": [{ "key_code": "left_arrow", "modifiers": [ "shift", "option" ] }],
                                 "type": "basic"
                             },
                             {
@@ -63,6 +63,22 @@
                                     }
                                 },
                                 "to": [{ "key_code": "right_arrow" }],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "3)  <ctrl-del>, opt-del",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "delete_or_backspace",
+                                    "modifiers": {
+                                        "mandatory": ["control"],
+                                        "optional": ["any"]
+                                    }
+                                },
+                                "to": [{ "key_code": "delete_or_backspace", "modifiers": [ "option" ] }],
                                 "type": "basic"
                             }
                         ]
