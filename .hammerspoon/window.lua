@@ -1,11 +1,22 @@
--- position windows. If the width is already set, use an alternative.
+-- ============================
+-- Window Management Module
+-- ============================
+
+-- Move or resize windows on the screen
+-- f = current window frame
+-- max = screen frame
+-- wx, hx = width/height fractions
+-- wxIfAlready = alternate width if already at desired width
+
 local function winToPos(posWanted, wx, hx, wxIfAlready) 
     local win = hs.window.focusedWindow()
+    if not win then return end  -- safety check
     local f = win:frame()
     local max = win:screen():frame()
     local widthx = math.floor(max.w * wx)
     local posLR = posWanted
 
+    -- If 'leftright', decide whether to go left or right based on current position
     if posLR == 'leftright' then
       if f.x == 0 then
         posLR = 'left'
@@ -14,14 +25,19 @@ local function winToPos(posWanted, wx, hx, wxIfAlready)
       end
     end
 
+    -- Adjust width if already at desired width
     if posLR == "mid" and math.floor((max.w - f.w) / 2) ~= f.x then
     elseif widthx == f.w then
         widthx = math.floor(max.w * wxIfAlready)
     end
+
+    -- Set initial position and size
     f.x = max.x
     f.y = max.y
     f.w = widthx
     f.h = max.h * hx
+
+    -- Adjust X and Y depending on left/mid/right alignment
     if posLR == "right" and f.w ~= max.w then
         f.x = max.w - f.w 
     end
@@ -35,14 +51,20 @@ local function winToPos(posWanted, wx, hx, wxIfAlready)
     if posLR == "mid"  then
         f.x = math.floor((max.w - f.w) / 2)
     end
+
     win:setFrame(f, 0)
 end
 
+-- ============================
+-- Move window right by a fraction
+-- ============================
+
 local function winRight() 
     local win = hs.window.focusedWindow()
+    if not win then return end
     local max = win:screen():frame()
     local f = win:frame()
-    local ex = (max.w - f.w) / 4
+    local ex = (max.w - f.w) / 4  -- step size
 
     if f.x == 10 then
         f.x = 0
@@ -54,11 +76,17 @@ local function winRight()
     else
         f.x = f.x + ex
     end
+
     win:setFrame(f, 0)
 end
 
+-- ============================
+-- Move window left by a fraction
+-- ============================
+
 local function winLeft() 
     local win = hs.window.focusedWindow()
+    if not win then return end
     local max = win:screen():frame()
     local f = win:frame()
     local ex = (max.w - f.w) / 4
@@ -75,8 +103,13 @@ local function winLeft()
     win:setFrame(f, 0)
 end
 
+-- ============================
+-- Move window down or half-height toggle
+-- ============================
+
 local function winDown() 
     local win = hs.window.focusedWindow()
+    if not win then return end
     local max = win:screen():frame()
     local f = win:frame()
     local ywant = max.h / 2
@@ -94,38 +127,37 @@ local function winDown()
     win:setFrame(f, 0)
 end
 
--- size the window
+-- ============================
+-- Resize window by delta
+-- ============================
+
 local function winSize(x, y) 
     local win = hs.window.focusedWindow()
+    if not win then return end
     local f = win:frame()
     f.w = f.w + x
     f.h = f.h + y
     win:setFrame(f, 0)
 end
 
--- move left
+-- ============================
+-- Hotkey Bindings
+-- ============================
+
+-- Move left / right
 hs.hotkey.bind({"alt", "ctrl", "cmd"}, "Left", function() winLeft() end)
+hs.hotkey.bind({"alt", "ctrl", "cmd"}, "Right", function() winRight() end)
 
--- move right
-hs.hotkey.bind({"alt", "ctrl", "cmd"}, "right", function() winRight() end)
+-- Half / half-height
+hs.hotkey.bind({"alt", "ctrl", "cmd"}, "Up", function() winToPos("leftright", .5, 1, .75) end)
+hs.hotkey.bind({"alt", "ctrl", "cmd"}, "Down", function() winDown() end)
 
--- position half
-hs.hotkey.bind({"alt", "ctrl", "cmd"}, "up", function() winToPos("leftright", .5, 1, .75) end)
-
--- position half height
-hs.hotkey.bind({"alt", "ctrl", "cmd"}, "down", function() winDown() end)
-
--- maximize window
+-- Maximize window
 hs.hotkey.bind({"alt", "ctrl", "cmd"}, "Return", function() winToPos("left", 1, 1, .98) end)
 
--- smaller width
-hs.hotkey.bind({"alt", "ctrl"}, "left", function() winSize(-20, 0) end, nil, function() winSize(-20, 0) end)
+-- Resize (hold alt+ctrl)
+hs.hotkey.bind({"alt", "ctrl"}, "Left", function() winSize(-20, 0) end, nil, function() winSize(-20, 0) end)
+hs.hotkey.bind({"alt", "ctrl"}, "Right", function() winSize(20, 0) end, nil, function() winSize(20, 0) end)
+hs.hotkey.bind({"alt", "ctrl"}, "Up", function() winSize(0, -20) end, nil, function() winSize(0, -20) end)
+hs.hotkey.bind({"alt", "ctrl"}, "Down", function() winSize(0, 20) end, nil, function() winSize(0, 20) end)
 
--- larger width
-hs.hotkey.bind({"alt", "ctrl"}, "right", function() winSize(20, 0) end, nil, function() winSize(20, 0) end)
-
--- smaller height
-hs.hotkey.bind({"alt", "ctrl"}, "up", function() winSize(0, -20) end, nil, function() winSize(0, -20) end)
-
--- larger height
-hs.hotkey.bind({"alt", "ctrl"}, "down", function() winSize(0, 20) end, nil, function() winSize(0, 20) end)
