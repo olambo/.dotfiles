@@ -49,7 +49,7 @@
                         ]
                     },
                     {
-                        "description": "2)  <ctrl-h>, <ctrl-j>, <ctrl-k>, <ctrl-l> to shift-left, down, up, right arrows",
+                        "description": "2)  <ctrl-h> to select word backwards, <ctrl-j>, <ctrl-k>, <ctrl-l> to down, up, right arrows",
                         "manipulators": [
                             {
                                 "from": {
