@@ -1,5 +1,4 @@
 " Smart line navigation: move by visual lines (gj/gk) for single moves,
-" s
 " by logical lines (j/k) when using counts (e.g., 5j)
 nnoremap <silent> <expr> j v:count ? 'j' : 'gj'
 nnoremap <silent> <expr> k v:count ? 'k' : 'gk'
@@ -13,7 +12,6 @@ noremap <expr> g/ ':%s/'.expand('<cword>').'//gIc<Left><Left><Left><Left>'
 nnoremap <leader>f :conf q<cr>
 
 " toggle non modifiable
-nnoremap <leader>k :set invmodifiable<CR>:echo "View mode: " . (&modifiable ? "OFF" : "ON")<CR>
 let g:undotree_SplitWidth = 50
 nnoremap <f5> :UndotreeToggle<CR>
 nnoremap <f8> :source ~/.config/nvim/init.vim<CR>
@@ -54,9 +52,6 @@ if has('nvim')
     au TermOpen * startinsert
 endif
 
-" todo: check if vscode can support some of this
-" ----------------------------------------------------------------------------------------------
-" copy to system clipboard. <hyp-y> mapped to <c-x><c-y> via karabiner elements
 if $TERM_PROGRAM == "Apple_Terminal"
   if has('nvim')
     let g:colorscheme = "PaperColor"
@@ -65,13 +60,16 @@ if $TERM_PROGRAM == "Apple_Terminal"
   endif
   vnoremap <c-x> "+y
 else
-  " copy into system clipboard without yanking into vim clipboard/reg0
-  vnoremap <c-x> :OSCYankVisual<CR>
-  " deprecated due to inconsistancies with other apps
-  vnoremap <c-y> <Esc>:echo "ctrl-y deprecated, use cmd-c instead"<CR>
   if has('nvim')
     let g:colorscheme = "vscode"
   endif
+  " Copy selected text to system clipboard
+  vnoremap <c-x> "+y
+  " Deprecated due to inconsistencies with other apps (e.g. warp)
+  vnoremap <c-y> <Esc>:echo "ctrl-y deprecated, use cmd-c instead"<CR>
+  " Select all and yank to system clipboard
+  command! YankAllToClipboard %y+
+  nnoremap <leader>a :YankAllToClipboard<CR>
 endif
 
 " ----------------------------------------------------------------------------------------------
