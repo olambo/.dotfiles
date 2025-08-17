@@ -5,6 +5,36 @@
             "complex_modifications": {
                 "rules": [
                     {
+                        "description": "Change cmd+c to cmd+c + ctrl+x in Warp Terminal for nvim to system clipboard",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "dev.warp.Warp-Stable"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "c",
+                                    "modifiers": { "mandatory": ["command"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "c",
+                                        "modifiers": ["command"]
+                                    },
+                                    {
+                                        "key_code": "x",
+                                        "modifiers": ["control"]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
                         "description": "1)  Escape if caps is pressed alone, left_ctrl otherwise",
                         "manipulators": [
                             {
@@ -51,7 +81,12 @@
                                         "optional": ["any"]
                                     }
                                 },
-                                "to": [{ "key_code": "left_arrow", "modifiers": [ "shift", "option" ] }],
+                                "to": [
+                                    {
+                                        "key_code": "left_arrow",
+                                        "modifiers": ["shift", "option"]
+                                    }
+                                ],
                                 "type": "basic"
                             },
                             {
@@ -78,7 +113,12 @@
                                         "optional": ["any"]
                                     }
                                 },
-                                "to": [{ "key_code": "delete_or_backspace", "modifiers": [ "option" ] }],
+                                "to": [
+                                    {
+                                        "key_code": "delete_or_backspace",
+                                        "modifiers": ["option"]
+                                    }
+                                ],
                                 "type": "basic"
                             }
                         ]
