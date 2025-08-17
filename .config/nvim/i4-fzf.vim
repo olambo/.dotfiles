@@ -46,7 +46,7 @@ endfunction
 
 function! FilePath()
     let path = expand("%:p")
-    call OSCYankString(path)
+    let @+ = path  " Yank to system clipboard
     echo path
 endfunction
 
