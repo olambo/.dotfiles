@@ -1,4 +1,5 @@
 " Smart line navigation: move by visual lines (gj/gk) for single moves,
+" s
 " by logical lines (j/k) when using counts (e.g., 5j)
 nnoremap <silent> <expr> j v:count ? 'j' : 'gj'
 nnoremap <silent> <expr> k v:count ? 'k' : 'gk'
@@ -62,20 +63,16 @@ if $TERM_PROGRAM == "Apple_Terminal"
   else
     colorscheme PaperColor
   endif
-  vnoremap <c-y> "+y
+  vnoremap <c-x> "+y
 else
-  " yank into system clipboard without yanking into vim clipboard/reg0
-  vnoremap <c-y> :OSCYankVisual<CR>
-  nnoremap <c-y> :call YankLine()<CR>
+  " copy into system clipboard without yanking into vim clipboard/reg0
+  vnoremap <c-x> :OSCYankVisual<CR>
+  " deprecated due to inconsistancies with other apps
+  vnoremap <c-y> <Esc>:echo "ctrl-y deprecated, use cmd-c instead"<CR>
   if has('nvim')
     let g:colorscheme = "vscode"
   endif
 endif
-
-function! YankLine()
-  let line = getline(".")
-  call OSCYank(line) 
-endfunction
 
 " ----------------------------------------------------------------------------------------------
 set showcmd
