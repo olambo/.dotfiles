@@ -4,7 +4,6 @@ call plug#begin('~/.config/nvim/plugged')
 
 Plug 'tpope/vim-commentary'
 if !exists('g:vscode')
-	Plug 'ojroques/vim-oscyank'
 	Plug 'justinmk/vim-dirvish'
     
 	Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
