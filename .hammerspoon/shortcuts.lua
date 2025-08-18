@@ -2,7 +2,7 @@
 -- Hammerspoon Shortcuts Module
 -- ============================
 
-hs.alert.show("Hammerspoon config loaded")  -- optional startup alert
+hs.alert.show("Hammerspoon config loaded") -- optional startup alert
 
 -- ============================
 -- Helper functions for key events
@@ -56,55 +56,69 @@ end
 local function showRunningApps()
     local runningApps = {}
     local commonAppBundles = {}
-    
-    -- Build set of common app bundle IDs for quick lookup
-    -- This prevents duplicating apps you can already access via single letters
+
+    -- Build lookup set of common app bundle IDs
     for _, bundleID in pairs(apps) do
         commonAppBundles[bundleID] = true
     end
-    
-    -- Get all running apps, excluding common ones
-    for _, app in pairs(hs.application.runningApplications()) do
-        local title = app:title()
-        local bundleID = app:bundleID()
-        
-        -- Only show apps that have a title, aren't hidden, and aren't in your common apps
-        if title ~= "" and not app:isHidden() and not commonAppBundles[bundleID] then
-            table.insert(runningApps, {
-                text = title,
-                app = app
-            })
+
+    local allRunningApps = hs.application.runningApplications()
+    print("==== Checking running GUI apps (excluding common) ====")
+
+    for _, app in ipairs(allRunningApps) do
+        if app and type(app) == "userdata" and app:kind() == 1 then
+            local name = app:name() or "(no name)"
+            local bundleID = app:bundleID() or "(no bundle)"
+
+            -- Only include proper GUI apps, not in the common list
+            if bundleID ~= "(no bundle)" and not commonAppBundles[bundleID] then
+                print(string.format("App: %s | Bundle: %s", name, bundleID))
+
+                table.insert(runningApps, {
+                    text = name,
+                    subText = bundleID,
+                    app = app
+                })
+            end
         end
     end
-    
-    -- Sort alphabetically for easier browsing
+
     table.sort(runningApps, function(a, b) return a.text < b.text end)
-    
-    -- Create and show chooser
+    print("==== End app list, total " .. #runningApps .. " ====")
+
+    if #runningApps == 0 then
+        runningApps = {{text = "No other running GUI apps found", app = nil}}
+    end
+
     local runningChooser = hs.chooser.new(function(choice)
-        if choice and choice.app then 
-            choice.app:activate() 
+        if choice and choice.app then
+            choice.app:activate()
         end
     end)
-    
+
     runningChooser:choices(runningApps)
-    runningChooser:rows(math.min(#runningApps, 10))  -- max 10 rows, adjust as needed
-    runningChooser:width(25)
+    runningChooser:rows(math.min(#runningApps, 12))
+    runningChooser:width(40)
     runningChooser:show()
 end
+
+-- We need to declare showChooser first so it's visible to the chooser callback
+local showChooser
 
 -- ============================
 -- Main Application Chooser
 -- ============================
 
--- Full chooser rows
+-- Full chooser rows, with special commands at the top
 local chooserRows = {
+    {text="full menu", command='full_menu'},
+    {text="Jump other apps", command='j'},
     {text="Books", command='b'},
     {text="Finder", command='f'},
     {text="Google", command='g'},
     {text="Mail", command='m'},
     {text="Notes", command='n'},
-    {text="VSCode", command='i'},
+    {text="Ide VSCode", command='i'},
     {text="Obsidian", command='o'},
     {text="PyCharm", command='p'},
     {text="Safari", command='s'},
@@ -113,7 +127,15 @@ local chooserRows = {
 
 -- Create chooser object
 local chooser = hs.chooser.new(function(choice)
-    if choice then launchApp(choice.command) end
+    if choice and choice.command then
+        if choice.command == 'full_menu' then
+            showChooser(2)
+        elseif choice.command == 'j' then
+            showRunningApps()
+        else
+            launchApp(choice.command)
+        end
+    end
 end)
 
 chooser:rows(3)
@@ -126,7 +148,7 @@ chooser:queryChangedCallback(function(query)
         chooser:query('')
         chooser:cancel()
         showRunningApps()
-    elseif query ~= "" then
+    elseif query ~= "" and apps[query] then
         -- Any other single character = launch corresponding app
         chooser:query('')
         chooser:cancel()
@@ -134,11 +156,15 @@ chooser:queryChangedCallback(function(query)
     end
 end)
 
--- Show chooser: type 1 = mini, else full
-local function showChooser(type)
+-- Now we can safely define showChooser after the chooser object
+showChooser = function(type)
     if type == 1 then
-        chooser:rows(1)
-        chooser:choices({{text="F3 for list, 'j' for running apps", command='b'}})
+        chooser:rows(2)
+        -- The command names now match the callback's checks
+        chooser:choices({
+            {text="full menu", command='full_menu'},
+            {text="Jump other apps", command='j'}
+        })
     else
         chooser:rows(#chooserRows)
         chooser:choices(chooserRows)
@@ -181,8 +207,7 @@ hs.hotkey.bind({'shift', 'ctrl'}, 'm', keyCodem({'shift', 'cmd'}, '['), nil, key
 hs.hotkey.bind({'ctrl'}, 'return', keyCodem({'shift','cmd'}, 'f12'))
 
 -- Show chooser hotkeys
-hs.hotkey.bind({'ctrl'}, 'space', function() showChooser(1) end)  -- mini menu
-hs.hotkey.bind({}, 'f3', function() showChooser(2) end)           -- full menu
+hs.hotkey.bind({'ctrl'}, 'space', function() showChooser(1) end) -- mini menu
 
 -- ============================
 -- End of shortcuts.lua
