@@ -83,4 +83,4 @@ alias fi='open -a Finder .'
 alias python=python3
 
 # Development utilities
-alias combineit='for f in i*.vim; do echo "=== $f ==="; cat "$f"; echo; done > combined.txt'
+alias combineit='for f in $(ls i*.vim bin/lkeyFunctions bin/v* 2>/dev/null); do echo "=== $f ==="; cat "$f" || echo "ERROR: Failed to cat $f"; echo; done > combined.txt'
