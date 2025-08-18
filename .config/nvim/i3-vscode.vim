@@ -9,8 +9,6 @@ nmap <silent> <expr> j v:count ? 'j' : 'gj'
 nmap <silent> <expr> k v:count ? 'k' : 'gk'
 set wrap
 
-autocmd BufLeave,BufEnter * set modifiable
-
 nnoremap gf <Cmd>call VSCodeNotify('workbench.action.quickOpen')<CR>
 
 nnoremap - <Cmd>call VSCodeNotify('workbench.action.showAllEditorsByMostRecentlyUsed')<CR>
