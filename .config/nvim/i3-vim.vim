@@ -22,7 +22,7 @@ nnoremap <F5> :PasteReplaceAll<CR>
 " insert mode drop down list selection.
 inoremap <down> <c-n>
 inoremap <up> <c-p>
-inoremap <s-left> <c-h>
+" insert mode completion - fixed conflicting mappings
 inoremap <expr> <s-left> pumvisible() ? "\<C-e>" : "\<c-h>"
 
 if exists('$TMUX')
@@ -65,6 +65,7 @@ if $TERM_PROGRAM == "Apple_Terminal"
 else
   if has('nvim')
     let g:colorscheme = "vscode"
+    colorscheme vscode
   endif
   " Copy selected text to system clipboard
   vnoremap <c-x> "+y
