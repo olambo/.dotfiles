@@ -6,15 +6,18 @@ set belloff=all
 set mouse=nv " this is not going to allow command-c. can use option-mouse or turn off
 
 " set up replace on current word
-noremap <expr> g/ ':%s/'.expand('<cword>').'//gIc<Left><Left><Left><Left>'
+noremap <expr> gs ':%s/\<'.expand('<cword>').'\>//gIc<Left><Left><Left><Left>'
 
 " use confim quit
 nnoremap <leader>f :conf q<cr>
 
-" toggle non modifiable
-let g:undotree_SplitWidth = 50
-nnoremap <f5> :UndotreeToggle<CR>
-nnoremap <f8> :source ~/.config/nvim/init.vim<CR>
+function! PasteReplaceAllWithConfirm()
+    if confirm("Replace entire buffer with clipboard?", "&Yes\n&No", 2) == 1
+        %d | put + | 1d
+    endif
+endfunction
+command! PasteReplaceAll call PasteReplaceAllWithConfirm()
+nnoremap <F5> :PasteReplaceAll<CR>
 
 " insert mode drop down list selection.
 inoremap <down> <c-n>
