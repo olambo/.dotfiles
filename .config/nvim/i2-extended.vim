@@ -86,4 +86,4 @@ nnoremap <silent> <C-o> :call JumpToPrevValidMark()<CR>
 nnoremap <silent> <C-i> :call JumpToNextValidMark()<CR>
 
 command! C call ClearMyMarks()
-command! S echo 'Valid marks: ' . string(g:ValidMarks) . ' (current: ' . (len(g:ValidMarks) > 0 ? g:ValidMarks[g:NavMarkIndex] : 'none') . ')'
+command! S echo 'Valid marks: ' . string(g:ValidMarks) . ' | NextWrite: ' . g:MarkQueue[g:CurrentMarkIndex] . ' | Current: ' . (len(g:ValidMarks) > 0 ? g:ValidMarks[g:NavMarkIndex] : 'none')
