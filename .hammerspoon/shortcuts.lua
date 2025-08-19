@@ -63,7 +63,7 @@ local function showRunningApps()
     end
 
     local allRunningApps = hs.application.runningApplications()
-    print("==== Checking running GUI apps (excluding common) ====")
+    -- print("==== Checking running GUI apps (excluding common) ====")
 
     for _, app in ipairs(allRunningApps) do
         if app and type(app) == "userdata" and app:kind() == 1 then
@@ -72,7 +72,7 @@ local function showRunningApps()
 
             -- Only include proper GUI apps, not in the common list
             if bundleID ~= "(no bundle)" and not commonAppBundles[bundleID] then
-                print(string.format("App: %s | Bundle: %s", name, bundleID))
+                -- print(string.format("App: %s | Bundle: %s", name, bundleID))
 
                 table.insert(runningApps, {
                     text = name,
@@ -84,7 +84,7 @@ local function showRunningApps()
     end
 
     table.sort(runningApps, function(a, b) return a.text < b.text end)
-    print("==== End app list, total " .. #runningApps .. " ====")
+    -- print("==== End app list, total " .. #runningApps .. " ====")
 
     if #runningApps == 0 then
         runningApps = {{text = "No other running GUI apps found", app = nil}}
