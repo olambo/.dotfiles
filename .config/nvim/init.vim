@@ -1,6 +1,7 @@
 " check i1-plug for vim-plug install instructions
 source ~/.config/nvim/i1-plug.vim
 source ~/.config/nvim/i2-base.vim
+source ~/.config/nvim/i2-extended.vim
 
 if exists('g:vscode')
 	source ~/.config/nvim/i3-vscode.vim
