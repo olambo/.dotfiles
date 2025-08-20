@@ -37,11 +37,7 @@ function! SetNextMark()
     
     execute "silent! normal! m" . mark
     
-    let g:MarkData[mark] = {
-    \ 'file': expand('%:p'),
-    \ 'lnum': line('.'),
-    \ 'col': col('.')
-    \ }
+    let g:MarkData[mark] = {'file': expand('%:p')}
     
     if !is_reusing_mark
         call add(g:ValidMarks, mark)
