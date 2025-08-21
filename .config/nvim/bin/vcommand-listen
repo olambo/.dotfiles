@@ -1,6 +1,0 @@
-#! /bin/bash
-
-vc_file=~/.config/nvim/runcache/vcommand.txt
-command=`cat $vc_file |perl -pe 'chomp if eof'`
-echo "vcommand: $command"
-sh -c "$command"
