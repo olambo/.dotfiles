@@ -1,3 +1,6 @@
+" clean up dirvish view
+let g:dirvish_mode = ':silent keeppatterns g@\v/\.DS_Store/?$|/\.git/?$|/\.venv/?$|/\.vscode/?$@d _'
+
 " Smart line navigation: move by visual lines (gj/gk) for single moves,
 " by logical lines (j/k) when using counts (e.g., 5j)
 nnoremap <silent> <expr> j v:count ? 'j' : 'gj'
