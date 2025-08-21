@@ -34,11 +34,8 @@ local apps = {
     i = "com.microsoft.VSCode",
     m = "com.apple.mail",
     n = "com.apple.Notes",
-    o = "md.obsidian",
-    p = "com.jetbrains.pycharm",
     s = "com.apple.Safari",
     u = "dev.warp.Warp-Stable",
-    z = "com.jetbrains.pycharm.ce",
 }
 
 -- Launch or focus app by letter
@@ -115,12 +112,9 @@ local chooserRows = {
     {text="Jump other apps", command='j'},
     {text="Books", command='b'},
     {text="Finder", command='f'},
-    {text="Google", command='g'},
     {text="Mail", command='m'},
     {text="Notes", command='n'},
     {text="Ide VSCode", command='i'},
-    {text="Obsidian", command='o'},
-    {text="PyCharm", command='p'},
     {text="Safari", command='s'},
     {text="Unix-term", command='u'},
 }
