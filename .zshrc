@@ -1,36 +1,4 @@
 # ============================================================================
-# PROMPT AND GIT INTEGRATION
-# ============================================================================
-# Based on https://stackoverflow.com/questions/1128496/to-get-a-prompt-which-indicates-git-branch-in-zsh
-setopt prompt_subst
-autoload -Uz vcs_info
-
-# Git status in prompt
-zstyle ':vcs_info:*' stagedstr 'M' 
-zstyle ':vcs_info:*' unstagedstr '%F{red}M' 
-zstyle ':vcs_info:*' check-for-changes true
-zstyle ':vcs_info:*' actionformats '%F{240}[%F{2}%b%F{240}|%F{1}%a%F{240}]%f '
-zstyle ':vcs_info:*' formats '%F{240}[%F{2}%b%F{240}] %F{2}%c%F{240}%u%f'
-zstyle ':vcs_info:git*+set-message:*' hooks git-untracked
-zstyle ':vcs_info:*' enable git 
-
-+vi-git-untracked() {
-  if [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) == 'true' ]] && \
-     [[ $(git ls-files --other --exclude-standard --no-empty-directory| sed q | wc -l | tr -d ' ') == 1 ]] ; then
-    hook_com[unstaged]+='%F{1}??%f'
-  fi
-}
-
-precmd () { vcs_info }
-
-# Different prompt for different users
-if [[ $(whoami) == "oli" ]]; then
-  PROMPT='%F{red}%n%F{240} $vcs_info_msg_0_:%F{59}%2~%f >> '
-else
-  PROMPT='%F{240}%n $vcs_info_msg_0_:%F{59}%2~%f >> '
-fi
-
-# ============================================================================
 # HISTORY CONFIGURATION
 # ============================================================================
 export HISTFILE=~/.zsh_history
@@ -55,12 +23,6 @@ bindkey "\033[F" end-of-line
 source $HOME/.config/zsh-vim-mode/zsh-vim-mode.plugin.zsh
 
 # ============================================================================
-# COLORS AND DISPLAY
-# ============================================================================
-export CLICOLOR=1
-export LSCOLORS=exfxcxdxbxegedabagacad
-
-# ============================================================================
 # FZF CONFIGURATION
 # ============================================================================
 export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git/*"'
@@ -73,9 +35,10 @@ export FZF_DEFAULT_OPTS=" --extended --color hl:202,hl+:202"
 alias dot='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
 # Editor shortcuts
-alias vi='fvim() { nvim --cmd "let g:yuz=1" ${@:-.} };fvim'
 alias con='vi +":cd ~/.config/nvim" ~/.config/nvim'
 alias doc='vi ~/Library/Mobile\ Documents/iCloud\~md\~obsidian/Documents/Vaultdoc/'
+# Launch nvim with current directory as default (opens Dirvish file browser when no args provided)
+alias vi='fvim() { nvim ${@:-.} }; fvim'
 
 # System utilities
 alias ip="ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1' |head -1"
@@ -84,3 +47,7 @@ alias python=python3
 
 # Development utilities
 alias combineit='for f in $(ls i*.vim bin/lkeyFunctions bin/v* 2>/dev/null); do echo "=== $f ==="; cat "$f" || echo "ERROR: Failed to cat $f"; echo; done > combined.txt'
+alias keys='nvim -R ~/.config/nvim/vim-keymaps-reference.md'
+# Quick file opener using your vi alias
+vif() { vi $(fzf) }
+vip() { vi $(rg -t py -t md --files | fzf) }
