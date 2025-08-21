@@ -26,105 +26,138 @@
 ### FZF Functions (via `g<leader>`)
 - `g<leader>` - Open FZF menu with custom functions from `lkeyFunctions`
   - **Usage**: `g<Space>` → type function name (fuzzy search) → `<Enter>`
-  - Example: `g<Space>` → type "buf" → `<Enter>` to run BufferDiff
 
 ## G-Key Mappings
 
 ### Navigation & File Operations
-- `g-` - Recent files (IntelliJ) / Show all editors by recently used (VSCode) / Select in project view (IntelliJ)
 - `gf` - Find files
-  - IntelliJ: Go to file
-  - VSCode: Quick open
-  - Vim: Ripgrep search in files
-- `gF` - Find in path (IntelliJ) / Custom file search (Vim)
-- `ga` - Search everywhere (IntelliJ) / Show commands (VSCode)
+  - **VSCode**: Quick open (`workbench.action.quickOpen`)
+  - **Vim**: Ripgrep search in files (RG command)
+- `gF` - Find files by type (vim only - Python/Markdown files)
+- `g-` - **VSCode**: Show explorer (`workbench.view.explorer`)
+- `ga` - **VSCode**: Show command palette (`workbench.action.showCommands`)
 
 ### Code Navigation
-- `gd` - Go to declaration/definition
-- `gi` - Go to implementation
-- `gI` - Go to implementation (VSCode specific)
+- `gd` - Go to definition (built-in vim/VSCode)
+- `gI` - **VSCode**: Go to implementation (`editor.action.goToImplementation`)
+- `gR` - **VSCode**: Go to references (`editor.action.goToReferences`)
 
 ### Code Actions & Refactoring  
-- `gr` - Refactoring quick list (IntelliJ) / Rename (VSCode)
-- `gR` - Show usages (IntelliJ) / Go to references (VSCode)
-- `g<CR>` - Show intention actions (IntelliJ) / Quick fix (VSCode)
-- `g=` - Reformat/format code
+- `gr` - **VSCode**: Rename (`editor.action.rename`)
+- `g<CR>` - **VSCode**: Quick fix (`editor.action.quickFix`)
+- `g=` - **VSCode**: Format document (`editor.action.formatDocument`)
 
-### Documentation & Type Info
-- `gh` - Quick documentation/show hover
-- `gH` - Show hover info (IntelliJ)
-- `gt` - Expression type info (IntelliJ) / Show hover (VSCode)
-
-### Code Structure
-- `gs` - File structure popup (IntelliJ) / Replace current word (Vim)
-- `gS` - Go to super method (IntelliJ)
-
-### Navigation History
-- `g;` - Jump to last change
-- `g,` - Jump to next change
+### Documentation & Hover
+- `gh` - **VSCode**: Show hover (`editor.action.showHover`)
+- `gt` - **VSCode**: Show hover (`editor.action.showHover`)
 
 ### Error Navigation
-- `ge` - Go to next error
-- `gE` - Go to previous error
+- `ge` - **VSCode**: Next error (`editor.action.marker.nextInFiles`)
+- `gE` - **VSCode**: Previous error (`editor.action.marker.prevInFiles`)
 
 ### Debugging & Running
-- `go` - Context run (IntelliJ) / Execute in terminal (VSCode)
-- `gO` - Debug (IntelliJ) / Debug run (VSCode)
-- `gb` - Toggle line breakpoint (IntelliJ)
-- `gB` - View breakpoints (IntelliJ)
+- `go` - **VSCode**: Execute in terminal (`python.execInTerminal-icon`)
+- `gO` - **VSCode**: Debug run (`workbench.action.debug.run`)
 
-### Bookmarks (IntelliJ)
-- `gm` - Toggle bookmark
-- `gM` - Show bookmarks
-
-### Clipboard Operations
+### Text Operations
+- `gs` - Replace current word (vim only - starts replace command for word under cursor)
 - `gp` - Paste from yank register (register "0)
 
-## Other Notable Mappings
+### Standard Vim (not overridden)
+- `g;` - Jump to last change (changelist backward)
+- `g,` - Jump to next change (changelist forward)
+
+## Custom Mark System
+
+**Note**: Overrides standard `<C-o>`/`<C-i>` jumplist navigation
+
+### Mark Management
+- `mm` - Set next mark in rotation (uses marks Q,W,E,R,T,Y,U,I,O,P)
+  - **VSCode**: Uses VSCode Bookmarks extension
+  - **Vim**: Custom rotating mark system
+- `<C-o>` - Jump to previous mark
+- `<C-i>` - Jump to next mark
+
+### Mark Commands
+- `:C` - Clear all marks
+- `:S` - Show mark status/list all bookmarks
+
+## Movement & Navigation
 
 ### Arrow Key Remaps
 - `<Up>` - Move to previous blank line (`{`)
 - `<Down>` - Move to next blank line (`}`)
-- `<Left>` - Method up (IntelliJ)
-- `<Right>` - Method down (IntelliJ)
 
 ### Search Shortcuts
 - `s` - Forward search (`/`)
 - `S` - Backward search (`?`)
 
-### Visual Line Selection
-- `1v` through `9v` - Select 1-9 visual lines (e.g., `3v` = `V2j`)
+### Smart Line Navigation
+- `j` - Visual line down (or logical line with count)
+- `k` - Visual line up (or logical line with count)
 
-### Multiple Cursors (IntelliJ)
-- `<Alt-j>` - Clone caret below
-- `<Alt-k>` - Clone caret above
-- `<Alt-l>` - Next whole occurrence
-- `<Ctrl-Alt-l>` - Next occurrence
-- `<Shift-Alt-l>` - Skip occurrence
-- `<Alt-h>` - Remove occurrence
+### Visual Line Selection Shortcuts
+- `1v` through `9v` - Select 1-9 visual lines
+  - Example: `3v` selects current line + 2 below (`V2j`)
 
 ### Window Navigation
-- `<CR>` - Focus next window/group
+- `<CR>` - Focus next window/split (vim) / Focus next editor group (VSCode)
 
-### Special Functions (via FZF menu)
-Available through `g<leader>`:
-- BufferDiff - Compare buffer with saved file
-- OpenFinder - Open current directory in Finder
-- FilePath - Copy file path to clipboard
-- FindFileAny - FZF in any directory
-- FindFileLocal - FZF in current file's directory
-
-## File Type Specific
-
-### Insert Mode
-- `<Shift-Left>` - Exit completion menu or backspace
-
-### Movement
-- `j`/`k` - Smart line navigation (visual lines by default, logical with count)
+### Home Key
 - `<Home>` - Go to first non-blank character (`^`)
 
-### Function Keys
-- `<F5>` - Replace entire buffer with clipboard (with confirmation)
+## Insert Mode Mappings
 
-### System Clipboard
-- `<C-x>` - Copy selection to system clipboard (visual mode)
+### Completion Navigation
+- `<Down>` - Next completion item (`<C-n>`)
+- `<Up>` - Previous completion item (`<C-p>`)
+- `<Shift-Left>` - Exit completion menu or move cursor left
+
+### macOS Compatibility
+- `<C-d>` - Delete character forward (like macOS)
+
+## System Clipboard Operations
+
+### Copy to Clipboard
+- `<C-x>` - Copy visual selection to system clipboard (visual mode)
+
+### Special Paste
+- `<F5>` - Replace entire buffer with clipboard (with confirmation prompt)
+
+## FZF Functions (Available via `g<leader>`)
+
+Type the function name after `g<Space>`:
+
+- **BufferDiff** - Compare current buffer with saved file on disk
+- **OpenFinder** - Open current file's directory in macOS Finder
+- **FilePath** - Copy current file's full path to system clipboard
+- **FindFileAny** - Open FZF file finder in any directory
+- **FindFileLocal** - Open FZF file finder in current file's directory
+
+## File Type Support
+
+### Current Focus
+- **Python** (`.py`) files
+- **Markdown** (`.md`) files
+
+### Excluded Directories
+- `Library/`
+- `Pictures/`
+- Target directories (build artifacts)
+
+## Environment-Specific Features
+
+### VSCode Only
+- All `g`-prefixed VSCode commands
+- VSCode Bookmarks integration
+- Editor group management
+
+### Terminal Vim Only  
+- FZF file operations
+- Custom mark rotation system
+- Dirvish file browser integration
+- Custom statusline with undo tracking
+
+### macOS Terminal vs Other Terminals
+- **Apple Terminal**: PaperColor theme, basic clipboard ops
+- **Other terminals**: VSCode theme, enhanced clipboard operations
