@@ -1,6 +1,8 @@
 " Set a keymap to toggle the markdown rendering
 nnoremap <leader>m <cmd>lua require('render-markdown').toggle()<CR>
 
+nnoremap q <Nop>
+
 " Open terminal in current file's directory
 nnoremap <leader>t :cd %:p:h<CR>:term<CR>
 
