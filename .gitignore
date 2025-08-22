@@ -2,3 +2,4 @@
 /target/
 .config/borgmatic/config.yaml
 .ssh/
+dev/
