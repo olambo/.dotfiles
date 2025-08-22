@@ -1,3 +1,22 @@
+" Set a keymap to toggle the markdown rendering
+nnoremap <leader>mm <cmd>lua require('render-markdown').toggle()<CR>
+
+" In Dirvish buffer, <leader>l lets you create a file in current dir
+function! CreateFileAndRefresh()
+    let filename = input('New file: ')
+    if !empty(filename)
+        execute 'e %:h/' . filename
+        write
+        bprevious
+        edit
+    endif
+endfunction
+
+autocmd FileType dirvish nnoremap <buffer> <leader>l :call CreateFileAndRefresh()<CR>
+
+" Byword
+command! -nargs=0 Byword lua local fpath = vim.fn.expand('%:p'); vim.fn.system('open -a "Byword" "'..fpath..'"')
+
 " clean up dirvish view
 let g:dirvish_mode = ':silent keeppatterns g@\v/\.DS_Store/?$|/\.git/?$|/\.venv/?$|/\.vscode/?$@d _'
 
@@ -20,7 +39,7 @@ function! PasteReplaceAllWithConfirm()
     endif
 endfunction
 command! PasteReplaceAll call PasteReplaceAllWithConfirm()
-nnoremap <F5> :PasteReplaceAll<CR>
+nnoremap <c-p> :PasteReplaceAll<CR>
 
 " insert mode drop down list selection.
 inoremap <down> <c-n>
@@ -76,10 +95,11 @@ else
   vnoremap <c-y> <Esc>:echo "ctrl-y deprecated, use cmd-c instead"<CR>
   " Select all and yank to system clipboard
   command! YankAllToClipboard %y+
-  nnoremap <leader>a :YankAllToClipboard<CR>
+  nnoremap <c-a> :YankAllToClipboard<CR>
 endif
 
 " ----------------------------------------------------------------------------------------------
 set showcmd
 
 autocmd FileType markdown setlocal wrap linebreak nolist
+
