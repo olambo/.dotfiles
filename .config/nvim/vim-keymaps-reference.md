@@ -21,7 +21,7 @@
 - `<leader>b` - Show buffer list (FZF Buffers)
 
 ### Clipboard Operations
-- `<leader>a` - Yank entire buffer to system clipboard (non-Apple Terminal only)
+- `<c-a>` - Yank entire buffer to system clipboard (non-Apple Terminal only)
 
 ### FZF Functions (via `g<leader>`)
 - `g<leader>` - Open FZF menu with custom functions from `lkeyFunctions`
@@ -122,7 +122,7 @@
 - `<C-x>` - Copy visual selection to system clipboard (visual mode)
 
 ### Special Paste
-- `<F5>` - Replace entire buffer with clipboard (with confirmation prompt)
+- `<c-p>` - Replace entire buffer with clipboard (with confirmation prompt)
 
 ## FZF Functions (Available via `g<leader>`)
 
