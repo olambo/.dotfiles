@@ -1,5 +1,8 @@
 " Set a keymap to toggle the markdown rendering
-nnoremap <leader>mm <cmd>lua require('render-markdown').toggle()<CR>
+nnoremap <leader>m <cmd>lua require('render-markdown').toggle()<CR>
+
+" Open terminal in current file's directory
+nnoremap <leader>t :cd %:p:h<CR>:term<CR>
 
 " In Dirvish buffer, <leader>l lets you create a file in current dir
 function! CreateFileAndRefresh()
