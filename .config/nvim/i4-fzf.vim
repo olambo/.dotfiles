@@ -54,3 +54,17 @@ endfunction
 function! BufferList()
     execute "Buffers"
 endfunction
+
+" Enable spell checking automatically in markdown files
+function! FzfSpellSink(word)
+  exe 'normal! "_ciw'.a:word
+endfunction
+
+function! FzfSpell()
+  let suggestions = spellsuggest(expand("<cword>"))
+  return fzf#run({'source': suggestions, 'sink': function("FzfSpellSink"), 'down': 10 })
+endfunction
+
+nnoremap <leader>s :call FzfSpell()<CR>
+
+autocmd FileType markdown setlocal spell
