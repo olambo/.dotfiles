@@ -31,7 +31,7 @@ nnoremap <leader>h :set hlsearch! hlsearch?<cr>
 
 " dirvish and vscode will throw errors if the buffer is non modifiable when moving buffers
 autocmd BufLeave,BufEnter * set modifiable
-nnoremap <leader>k :set invmodifiable<CR>:echo "View mode: " . (&modifiable ? "OFF" : "ON")<CR>
+nnoremap <leader>l :set invmodifiable<CR>:echo "View mode: " . (&modifiable ? "OFF" : "ON")<CR>
 
 " split management
 nnoremap <cr> <C-w><C-w>

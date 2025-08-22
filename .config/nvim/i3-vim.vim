@@ -17,7 +17,7 @@ function! CreateFileAndRefresh()
     endif
 endfunction
 
-autocmd FileType dirvish nnoremap <buffer> <leader>l :call CreateFileAndRefresh()<CR>
+autocmd FileType dirvish nnoremap <buffer> n :call CreateFileAndRefresh()<CR>
 
 " Byword
 command! -nargs=0 Byword lua local fpath = vim.fn.expand('%:p'); vim.fn.system('open -a "Byword" "'..fpath..'"')
