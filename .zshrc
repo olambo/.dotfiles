@@ -74,10 +74,11 @@ export FZF_DEFAULT_OPTS=" --extended --color hl:202,hl+:202"
 # ============================================================================
 # Dotfiles management
 alias dot='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+alias dev='cd ~/dev/'
 
 # Editor shortcuts
-alias con='vi +":cd ~/.config/nvim" ~/.config/nvim'
-alias doc='vi ~/Library/Mobile\ Documents/iCloud\~md\~obsidian/Documents/Vaultdoc/'
+alias con='cd ~/.config/nvim && nvim .'
+alias doc='cd ~/dev/notes && nvim .'
 # Launch nvim with current directory as default (opens Dirvish file browser when no args provided)
 alias vi='fvim() { nvim ${@:-.} }; fvim'
 
