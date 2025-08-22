@@ -73,7 +73,15 @@ export FZF_DEFAULT_OPTS=" --extended --color hl:202,hl+:202"
 # ALIASES
 # ============================================================================
 # Dotfiles management
-alias dot='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+dot() {
+    if [[ "$1" == "add" && ("$2" == "." || "$2" == "*") ]]; then
+        echo "Error: 'dot add .' and 'dot add *' are dangerous with bare repo dotfiles!"
+        echo "Use explicit file paths instead: dot add path/to/file"
+        return 1
+    fi
+    git --git-dir="$HOME/.dotfiles/" --work-tree="$HOME" "$@"
+}
+
 alias dev='cd ~/dev/'
 
 # Editor shortcuts
