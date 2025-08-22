@@ -2,21 +2,21 @@
 
 **Leader Key:** `<Space>`
 
-## Leader Key Mappings (spc = Space)
+## Leader Key Mappings (spc = Space) + dirvish
 
 ```
 Mapping    Function                                         Source
 --------   ------------------------------------------       ---------------
 spc spc    Enter command mode (:)                          i2-base.vim
 spc m      Toggle markdown rendering                       i3-vim.vim
-spc l      Create file in current directory (Dirvish)     i3-vim.vim
-spc k      Toggle buffer modifiable/view mode              i2-base.vim
+spc l      Toggle buffer modifiable/view mode              i2-base.vim
 spc h      Toggle highlight search with status             i2-base.vim
 spc n      Toggle line numbers                             i2-base.vim
 spc v      Split window vertically                         i2-base.vim
 spc s      Split window horizontally                       i2-base.vim
 spc f      Close current window/buffer                     i2-base.vim
 spc t      open terminal                                   i3-vim
+n          Create file in current directory (Dirvish)      i3-vim.vim
 ```
 
 ## VSCode G-Key Mappings
