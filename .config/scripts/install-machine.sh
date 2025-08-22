@@ -1,68 +1,110 @@
-mac install
-# ==============================
+#!/bin/bash
+# macOS Machine Setup Script
+set -e  # Exit on any error
 
-# Xcode command line and homebrew
-xcode-select --install
+echo "🍎 Starting macOS machine setup..."
+
+# ==============================
+# Core Development Tools
+# ==============================
+echo "📦 Installing Xcode command line tools..."
+xcode-select --install || echo "Xcode tools already installed"
+
+echo "🍺 Installing Homebrew..."
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-# macOS terminal apps
+# Terminal applications
+echo "⚙️  Installing terminal applications..."
 term_apps=(
-wget
-git
-neovim
-httpie
-fzf
-ripgrep
-trash
-uv
-ruff
-tree
+    wget
+    git
+    neovim
+    httpie
+    fzf
+    ripgrep
+    trash
+    uv
+    ruff
+    tree
+    borgmatic
 )
-brew install ${term_apps[@]} 
+brew install "${term_apps[@]}"
 
-# macOS cask apps
+# GUI applications
+echo "🖥️  Installing GUI applications..."
 cask_apps=(
-karabiner-elements
-hammerspoon
-alfred
-vlc
-warp
-visual-studio-code
-keyboardCleanTool
+    karabiner-elements
+    hammerspoon
+    alfred
+    vlc
+    warp
+    visual-studio-code
+    keyboardCleanTool
 )
-brew install --appdir="/Applications" ${cask_apps[@]}
+brew install --cask "${cask_apps[@]}"
 
-# deprecate
-# brew install cormacrelf/tap/dark-notify
-
-# Remove brew cruft
+# Clean up Homebrew
+echo "🧹 Cleaning up Homebrew..."
 brew cleanup
 
+# ==============================
+# Configuration Setup
+# ==============================
+echo "⚡ Setting up shell and editor configurations..."
+
+# Zsh vim mode
 git clone https://github.com/softmoth/zsh-vim-mode ~/.config/zsh-vim-mode
 
+# Neovim plugin manager
 curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
-# Follow new machine clone instructions at https://github.com/olambo/.dotfiles
+# ==============================
+# Dotfiles Setup
+# ==============================
+echo "📁 Setting up dotfiles..."
+# Note: Run this part manually or adjust if running from existing dotfiles
+# git clone --bare git@github.com:olambo/.dotfiles.git $HOME/.dotfiles
+# dot checkout
 dot remote set-url origin git@github.com:olambo/.dotfiles.git
 
-# Set keyboard caps lock to control
-# Set Finder settings you want
-
-# open Neovim and run :PlugInstall
-
-# Various installs to do
-# Enpass - icloud sync login
-# Alfred - key shortcut
-# Neovim - PlugInstall
-# Email - add account
-# Pandan - in menu
-
-# install JetBrains Mono and choose it for Warp at 14pt
-# vscode install python python debugger and neovim. Check path for neovim 
-# vscode install ruff and even better TOML
-# vscode set movement via: defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
+# Copy configuration templates
+if [ -f ~/.config/borgmatic/config.yaml.template ]; then
+    cp ~/.config/borgmatic/config.yaml.template ~/.config/borgmatic/config.yaml
+    echo "⚠️  Don't forget to edit ~/.config/borgmatic/config.yaml with your encryption key"
+fi
 
 # ==============================
-#
-# defaults write com.apple.dock autohide-time-modifier -float 0.1;killall Dock
+# System Preferences
+# ==============================
+echo "⚙️  Setting system preferences..."
+
+# Faster dock autohide
+defaults write com.apple.dock autohide-time-modifier -float 0.1
+killall Dock
+
+# Faster key repeat rates (great for Vim users)
+defaults write NSGlobalDomain KeyRepeat -int 2
+defaults write NSGlobalDomain InitialKeyRepeat -int 15
+
+# Disable automatic spelling correction (interferes with coding/terminal work)
+defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
+
+# Enable key repeat for VSCode vim mode
+defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
+
+echo "✅ Core installation complete!"
+echo ""
+echo "🔧 Manual setup remaining:"
+echo "   • Set Caps Lock to Control in System Preferences"
+echo "   • Configure Finder preferences"
+echo "   • Open Neovim and run :PlugInstall"
+echo "   • Install and configure Enpass (iCloud sync)"
+echo "   • Set Alfred keyboard shortcut"
+echo "   • Configure email accounts"
+echo "   • Install JetBrains Mono font for Warp (14pt)"
+echo "   • Install VSCode extensions:"
+echo "     - Python, Python Debugger, Neovim"
+echo "     - Ruff, Even Better TOML"
+echo ""
+echo "🎉 Setup script finished!"
