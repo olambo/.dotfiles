@@ -14,9 +14,8 @@ nnoremap gf <Cmd>call VSCodeNotify('workbench.action.quickOpen')<CR>
 nnoremap - <Cmd>call VSCodeNotify('workbench.action.showAllEditorsByMostRecentlyUsed')<CR>
 nnoremap g- <Cmd>call VSCodeNotify('workbench.view.explorer')<CR>
 
-noremap gI <Cmd>call VSCodeNotify('editor.action.goToImplementation')<CR>
+noremap gt <Cmd>call VSCodeNotify('editor.action.goToImplementation')<CR>
 nnoremap gh <Cmd>call VSCodeNotify('editor.action.showHover')<CR>
-nnoremap gt <Cmd>call VSCodeNotify('editor.action.showHover')<CR>
 
 nnoremap gr <Cmd>call VSCodeNotify('editor.action.rename')<CR>
 nnoremap gR <Cmd>call VSCodeNotify('editor.action.goToReferences')<CR>
