@@ -1,3 +1,4 @@
 !/.config/
 /target/
 .config/borgmatic/config.yaml
+.ssh/
