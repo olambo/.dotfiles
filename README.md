@@ -1,50 +1,56 @@
-# Keep dotfiles in git without symlinks.
+# Dotfiles
 
-This arrangement of dotfiles is based on ideas from [here](https://news.ycombinator.com/item?id=11070797) and [here](https://github.com/anandpiyer/.dotfiles/tree/master/.dotfiles). 
-The idea is to keep all the dotfiles in their original locations.
+Bare git repository setup for managing dotfiles without symlinks. Based on ideas from [this HN discussion](https://news.ycombinator.com/item?id=11070797) and [anandpiyer's dotfiles](https://github.com/anandpiyer/.dotfiles/tree/master/.dotfiles).
 
-## New machine clone
-To set up a new machine, clone the repo to a temporary directory. 
-This is because you might have some default config files in your $HOME which will cause a normal clone to fail.
+Files live in their natural locations (`~/.vimrc`, `~/.config/`, etc.) while git metadata is stored in `~/.dotfiles/`.
+
+## New Machine Clone Setup
+
+Clone to a temporary directory first to avoid conflicts with existing default configs:
+
 ```
 git clone --separate-git-dir=$HOME/.dotfiles https://github.com/olambo/.dotfiles.git tmpdotfiles
 rsync --recursive --verbose --exclude '.git' tmpdotfiles/ $HOME/
 rm -r tmpdotfiles
+
+# The dot alias is already configured in .zshrc
+# Just source it or restart your shell
+source ~/.zshrc
 ```
 
-## First time setup (not clone)
-```
-git init --bare $HOME/.dotfiles
-alias dot='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
-dot config --local status.showUntrackedFiles no
-dot remote add origin git@github.com:olambo/.dotfiles.git
-```
-You'll need to change the remote URL to your git repo. You should also add the `dot` alias command to your `.zshrc`. 
-Now, you can use the `dot` command to do git operation from anywhere in your $HOME directory:
+## Usage
 
-### Operations (example)
+Use `dot` like git from anywhere in your home directory:
+
 ```
-cd $HOME
-dot add .zshrc.conf
-dot commit -m "Add .zshrc.conf"
+dot add .vimrc
+dot commit -m "Update vim config"
 dot push
-```
-## Apps used to modify keyboard mappings
-
-### Macos
-Change capslock to be control key
-
-### [Hammerspoon](https://www.hammerspoon.org)
-- <kbd>esc</kbd> when control pressed and immediately released
-
-Some of the keys, remaped are listed below.
-
-```
-<control> j k l    -> down, up, right (all apps)
-<control> h        -> select left (all apps)
-<control> ( )      -> begining or end of line (all apps)
-<control> y        -> copy to system clipboard from remote machine (Vim like app scenario)
-<control> return   -> expand/contract pane (vscode, intellij) 
-<control> spacebar -> pop list to select common applications via hotkey (all apps)
+dot status
 ```
 
+## Key Mappings
+
+
+### Karabiner Elements
+
+- Caps Lock → Control/Esc (Karabiner-Elements)
+
+
+### Hammerspoon
+
+```
+Global key remappings for consistent navigation:
+
+Key Combination      Action                    Context
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Ctrl+Space           Application launcher     Global
+Ctrl+J/K/L           Down/Up/Right nav        Global  
+Ctrl+H               Left/Select left         Global
+Ctrl+9/0             Beginning/End of line    Global
+Ctrl+Return          Toggle pane size         VSCode
+Ctrl+;               App switcher (Cmd+Tab)   Global
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+```
+
+See `.hammerspoon/init.lua` for complete configuration.
