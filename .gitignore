@@ -1,6 +1,5 @@
 !/.config/
 /target/
-.config/borgmatic/config.yaml
 dev/
 .ssh/
 .cache/
