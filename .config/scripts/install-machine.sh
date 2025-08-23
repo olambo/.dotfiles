@@ -52,9 +52,6 @@ brew cleanup
 # ==============================
 echo "⚡ Setting up shell and editor configurations..."
 
-# Zsh vim mode
-git clone https://github.com/softmoth/zsh-vim-mode ~/.config/zsh-vim-mode
-
 # Neovim plugin manager
 curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -106,5 +103,10 @@ echo "   • Install JetBrains Mono font for Warp (14pt)"
 echo "   • Install VSCode extensions:"
 echo "     - Python, Python Debugger, Neovim"
 echo "     - Ruff, Even Better TOML"
+# Configure Warp terminal
+echo "Remember to manually set Warp settings:"
+echo "  - Go to Settings > Features > Editor"
+echo "  - Enable 'Tab key behavior' for autosuggestions"
+echo "  - (This makes Tab accept full completion instead of partial)"
 echo ""
 echo "🎉 Setup script finished!"
