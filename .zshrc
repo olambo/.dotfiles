@@ -50,18 +50,14 @@ fi
 # Vim-style navigation and commands directly in the terminal. The `bindkey -v`
 # command must be placed before sourcing any plugins that rely on vi mode,
 # such as fzf.
-
+#
 # Custom key bindings are set here to ensure the Home and End keys work as
 # expected, moving the cursor to the beginning and end of the line.
-
-# The zsh-vim-mode plugin is sourced to provide more advanced vi-like
-# functionality and a smoother editing experience.
 #
 bindkey -v 
 # Beginning and end of line inside and outside of vi mode
 bindkey "\033[H" beginning-of-line 
 bindkey "\033[F" end-of-line
-source $HOME/.config/zsh-vim-mode/zsh-vim-mode.plugin.zsh
 
 # ============================================================================
 # FZF CONFIGURATION
