@@ -27,6 +27,7 @@ term_apps=(
     ruff
     tree
     borgmatic
+    starship
 )
 brew install "${term_apps[@]}"
 
