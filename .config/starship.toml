@@ -3,12 +3,12 @@ format = "$username $git_branch $git_status $directory $character"
 
 [username]
 show_always = true
-style_user = "bold red"
+style_user = "#8be9fd"
 format = '[$user]($style)'
 
 [git_branch]
 format = "[$branch]($style)"
-style = "bold green"
+style = "green"
 
 [git_status]
 staged = "[M](bold red)"
