@@ -3,8 +3,9 @@
 # To restore on new machine:
 # 1. Save this file as ~/.config/borgmatic/config.yaml  
 # 2. Save Enpass / Borg Backup Keys / encryption_passphrase to ~/.config/borgmatic/.borg-passphrase-file
-# 3. Import Borg key from Enpass "Borg Key (hex)" field:
-#    echo "[hex-key-from-enpass]" | borg key import ssh://e526z4nk@e526z4nk.repo.borgbase.com/./repo -
+# 3. Import Borg key from Enpass "Borg Key" field:
+#    Save the key text to a file, then: borg key import ssh://e526z4nk@e526z4nk.repo.borgbase.com/./repo /path/to/key-file
+#    Or paste interactively: borg key import ssh://e526z4nk@e526z4nk.repo.borgbase.com/./repo
 # 4. Test with: borgmatic config validate
 #
 source_directories:
@@ -16,22 +17,32 @@ encryption_passphrase: ~/.config/borgmatic/.borg-passphrase-file
 repositories:
     - path: ssh://e526z4nk@e526z4nk.repo.borgbase.com/./repo
       label: "macbak"
+
 exclude_patterns:
-    - '*.pyc'
     - '*.DS_Store'
-    - ~/*/.cache
+    - '*.localized'
+
 compression: auto,zstd
-# Tell Borg to use this command to get the passphrase.
 archive_name_format: '{hostname}-{now:%Y-%m-%d-%H%M%S}'
 retries: 3
 retry_wait: 10
+
 keep_daily: 7     # Keep a week
 keep_weekly: 4
 keep_monthly: 12
+
 checks:
-  - name: disabled
+    - name: repository
+    - name: archives
+
+# Commands using the new (verbose) syntax
 commands:
-  before_backup:
-    ['echo "`date` - Starting backup of Documents"']
-  after_backup:
-    ['echo "`date` - Finished backup"']
+    - before: action
+      when: [create]
+      run:
+          - echo "Starting backup..."
+    - after: action
+      when: [create]
+      states: [finish]
+      run:
+          - echo "Backup completed successfully!"
