@@ -1,10 +1,8 @@
 # BORGMATIC CONFIGURATION FILE
 # 
-# Location: ~/.config/borgmatic/config.yaml
-# 
 # To restore on new machine:
-# 1. mkdir -p ~/.config/borgmatic/
-# 2. Save this file as ~/.config/borgmatic/config.yaml  
+# 1. Save this file as ~/.config/borgmatic/config.yaml  
+# 2. Save Enpass / Borg Backup Keys / encryption_passphrase to ~/.config/borgmatic/.borg-passphrase-file
 # 3. Import Borg key from Enpass "Borg Key (hex)" field:
 #    echo "[hex-key-from-enpass]" | borg key import ssh://e526z4nk@e526z4nk.repo.borgbase.com/./repo -
 # 4. Test with: borgmatic config validate
@@ -12,8 +10,7 @@
 source_directories:
     - ~/Documents
 
-# This is the correct way to handle the passphrase file in borgmatic
-# This key applies to all repositories defined in this configuration file.
+# handle the passphrase
 encryption_passphrase: ~/.config/borgmatic/.borg-passphrase-file
 
 repositories:
@@ -33,7 +30,8 @@ keep_weekly: 4
 keep_monthly: 12
 checks:
   - name: disabled
-before_backup:
-    - echo "`date` - Starting backup of Documents"
-after_backup:
-    - echo "`date` - Finished backup"
+commands:
+  before_backup:
+    ['echo "`date` - Starting backup of Documents"']
+  after_backup:
+    ['echo "`date` - Finished backup"']
