@@ -12,7 +12,7 @@ source_directories:
     - ~/Documents
 
 # handle the passphrase
-encryption_passphrase: ~/.config/borgmatic/.borg-passphrase-file
+encryption_passcommand: "cat /Users/oli/.config/borgmatic/.borg-passphrase-file"
 
 repositories:
     - path: ssh://e526z4nk@e526z4nk.repo.borgbase.com/./repo
