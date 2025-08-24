@@ -1,26 +1,25 @@
 # BORGMATIC CONFIGURATION FILE
 # 
 # To restore on new machine:
-# 1. Save this file as ~/.config/borgmatic/config.yaml  
-# 2. Save Enpass / Borg Backup Keys / encryption_passphrase to ~/.config/borgmatic/.borg-passphrase-file
-# 3. Import Borg key from Enpass "Borg Key" field:
+# 1. Set up SSH key authentication with borgbase.com (add your public key to borgbase account)
+# 2. Save this file as ~/.config/borgmatic/config.yaml  
+# 3. Save Enpass / Borg Backup Keys / encryption_passphrase to ~/.config/borgmatic/.borg-passphrase-file
+# 4. Import Borg key from Enpass "Borg Key" field:
 #    Save the key text to a file, then: borg key import ssh://e526z4nk@e526z4nk.repo.borgbase.com/./repo /path/to/key-file
 #    Or paste interactively: borg key import ssh://e526z4nk@e526z4nk.repo.borgbase.com/./repo
-# 4. Test with: borgmatic config validate
+# 5. Test with: borgmatic config validate && borgmatic list
 #
 source_directories:
     - ~/Documents
-
-# handle the passphrase
-encryption_passcommand: "cat /Users/oli/.config/borgmatic/.borg-passphrase-file"
-
-repositories:
-    - path: ssh://e526z4nk@e526z4nk.repo.borgbase.com/./repo
-      label: "macbak"
+    - ~/Library/Containers/in.sinew.Enpass-Desktop/Data/Documents
 
 exclude_patterns:
     - '*.DS_Store'
     - '*.localized'
+
+repositories:
+    - path: ssh://e526z4nk@e526z4nk.repo.borgbase.com/./repo
+      label: "macbak"
 
 compression: auto,zstd
 archive_name_format: '{hostname}-{now:%Y-%m-%d-%H%M%S}'
@@ -34,6 +33,9 @@ keep_monthly: 12
 checks:
     - name: repository
     - name: archives
+
+# handle the passphrase
+encryption_passcommand: "cat /Users/oli/.config/borgmatic/.borg-passphrase-file"
 
 # Commands using the new (verbose) syntax
 commands:
