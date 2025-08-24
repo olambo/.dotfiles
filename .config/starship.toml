@@ -1,0 +1,34 @@
+# A custom format to precisely define the prompt's layout
+format = "$username $git_branch $git_status $directory $character"
+
+[username]
+show_always = true
+style_user = "bold red"
+format = '[$user]($style)'
+
+[git_branch]
+format = "[$branch]($style)"
+style = "bold green"
+
+[git_status]
+staged = "[M](bold red)"
+modified = "[M](bold red)"
+untracked = "[?](bold red)"
+format = "[$staged$modified$untracked]($style)"
+
+[directory]
+truncation_length = 1
+truncation_symbol = "…"
+style = "bold 246"
+format = "[ $path ]($style)"
+
+[character]
+success_symbol = "[>>](bold white) "
+error_symbol = "[>>](bold red) "
+
+# Explicitly disable these modules so they don't show up.
+[package]
+disabled = true
+
+[python]
+disabled = true
