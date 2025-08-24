@@ -17,10 +17,11 @@ untracked = "[?](bold red)"
 format = "[$staged$modified$untracked]($style)"
 
 [directory]
-truncation_length = 1
-truncation_symbol = "…"
-style = "bold 246"
-format = "[ $path ]($style)"
+truncation_length = 2
+truncate_to_repo = false
+truncation_symbol = "↯/"
+style = "bold 247"
+format = "[$path]($style)"
 
 [character]
 success_symbol = "[>>](bold white) "
