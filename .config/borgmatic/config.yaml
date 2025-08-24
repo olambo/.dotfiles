@@ -35,7 +35,7 @@ checks:
     - name: archives
 
 # handle the passphrase
-encryption_passcommand: "cat /Users/oli/.config/borgmatic/.borg-passphrase-file"
+encryption_passcommand: "cat ${HOME}/.config/borgmatic/.borg-passphrase-file"
 
 # Commands using the new (verbose) syntax
 commands:
